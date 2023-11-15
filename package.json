@@ -1,0 +1,15 @@
+{
+	"name": "academiafide",
+	"version": "1.0.0",
+	"description": "Academia Fide fullstack website",
+	"author": "yvrxslvw",
+	"license": "MIT",
+	"private": true,
+	"workspaces": [
+		"./packages/*"
+	],
+	"scripts": {
+		"dev:client": "yarn workspace client dev",
+		"dev:server": "yarn workspace server dev"
+	}
+}
