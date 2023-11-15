@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { MainWidgets } from 'widgets';
 
 export const MainPage: FC = () => {
-	const { JoinCard, News, Actions, Shop } = MainWidgets;
+	const { JoinCard, News, Actions, Shop, Contacts } = MainWidgets;
 
 	return (
 		<>
@@ -10,6 +10,7 @@ export const MainPage: FC = () => {
 			<News />
 			<Actions />
 			<Shop />
+			<Contacts />
 		</>
 	);
 };

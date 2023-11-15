@@ -2,7 +2,7 @@
 
 .Block {
 	padding: 15px 0px;
-	min-height: 512px;
+	min-height: 256px;
 
 	.Container {
 		@include container;
