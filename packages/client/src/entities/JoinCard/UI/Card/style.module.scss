@@ -1,0 +1,40 @@
+@use '@styles' as *;
+
+.JoinCard {
+	.Container {
+		@include container;
+
+		display: flex;
+		background-color: $grey_color;
+		border-radius: 15px;
+		overflow: hidden;
+
+		.Row {
+			width: 50%;
+
+			&:first-child {
+				padding: 15px;
+				display: flex;
+				flex-direction: column;
+				justify-content: space-between;
+
+				.Title {
+					margin-bottom: 15px;
+				}
+
+				.Item {
+					margin-bottom: 5px;
+				}
+
+				.Button {
+					align-self: center;
+				}
+			}
+
+			img {
+				width: 100%;
+				height: 100%;
+			}
+		}
+	}
+}

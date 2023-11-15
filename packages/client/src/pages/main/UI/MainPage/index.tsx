@@ -1,5 +1,12 @@
 import { FC } from 'react';
+import { MainWidgets } from 'widgets';
 
 export const MainPage: FC = () => {
-	return <>main page</>;
+	const { JoinCard } = MainWidgets;
+
+	return (
+		<>
+			<JoinCard />
+		</>
+	);
 };
