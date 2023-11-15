@@ -1,10 +1,10 @@
 {
 	"name": "server",
 	"version": "0.0.1",
-	"description": "",
-	"author": "",
+	"description": "Academia Fide serverside",
+	"author": "yvrxslvw",
 	"private": true,
-	"license": "UNLICENSED",
+	"license": "MIT",
 	"scripts": {
 		"build": "nest build",
 		"dev": "cross-env APP_MODE=development nest start --watch",
