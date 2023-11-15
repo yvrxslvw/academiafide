@@ -1,0 +1,12 @@
+@use '@styles' as *;
+
+.Paragraph {
+	font-size: 20px;
+	font-weight: 400;
+	line-height: 100%;
+	color: $black_color;
+
+	&.Small {
+		font-size: 14px;
+	}
+}

@@ -5,11 +5,12 @@ import cl from './style.module.scss';
 
 interface LinkProps extends AnchorHTMLAttributes<HTMLAnchorElement>, PropsWithChildren {
 	to: string;
+	small?: boolean;
 }
 
-export const Link: FC<LinkProps> = ({ children, className, ...props }) => {
+export const Link: FC<LinkProps> = ({ small, children, className, ...props }) => {
 	return (
-		<RouterLink className={cn(cl.Link, className)} {...props}>
+		<RouterLink className={cn(cl.Link, className, { [cl.Small]: small })} {...props}>
 			{children}
 		</RouterLink>
 	);
