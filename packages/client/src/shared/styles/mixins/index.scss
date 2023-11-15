@@ -1,4 +1,13 @@
 @mixin container {
 	width: 1144px;
 	margin: 0px auto;
+
+	@media (max-width: 1280px) {
+		width: 760px;
+	}
+
+	@media (max-width: 768px) {
+		width: 100%;
+		padding: 0px 25px;
+	}
 }
