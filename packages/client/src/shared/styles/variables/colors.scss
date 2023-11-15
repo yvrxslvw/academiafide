@@ -1,8 +1,14 @@
 $primary_color: #0f1f4a;
 $secondary_color: #373737;
 $grey_color: #777777;
+$white_color: #e7e7e7;
 $link_color: #0f1f4a;
 $link_hover_color: rgba(
 	$color: $link_color,
 	$alpha: 0.7,
+);
+$button_color: #0f1f4ac5;
+$button_hover_color: rgba(
+	$color: $button_color,
+	$alpha: 0.65,
 );

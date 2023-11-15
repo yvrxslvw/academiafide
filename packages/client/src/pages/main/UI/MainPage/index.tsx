@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Link, Logo } from 'shared';
+import { Button, Link, Logo } from 'shared';
 
 export const MainPage: FC = () => {
 	return (
@@ -7,6 +7,7 @@ export const MainPage: FC = () => {
 			<h3>Hello chess!</h3>
 			<Logo />
 			<Link to='/testings'>Cerrar sesión</Link>
+			<Button>Click</Button>
 		</>
 	);
 };

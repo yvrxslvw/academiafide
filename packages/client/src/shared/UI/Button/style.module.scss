@@ -1,0 +1,18 @@
+@use '@styles' as *;
+
+.Button {
+	outline: none;
+	border: none;
+
+	padding: 10px 20px;
+	border-radius: 15px;
+	background-color: $button_color;
+	transition: background-color 0.4s ease;
+	font-size: 20px;
+	font-weight: 600;
+	color: $white_color;
+
+	&:hover {
+		background-color: $button_hover_color;
+	}
+}
