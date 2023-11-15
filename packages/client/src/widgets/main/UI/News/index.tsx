@@ -1,6 +1,6 @@
-import { MainBlockEntities } from 'entities';
 import { FC } from 'react';
 import { Paragraph } from 'shared';
+import { MainBlockEntities } from 'entities';
 
 export const News: FC = () => {
 	const { Block } = MainBlockEntities;

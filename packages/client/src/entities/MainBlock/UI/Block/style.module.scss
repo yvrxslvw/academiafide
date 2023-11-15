@@ -6,6 +6,10 @@
 
 	.Container {
 		@include container;
+
+		.Title {
+			margin-bottom: 15px;
+		}
 	}
 
 	&.grey {

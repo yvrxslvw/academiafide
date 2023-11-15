@@ -12,7 +12,7 @@ export const Block: FC<BlockProps> = ({ grey, title, children }) => {
 	return (
 		<div className={cn(cl.Block, { [cl.grey]: grey })}>
 			<div className={cl.Container}>
-				<Title>{title}</Title>
+				<Title className={cl.Title}>{title}</Title>
 				{children}
 			</div>
 		</div>
