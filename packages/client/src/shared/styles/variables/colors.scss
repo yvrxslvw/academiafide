@@ -1,3 +1,8 @@
 $primary_color: #0f1f4a;
 $secondary_color: #373737;
 $grey_color: #777777;
+$link_color: #0f1f4a;
+$link_hover_color: rgba(
+	$color: $link_color,
+	$alpha: 0.7,
+);
