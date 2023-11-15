@@ -1,0 +1,14 @@
+@use '@styles' as *;
+
+.Block {
+	padding: 15px 0px;
+	min-height: 512px;
+
+	.Container {
+		@include container;
+	}
+
+	&.grey {
+		background-color: $grey_color;
+	}
+}
