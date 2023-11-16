@@ -1,6 +1,7 @@
-import { createBrowserRouter } from 'react-router-dom';
-import { MainPage } from './main';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 import { Layout } from 'widgets';
+import { PublicRouterPaths } from 'shared';
+import { MainPage } from './main';
 
 export const router = createBrowserRouter([
 	{
@@ -8,10 +9,10 @@ export const router = createBrowserRouter([
 		children: [
 			{
 				path: '/*',
-				element: <h1>Error message</h1>,
+				element: <Navigate to={PublicRouterPaths.MAIN_PAGE} replace />,
 			},
 			{
-				path: '/',
+				path: PublicRouterPaths.MAIN_PAGE,
 				element: <MainPage />,
 			},
 		],

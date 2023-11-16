@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Link, Paragraph } from 'shared';
+import { Link, Paragraph, PublicRouterPaths } from 'shared';
 import cl from './style.module.scss';
 
 interface FooterProps {}
@@ -10,7 +10,8 @@ export const Footer: FC<FooterProps> = () => {
 			<div className={cl.Container}>
 				<Paragraph small color='white'>
 					&#169; 2023 Academia Fide. Todos los Derechos Reservados.{' '}
-					<Link to='/' small color='white'>
+					<Link to={PublicRouterPaths.MAIN_PAGE} small color='white'>
+						{/* To change link path */}
 						Términos y condiciones
 					</Link>
 				</Paragraph>
