@@ -1,1 +1,1 @@
-export * from './LatestPost';
+export {};

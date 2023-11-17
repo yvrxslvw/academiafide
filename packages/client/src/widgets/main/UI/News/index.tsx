@@ -1,15 +1,17 @@
 import { FC } from 'react';
-import { MainBlockEntities, PostEntities } from 'entities';
+import { MainBlockEntities } from 'entities';
 import { PostFeatures } from 'features';
+import cl from './style.module.scss';
 
 export const News: FC = () => {
 	const { Block } = MainBlockEntities;
-	const { LatestPost } = PostEntities;
 	const { ShowMoreButton } = PostFeatures;
 
 	return (
 		<Block title='Últimas noticias'>
-			<LatestPost content={<></>} showMoreButton={<ShowMoreButton />} />
+			<section className={cl.ShowMoreButton}>
+				<ShowMoreButton />
+			</section>
 		</Block>
 	);
 };

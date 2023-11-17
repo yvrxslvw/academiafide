@@ -9,6 +9,7 @@
 		@include container;
 		display: flex;
 		flex-direction: column;
+		position: relative;
 
 		.Title {
 			margin-bottom: 15px;
