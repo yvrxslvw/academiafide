@@ -11,8 +11,9 @@ const initialState: UserState = {
 		id: -1,
 		login: '',
 		roles: [],
+		avatarUrl: 'https://via.placeholder.com/600/92c952', // !
 	},
-	isLogged: false,
+	isLogged: true, // !
 };
 
 const UserSlice = createSlice({
