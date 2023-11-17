@@ -1,9 +1,9 @@
 import { FC } from 'react';
-import { MainBlockEntities, PostsEntities } from 'entities';
+import { MainBlockEntities, PostEntities } from 'entities';
 
 export const News: FC = () => {
 	const { Block } = MainBlockEntities;
-	const { LatestPost } = PostsEntities;
+	const { LatestPost } = PostEntities;
 
 	return (
 		<Block title='Últimas noticias'>
