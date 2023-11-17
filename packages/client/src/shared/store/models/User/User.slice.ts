@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { login, logout } from './User.actions';
 import { IUser } from '.';
 
 export interface UserState {
@@ -19,7 +20,10 @@ const initialState: UserState = {
 const UserSlice = createSlice({
 	name: 'user',
 	initialState,
-	reducers: {},
+	reducers: {
+		login,
+		logout,
+	},
 });
 
 export const { actions, reducer } = UserSlice;
