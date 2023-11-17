@@ -9,10 +9,7 @@ export const News: FC = () => {
 
 	return (
 		<Block title='Últimas noticias'>
-			<LatestPost
-				content={<>Hi, I am the latest post among non-existent posts!</>}
-				showMoreButton={<ShowMoreButton />}
-			/>
+			<LatestPost content={<></>} showMoreButton={<ShowMoreButton />} />
 		</Block>
 	);
 };
