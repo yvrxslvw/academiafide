@@ -3,9 +3,12 @@
 .Block {
 	padding: 15px 0px;
 	min-height: 256px;
+	display: flex;
 
 	.Container {
 		@include container;
+		display: flex;
+		flex-direction: column;
 
 		.Title {
 			margin-bottom: 15px;

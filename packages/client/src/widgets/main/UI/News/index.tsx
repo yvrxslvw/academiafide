@@ -1,18 +1,13 @@
 import { FC } from 'react';
-import { Paragraph } from 'shared';
-import { MainBlockEntities } from 'entities';
+import { MainBlockEntities, PostsEntities } from 'entities';
 
 export const News: FC = () => {
 	const { Block } = MainBlockEntities;
+	const { LatestPost } = PostsEntities;
 
 	return (
-		<Block title='Noticias'>
-			<Paragraph>
-				Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae omnis, magni aperiam quam eius alias ex
-				reiciendis tempora, tenetur, quod vitae veritatis dolorem pariatur similique? Maiores cupiditate reiciendis
-				quibusdam aliquam.
-			</Paragraph>
-			<Paragraph>some text blablabla...</Paragraph>
+		<Block title='Últimas noticias'>
+			<LatestPost content={<></>} showMoreButton={<></>} />
 		</Block>
 	);
 };
