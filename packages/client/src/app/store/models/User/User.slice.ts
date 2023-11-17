@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { login, logout } from './User.actions';
-import { IUser } from '.';
+import { IUser } from 'shared';
 
 export interface UserState {
 	userInfo: IUser;
