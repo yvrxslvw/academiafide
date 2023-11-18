@@ -11,6 +11,7 @@
 
 		.Row {
 			width: 50%;
+			min-height: 400px;
 
 			&:first-child {
 				padding: 15px;
@@ -28,12 +29,18 @@
 
 				.Button {
 					align-self: center;
+					margin-top: 25px;
 				}
 			}
 
-			img {
-				width: 100%;
-				height: 100%;
+			&:last-child {
+				position: relative;
+				overflow: hidden;
+
+				img {
+					position: absolute;
+					height: 100%;
+				}
 			}
 		}
 	}
