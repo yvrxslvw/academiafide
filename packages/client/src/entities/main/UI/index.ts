@@ -1,2 +1,2 @@
+export * from './Block';
 export * from './JoinCard';
-export * from './Header';

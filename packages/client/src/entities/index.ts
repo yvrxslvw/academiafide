@@ -1,4 +1,2 @@
 export * from './layout';
-export * from './JoinCard';
-export * from './MainBlock';
-export * from './Post';
+export * from './main';

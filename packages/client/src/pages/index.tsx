@@ -1,6 +1,6 @@
 import { createBrowserRouter, Navigate } from 'react-router-dom';
-import { Layout } from 'widgets';
 import { PublicRouterPaths } from 'shared';
+import { Layout } from 'widgets';
 import { MainPage } from './main';
 
 export const router = createBrowserRouter([

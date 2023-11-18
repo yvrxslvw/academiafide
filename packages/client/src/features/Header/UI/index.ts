@@ -1,1 +1,2 @@
-export * from './UserBlock';
+export * from './UserInfo';
+export * from './RegInfo';

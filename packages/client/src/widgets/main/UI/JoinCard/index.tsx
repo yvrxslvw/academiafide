@@ -1,9 +1,9 @@
 import { FC } from 'react';
-import { JoinCardEntities } from 'entities';
+import { MainEntities } from 'entities';
 import { JoinCardFeatures } from 'features';
 
 export const JoinCard: FC = () => {
-	const { Card } = JoinCardEntities;
+	const { Card } = MainEntities;
 	const { JoinButton } = JoinCardFeatures;
 
 	return <Card joinButton={<JoinButton />} />;

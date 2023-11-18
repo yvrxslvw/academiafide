@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import { Paragraph } from 'shared';
-import { MainBlockEntities } from 'entities';
+import { MainEntities } from 'entities';
 
 export const Shop: FC = () => {
-	const { Block } = MainBlockEntities;
+	const { Block } = MainEntities;
 
 	return (
 		<Block title='¡Visita nuestra tienda!'>

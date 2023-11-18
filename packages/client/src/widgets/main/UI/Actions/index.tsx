@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import { Paragraph } from 'shared';
-import { MainBlockEntities } from 'entities';
+import { MainEntities } from 'entities';
 
 export const Actions: FC = () => {
-	const { Block } = MainBlockEntities;
+	const { Block } = MainEntities;
 
 	return (
 		<Block title='¿Que estamos haciendo?' grey>

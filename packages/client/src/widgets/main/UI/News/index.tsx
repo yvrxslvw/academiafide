@@ -1,9 +1,9 @@
 import { FC } from 'react';
-import { MainBlockEntities } from 'entities';
 import { Paragraph } from 'shared';
+import { MainEntities } from 'entities';
 
 export const News: FC = () => {
-	const { Block } = MainBlockEntities;
+	const { Block } = MainEntities;
 
 	return (
 		<Block title='Últimas noticias'>
