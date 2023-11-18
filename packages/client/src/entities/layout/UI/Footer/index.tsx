@@ -10,8 +10,7 @@ export const Footer: FC<FooterProps> = () => {
 			<div className={cl.Container}>
 				<Paragraph small color='white'>
 					&#169; 2023 Academia Fide. Todos los Derechos Reservados.{' '}
-					<Link to={PublicRouterPaths.MAIN_PAGE} small color='white'>
-						{/* To change link path */}
+					<Link to={PublicRouterPaths.TERMS_PAGE} small color='white'>
 						Términos y condiciones
 					</Link>
 				</Paragraph>

@@ -1,0 +1,17 @@
+@use '@styles' as *;
+
+.Container {
+	@include container;
+
+	.Title {
+		margin-bottom: 25px;
+	}
+
+	.Item {
+		margin-bottom: 10px;
+	}
+
+	.Signature {
+		margin-top: 25px;
+	}
+}
