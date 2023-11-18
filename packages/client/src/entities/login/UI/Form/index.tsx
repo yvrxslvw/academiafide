@@ -15,23 +15,14 @@ export const Form: FC<FormProps> = ({ loginInput, passwordInput, nextButton }) =
 
 	return (
 		<form onSubmit={onSubmitHandler} className={cl.Form}>
-			<section className={cl.Item}>
-				{loginInput}
-				{/* <Input label='Nombre de usuario' type='text' placeholder='Escribe tu nombre de usuario' /> */}
-			</section>
-			<section className={cl.Item}>
-				{passwordInput}
-				{/* <Input label='Contraseña' type='password' placeholder='Escribe tu contraseña' /> */}
-			</section>
+			<section className={cl.Item}>{loginInput}</section>
+			<section className={cl.Item}>{passwordInput}</section>
 			<section className={cl.Item}>
 				<Link to={PublicRouterPaths.LOGIN_PAGE}>¿Olvidaste tu contraseña?</Link>
 				<br />
 				<Link to={PublicRouterPaths.LOGIN_PAGE}>¿No tienes una cuenta?</Link>
 			</section>
-			<section className={cl.Item}>
-				{nextButton}
-				{/* <Button>Siguente</Button> */}
-			</section>
+			<section className={cl.Item}>{nextButton}</section>
 		</form>
 	);
 };
