@@ -2,6 +2,7 @@ import { Navigate, RouteObject } from 'react-router-dom';
 import { PublicRouterPaths } from 'shared';
 import { MainPage } from './Main';
 import { TermsPage } from './Terms';
+import { LoginPage } from './Login';
 
 export const PublicRoutes: RouteObject[] = [
 	{
@@ -15,6 +16,10 @@ export const PublicRoutes: RouteObject[] = [
 	{
 		path: PublicRouterPaths.TERMS_PAGE,
 		element: <TermsPage />,
+	},
+	{
+		path: PublicRouterPaths.LOGIN_PAGE,
+		element: <LoginPage />,
 	},
 ];
 
