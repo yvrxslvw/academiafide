@@ -20,7 +20,7 @@ export const Form: FC<FormProps> = ({ loginInput, passwordInput, nextButton }) =
 			<section className={cl.Item}>
 				<Link to={PublicRouterPaths.LOGIN_PAGE}>¿Olvidaste tu contraseña?</Link>
 				<br />
-				<Link to={PublicRouterPaths.LOGIN_PAGE}>¿No tienes una cuenta?</Link>
+				<Link to={PublicRouterPaths.LOGUP_PAGE}>¿No tienes una cuenta?</Link>
 			</section>
 			<section className={cl.Item}>{nextButton}</section>
 		</form>

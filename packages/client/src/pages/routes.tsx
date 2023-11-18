@@ -3,6 +3,7 @@ import { PublicRouterPaths } from 'shared';
 import { MainPage } from './Main';
 import { TermsPage } from './Terms';
 import { LoginPage } from './Login';
+import { LogupPage } from './Logup';
 
 export const PublicRoutes: RouteObject[] = [
 	{
@@ -20,6 +21,10 @@ export const PublicRoutes: RouteObject[] = [
 	{
 		path: PublicRouterPaths.LOGIN_PAGE,
 		element: <LoginPage />,
+	},
+	{
+		path: PublicRouterPaths.LOGUP_PAGE,
+		element: <LogupPage />,
 	},
 ];
 

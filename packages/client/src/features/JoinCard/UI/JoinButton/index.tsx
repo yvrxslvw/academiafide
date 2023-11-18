@@ -1,10 +1,12 @@
 import { FC } from 'react';
-import { Button } from 'shared';
+import { useNavigate } from 'react-router-dom';
+import { Button, PublicRouterPaths } from 'shared';
 
 export const JoinButton: FC = () => {
+	const navigate = useNavigate();
+
 	const onClickHandler = () => {
-		// eslint-disable-next-line no-console
-		console.log('Join!!!');
+		navigate(PublicRouterPaths.LOGUP_PAGE);
 	};
 
 	return <Button onClick={onClickHandler}>Unirse</Button>;
