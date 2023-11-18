@@ -1,20 +1,25 @@
-import { createBrowserRouter, Navigate } from 'react-router-dom';
-import { PublicRouterPaths } from 'shared';
+import { FC } from 'react';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { useAppSelector } from 'shared';
 import { Layout } from 'widgets';
-import { MainPage } from './main';
+import { PrivateRoutes, PublicRoutes } from './routes';
 
-export const router = createBrowserRouter([
+const PublicRouter = createBrowserRouter([
 	{
 		element: <Layout />,
-		children: [
-			{
-				path: '/*',
-				element: <Navigate to={PublicRouterPaths.MAIN_PAGE} replace />,
-			},
-			{
-				path: PublicRouterPaths.MAIN_PAGE,
-				element: <MainPage />,
-			},
-		],
+		children: PublicRoutes,
 	},
 ]);
+
+const PrivateRouter = createBrowserRouter([
+	{
+		element: <Layout />,
+		children: PrivateRoutes,
+	},
+]);
+
+export const AppRouter: FC = () => {
+	const { isLogged } = useAppSelector(state => state.user);
+
+	return <RouterProvider router={isLogged ? PrivateRouter : PublicRouter} />;
+};
