@@ -23,7 +23,7 @@ export const Input: FC<InputProps> = ({ label, type, className, style, ...props 
 			<p className={cl.Label}>{label}</p>
 			<input type={inputType} className={cn(cl.Input, className)} style={inputStyle} {...props} />
 			{type === 'password' && (
-				<button onClick={onClickHandler} className={cl.Button}>
+				<button type='button' onClick={onClickHandler} className={cl.Button}>
 					{isShown ? <FontAwesomeIcon icon={faEye} /> : <FontAwesomeIcon icon={faEyeSlash} />}
 				</button>
 			)}

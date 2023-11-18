@@ -1,0 +1,11 @@
+.Form {
+	.Item {
+		margin-bottom: 15px;
+
+		&:last-child {
+			margin: 0px;
+			display: flex;
+			justify-content: center;
+		}
+	}
+}
