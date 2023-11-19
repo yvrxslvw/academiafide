@@ -1,9 +1,9 @@
-import { FC, InputHTMLAttributes } from 'react';
+import { FC, InputHTMLAttributes, ReactNode } from 'react';
 import cn from 'classnames';
 import cl from './style.module.scss';
 
 interface CheckboxProps extends InputHTMLAttributes<HTMLInputElement> {
-	label: string;
+	label: ReactNode;
 }
 
 export const Checkbox: FC<CheckboxProps> = ({ label, className, ...props }) => {
