@@ -3,3 +3,4 @@ export * from './main';
 export * from './terms';
 export * from './login';
 export * from './logup';
+export * from './recovery';

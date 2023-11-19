@@ -1,0 +1,20 @@
+@use '@styles' as *;
+
+.Container {
+	@include container;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+
+	.Window {
+		width: 600px;
+		background-color: $grey_color;
+		padding: 10px 15px;
+		border-radius: 10px;
+
+		.Title {
+			margin-bottom: 15px;
+		}
+	}
+}

@@ -4,6 +4,7 @@ import { MainPage } from './Main';
 import { TermsPage } from './Terms';
 import { LoginPage } from './Login';
 import { LogupPage } from './Logup';
+import { RecoveryPage } from './Recovery';
 
 export const PublicRoutes: RouteObject[] = [
 	{
@@ -25,6 +26,10 @@ export const PublicRoutes: RouteObject[] = [
 	{
 		path: PublicRouterPaths.LOGUP_PAGE,
 		element: <LogupPage />,
+	},
+	{
+		path: PublicRouterPaths.RECOVERY_PAGE,
+		element: <RecoveryPage />,
 	},
 ];
 
