@@ -1,4 +1,5 @@
 import { FC, FormEvent, ReactNode } from 'react';
+import cn from 'classnames';
 import { Link, PublicRouterPaths } from 'shared';
 import cl from './style.module.scss';
 
@@ -22,7 +23,7 @@ export const Form: FC<FormProps> = ({ loginInput, passwordInput, nextButton }) =
 				<br />
 				<Link to={PublicRouterPaths.LOGUP_PAGE}>¿No tienes una cuenta?</Link>
 			</section>
-			<section className={cl.Item}>{nextButton}</section>
+			<section className={cn(cl.Item, cl.ButtonBody)}>{nextButton}</section>
 		</form>
 	);
 };
