@@ -1,0 +1,60 @@
+@use '@styles' as *;
+
+.CheckboxBlock {
+	display: flex;
+	align-items: center;
+	position: relative;
+	cursor: pointer;
+	padding: 0px 0px 0px 35px;
+	height: 25px;
+
+	.Input {
+		position: absolute;
+		opacity: 0;
+		height: 0;
+		width: 0;
+	}
+
+	.CheckMark {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 25px;
+		width: 25px;
+		background-color: $white_color;
+		border-radius: 50%;
+		transition: all 0.4s ease;
+
+		&:after {
+			content: '';
+			position: absolute;
+			display: none;
+			left: 9px;
+			top: 5px;
+			width: 5px;
+			height: 10px;
+			border: solid $white_color;
+			border-width: 0px 3px 3px 0px;
+			transform: rotate(45deg);
+		}
+	}
+
+	.Label {
+		color: $secondary_color;
+		font-size: 18px;
+	}
+
+	&:hover .Input ~ .CheckMark {
+		background-color: $white_color;
+	}
+
+	& .Input:checked {
+		& ~ .CheckMark {
+			background-color: $primary_color;
+		}
+
+		& ~ .CheckMark:after {
+			display: block;
+		}
+	}
+}
