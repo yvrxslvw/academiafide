@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Paragraph } from 'shared';
+import { Link, Paragraph, PublicRouterPaths } from 'shared';
 import { MainEntities } from 'entities';
 
 export const News: FC = () => {
@@ -12,6 +12,7 @@ export const News: FC = () => {
 				debitis a ducimus ab, unde mollitia officia soluta vitae et voluptatem autem odit nobis, architecto vero.
 			</Paragraph>
 			<Paragraph>some text blablabla...</Paragraph>
+			<Link to={PublicRouterPaths.NEWS_PAGE}>News</Link>
 		</Block>
 	);
 };
