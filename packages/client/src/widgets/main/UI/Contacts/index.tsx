@@ -1,11 +1,9 @@
 import { FC } from 'react';
 import { Paragraph } from 'shared';
-import { MainEntities } from 'entities';
 import cl from './style.module.scss';
+import { Block } from 'entities';
 
 export const Contacts: FC = () => {
-	const { Block } = MainEntities;
-
 	return (
 		<Block title='¿Tiene usted alguna pregunta? ¡Contáctenos!' grey>
 			<Paragraph>

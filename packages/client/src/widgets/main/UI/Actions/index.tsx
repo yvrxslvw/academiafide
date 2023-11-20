@@ -1,11 +1,9 @@
+import { Block } from 'entities';
 import { FC } from 'react';
 import { Link, Paragraph } from 'shared';
-import { MainEntities } from 'entities';
 
 // ! To change link
 export const Actions: FC = () => {
-	const { Block } = MainEntities;
-
 	return (
 		<Block title='¿Que estamos haciendo?' grey>
 			<Paragraph>

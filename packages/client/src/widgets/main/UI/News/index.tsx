@@ -1,10 +1,8 @@
+import { Block } from 'entities';
 import { FC } from 'react';
 import { Link, Paragraph, PublicRouterPaths } from 'shared';
-import { MainEntities } from 'entities';
 
 export const News: FC = () => {
-	const { Block } = MainEntities;
-
 	return (
 		<Block title='Últimas noticias'>
 			<Paragraph>
