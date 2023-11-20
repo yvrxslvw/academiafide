@@ -1,1 +1,1 @@
-export {};
+export * as PostSlice from './Post';
