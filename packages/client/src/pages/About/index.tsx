@@ -2,11 +2,12 @@ import { FC } from 'react';
 import { AboutWidgets } from 'widgets';
 
 export const AboutPage: FC = () => {
-	const { History } = AboutWidgets;
+	const { History, Experience } = AboutWidgets;
 
 	return (
 		<>
 			<History />
+			<Experience />
 		</>
 	);
 };
