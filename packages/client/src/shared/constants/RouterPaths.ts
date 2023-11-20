@@ -6,6 +6,7 @@ export const enum PublicRouterPaths {
 	RECOVERY_PAGE = '/recovery',
 	NEWS_PAGE = '/news',
 	ABOUT_PAGE = '/about',
+	SHOP_PAGE = '/shop',
 }
 
 export const enum PrivateRouterPaths {}

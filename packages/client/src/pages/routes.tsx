@@ -7,6 +7,7 @@ import { LogupPage } from './Logup';
 import { RecoveryPage } from './Recovery';
 import { NewsPage } from './News';
 import { AboutPage } from './About';
+import { ShopPage } from './Shop';
 
 export const PublicRoutes: RouteObject[] = [
 	{
@@ -40,6 +41,10 @@ export const PublicRoutes: RouteObject[] = [
 	{
 		path: PublicRouterPaths.ABOUT_PAGE,
 		element: <AboutPage />,
+	},
+	{
+		path: PublicRouterPaths.SHOP_PAGE,
+		element: <ShopPage />,
 	},
 ];
 
