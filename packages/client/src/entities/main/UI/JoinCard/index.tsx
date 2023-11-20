@@ -22,7 +22,6 @@ export const Card: FC<CardProps> = ({ joinButton }) => {
 						<Paragraph className={cl.Item}>
 							Impartimos cursos de ajedrez individuales y grupales tanto presenciales como online.
 						</Paragraph>
-						<Paragraph className={cl.Item}>some text blablabla...</Paragraph>
 					</section>
 					<section className={cl.Button}>{joinButton}</section>
 				</div>

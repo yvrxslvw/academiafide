@@ -15,20 +15,4 @@
 	&:active {
 		color: $link_color;
 	}
-
-	&.Small {
-		font-size: 14px;
-	}
-
-	&.primary {
-		color: $primary_color;
-	}
-
-	&.black {
-		color: $black_color;
-	}
-
-	&.white {
-		color: $white_color;
-	}
 }

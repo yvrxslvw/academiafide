@@ -1,18 +1,18 @@
 import { FC } from 'react';
-import { Paragraph } from 'shared';
+import { Link, Paragraph } from 'shared';
 import { MainEntities } from 'entities';
 
+// ! To change link
 export const Shop: FC = () => {
 	const { Block } = MainEntities;
 
 	return (
 		<Block title='¡Visita nuestra tienda!'>
 			<Paragraph>
-				Lorem ipsum dolor sit amet consectetur, adipisicing elit. Beatae omnis, magni aperiam quam eius alias ex
-				reiciendis tempora, tenetur, quod vitae veritatis dolorem pariatur similique? Maiores cupiditate reiciendis
-				quibusdam aliquam.
+				En nuestra tienda encontrarás cursos de ajedrez tanto para principiantes como para ajedrecistas avanzados.
 			</Paragraph>
-			<Paragraph>some text blablabla...</Paragraph>
+			<Paragraph>Visita nuestra tienda de cursos y obtén más conocimientos sobre el juego y mucho más:</Paragraph>
+			<Link to='/'>Comprar cursos y más</Link>
 		</Block>
 	);
 };

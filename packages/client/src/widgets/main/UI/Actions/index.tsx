@@ -1,18 +1,22 @@
 import { FC } from 'react';
-import { Paragraph } from 'shared';
+import { Link, Paragraph } from 'shared';
 import { MainEntities } from 'entities';
 
+// ! To change link
 export const Actions: FC = () => {
 	const { Block } = MainEntities;
 
 	return (
 		<Block title='¿Que estamos haciendo?' grey>
 			<Paragraph>
-				Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione dolorem illum temporibus ipsam sapiente
-				debitis, provident dolor architecto, minima rerum sint doloremque totam harum, enim qui nihil tempora officia
-				quo.
+				Impartimos clases tanto online como presenciales, organizamos torneos de ajedrez, vendemos cursos de ajedrez
+				para todos los niveles, también organizamos nuestros propios seminarios y preparamos a jugadores de todos los
+				niveles para los próximos torneos.
 			</Paragraph>
-			<Paragraph>some text blablabla...</Paragraph>
+			<Paragraph>
+				Y además, te recomendamos que conozcas más sobre nuestro equipo y quiénes somos en el mundo del ajedrez:
+			</Paragraph>
+			<Link to='/'>Quiénes somos y qué hacemos</Link>
 		</Block>
 	);
 };

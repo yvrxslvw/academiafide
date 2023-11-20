@@ -8,11 +8,10 @@ export const News: FC = () => {
 	return (
 		<Block title='Últimas noticias'>
 			<Paragraph>
-				Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatum corrupti praesentium voluptas numquam eius
-				debitis a ducimus ab, unde mollitia officia soluta vitae et voluptatem autem odit nobis, architecto vero.
+				Siga nuestras noticias, cambios y actualidad, y también infórmese sobre los cursos disponibles actualmente
+				directamente en nuestro sitio web:
 			</Paragraph>
-			<Paragraph>some text blablabla...</Paragraph>
-			<Link to={PublicRouterPaths.NEWS_PAGE}>News</Link>
+			<Link to={PublicRouterPaths.NEWS_PAGE}>Últimas noticias, cursos, etc.</Link>
 		</Block>
 	);
 };
