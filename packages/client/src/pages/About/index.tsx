@@ -3,7 +3,7 @@ import { FC } from 'react';
 import { AboutWidgets } from 'widgets';
 
 export const AboutPage: FC = () => {
-	const { History, Experience, Data, Adrian } = AboutWidgets;
+	const { History, Experience, Data, Adrian, Fernando } = AboutWidgets;
 
 	return (
 		<>
@@ -12,6 +12,8 @@ export const AboutPage: FC = () => {
 			<Data />
 			<Block title='Conoce nuestro equipo'>
 				<Adrian />
+				<br />
+				<Fernando />
 			</Block>
 		</>
 	);
