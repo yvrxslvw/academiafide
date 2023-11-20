@@ -1,9 +1,9 @@
-import { Block } from 'entities';
 import { FC } from 'react';
+import { Block } from 'entities';
 import { AboutWidgets } from 'widgets';
 
 export const AboutPage: FC = () => {
-	const { History, Experience, Data, Adrian, Fernando } = AboutWidgets;
+	const { History, Experience, Data, Adrian, Fernando, Alejo } = AboutWidgets;
 
 	return (
 		<>
@@ -14,6 +14,8 @@ export const AboutPage: FC = () => {
 				<Adrian />
 				<br />
 				<Fernando />
+				<br />
+				<Alejo />
 			</Block>
 		</>
 	);
