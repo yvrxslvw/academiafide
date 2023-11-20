@@ -24,11 +24,11 @@
 			}
 
 			&:last-child {
-				position: relative;
 				overflow: hidden;
+				flex: 1 1 auto;
 
 				img {
-					position: absolute;
+					width: 100%;
 					height: 100%;
 				}
 			}
