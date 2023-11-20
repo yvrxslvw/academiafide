@@ -1,0 +1,23 @@
+@use '@styles' as *;
+
+.ShopItem {
+	background-color: $grey_color;
+	border-radius: 10px;
+	padding: 10px 15px;
+	display: flex;
+	flex-direction: column;
+
+	.Title {
+		margin-bottom: 15px;
+	}
+
+	.Content {
+		flex: 1 1 auto;
+	}
+
+	.ButtonBody {
+		display: flex;
+		justify-content: center;
+		margin-top: 15px;
+	}
+}

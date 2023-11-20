@@ -2,4 +2,15 @@
 
 .Container {
 	@include container;
+	padding: 0px 0px 25px 0px;
+
+	.Title {
+		margin-bottom: 25px;
+	}
+
+	.ShopList {
+		display: grid;
+		grid-template-columns: repeat(4, 24%);
+		gap: 15px;
+	}
 }
