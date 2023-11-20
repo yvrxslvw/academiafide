@@ -16,6 +16,7 @@ const initialState: ShopState = {
 		},
 		2: {
 			id: 2,
+			imageUrl: 'https://via.placeholder.com/600/771796',
 			title: 'ShopItem2',
 			content: 'Lorem ipsum',
 		},
@@ -31,6 +32,7 @@ const initialState: ShopState = {
 		},
 		5: {
 			id: 5,
+			imageUrl: 'https://via.placeholder.com/600/92c952',
 			title: 'ShopItem5',
 			content: 'Lorem ipsum',
 		},
