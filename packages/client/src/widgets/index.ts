@@ -5,3 +5,4 @@ export * from './login';
 export * from './logup';
 export * from './recovery';
 export * from './news';
+export * from './about';

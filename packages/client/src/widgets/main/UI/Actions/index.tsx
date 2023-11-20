@@ -1,8 +1,7 @@
 import { Block } from 'entities';
 import { FC } from 'react';
-import { Link, Paragraph } from 'shared';
+import { Link, Paragraph, PublicRouterPaths } from 'shared';
 
-// ! To change link
 export const Actions: FC = () => {
 	return (
 		<Block title='¿Que estamos haciendo?' grey>
@@ -14,7 +13,7 @@ export const Actions: FC = () => {
 			<Paragraph>
 				Y además, te recomendamos que conozcas más sobre nuestro equipo y quiénes somos en el mundo del ajedrez:
 			</Paragraph>
-			<Link to='/'>Quiénes somos y qué hacemos</Link>
+			<Link to={PublicRouterPaths.ABOUT_PAGE}>Quiénes somos y qué hacemos</Link>
 		</Block>
 	);
 };

@@ -6,6 +6,7 @@ import { LoginPage } from './Login';
 import { LogupPage } from './Logup';
 import { RecoveryPage } from './Recovery';
 import { NewsPage } from './News';
+import { AboutPage } from './About';
 
 export const PublicRoutes: RouteObject[] = [
 	{
@@ -35,6 +36,10 @@ export const PublicRoutes: RouteObject[] = [
 	{
 		path: PublicRouterPaths.NEWS_PAGE,
 		element: <NewsPage />,
+	},
+	{
+		path: PublicRouterPaths.ABOUT_PAGE,
+		element: <AboutPage />,
 	},
 ];
 
