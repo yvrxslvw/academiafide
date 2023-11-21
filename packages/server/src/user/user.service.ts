@@ -33,4 +33,24 @@ export class UserService {
 			return new HttpException('An unexpected error occurred...', HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+
+	async getAll() {
+		try {
+			return await this.repo.findAll();
+		} catch (error) {
+			console.error(error);
+			return new HttpException('An unexpected error occurred...', HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	async getOne(id: number) {
+		try {
+			const user = await this.repo.findByPk(id);
+			if (!user) return new HttpException('User not found.', HttpStatus.NOT_FOUND);
+			return user;
+		} catch (error) {
+			console.error(error);
+			return new HttpException('An unexpected error occurred...', HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 }
