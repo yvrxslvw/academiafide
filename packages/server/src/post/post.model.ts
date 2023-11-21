@@ -21,11 +21,11 @@ export class Post extends Model<Post, PostCreationAttributes> {
 	declare userId: number;
 
 	@ApiProperty({ example: 'I am a title', description: 'Post title' })
-	@Column({ type: DataType.STRING(128), allowNull: false })
+	@Column({ type: DataType.TEXT('tiny'), allowNull: false })
 	declare title: string;
 
 	@ApiProperty({ example: 'I am a content', description: 'Post content' })
-	@Column({ type: DataType.TEXT('long'), allowNull: false })
+	@Column({ type: DataType.TEXT, allowNull: false })
 	declare content: string;
 
 	@ApiProperty({ example: 'someImageName.jpg', description: 'Post image name that the backend has it' })
