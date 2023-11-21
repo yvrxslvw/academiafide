@@ -12,12 +12,11 @@ export class UserController {
 	constructor(private readonly service: UserService) {}
 
 	@ApiOperation({ summary: 'User creating' })
-	@ApiResponse({ status: 200, description: 'Successfully creating user', type: User })
+	@ApiResponse({ status: 201, description: 'Successfully creating user', type: User })
 	@ApiResponse({ status: 403, description: 'If login or email already exists' })
 	@Put()
-	async create(@Res() res: Response, @Body() userDto: CreateUserDto) {
-		const response = await this.service.create(userDto);
-		res.status(response.getStatus()).send(response.getResponse());
+	create(@Body() userDto: CreateUserDto) {
+		return this.service.create(userDto);
 	}
 
 	@ApiOperation({ summary: 'User deleting' })

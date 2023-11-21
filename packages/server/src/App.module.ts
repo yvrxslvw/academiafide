@@ -15,7 +15,7 @@ const envFilePath = isDev ? '.env.development' : '.env';
 
 @Module({
 	imports: [
-		ConfigModule.forRoot({ envFilePath }),
+		ConfigModule.forRoot({ isGlobal: true, envFilePath }),
 		SequelizeModule.forRoot({
 			dialect: 'mysql',
 			host: process.env.MYSQL_HOST,

@@ -1,4 +1,5 @@
 import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
+import { InternalServerErrorException, UnauthorizedException, ForbiddenException } from '@nestjs/common/exceptions';
 import { InjectModel } from '@nestjs/sequelize';
 import { User } from './user.model';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -9,17 +10,12 @@ export class UserService {
 	constructor(@InjectModel(User) private readonly repo: typeof User) {}
 
 	async create(userDto: CreateUserDto) {
-		try {
-			const loginExisted = await this.repo.findOne({ where: { login: userDto.login } });
-			const emailExisted = await this.repo.findOne({ where: { email: userDto.email } });
-			if (loginExisted) return new HttpException('Login already existed.', HttpStatus.FORBIDDEN);
-			if (emailExisted) return new HttpException('Email already existed.', HttpStatus.FORBIDDEN);
-			const user = await this.repo.create(userDto);
-			return new HttpException(user, HttpStatus.OK);
-		} catch (error) {
-			console.error(error);
-			return new HttpException('An unexpected error occurred...', HttpStatus.INTERNAL_SERVER_ERROR);
-		}
+		const loginExisted = await this.repo.findOne({ where: { login: userDto.login } });
+		const emailExisted = await this.repo.findOne({ where: { email: userDto.email } });
+		if (loginExisted) throw new ForbiddenException('Login already existed.');
+		if (emailExisted) throw new ForbiddenException('Email already existed.');
+		const user = await this.repo.create(userDto);
+		return user;
 	}
 
 	async delete(id: number) {
@@ -52,6 +48,16 @@ export class UserService {
 		} catch (error) {
 			console.error(error);
 			return new HttpException('An unexpected error occurred...', HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	async getOneByLogin(login: string) {
+		try {
+			const user = await this.repo.findOne({ where: { login }, include: { all: true, nested: true } });
+			return user;
+		} catch (error) {
+			console.error(error);
+			throw new InternalServerErrorException('An unexpected error occurred...');
 		}
 	}
 
