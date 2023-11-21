@@ -8,6 +8,7 @@ import { User } from './user/user.model';
 import { FilesModule } from './files/files.module';
 import { PostModule } from './post/post.module';
 import { Post } from './post/post.model';
+import { AuthModule } from './auth/auth.module';
 
 const isDev = process.env.APP_MODE === 'development';
 const envFilePath = isDev ? '.env.development' : '.env';
@@ -35,6 +36,7 @@ const envFilePath = isDev ? '.env.development' : '.env';
 		UserModule,
 		FilesModule,
 		PostModule,
+		AuthModule,
 	],
 })
 export class AppModule {}
