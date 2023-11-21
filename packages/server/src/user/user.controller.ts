@@ -36,12 +36,12 @@ export class UserController {
 		res.status(data.getStatus()).send(data.getResponse());
 	}
 
-	@ApiOperation({ summary: 'Get one user' })
+	@ApiOperation({ summary: 'Get one user by ID' })
 	@ApiResponse({ status: 200, description: 'Successfully get one user' })
 	@ApiResponse({ status: 404, description: "If user doesn't exists" })
 	@Get('/:id')
-	async getOne(@Res() res: Response, @Param('id') id: number) {
-		const data = await this.service.getOne(id);
+	async getOneById(@Res() res: Response, @Param('id') id: number) {
+		const data = await this.service.getOneById(id);
 		res.status(data.getStatus()).send(data.getResponse());
 	}
 }

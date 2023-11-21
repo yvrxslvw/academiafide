@@ -44,7 +44,7 @@ export class UserService {
 		}
 	}
 
-	async getOne(id: number) {
+	async getOneById(id: number) {
 		try {
 			const user = await this.repo.findByPk(id);
 			if (!user) return new HttpException('User not found.', HttpStatus.NOT_FOUND);
