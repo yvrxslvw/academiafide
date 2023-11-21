@@ -8,6 +8,10 @@ module.exports = () => {
 	const pkg = jetpack.read(pkgFile, 'json');
 	const isDev = process.env.APP_MODE === 'development';
 
+	jetpack.remove(buildOutput + '/.env');
+	jetpack.remove(buildOutput + '/main.js');
+	jetpack.remove(buildOutput + '/package.json');
+
 	jetpack.copy(envFile, buildOutput + '/.env');
 	jetpack.write(buildOutput + '/package.json', {
 		name: pkg.name,
