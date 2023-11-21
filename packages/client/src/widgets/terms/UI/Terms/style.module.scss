@@ -3,6 +3,8 @@
 .Container {
 	@include container;
 
+	margin-bottom: 25px;
+
 	.Title {
 		margin-bottom: 25px;
 	}

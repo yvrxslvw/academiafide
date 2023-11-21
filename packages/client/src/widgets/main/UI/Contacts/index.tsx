@@ -16,24 +16,28 @@ export const Contacts: FC = () => {
 					+34 722 369 868
 				</a>
 			</Paragraph>
+			<br />
 			<Paragraph>
 				Correo electrónico{' '}
 				<a href='mailto:fideacademia@gmail.com' className={cl.Link}>
 					fideacademia@gmail.com
 				</a>
 			</Paragraph>
+			<br />
 			<Paragraph>
 				Facebook{' '}
 				<a href='https://www.facebook.com/academiafide' target='_blank' rel='noreferrer' className={cl.Link}>
 					https://www.facebook.com/academiafide
 				</a>
 			</Paragraph>
+			<br />
 			<Paragraph>
 				Twitter{' '}
 				<a href='https://twitter.com/academia_fide' target='_blank' rel='noreferrer' className={cl.Link}>
 					https://twitter.com/academia_fide
 				</a>
 			</Paragraph>
+			<br />
 			<Paragraph>
 				Instagram{' '}
 				<a href='https://www.instagram.com/fideacademia' target='_blank' rel='noreferrer' className={cl.Link}>

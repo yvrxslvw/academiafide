@@ -12,14 +12,14 @@ export const Card: FC<CardProps> = ({ title, imageUrl, className, children, ...p
 	return (
 		<div className={cn(cl.JoinCard, className)} {...props}>
 			<div className={cl.Container}>
-				<div className={cl.Row} style={{ width: imageUrl ? '50%' : '100%' }}>
+				<div className={cn(cl.Row, cl.FirstRow)}>
 					<section>
 						<Title className={cl.Title}>{title}</Title>
 					</section>
 					{children}
 				</div>
 				{imageUrl && (
-					<div className={cl.Row}>
+					<div className={cn(cl.Row, cl.SecondRow)}>
 						<img src={imageUrl} alt='Card' />
 					</div>
 				)}

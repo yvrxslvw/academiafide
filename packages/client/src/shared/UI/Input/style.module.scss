@@ -13,12 +13,29 @@
 
 		padding: 5px 10px;
 		font-size: 24px;
+		width: 100%;
 
-		&:placeholder-shown ~ .Label {
-			font-size: 24px;
-			cursor: text;
-			top: 25px;
-			left: 10px;
+		&.Password {
+			padding: 5px 37px 5px 10px;
+		}
+
+		&:placeholder-shown {
+			& ~ .Label {
+				font-size: 18px;
+				cursor: text;
+				top: 50%;
+				left: 0px;
+			}
+
+			& ~ .Button {
+				display: none;
+			}
+		}
+
+		&:focus {
+			& ~ .Button {
+				display: block;
+			}
 		}
 	}
 
@@ -38,10 +55,10 @@
 		cursor: pointer;
 
 		position: absolute;
-		top: 50%;
+		top: 75%;
 		right: 10px;
-		transform: translateY(-50%);
-		font-size: 24px;
+		transform: translateY(-75%);
+		font-size: 20px;
 	}
 
 	&.Error {

@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import cl from './style.module.scss';
 import { Paragraph, Title } from 'shared';
+import cl from './style.module.scss';
 
 export const Terms: FC = () => {
 	return (
@@ -32,7 +32,6 @@ export const Terms: FC = () => {
 				La calidad de la enseñanza en lecciones personales, en materiales de video, en lecciones de video y en
 				seminarios no está sujeta a apelación.
 			</Paragraph>
-			<Paragraph className={cl.Signature}>© 2023 Academia Fide. Todos los Derechos Reservados.</Paragraph>
 		</div>
 	);
 };

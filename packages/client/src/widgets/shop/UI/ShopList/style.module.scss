@@ -2,7 +2,7 @@
 
 .Container {
 	@include container;
-	padding: 0px 0px 25px 0px;
+	margin-bottom: 25px;
 
 	.Title {
 		margin-bottom: 25px;
@@ -12,5 +12,23 @@
 		display: grid;
 		grid-template-columns: repeat(4, 24%);
 		gap: 15px;
+
+		@media (max-width: 1280px) {
+			& {
+				grid-template-columns: repeat(3, 32%);
+			}
+		}
+
+		@media (max-width: 800px) {
+			& {
+				grid-template-columns: repeat(2, 49%);
+			}
+		}
+
+		@media (max-width: 650px) {
+			& {
+				grid-template-columns: repeat(1, 100%);
+			}
+		}
 	}
 }

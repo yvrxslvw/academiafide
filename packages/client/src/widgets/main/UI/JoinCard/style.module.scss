@@ -1,11 +1,18 @@
-.Content {
-	flex: 1 1 auto;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
+@use '@styles' as *;
 
-	.ButtonBody {
+.Container {
+	@include container;
+
+	.Content {
+		flex: 1 1 auto;
 		display: flex;
-		justify-content: center;
+		flex-direction: column;
+		justify-content: space-between;
+
+		.ButtonBody {
+			display: flex;
+			justify-content: center;
+			margin-top: 10px;
+		}
 	}
 }

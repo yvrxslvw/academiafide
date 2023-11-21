@@ -9,12 +9,11 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 	error?: boolean;
 }
 
-export const Input: FC<InputProps> = ({ label, error, type, className, style, ...props }) => {
+export const Input: FC<InputProps> = ({ label, error, type, className, ...props }) => {
 	const [isShown, setIsShown] = useState(false);
 	const inputRef = useRef<HTMLInputElement>(null);
 
 	const inputType = type === 'password' ? (isShown ? 'text' : 'password') : type;
-	const inputStyle = { ...style, width: type === 'password' ? '94%' : '100%' };
 
 	const onClickEyeHandler = () => {
 		setIsShown(prev => !prev);
@@ -28,9 +27,8 @@ export const Input: FC<InputProps> = ({ label, error, type, className, style, ..
 		<div className={cn(cl.InputBlock, { [cl.Error]: error })}>
 			<input
 				type={inputType}
-				className={cn(cl.Input, className)}
+				className={cn(cl.Input, className, { [cl.Password]: type === 'password' })}
 				placeholder=''
-				style={inputStyle}
 				ref={inputRef}
 				{...props}
 			/>
