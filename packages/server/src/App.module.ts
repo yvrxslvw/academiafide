@@ -5,6 +5,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import * as path from 'path';
 import { UserModule } from './user/user.module';
 import { User } from './user/user.model';
+import { FilesModule } from './files/files.module';
 
 const isDev = process.env.APP_MODE === 'development';
 const envFilePath = isDev ? '.env.development' : '.env';
@@ -28,6 +29,7 @@ const envFilePath = isDev ? '.env.development' : '.env';
       rootPath: path.resolve(__dirname, 'static'),
     }),
 		UserModule,
+		FilesModule,
 	],
 })
 export class AppModule {}
