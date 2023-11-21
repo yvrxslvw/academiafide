@@ -1,5 +1,6 @@
-import { Controller, Put, Delete, Body, Get, Param } from '@nestjs/common';
+import { Controller, Put, Delete, Body, Get, Param, Res } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { Response } from 'express';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { DeleteUserDto } from './dto/delete-user.dto';
@@ -13,30 +14,34 @@ export class UserController {
 	@ApiResponse({ status: 200, description: 'Successfully user creation' })
 	@ApiResponse({ status: 403, description: 'If login or email already exists' })
 	@Put()
-	create(@Body() userDto: CreateUserDto) {
-		return this.service.create(userDto);
+	async create(@Res() res: Response, @Body() userDto: CreateUserDto) {
+		const response = await this.service.create(userDto);
+		res.status(response.getStatus()).send(response.getResponse());
 	}
 
 	@ApiOperation({ summary: 'User deletion' })
 	@ApiResponse({ status: 200, description: 'Successfully user deletion' })
 	@ApiResponse({ status: 404, description: "If login doesn't exists" })
 	@Delete()
-	delete(@Body() userDto: DeleteUserDto) {
-		return this.service.delete(userDto);
+	async delete(@Res() res: Response, @Body() userDto: DeleteUserDto) {
+		const response = await this.service.delete(userDto);
+		res.status(response.getStatus()).send(response.getResponse());
 	}
 
 	@ApiOperation({ summary: 'Get all users' })
 	@ApiResponse({ status: 200, description: 'Successfully get all users' })
 	@Get()
-	getAll() {
-		return this.service.getAll();
+	async getAll(@Res() res: Response) {
+		const data = await this.service.getAll();
+		res.status(data.getStatus()).send(data.getResponse());
 	}
 
 	@ApiOperation({ summary: 'Get one user' })
 	@ApiResponse({ status: 200, description: 'Successfully get one user' })
 	@ApiResponse({ status: 404, description: "If user doesn't exists" })
 	@Get('/:id')
-	getOne(@Param('id') id: number) {
-		return this.service.getOne(id);
+	async getOne(@Res() res: Response, @Param('id') id: number) {
+		const data = await this.service.getOne(id);
+		res.status(data.getStatus()).send(data.getResponse());
 	}
 }
