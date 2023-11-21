@@ -4,6 +4,7 @@ import { Response } from 'express';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { User } from './user.model';
 
 @ApiTags('User interactions')
 @Controller('user')
@@ -11,7 +12,7 @@ export class UserController {
 	constructor(private readonly service: UserService) {}
 
 	@ApiOperation({ summary: 'User creating' })
-	@ApiResponse({ status: 200, description: 'Successfully creating user' })
+	@ApiResponse({ status: 200, description: 'Successfully creating user', type: User })
 	@ApiResponse({ status: 403, description: 'If login or email already exists' })
 	@Put()
 	async create(@Res() res: Response, @Body() userDto: CreateUserDto) {
@@ -29,7 +30,7 @@ export class UserController {
 	}
 
 	@ApiOperation({ summary: 'Getting all users' })
-	@ApiResponse({ status: 200, description: 'Successfully getting all users' })
+	@ApiResponse({ status: 200, description: 'Successfully getting all users', type: [User] })
 	@Get()
 	async getAll(@Res() res: Response) {
 		const data = await this.service.getAll();
@@ -37,7 +38,7 @@ export class UserController {
 	}
 
 	@ApiOperation({ summary: 'Getting one user by ID' })
-	@ApiResponse({ status: 200, description: 'Successfully getting one user' })
+	@ApiResponse({ status: 200, description: 'Successfully getting one user', type: User })
 	@ApiResponse({ status: 404, description: "If user doesn't exists" })
 	@Get('/:id')
 	async getOneById(@Res() res: Response, @Param('id') id: number) {
@@ -46,7 +47,7 @@ export class UserController {
 	}
 
 	@ApiOperation({ summary: 'User updating' })
-	@ApiResponse({ status: 200, description: 'Successfully user updating' })
+	@ApiResponse({ status: 200, description: 'Successfully user updating', type: User })
 	@ApiResponse({ status: 404, description: "If user doesn't exists" })
 	@Patch('/:id')
 	async update(@Res() res: Response, @Param('id') id: number, @Body() userDto: UpdateUserDto) {

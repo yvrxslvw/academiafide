@@ -5,6 +5,7 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { PostService } from './post.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
+import { Post } from './post.model';
 
 @ApiTags('Post interactions')
 @Controller('post')
@@ -12,7 +13,7 @@ export class PostController {
 	constructor(private readonly service: PostService) {}
 
 	@ApiOperation({ summary: 'Post creating' })
-	@ApiResponse({ status: 200, description: 'Successfully creating post' })
+	@ApiResponse({ status: 200, description: 'Successfully creating post', type: Post })
 	@Put()
 	@UseInterceptors(FileInterceptor('image'))
 	async create(@Res() res: Response, @Body() postDto: CreatePostDto, @UploadedFile() image?: any) {
@@ -30,7 +31,7 @@ export class PostController {
 	}
 
 	@ApiOperation({ summary: 'Post updating' })
-	@ApiResponse({ status: 200, description: 'Successfully updating post' })
+	@ApiResponse({ status: 200, description: 'Successfully updating post', type: Post })
 	@ApiResponse({ status: 404, description: "If post doesn't exists" })
 	@Patch('/:id')
 	@UseInterceptors(FileInterceptor('image'))
@@ -45,7 +46,7 @@ export class PostController {
 	}
 
 	@ApiOperation({ summary: 'Getting all posts' })
-	@ApiResponse({ status: 200, description: 'Successfully getting all post' })
+	@ApiResponse({ status: 200, description: 'Successfully getting all post', type: [Post] })
 	@Get()
 	async getAll(@Res() res: Response) {
 		const data = await this.service.getAll();
@@ -53,7 +54,7 @@ export class PostController {
 	}
 
 	@ApiOperation({ summary: 'Getting one post by ID' })
-	@ApiResponse({ status: 200, description: 'Successfully getting one post by ID' })
+	@ApiResponse({ status: 200, description: 'Successfully getting one post by ID', type: Post })
 	@ApiResponse({ status: 404, description: "If post doesn't exists" })
 	@Get('/:id')
 	async getOneById(@Res() res: Response, @Param('id') id: number) {
