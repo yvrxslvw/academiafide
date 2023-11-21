@@ -1,16 +1,22 @@
-import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { NotFoundException } from '@nestjs/common/exceptions';
 import { InjectModel } from '@nestjs/sequelize';
 import { Post } from './post.model';
 import { FilesService } from 'src/files/files.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
+import { UserService } from 'src/user/user.service';
 
 @Injectable()
 export class PostService {
-	constructor(@InjectModel(Post) private readonly repo: typeof Post, private readonly filesService: FilesService) {}
+	constructor(
+		@InjectModel(Post) private readonly repo: typeof Post,
+		private readonly filesService: FilesService,
+		private readonly userService: UserService,
+	) {}
 
 	async create(postDto: CreatePostDto, image?: any) {
+		await this.userService.getOneById(postDto.userId);
 		const fileName = image ? await this.filesService.createFile(image) : null;
 		const post = await this.repo.create({ ...postDto, image: fileName });
 		return post;
