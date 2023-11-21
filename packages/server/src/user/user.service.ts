@@ -36,7 +36,8 @@ export class UserService {
 
 	async getAll() {
 		try {
-			return await this.repo.findAll();
+			const users = await this.repo.findAll();
+			return new HttpException(users, HttpStatus.OK);
 		} catch (error) {
 			console.error(error);
 			return new HttpException('An unexpected error occurred...', HttpStatus.INTERNAL_SERVER_ERROR);
@@ -47,7 +48,7 @@ export class UserService {
 		try {
 			const user = await this.repo.findByPk(id);
 			if (!user) return new HttpException('User not found.', HttpStatus.NOT_FOUND);
-			return user;
+			return new HttpException(user, HttpStatus.OK);
 		} catch (error) {
 			console.error(error);
 			return new HttpException('An unexpected error occurred...', HttpStatus.INTERNAL_SERVER_ERROR);
