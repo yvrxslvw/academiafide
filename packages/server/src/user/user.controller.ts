@@ -1,6 +1,5 @@
-import { Controller, Put, Delete, Body, Get, Param, Res, Patch } from '@nestjs/common';
+import { Controller, Put, Delete, Body, Get, Param, Patch } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { Response } from 'express';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -23,34 +22,30 @@ export class UserController {
 	@ApiResponse({ status: 200, description: 'Successfully deleting user' })
 	@ApiResponse({ status: 404, description: "If user doesn't exists" })
 	@Delete('/:id')
-	async delete(@Res() res: Response, @Param('id') id: number) {
-		const response = await this.service.delete(id);
-		res.status(response.getStatus()).send(response.getResponse());
+	delete(@Param('id') id: number) {
+		return this.service.delete(id);
 	}
 
 	@ApiOperation({ summary: 'Getting all users' })
 	@ApiResponse({ status: 200, description: 'Successfully getting all users', type: [User] })
 	@Get()
-	async getAll(@Res() res: Response) {
-		const data = await this.service.getAll();
-		res.status(data.getStatus()).send(data.getResponse());
+	getAll() {
+		return this.service.getAll();
 	}
 
 	@ApiOperation({ summary: 'Getting one user by ID' })
 	@ApiResponse({ status: 200, description: 'Successfully getting one user', type: User })
 	@ApiResponse({ status: 404, description: "If user doesn't exists" })
 	@Get('/:id')
-	async getOneById(@Res() res: Response, @Param('id') id: number) {
-		const data = await this.service.getOneById(id);
-		res.status(data.getStatus()).send(data.getResponse());
+	getOneById(@Param('id') id: number) {
+		return this.service.getOneById(id);
 	}
 
 	@ApiOperation({ summary: 'User updating' })
 	@ApiResponse({ status: 200, description: 'Successfully user updating', type: User })
 	@ApiResponse({ status: 404, description: "If user doesn't exists" })
 	@Patch('/:id')
-	async update(@Res() res: Response, @Param('id') id: number, @Body() userDto: UpdateUserDto) {
-		const data = await this.service.update(id, userDto);
-		res.status(data.getStatus()).send(data.getResponse());
+	update(@Param('id') id: number, @Body() userDto: UpdateUserDto) {
+		return this.service.update(id, userDto);
 	}
 }
