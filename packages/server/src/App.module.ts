@@ -29,6 +29,8 @@ const envFilePath = isDev ? '.env.development' : '.env';
 		}),
 		ServeStaticModule.forRoot({
 			rootPath: path.resolve(__dirname, 'static'),
+			exclude: ['/api/(.*)'],
+			serveRoot: '/',
 		}),
 		UserModule,
 		FilesModule,

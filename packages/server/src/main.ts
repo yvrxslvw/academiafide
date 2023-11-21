@@ -15,9 +15,10 @@ const bootstrap = async () => {
 		.setVersion('0.0.1')
 		.build();
 	const swaggerDocument = SwaggerModule.createDocument(app, swaggerConfig);
-	SwaggerModule.setup('/documentation', app, swaggerDocument);
+	SwaggerModule.setup('/api/documentation', app, swaggerDocument);
 
+	app.setGlobalPrefix('/api');
 	app.useGlobalPipes(new ValidationPipe());
-	await app.listen(PORT, HOST, () => console.log(`The backend server has been started on http://${HOST}:${PORT}.`));
+	await app.listen(PORT, HOST, async () => console.log(`The backend server has been started on ${await app.getUrl()}.`));
 };
 bootstrap();
