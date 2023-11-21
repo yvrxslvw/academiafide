@@ -11,13 +11,5 @@ export const PasswordInput: FC<PasswordInputProps> = ({ state, setState }) => {
 		setState(event.target.value);
 	};
 
-	return (
-		<Input
-			label='Contraseña'
-			type='password'
-			placeholder='Escribe tu contraseña'
-			value={state}
-			onChange={onChangeHandler}
-		/>
-	);
+	return <Input label='Contraseña' type='password' value={state} onChange={onChangeHandler} />;
 };

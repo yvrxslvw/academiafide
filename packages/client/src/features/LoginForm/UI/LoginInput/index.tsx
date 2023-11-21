@@ -11,13 +11,5 @@ export const LoginInput: FC<LoginInputProps> = ({ state, setState }) => {
 		setState(event.target.value);
 	};
 
-	return (
-		<Input
-			label='Nombre de usuario'
-			type='text'
-			placeholder='Escribe tu nombre de usuario'
-			value={state}
-			onChange={onChangeHandler}
-		/>
-	);
+	return <Input label='Nombre de usuario' type='text' value={state} onChange={onChangeHandler} />;
 };

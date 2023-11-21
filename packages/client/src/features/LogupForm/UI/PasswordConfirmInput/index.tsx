@@ -11,5 +11,5 @@ export const PasswordConfirmInput: FC<PasswordConfirmInputProps> = ({ state, set
 		setState(event.target.value);
 	};
 
-	return <Input label='Confirmación de contraseña' value={state} onChange={onChangeHandler} />;
+	return <Input label='Confirmación de contraseña' type='password' value={state} onChange={onChangeHandler} />;
 };
