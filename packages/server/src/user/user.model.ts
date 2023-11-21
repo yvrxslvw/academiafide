@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Table, Model, Column, DataType } from 'sequelize-typescript';
+import { Table, Model, Column, DataType, HasMany } from 'sequelize-typescript';
+import { Post } from 'src/post/post.model';
 
 interface UserCreationAttributes {
 	login: string;
@@ -24,4 +25,7 @@ export class User extends Model<User, UserCreationAttributes> {
 	@ApiProperty({ example: 'IAmSecretPassword', description: 'User password' })
 	@Column({ type: DataType.STRING(64), allowNull: false })
 	declare password: string;
+
+	@HasMany(() => Post)
+	declare posts: Post[];
 }

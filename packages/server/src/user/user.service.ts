@@ -14,8 +14,8 @@ export class UserService {
 			const emailExisted = await this.repo.findOne({ where: { email: userDto.email } });
 			if (loginExisted) return new HttpException('Login already existed.', HttpStatus.FORBIDDEN);
 			if (emailExisted) return new HttpException('Email already existed.', HttpStatus.FORBIDDEN);
-			this.repo.create(userDto);
-			return new HttpException('', HttpStatus.OK);
+			const user = await this.repo.create(userDto);
+			return new HttpException(user, HttpStatus.OK);
 		} catch (error) {
 			console.error(error);
 			return new HttpException('An unexpected error occurred...', HttpStatus.INTERNAL_SERVER_ERROR);
@@ -27,7 +27,7 @@ export class UserService {
 			const user = await this.repo.findOne({ where: { login: userDto.login } });
 			if (!user) return new HttpException('Login not found.', HttpStatus.NOT_FOUND);
 			await user.destroy();
-			return new HttpException('', HttpStatus.OK);
+			return new HttpException('Deleted.', HttpStatus.OK);
 		} catch (error) {
 			console.error(error);
 			return new HttpException('An unexpected error occurred...', HttpStatus.INTERNAL_SERVER_ERROR);
@@ -36,7 +36,7 @@ export class UserService {
 
 	async getAll() {
 		try {
-			const users = await this.repo.findAll();
+			const users = await this.repo.findAll({ include: { all: true, nested: true } });
 			return new HttpException(users, HttpStatus.OK);
 		} catch (error) {
 			console.error(error);
@@ -46,7 +46,7 @@ export class UserService {
 
 	async getOneById(id: number) {
 		try {
-			const user = await this.repo.findByPk(id);
+			const user = await this.repo.findByPk(id, { include: { all: true, nested: true } });
 			if (!user) return new HttpException('User not found.', HttpStatus.NOT_FOUND);
 			return new HttpException(user, HttpStatus.OK);
 		} catch (error) {

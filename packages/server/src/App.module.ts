@@ -6,6 +6,8 @@ import * as path from 'path';
 import { UserModule } from './user/user.module';
 import { User } from './user/user.model';
 import { FilesModule } from './files/files.module';
+import { PostModule } from './post/post.module';
+import { Post } from './post/post.model';
 
 const isDev = process.env.APP_MODE === 'development';
 const envFilePath = isDev ? '.env.development' : '.env';
@@ -22,14 +24,15 @@ const envFilePath = isDev ? '.env.development' : '.env';
 			database: process.env.MYSQL_DATABASE,
 			timezone: process.env.MYSQL_TIMEZONE,
 			logging: isDev ? sql => console.log(sql) : false,
-			models: [User],
+			models: [User, Post],
 			autoLoadModels: true,
 		}),
 		ServeStaticModule.forRoot({
-      rootPath: path.resolve(__dirname, 'static'),
-    }),
+			rootPath: path.resolve(__dirname, 'static'),
+		}),
 		UserModule,
 		FilesModule,
+		PostModule,
 	],
 })
 export class AppModule {}
