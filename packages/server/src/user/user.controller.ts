@@ -1,6 +1,7 @@
 import { Controller, Put, Delete, Body } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
+import { DeleteUserDto } from './dto/delete-user.dto';
 
 @Controller('user')
 export class UserController {
@@ -9,5 +10,10 @@ export class UserController {
 	@Put()
 	create(@Body() userDto: CreateUserDto) {
 		return this.service.create(userDto);
+	}
+
+	@Delete()
+	delete(@Body() userDto: DeleteUserDto) {
+		return this.service.delete(userDto);
 	}
 }
