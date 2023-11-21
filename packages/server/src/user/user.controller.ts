@@ -1,8 +1,9 @@
-import { Controller, Put, Delete, Body, Get, Param, Res } from '@nestjs/common';
+import { Controller, Put, Delete, Body, Get, Param, Res, Patch } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Response } from 'express';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @ApiTags('User interactions')
 @Controller('user')
@@ -41,6 +42,15 @@ export class UserController {
 	@Get('/:id')
 	async getOneById(@Res() res: Response, @Param('id') id: number) {
 		const data = await this.service.getOneById(id);
+		res.status(data.getStatus()).send(data.getResponse());
+	}
+
+	@ApiOperation({ summary: 'Update user info' })
+	@ApiResponse({ status: 200, description: 'Successfully updated' })
+	@ApiResponse({ status: 404, description: "If user doesn't exists" })
+	@Patch('/:id')
+	async update(@Res() res: Response, @Param('id') id: number, @Body() userDto: UpdateUserDto) {
+		const data = await this.service.update(id, userDto);
 		res.status(data.getStatus()).send(data.getResponse());
 	}
 }

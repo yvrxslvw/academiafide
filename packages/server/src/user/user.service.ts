@@ -2,6 +2,7 @@ import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { User } from './user.model';
 import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UserService {
@@ -47,6 +48,18 @@ export class UserService {
 		try {
 			const user = await this.repo.findByPk(id, { include: { all: true, nested: true } });
 			if (!user) return new HttpException('User not found.', HttpStatus.NOT_FOUND);
+			return new HttpException(user, HttpStatus.OK);
+		} catch (error) {
+			console.error(error);
+			return new HttpException('An unexpected error occurred...', HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	async update(id: number, userDto: UpdateUserDto) {
+		try {
+			const user = await this.repo.findByPk(id, { include: { all: true, nested: true } });
+			if (!user) return new HttpException('User not found.', HttpStatus.NOT_FOUND);
+			await user.update({ ...userDto });
 			return new HttpException(user, HttpStatus.OK);
 		} catch (error) {
 			console.error(error);
