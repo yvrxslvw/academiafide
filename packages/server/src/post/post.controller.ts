@@ -1,4 +1,4 @@
-import { Controller, Res, Body, UploadedFile, UseInterceptors, Put, Delete, Param, Patch } from '@nestjs/common';
+import { Controller, Res, Body, UploadedFile, UseInterceptors, Put, Delete, Param, Patch, Get } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Response } from 'express';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
@@ -41,6 +41,14 @@ export class PostController {
 		@UploadedFile() image?: any,
 	) {
 		const data = await this.service.update(id, postDto, image);
+		res.status(data.getStatus()).send(data.getResponse());
+	}
+
+	@ApiOperation({ summary: 'Getting all posts' })
+	@ApiResponse({ status: 200, description: 'Successfully getting all post' })
+	@Get()
+	async getAll(@Res() res: Response) {
+		const data = await this.service.getAll();
 		res.status(data.getStatus()).send(data.getResponse());
 	}
 }

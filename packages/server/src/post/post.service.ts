@@ -50,4 +50,14 @@ export class PostService {
 			return new HttpException('An unexpected error occurred...', HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
+
+	async getAll() {
+		try {
+			const posts = await this.repo.findAll({ include: { all: true, nested: true } });
+			return new HttpException(posts, HttpStatus.OK);
+		} catch (error) {
+			console.error(error);
+			return new HttpException('An unexpected error occurred...', HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
 }
