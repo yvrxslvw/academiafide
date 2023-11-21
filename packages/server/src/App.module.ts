@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import * as path from 'path';
 import { UserModule } from './user/user.module';
 import { User } from './user/user.model';
 
@@ -22,6 +24,9 @@ const envFilePath = isDev ? '.env.development' : '.env';
 			models: [User],
 			autoLoadModels: true,
 		}),
+		ServeStaticModule.forRoot({
+      rootPath: path.resolve(__dirname, 'static'),
+    }),
 		UserModule,
 	],
 })
