@@ -1,6 +1,8 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
+import { UserModule } from './user/user.module';
+import { User } from './user/user.model';
 
 const isDev = process.env.APP_MODE === 'development';
 const envFilePath = isDev ? '.env.development' : '.env';
@@ -17,9 +19,10 @@ const envFilePath = isDev ? '.env.development' : '.env';
 			database: process.env.MYSQL_DATABASE,
 			timezone: process.env.MYSQL_TIMEZONE,
 			logging: isDev ? sql => console.log(sql) : false,
-			models: [],
+			models: [User],
 			autoLoadModels: true,
 		}),
+		UserModule,
 	],
 })
 export class AppModule {}
