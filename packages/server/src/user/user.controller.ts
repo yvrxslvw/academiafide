@@ -10,8 +10,8 @@ import { UpdateUserDto } from './dto/update-user.dto';
 export class UserController {
 	constructor(private readonly service: UserService) {}
 
-	@ApiOperation({ summary: 'User creation' })
-	@ApiResponse({ status: 200, description: 'Successfully user creation' })
+	@ApiOperation({ summary: 'User creating' })
+	@ApiResponse({ status: 200, description: 'Successfully creating user' })
 	@ApiResponse({ status: 403, description: 'If login or email already exists' })
 	@Put()
 	async create(@Res() res: Response, @Body() userDto: CreateUserDto) {
@@ -19,8 +19,8 @@ export class UserController {
 		res.status(response.getStatus()).send(response.getResponse());
 	}
 
-	@ApiOperation({ summary: 'User deletion' })
-	@ApiResponse({ status: 200, description: 'Successfully user deletion' })
+	@ApiOperation({ summary: 'User deleting' })
+	@ApiResponse({ status: 200, description: 'Successfully deleting user' })
 	@ApiResponse({ status: 404, description: "If user doesn't exists" })
 	@Delete('/:id')
 	async delete(@Res() res: Response, @Param('id') id: number) {
@@ -28,16 +28,16 @@ export class UserController {
 		res.status(response.getStatus()).send(response.getResponse());
 	}
 
-	@ApiOperation({ summary: 'Get all users' })
-	@ApiResponse({ status: 200, description: 'Successfully get all users' })
+	@ApiOperation({ summary: 'Getting all users' })
+	@ApiResponse({ status: 200, description: 'Successfully getting all users' })
 	@Get()
 	async getAll(@Res() res: Response) {
 		const data = await this.service.getAll();
 		res.status(data.getStatus()).send(data.getResponse());
 	}
 
-	@ApiOperation({ summary: 'Get one user by ID' })
-	@ApiResponse({ status: 200, description: 'Successfully get one user' })
+	@ApiOperation({ summary: 'Getting one user by ID' })
+	@ApiResponse({ status: 200, description: 'Successfully getting one user' })
 	@ApiResponse({ status: 404, description: "If user doesn't exists" })
 	@Get('/:id')
 	async getOneById(@Res() res: Response, @Param('id') id: number) {
@@ -45,8 +45,8 @@ export class UserController {
 		res.status(data.getStatus()).send(data.getResponse());
 	}
 
-	@ApiOperation({ summary: 'Update user info' })
-	@ApiResponse({ status: 200, description: 'Successfully updated' })
+	@ApiOperation({ summary: 'User updating' })
+	@ApiResponse({ status: 200, description: 'Successfully user updating' })
 	@ApiResponse({ status: 404, description: "If user doesn't exists" })
 	@Patch('/:id')
 	async update(@Res() res: Response, @Param('id') id: number, @Body() userDto: UpdateUserDto) {

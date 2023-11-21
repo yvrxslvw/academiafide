@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/sequelize';
 import { Post } from './post.model';
 import { FilesService } from 'src/files/files.service';
 import { CreatePostDto } from './dto/create-post.dto';
+import { UpdatePostDto } from './dto/update-post.dto';
 
 @Injectable()
 export class PostService {
@@ -27,6 +28,23 @@ export class PostService {
 			await post.destroy();
 			if (fileName) await this.filesService.deleteFile(fileName);
 			return new HttpException('Deleted.', HttpStatus.OK);
+		} catch (error) {
+			console.error(error);
+			return new HttpException('An unexpected error occurred...', HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+	}
+
+	async update(id: number, postDto: UpdatePostDto, image?: any) {
+		try {
+			const post = await this.repo.findByPk(id);
+			if (!post) return new HttpException('Post not found.', HttpStatus.NOT_FOUND);
+			if (image) {
+				const fileName = await this.filesService.createFile(image);
+				if (post.image) await this.filesService.deleteFile(post.image);
+				await post.update({ image: fileName });
+			}
+			await post.update({ ...postDto });
+			return new HttpException(post, HttpStatus.OK);
 		} catch (error) {
 			console.error(error);
 			return new HttpException('An unexpected error occurred...', HttpStatus.INTERNAL_SERVER_ERROR);
