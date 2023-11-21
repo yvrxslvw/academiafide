@@ -2,7 +2,6 @@ import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { User } from './user.model';
 import { CreateUserDto } from './dto/create-user.dto';
-import { DeleteUserDto } from './dto/delete-user.dto';
 
 @Injectable()
 export class UserService {
@@ -22,10 +21,10 @@ export class UserService {
 		}
 	}
 
-	async delete(userDto: DeleteUserDto) {
+	async delete(id: number) {
 		try {
-			const user = await this.repo.findOne({ where: { login: userDto.login } });
-			if (!user) return new HttpException('Login not found.', HttpStatus.NOT_FOUND);
+			const user = await this.repo.findByPk(id);
+			if (!user) return new HttpException('User not found.', HttpStatus.NOT_FOUND);
 			await user.destroy();
 			return new HttpException('Deleted.', HttpStatus.OK);
 		} catch (error) {

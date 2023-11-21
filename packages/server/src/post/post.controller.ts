@@ -1,10 +1,9 @@
-import { Controller, Get, Res, Body, UploadedFile, UseInterceptors, Put, Delete } from '@nestjs/common';
+import { Controller, Res, Body, UploadedFile, UseInterceptors, Put, Delete, Param } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Response } from 'express';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { PostService } from './post.service';
 import { CreatePostDto } from './dto/create-post.dto';
-import { DeletePostDto } from './dto/delete-post.dto';
 
 @ApiTags('Post interactions')
 @Controller('post')
@@ -23,9 +22,9 @@ export class PostController {
 	@ApiOperation({ summary: 'Post deletion' })
 	@ApiResponse({ status: 200, description: 'Successfully post deletion' })
 	@ApiResponse({ status: 404, description: "If post doesn't exists" })
-	@Delete()
-	async delete(@Res() res: Response, @Body() postDto: DeletePostDto) {
-		const data = await this.service.delete(postDto);
+	@Delete('/:id')
+	async delete(@Res() res: Response, @Param('id') id: number) {
+		const data = await this.service.delete(id);
 		res.status(data.getStatus()).send(data.getResponse());
 	}
 }

@@ -3,7 +3,6 @@ import { InjectModel } from '@nestjs/sequelize';
 import { Post } from './post.model';
 import { FilesService } from 'src/files/files.service';
 import { CreatePostDto } from './dto/create-post.dto';
-import { DeletePostDto } from './dto/delete-post.dto';
 
 @Injectable()
 export class PostService {
@@ -20,9 +19,9 @@ export class PostService {
 		}
 	}
 
-	async delete(postDto: DeletePostDto) {
+	async delete(id: number) {
 		try {
-			const post = await this.repo.findByPk(postDto.id);
+			const post = await this.repo.findByPk(id);
 			if (!post) return new HttpException('Post not found.', HttpStatus.NOT_FOUND);
 			const fileName = post.image;
 			await post.destroy();

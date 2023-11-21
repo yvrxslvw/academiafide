@@ -3,9 +3,8 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Response } from 'express';
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
-import { DeleteUserDto } from './dto/delete-user.dto';
 
-@ApiTags('User interaction')
+@ApiTags('User interactions')
 @Controller('user')
 export class UserController {
 	constructor(private readonly service: UserService) {}
@@ -21,10 +20,10 @@ export class UserController {
 
 	@ApiOperation({ summary: 'User deletion' })
 	@ApiResponse({ status: 200, description: 'Successfully user deletion' })
-	@ApiResponse({ status: 404, description: "If login doesn't exists" })
-	@Delete()
-	async delete(@Res() res: Response, @Body() userDto: DeleteUserDto) {
-		const response = await this.service.delete(userDto);
+	@ApiResponse({ status: 404, description: "If user doesn't exists" })
+	@Delete('/:id')
+	async delete(@Res() res: Response, @Param('id') id: number) {
+		const response = await this.service.delete(id);
 		res.status(response.getStatus()).send(response.getResponse());
 	}
 
