@@ -51,4 +51,13 @@ export class PostController {
 		const data = await this.service.getAll();
 		res.status(data.getStatus()).send(data.getResponse());
 	}
+
+	@ApiOperation({ summary: 'Getting one post by ID' })
+	@ApiResponse({ status: 200, description: 'Successfully getting one post by ID' })
+	@ApiResponse({ status: 404, description: "If post doesn't exists" })
+	@Get('/:id')
+	async getOneById(@Res() res: Response, @Param('id') id: number) {
+		const data = await this.service.getOneById(id);
+		res.status(data.getStatus()).send(data.getResponse());
+	}
 }
