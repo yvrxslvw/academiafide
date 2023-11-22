@@ -44,12 +44,12 @@ export class PostService {
 	}
 
 	async getAll() {
-		const posts = await this.postRepo.findAll({ include: { all: true, nested: true } });
+		const posts = await this.postRepo.findAll({ include: { all: true, attributes: ['id', 'login'] } });
 		return posts;
 	}
 
 	async getOneById(id: number) {
-		const post = await this.postRepo.findByPk(id, { include: { all: true, nested: true } });
+		const post = await this.postRepo.findByPk(id, { include: { all: true, attributes: ['id', 'login'] } });
 		if (!post) throw new NotFoundException('Post not found.');
 		return post;
 	}
