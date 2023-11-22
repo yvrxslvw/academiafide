@@ -4,11 +4,14 @@ import { UserController } from './user.controller';
 import { UserService } from './user.service';
 import { User } from './user.model';
 import { Post } from 'src/post/post.model';
+import { Role } from 'src/role/role.model';
+import { UserRoles } from 'src/role/user-roles.model';
+import { RoleModule } from 'src/role/role.module';
 
 @Module({
 	controllers: [UserController],
 	providers: [UserService],
-	imports: [SequelizeModule.forFeature([User, Post])],
+	imports: [SequelizeModule.forFeature([User, Post, Role, UserRoles]), RoleModule],
 	exports: [UserService],
 })
 export class UserModule {}
