@@ -15,10 +15,10 @@ export class PostService {
 		private readonly userService: UserService,
 	) {}
 
-	async create(postDto: CreatePostDto, image?: any) {
-		await this.userService.getOneById(postDto.userId);
+	async create(dto: CreatePostDto, image?: any) {
+		await this.userService.getOneById(dto.userId);
 		const fileName = image ? await this.filesService.createFile(image) : null;
-		const post = await this.postRepo.create({ ...postDto, image: fileName });
+		const post = await this.postRepo.create({ ...dto, image: fileName });
 		return post;
 	}
 
@@ -31,7 +31,7 @@ export class PostService {
 		return 'Deleted.';
 	}
 
-	async update(id: number, postDto: UpdatePostDto, image?: any) {
+	async update(id: number, dto: UpdatePostDto, image?: any) {
 		const post = await this.postRepo.findByPk(id);
 		if (!post) throw new NotFoundException('Post not found.');
 		if (image) {
@@ -39,7 +39,7 @@ export class PostService {
 			if (post.image) await this.filesService.deleteFile(post.image);
 			await post.update({ image: fileName });
 		}
-		await post.update({ ...postDto });
+		await post.update({ ...dto });
 		return post;
 	}
 

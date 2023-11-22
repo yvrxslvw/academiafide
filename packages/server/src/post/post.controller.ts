@@ -19,8 +19,8 @@ export class PostController {
 	@UseGuards(RolesGuard)
 	@Put()
 	@UseInterceptors(FileInterceptor('image'))
-	create(@Body() postDto: CreatePostDto, @UploadedFile() image?: any) {
-		return this.postService.create(postDto, image);
+	create(@Body() dto: CreatePostDto, @UploadedFile() image?: any) {
+		return this.postService.create(dto, image);
 	}
 	
 	@ApiOperation({ summary: 'Post deleting [ADMIN]' })
@@ -40,8 +40,8 @@ export class PostController {
 	@UseGuards(RolesGuard)
 	@Patch('/:id')
 	@UseInterceptors(FileInterceptor('image'))
-	update(@Param('id') id: number, @Body() postDto: UpdatePostDto, @UploadedFile() image?: any) {
-		return this.postService.update(id, postDto, image);
+	update(@Param('id') id: number, @Body() dto: UpdatePostDto, @UploadedFile() image?: any) {
+		return this.postService.update(id, dto, image);
 	}
 
 	@ApiOperation({ summary: 'Getting all posts' })
