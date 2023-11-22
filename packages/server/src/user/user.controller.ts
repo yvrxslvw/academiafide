@@ -20,8 +20,8 @@ export class UserController {
 	@Roles('ADMIN')
 	@UseGuards(RolesGuard)
 	@Put()
-	create(@Body() userDto: CreateUserDto) {
-		return this.userService.create(userDto);
+	create(@Body() dto: CreateUserDto) {
+		return this.userService.create(dto);
 	}
 
 	@ApiOperation({ summary: 'User deleting [ADMIN]' })
@@ -59,8 +59,8 @@ export class UserController {
 	@Roles('ADMIN')
 	@UseGuards(RolesGuard)
 	@Patch('/:id')
-	update(@Param('id') id: number, @Body() userDto: UpdateUserDto) {
-		return this.userService.update(id, userDto);
+	update(@Param('id') id: number, @Body() dto: UpdateUserDto) {
+		return this.userService.update(id, dto);
 	}
 
 	@ApiOperation({ summary: 'User role adding [ADMIN]' })
@@ -70,8 +70,8 @@ export class UserController {
 	@Roles('ADMIN')
 	@UseGuards(RolesGuard)
 	@Put('/:id/role')
-	addRole(@Param('id') id: number, @Body() userDto: RoleDto) {
-		return this.userService.addRole(id, userDto);
+	addRole(@Param('id') id: number, @Body() dto: RoleDto) {
+		return this.userService.addRole(id, dto);
 	}
 
 	@ApiOperation({ summary: 'User role deleting [ADMIN]' })
@@ -81,7 +81,7 @@ export class UserController {
 	@Roles('ADMIN')
 	@UseGuards(RolesGuard)
 	@Delete('/:id/role')
-	removeRole(@Param('id') id: number, @Body() userDto: RoleDto) {
-		return this.userService.removeRole(id, userDto);
+	removeRole(@Param('id') id: number, @Body() dto: RoleDto) {
+		return this.userService.removeRole(id, dto);
 	}
 }

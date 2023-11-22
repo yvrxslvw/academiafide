@@ -11,12 +11,12 @@ import { RoleDto } from './dto/role.dto';
 export class UserService {
 	constructor(@InjectModel(User) private readonly userRepo: typeof User, private readonly roleService: RoleService) {}
 
-	async create(userDto: CreateUserDto) {
-		const loginExisted = await this.userRepo.findOne({ where: { login: userDto.login } });
-		const emailExisted = await this.userRepo.findOne({ where: { email: userDto.email } });
+	async create(dto: CreateUserDto) {
+		const loginExisted = await this.userRepo.findOne({ where: { login: dto.login } });
+		const emailExisted = await this.userRepo.findOne({ where: { email: dto.email } });
 		if (loginExisted) throw new ForbiddenException('Login already existed.');
 		if (emailExisted) throw new ForbiddenException('Email already existed.');
-		const user = await this.userRepo.create(userDto);
+		const user = await this.userRepo.create(dto);
 		const role = await this.roleService.findOneByTag('USER');
 		if (role) {
 			await user.$set('roles', [role.id]);
@@ -48,25 +48,25 @@ export class UserService {
 		return user;
 	}
 
-	async update(id: number, userDto: UpdateUserDto) {
+	async update(id: number, dto: UpdateUserDto) {
 		const user = await this.userRepo.findByPk(id, { include: { all: true, nested: true } });
 		if (!user) throw new NotFoundException('User not found.');
-		await user.update({ ...userDto });
+		await user.update({ ...dto });
 		return user;
 	}
 
-	async addRole(id: number, userDto: RoleDto) {
+	async addRole(id: number, dto: RoleDto) {
 		const user = await this.userRepo.findByPk(id, { include: { all: true, nested: true } });
-		const role = await this.roleService.findOneByTag(userDto.tag);
+		const role = await this.roleService.findOneByTag(dto.tag);
 		if (!user || !role) throw new NotFoundException('User or role has not been found.');
 		if (await user.$has('role', role.id)) throw new ForbiddenException('User already have this role.');
 		await user.$add('role', role.id);
 		return role;
 	}
 	
-	async removeRole(id: number, userDto: RoleDto) {
+	async removeRole(id: number, dto: RoleDto) {
 		const user = await this.userRepo.findByPk(id, { include: { all: true, nested: true } });
-		const role = await this.roleService.findOneByTag(userDto.tag);
+		const role = await this.roleService.findOneByTag(dto.tag);
 		if (!user || !role) throw new NotFoundException('User or role has not been found.');
 		if (!(await user.$has('role', role.id))) throw new ForbiddenException("User haven't this role.");
 		await user.$remove('role', role.id);
