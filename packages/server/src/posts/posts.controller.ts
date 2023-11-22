@@ -15,6 +15,7 @@ export class PostsController {
 
 	@ApiOperation({ summary: 'Post creating [ADMIN]' })
 	@ApiResponse({ status: 200, description: 'Successfully creating post', type: Post })
+	@ApiResponse({ status: 403, description: "If you don't have ADMIN role" })
 	@Roles('ADMIN')
 	@UseGuards(RolesGuard)
 	@Put()
@@ -25,6 +26,7 @@ export class PostsController {
 	
 	@ApiOperation({ summary: 'Post deleting [ADMIN]' })
 	@ApiResponse({ status: 200, description: 'Successfully deleting post' })
+	@ApiResponse({ status: 403, description: "If you don't have ADMIN role" })
 	@ApiResponse({ status: 404, description: "If post doesn't exists" })
 	@Roles('ADMIN')
 	@UseGuards(RolesGuard)
@@ -35,6 +37,7 @@ export class PostsController {
 	
 	@ApiOperation({ summary: 'Post updating [ADMIN]' })
 	@ApiResponse({ status: 200, description: 'Successfully updating post', type: Post })
+	@ApiResponse({ status: 403, description: "If you don't have ADMIN role" })
 	@ApiResponse({ status: 404, description: "If post doesn't exists" })
 	@Roles('ADMIN')
 	@UseGuards(RolesGuard)

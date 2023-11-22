@@ -14,7 +14,7 @@ export class RolesController {
 
 	@ApiOperation({ summary: 'Role creating [ADMIN]' })
 	@ApiResponse({ status: 200, description: 'Successfully creating role' })
-	@ApiResponse({ status: 403, description: 'If role already exists' })
+	@ApiResponse({ status: 403, description: "If role already exists or you don't have ADMIN role" })
 	@Roles('ADMIN')
 	@UseGuards(RolesGuard)
 	@Put()
@@ -24,6 +24,7 @@ export class RolesController {
 	
 	@ApiOperation({ summary: 'Role deleting  [ADMIN]' })
 	@ApiResponse({ status: 200, description: 'Successfully deleting role' })
+	@ApiResponse({ status: 403, description: "If you don't have ADMIN role" })
 	@ApiResponse({ status: 404, description: "If role doesn't exists" })
 	@Roles('ADMIN')
 	@UseGuards(RolesGuard)
@@ -34,6 +35,7 @@ export class RolesController {
 	
 	@ApiOperation({ summary: 'Getting all roles  [ADMIN]' })
 	@ApiResponse({ status: 200, description: 'Successfully getting all roles', type: [Role] })
+	@ApiResponse({ status: 403, description: "If you don't have ADMIN role", type: [Role] })
 	@Roles('ADMIN')
 	@UseGuards(RolesGuard)
 	@Get()
@@ -43,6 +45,7 @@ export class RolesController {
 	
 	@ApiOperation({ summary: 'Getting one role by ID  [ADMIN]' })
 	@ApiResponse({ status: 200, description: 'Successfully getting one role by ID', type: Role })
+	@ApiResponse({ status: 403, description: "If you don't have ADMIN role" })
 	@ApiResponse({ status: 404, description: "If role doesn't exists" })
 	@Roles('ADMIN')
 	@UseGuards(RolesGuard)
@@ -53,6 +56,7 @@ export class RolesController {
 	
 	@ApiOperation({ summary: 'Role updating  [ADMIN]' })
 	@ApiResponse({ status: 200, description: 'Successfully updating role', type: Role })
+	@ApiResponse({ status: 403, description: "If you don't have ADMIN role" })
 	@ApiResponse({ status: 404, description: "If role doesn't exists" })
 	@Roles('ADMIN')
 	@UseGuards(RolesGuard)
