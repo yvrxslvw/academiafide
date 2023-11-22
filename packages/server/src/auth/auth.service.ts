@@ -11,17 +11,17 @@ import { User } from 'src/user/user.model';
 export class AuthService {
 	constructor(private readonly userService: UserService, private readonly jwtService: JwtService) {}
 
-	async login(loginDto: LoginUserDto) {
-		const user = await this.userService.getOneByLogin(loginDto.login);
+	async login(dto: LoginUserDto) {
+		const user = await this.userService.getOneByLogin(dto.login);
 		if (!user) throw new ForbiddenException('Incorrect login or password.');
-		const isPasswordCorrect = await bcrypt.compare(loginDto.password, user.password);
+		const isPasswordCorrect = await bcrypt.compare(dto.password, user.password);
 		if (!isPasswordCorrect) throw new ForbiddenException('Incorrect login or password.');
 		return this.generateToken(user);
 	}
 
-	async logup(logupDto: CreateUserDto) {
-		const hashPassword = await bcrypt.hash(logupDto.password, 5);
-		const user = await this.userService.create({ ...logupDto, password: hashPassword });
+	async logup(dto: CreateUserDto) {
+		const hashPassword = await bcrypt.hash(dto.password, 5);
+		const user = await this.userService.create({ ...dto, password: hashPassword });
 		return this.generateToken(user);
 	}
 

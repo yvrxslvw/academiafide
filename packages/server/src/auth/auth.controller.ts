@@ -13,15 +13,15 @@ export class AuthController {
 	@ApiResponse({ status: 201, description: 'Successful authorization and get the token' })
 	@ApiResponse({ status: 403, description: 'Incorrect login or password' })
 	@Post('/login')
-	login(@Body() loginDto: LoginUserDto) {
-		return this.authService.login(loginDto);
+	login(@Body() dto: LoginUserDto) {
+		return this.authService.login(dto);
 	}
 
 	@ApiOperation({ summary: 'Register user' })
 	@ApiResponse({ status: 201, description: 'Successful registration and get the token' })
 	@ApiResponse({ status: 403, description: 'If login or email already exists' })
 	@Post('/logup')
-	logup(@Body() logupDto: CreateUserDto) {
-		return this.authService.logup(logupDto);
+	logup(@Body() dto: CreateUserDto) {
+		return this.authService.logup(dto);
 	}
 }
