@@ -5,18 +5,12 @@ import { Post } from './post.model';
 import { FilesService } from 'src/files/files.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
-import { UsersService } from 'src/users/users.service';
 
 @Injectable()
 export class PostsService {
-	constructor(
-		@InjectModel(Post) private readonly postRepo: typeof Post,
-		private readonly filesService: FilesService,
-		private readonly usersService: UsersService,
-	) {}
+	constructor(@InjectModel(Post) private readonly postRepo: typeof Post, private readonly filesService: FilesService) {}
 
 	async create(dto: CreatePostDto, image?: any) {
-		await this.usersService.getOneById(dto.userId);
 		const fileName = image ? await this.filesService.createFile(image) : null;
 		const post = await this.postRepo.create({ ...dto, image: fileName });
 		return post;
