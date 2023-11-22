@@ -4,7 +4,7 @@ import { JwtService } from '@nestjs/jwt';
 import { Observable } from 'rxjs';
 import { Request } from 'express';
 import { ROLES_KEY } from './roles.decorator';
-import { User } from 'src/user/user.model';
+import { User } from 'src/users/user.model';
 
 @Injectable()
 export class RolesGuard implements CanActivate {

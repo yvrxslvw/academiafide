@@ -4,12 +4,12 @@ import { InjectModel } from '@nestjs/sequelize';
 import { User } from './user.model';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { RoleService } from 'src/role/role.service';
+import { RolesService } from 'src/roles/roles.service';
 import { RoleDto } from './dto/role.dto';
 
 @Injectable()
-export class UserService {
-	constructor(@InjectModel(User) private readonly userRepo: typeof User, private readonly roleService: RoleService) {}
+export class UsersService {
+	constructor(@InjectModel(User) private readonly userRepo: typeof User, private readonly rolesService: RolesService) {}
 
 	async create(dto: CreateUserDto) {
 		const loginExisted = await this.userRepo.findOne({ where: { login: dto.login } });
@@ -17,7 +17,7 @@ export class UserService {
 		if (loginExisted) throw new ForbiddenException('Login already existed.');
 		if (emailExisted) throw new ForbiddenException('Email already existed.');
 		const user = await this.userRepo.create(dto);
-		const role = await this.roleService.findOneByTag('USER');
+		const role = await this.rolesService.findOneByTag('USER');
 		if (role) {
 			await user.$set('roles', [role.id]);
 			user.roles = [role];
@@ -57,7 +57,7 @@ export class UserService {
 
 	async addRole(id: number, dto: RoleDto) {
 		const user = await this.userRepo.findByPk(id, { include: { all: true, nested: true } });
-		const role = await this.roleService.findOneByTag(dto.tag);
+		const role = await this.rolesService.findOneByTag(dto.tag);
 		if (!user || !role) throw new NotFoundException('User or role has not been found.');
 		if (await user.$has('role', role.id)) throw new ForbiddenException('User already have this role.');
 		await user.$add('role', role.id);
@@ -66,7 +66,7 @@ export class UserService {
 	
 	async removeRole(id: number, dto: RoleDto) {
 		const user = await this.userRepo.findByPk(id, { include: { all: true, nested: true } });
-		const role = await this.roleService.findOneByTag(dto.tag);
+		const role = await this.rolesService.findOneByTag(dto.tag);
 		if (!user || !role) throw new NotFoundException('User or role has not been found.');
 		if (!(await user.$has('role', role.id))) throw new ForbiddenException("User haven't this role.");
 		await user.$remove('role', role.id);

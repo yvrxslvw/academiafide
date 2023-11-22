@@ -1,7 +1,7 @@
 import { Controller, Body, UploadedFile, UseInterceptors, Put, Delete, Param, Patch, Get, UseGuards } from '@nestjs/common';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { PostService } from './post.service';
+import { PostsService } from './posts.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
 import { Post } from './post.model';
@@ -9,9 +9,9 @@ import { Roles } from 'src/auth/roles.decorator';
 import { RolesGuard } from 'src/auth/roles.guard';
 
 @ApiTags('Post interactions')
-@Controller('post')
-export class PostController {
-	constructor(private readonly postService: PostService) {}
+@Controller('posts')
+export class PostsController {
+	constructor(private readonly postsService: PostsService) {}
 
 	@ApiOperation({ summary: 'Post creating [ADMIN]' })
 	@ApiResponse({ status: 200, description: 'Successfully creating post', type: Post })
@@ -20,7 +20,7 @@ export class PostController {
 	@Put()
 	@UseInterceptors(FileInterceptor('image'))
 	create(@Body() dto: CreatePostDto, @UploadedFile() image?: any) {
-		return this.postService.create(dto, image);
+		return this.postsService.create(dto, image);
 	}
 	
 	@ApiOperation({ summary: 'Post deleting [ADMIN]' })
@@ -30,7 +30,7 @@ export class PostController {
 	@UseGuards(RolesGuard)
 	@Delete('/:id')
 	delete(@Param('id') id: number) {
-		return this.postService.delete(id);
+		return this.postsService.delete(id);
 	}
 	
 	@ApiOperation({ summary: 'Post updating [ADMIN]' })
@@ -41,14 +41,14 @@ export class PostController {
 	@Patch('/:id')
 	@UseInterceptors(FileInterceptor('image'))
 	update(@Param('id') id: number, @Body() dto: UpdatePostDto, @UploadedFile() image?: any) {
-		return this.postService.update(id, dto, image);
+		return this.postsService.update(id, dto, image);
 	}
 
 	@ApiOperation({ summary: 'Getting all posts' })
 	@ApiResponse({ status: 200, description: 'Successfully getting all post', type: [Post] })
 	@Get()
 	getAll() {
-		return this.postService.getAll();
+		return this.postsService.getAll();
 	}
 
 	@ApiOperation({ summary: 'Getting one post by ID' })
@@ -56,6 +56,6 @@ export class PostController {
 	@ApiResponse({ status: 404, description: "If post doesn't exists" })
 	@Get('/:id')
 	getOneById(@Param('id') id: number) {
-		return this.postService.getOneById(id);
+		return this.postsService.getOneById(id);
 	}
 }

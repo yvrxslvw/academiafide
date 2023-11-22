@@ -2,17 +2,17 @@ import { Injectable } from '@nestjs/common';
 import { ForbiddenException } from '@nestjs/common/exceptions';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
-import { UserService } from 'src/user/user.service';
+import { UsersService } from 'src/users/users.service';
 import { LoginUserDto } from './dto/login-user.dto';
-import { CreateUserDto } from 'src/user/dto/create-user.dto';
-import { User } from 'src/user/user.model';
+import { CreateUserDto } from 'src/users/dto/create-user.dto';
+import { User } from 'src/users/user.model';
 
 @Injectable()
 export class AuthService {
-	constructor(private readonly userService: UserService, private readonly jwtService: JwtService) {}
+	constructor(private readonly usersService: UsersService, private readonly jwtService: JwtService) {}
 
 	async login(dto: LoginUserDto) {
-		const user = await this.userService.getOneByLogin(dto.login);
+		const user = await this.usersService.getOneByLogin(dto.login);
 		if (!user) throw new ForbiddenException('Incorrect login or password.');
 		const isPasswordCorrect = await bcrypt.compare(dto.password, user.password);
 		if (!isPasswordCorrect) throw new ForbiddenException('Incorrect login or password.');
@@ -21,7 +21,7 @@ export class AuthService {
 
 	async logup(dto: CreateUserDto) {
 		const hashPassword = await bcrypt.hash(dto.password, 5);
-		const user = await this.userService.create({ ...dto, password: hashPassword });
+		const user = await this.usersService.create({ ...dto, password: hashPassword });
 		return this.generateToken(user);
 	}
 

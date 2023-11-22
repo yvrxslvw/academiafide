@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Patch, Put, UseGuards } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { RoleService } from './role.service';
+import { RolesService } from './roles.service';
 import { CreateRoleDto } from './dto/create-role.dto';
 import { Role } from './role.model';
 import { UpdateRoleDto } from './dto/update-role.dto';
@@ -8,9 +8,9 @@ import { Roles } from 'src/auth/roles.decorator';
 import { RolesGuard } from 'src/auth/roles.guard';
 
 @ApiTags('Role interactions')
-@Controller('role')
-export class RoleController {
-	constructor(private readonly roleService: RoleService) {}
+@Controller('roles')
+export class RolesController {
+	constructor(private readonly rolesService: RolesService) {}
 
 	@ApiOperation({ summary: 'Role creating [ADMIN]' })
 	@ApiResponse({ status: 200, description: 'Successfully creating role' })
@@ -19,7 +19,7 @@ export class RoleController {
 	@UseGuards(RolesGuard)
 	@Put()
 	create(@Body() dto: CreateRoleDto) {
-		return this.roleService.create(dto);
+		return this.rolesService.create(dto);
 	}
 	
 	@ApiOperation({ summary: 'Role deleting  [ADMIN]' })
@@ -29,7 +29,7 @@ export class RoleController {
 	@UseGuards(RolesGuard)
 	@Delete('/:id')
 	delete(@Param('id') id: number) {
-		return this.roleService.delete(id);
+		return this.rolesService.delete(id);
 	}
 	
 	@ApiOperation({ summary: 'Getting all roles  [ADMIN]' })
@@ -38,7 +38,7 @@ export class RoleController {
 	@UseGuards(RolesGuard)
 	@Get()
 	getAll() {
-		return this.roleService.findAll();
+		return this.rolesService.findAll();
 	}
 	
 	@ApiOperation({ summary: 'Getting one role by ID  [ADMIN]' })
@@ -48,7 +48,7 @@ export class RoleController {
 	@UseGuards(RolesGuard)
 	@Get('/:id')
 	getOneById(@Param('id') id: number) {
-		return this.roleService.findOneById(id);
+		return this.rolesService.findOneById(id);
 	}
 	
 	@ApiOperation({ summary: 'Role updating  [ADMIN]' })
@@ -58,6 +58,6 @@ export class RoleController {
 	@UseGuards(RolesGuard)
 	@Patch('/:id')
 	update(@Param('id') id: number, @Body() dto: UpdateRoleDto) {
-		return this.roleService.update(id, dto);
+		return this.rolesService.update(id, dto);
 	}
 }

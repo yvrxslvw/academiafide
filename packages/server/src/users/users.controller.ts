@@ -1,18 +1,18 @@
 import { Controller, Put, Delete, Body, Get, Param, Patch, UseGuards } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { UserService } from './user.service';
+import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './user.model';
 import { Roles } from 'src/auth/roles.decorator';
 import { RolesGuard } from 'src/auth/roles.guard';
 import { RoleDto } from './dto/role.dto';
-import { Role } from 'src/role/role.model';
+import { Role } from 'src/roles/role.model';
 
 @ApiTags('User interactions')
-@Controller('user')
-export class UserController {
-	constructor(private readonly userService: UserService) {}
+@Controller('users')
+export class UsersController {
+	constructor(private readonly usersService: UsersService) {}
 
 	@ApiOperation({ summary: 'User creating [ADMIN]' })
 	@ApiResponse({ status: 201, description: 'Successfully creating user', type: User })
@@ -21,7 +21,7 @@ export class UserController {
 	@UseGuards(RolesGuard)
 	@Put()
 	create(@Body() dto: CreateUserDto) {
-		return this.userService.create(dto);
+		return this.usersService.create(dto);
 	}
 
 	@ApiOperation({ summary: 'User deleting [ADMIN]' })
@@ -31,7 +31,7 @@ export class UserController {
 	@UseGuards(RolesGuard)
 	@Delete('/:id')
 	delete(@Param('id') id: number) {
-		return this.userService.delete(id);
+		return this.usersService.delete(id);
 	}
 
 	@ApiOperation({ summary: 'Getting all users [ADMIN]' })
@@ -40,7 +40,7 @@ export class UserController {
 	@UseGuards(RolesGuard)
 	@Get()
 	getAll() {
-		return this.userService.getAll();
+		return this.usersService.getAll();
 	}
 
 	@ApiOperation({ summary: 'Getting one user by ID [ADMIN]' })
@@ -50,7 +50,7 @@ export class UserController {
 	@UseGuards(RolesGuard)
 	@Get('/:id')
 	getOneById(@Param('id') id: number) {
-		return this.userService.getOneById(id);
+		return this.usersService.getOneById(id);
 	}
 
 	@ApiOperation({ summary: 'User updating [ADMIN]' })
@@ -60,7 +60,7 @@ export class UserController {
 	@UseGuards(RolesGuard)
 	@Patch('/:id')
 	update(@Param('id') id: number, @Body() dto: UpdateUserDto) {
-		return this.userService.update(id, dto);
+		return this.usersService.update(id, dto);
 	}
 
 	@ApiOperation({ summary: 'User role adding [ADMIN]' })
@@ -71,7 +71,7 @@ export class UserController {
 	@UseGuards(RolesGuard)
 	@Put('/:id/role')
 	addRole(@Param('id') id: number, @Body() dto: RoleDto) {
-		return this.userService.addRole(id, dto);
+		return this.usersService.addRole(id, dto);
 	}
 
 	@ApiOperation({ summary: 'User role deleting [ADMIN]' })
@@ -82,6 +82,6 @@ export class UserController {
 	@UseGuards(RolesGuard)
 	@Delete('/:id/role')
 	removeRole(@Param('id') id: number, @Body() dto: RoleDto) {
-		return this.userService.removeRole(id, dto);
+		return this.usersService.removeRole(id, dto);
 	}
 }
