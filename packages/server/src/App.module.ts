@@ -12,6 +12,8 @@ import { AuthModule } from './auth/auth.module';
 import { RolesModule } from './roles/roles.module';
 import { Role } from './roles/role.model';
 import { UserRoles } from './roles/user-roles.model';
+import { ProductsModule } from './products/products.module';
+import { Product } from './products/product.model';
 
 const isDev = process.env.APP_MODE === 'development';
 const envFilePath = isDev ? '.env.development' : '.env';
@@ -28,7 +30,7 @@ const envFilePath = isDev ? '.env.development' : '.env';
 			database: process.env.MYSQL_DATABASE,
 			timezone: process.env.MYSQL_TIMEZONE,
 			logging: isDev ? sql => console.log(sql) : false,
-			models: [User, Post, Role, UserRoles],
+			models: [User, Post, Role, UserRoles, Product],
 			autoLoadModels: true,
 		}),
 		ServeStaticModule.forRoot({
@@ -41,6 +43,7 @@ const envFilePath = isDev ? '.env.development' : '.env';
 		PostsModule,
 		AuthModule,
 		RolesModule,
+		ProductsModule,
 	],
 })
 export class AppModule {}
