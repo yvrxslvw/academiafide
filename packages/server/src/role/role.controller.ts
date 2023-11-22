@@ -18,8 +18,8 @@ export class RoleController {
 	@Roles('ADMIN')
 	@UseGuards(RolesGuard)
 	@Put()
-	create(@Body() roleDto: CreateRoleDto) {
-		return this.roleService.create(roleDto);
+	create(@Body() dto: CreateRoleDto) {
+		return this.roleService.create(dto);
 	}
 	
 	@ApiOperation({ summary: 'Role deleting  [ADMIN]' })
@@ -57,7 +57,7 @@ export class RoleController {
 	@Roles('ADMIN')
 	@UseGuards(RolesGuard)
 	@Patch('/:id')
-	update(@Param('id') id: number, @Body() roleDto: UpdateRoleDto) {
-		return this.roleService.update(id, roleDto);
+	update(@Param('id') id: number, @Body() dto: UpdateRoleDto) {
+		return this.roleService.update(id, dto);
 	}
 }

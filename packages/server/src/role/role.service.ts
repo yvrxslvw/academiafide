@@ -10,12 +10,12 @@ import { UpdateRoleDto } from './dto/update-role.dto';
 export class RoleService {
 	constructor(@InjectModel(Role) private readonly roleRepo: typeof Role) {}
 
-	async create(roleDto: CreateRoleDto) {
+	async create(dto: CreateRoleDto) {
 		const exists = await this.roleRepo.findOne({
-			where: { [Op.or]: { tag: roleDto.tag, description: roleDto.description } },
+			where: { [Op.or]: { tag: dto.tag, description: dto.description } },
 		});
 		if (exists) throw new ForbiddenException('This role already exists.');
-		const role = await this.roleRepo.create(roleDto);
+		const role = await this.roleRepo.create(dto);
 		return role;
 	}
 
@@ -42,10 +42,10 @@ export class RoleService {
 		return role;
 	}
 
-	async update(id: number, roleDto: UpdateRoleDto) {
+	async update(id: number, dto: UpdateRoleDto) {
 		const role = await this.roleRepo.findByPk(id, { include: { all: true, nested: true } });
 		if (!role) throw new NotFoundException("Role doesn't exists");
-		await role.update(roleDto);
+		await role.update(dto);
 		return role;
 	}
 }
