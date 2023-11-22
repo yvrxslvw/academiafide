@@ -6,6 +6,8 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './user.model';
 import { Roles } from 'src/auth/roles.decorator';
 import { RolesGuard } from 'src/auth/roles.guard';
+import { RoleDto } from './dto/role.dto';
+import { Role } from 'src/role/role.model';
 
 @ApiTags('User interactions')
 @Controller('user')
@@ -59,5 +61,27 @@ export class UserController {
 	@Patch('/:id')
 	update(@Param('id') id: number, @Body() userDto: UpdateUserDto) {
 		return this.userService.update(id, userDto);
+	}
+
+	@ApiOperation({ summary: 'User role adding [ADMIN]' })
+	@ApiResponse({ status: 200, description: 'Successfully adding role', type: Role })
+	@ApiResponse({ status: 403, description: "If user already have this role." })
+	@ApiResponse({ status: 404, description: "If user or role doesn't exists" })
+	@Roles('ADMIN')
+	@UseGuards(RolesGuard)
+	@Put('/:id/role')
+	addRole(@Param('id') id: number, @Body() userDto: RoleDto) {
+		return this.userService.addRole(id, userDto);
+	}
+
+	@ApiOperation({ summary: 'User role deleting [ADMIN]' })
+	@ApiResponse({ status: 200, description: 'Successfully deleting role', type: Role })
+	@ApiResponse({ status: 403, description: "If user haven't this role." })
+	@ApiResponse({ status: 404, description: "If user or role doesn't exists" })
+	@Roles('ADMIN')
+	@UseGuards(RolesGuard)
+	@Delete('/:id/role')
+	removeRole(@Param('id') id: number, @Body() userDto: RoleDto) {
+		return this.userService.removeRole(id, userDto);
 	}
 }

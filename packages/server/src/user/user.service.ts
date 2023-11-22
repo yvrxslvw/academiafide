@@ -5,6 +5,7 @@ import { User } from './user.model';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { RoleService } from 'src/role/role.service';
+import { RoleDto } from './dto/role.dto';
 
 @Injectable()
 export class UserService {
@@ -52,5 +53,23 @@ export class UserService {
 		if (!user) throw new NotFoundException('User not found.');
 		await user.update({ ...userDto });
 		return user;
+	}
+
+	async addRole(id: number, userDto: RoleDto) {
+		const user = await this.userRepo.findByPk(id, { include: { all: true, nested: true } });
+		const role = await this.roleService.findOneByTag(userDto.tag);
+		if (!user || !role) throw new NotFoundException('User or role has not been found.');
+		if (await user.$has('role', role.id)) throw new ForbiddenException('User already have this role.');
+		await user.$add('role', role.id);
+		return role;
+	}
+	
+	async removeRole(id: number, userDto: RoleDto) {
+		const user = await this.userRepo.findByPk(id, { include: { all: true, nested: true } });
+		const role = await this.roleService.findOneByTag(userDto.tag);
+		if (!user || !role) throw new NotFoundException('User or role has not been found.');
+		if (!(await user.$has('role', role.id))) throw new ForbiddenException("User haven't this role.");
+		await user.$remove('role', role.id);
+		return role;
 	}
 }
