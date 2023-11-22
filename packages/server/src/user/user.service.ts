@@ -4,10 +4,11 @@ import { InjectModel } from '@nestjs/sequelize';
 import { User } from './user.model';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
+import { RoleService } from 'src/role/role.service';
 
 @Injectable()
 export class UserService {
-	constructor(@InjectModel(User) private readonly userRepo: typeof User) {}
+	constructor(@InjectModel(User) private readonly userRepo: typeof User, private readonly roleService: RoleService) {}
 
 	async create(userDto: CreateUserDto) {
 		const loginExisted = await this.userRepo.findOne({ where: { login: userDto.login } });
@@ -15,6 +16,11 @@ export class UserService {
 		if (loginExisted) throw new ForbiddenException('Login already existed.');
 		if (emailExisted) throw new ForbiddenException('Email already existed.');
 		const user = await this.userRepo.create(userDto);
+		const role = await this.roleService.findOneByTag('USER');
+		if (role) {
+			await user.$set('roles', [role.id]);
+			user.roles = [role];
+		}
 		return user;
 	}
 

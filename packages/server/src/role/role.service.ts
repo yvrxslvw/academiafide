@@ -38,8 +38,7 @@ export class RoleService {
 	}
 
 	async findOneByTag(tag: string) {
-		const role = await this.roleRepo.findOne({ where: { tag }, include: { all: true, nested: true } });
-		if (!role) throw new NotFoundException("Role doesn't exists");
+		const role = await this.roleRepo.findOne({ where: { tag } });
 		return role;
 	}
 
