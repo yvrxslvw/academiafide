@@ -4,5 +4,5 @@ import { Role } from './role.model';
 
 @Injectable()
 export class RoleService {
-	constructor(@InjectModel(Role) private readonly repo: typeof Role) {}
+	constructor(@InjectModel(Role) private readonly roleRepo: typeof Role) {}
 }

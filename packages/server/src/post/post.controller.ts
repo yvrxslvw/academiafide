@@ -9,14 +9,14 @@ import { Post } from './post.model';
 @ApiTags('Post interactions')
 @Controller('post')
 export class PostController {
-	constructor(private readonly service: PostService) {}
+	constructor(private readonly postService: PostService) {}
 
 	@ApiOperation({ summary: 'Post creating' })
 	@ApiResponse({ status: 200, description: 'Successfully creating post', type: Post })
 	@Put()
 	@UseInterceptors(FileInterceptor('image'))
 	create(@Body() postDto: CreatePostDto, @UploadedFile() image?: any) {
-		return this.service.create(postDto, image);
+		return this.postService.create(postDto, image);
 	}
 
 	@ApiOperation({ summary: 'Post deleting' })
@@ -24,7 +24,7 @@ export class PostController {
 	@ApiResponse({ status: 404, description: "If post doesn't exists" })
 	@Delete('/:id')
 	delete(@Param('id') id: number) {
-		return this.service.delete(id);
+		return this.postService.delete(id);
 	}
 
 	@ApiOperation({ summary: 'Post updating' })
@@ -33,14 +33,14 @@ export class PostController {
 	@Patch('/:id')
 	@UseInterceptors(FileInterceptor('image'))
 	update(@Param('id') id: number, @Body() postDto: UpdatePostDto, @UploadedFile() image?: any) {
-		return this.service.update(id, postDto, image);
+		return this.postService.update(id, postDto, image);
 	}
 
 	@ApiOperation({ summary: 'Getting all posts' })
 	@ApiResponse({ status: 200, description: 'Successfully getting all post', type: [Post] })
 	@Get()
 	getAll() {
-		return this.service.getAll();
+		return this.postService.getAll();
 	}
 
 	@ApiOperation({ summary: 'Getting one post by ID' })
@@ -48,6 +48,6 @@ export class PostController {
 	@ApiResponse({ status: 404, description: "If post doesn't exists" })
 	@Get('/:id')
 	getOneById(@Param('id') id: number) {
-		return this.service.getOneById(id);
+		return this.postService.getOneById(id);
 	}
 }

@@ -7,14 +7,14 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 @ApiTags('Authorization')
 @Controller('auth')
 export class AuthController {
-	constructor(private readonly service: AuthService) {}
+	constructor(private readonly authService: AuthService) {}
 
 	@ApiOperation({ summary: 'Authorize user' })
 	@ApiResponse({ status: 201, description: 'Successful authorization and get the token' })
 	@ApiResponse({ status: 403, description: 'Incorrect login or password' })
 	@Post('/login')
 	login(@Body() loginDto: LoginUserDto) {
-		return this.service.login(loginDto);
+		return this.authService.login(loginDto);
 	}
 
 	@ApiOperation({ summary: 'Register user' })
@@ -22,6 +22,6 @@ export class AuthController {
 	@ApiResponse({ status: 403, description: 'If login or email already exists' })
 	@Post('/logup')
 	logup(@Body() logupDto: CreateUserDto) {
-		return this.service.logup(logupDto);
+		return this.authService.logup(logupDto);
 	}
 }

@@ -7,42 +7,42 @@ import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UserService {
-	constructor(@InjectModel(User) private readonly repo: typeof User) {}
+	constructor(@InjectModel(User) private readonly userRepo: typeof User) {}
 
 	async create(userDto: CreateUserDto) {
-		const loginExisted = await this.repo.findOne({ where: { login: userDto.login } });
-		const emailExisted = await this.repo.findOne({ where: { email: userDto.email } });
+		const loginExisted = await this.userRepo.findOne({ where: { login: userDto.login } });
+		const emailExisted = await this.userRepo.findOne({ where: { email: userDto.email } });
 		if (loginExisted) throw new ForbiddenException('Login already existed.');
 		if (emailExisted) throw new ForbiddenException('Email already existed.');
-		const user = await this.repo.create(userDto);
+		const user = await this.userRepo.create(userDto);
 		return user;
 	}
 
 	async delete(id: number) {
-		const user = await this.repo.findByPk(id);
+		const user = await this.userRepo.findByPk(id);
 		if (!user) throw new NotFoundException('User not found.');
 		await user.destroy();
 		return 'Deleted.';
 	}
 
 	async getAll() {
-		const users = await this.repo.findAll({ include: { all: true, nested: true } });
+		const users = await this.userRepo.findAll({ include: { all: true, nested: true } });
 		return users;
 	}
 
 	async getOneById(id: number) {
-		const user = await this.repo.findByPk(id, { include: { all: true, nested: true } });
+		const user = await this.userRepo.findByPk(id, { include: { all: true, nested: true } });
 		if (!user) throw new NotFoundException('User not found.');
 		return user;
 	}
 
 	async getOneByLogin(login: string) {
-		const user = await this.repo.findOne({ where: { login }, include: { all: true, nested: true } });
+		const user = await this.userRepo.findOne({ where: { login }, include: { all: true, nested: true } });
 		return user;
 	}
 
 	async update(id: number, userDto: UpdateUserDto) {
-		const user = await this.repo.findByPk(id, { include: { all: true, nested: true } });
+		const user = await this.userRepo.findByPk(id, { include: { all: true, nested: true } });
 		if (!user) throw new NotFoundException('User not found.');
 		await user.update({ ...userDto });
 		return user;

@@ -8,14 +8,14 @@ import { User } from './user.model';
 @ApiTags('User interactions')
 @Controller('user')
 export class UserController {
-	constructor(private readonly service: UserService) {}
+	constructor(private readonly userService: UserService) {}
 
 	@ApiOperation({ summary: 'User creating' })
 	@ApiResponse({ status: 201, description: 'Successfully creating user', type: User })
 	@ApiResponse({ status: 403, description: 'If login or email already exists' })
 	@Put()
 	create(@Body() userDto: CreateUserDto) {
-		return this.service.create(userDto);
+		return this.userService.create(userDto);
 	}
 
 	@ApiOperation({ summary: 'User deleting' })
@@ -23,14 +23,14 @@ export class UserController {
 	@ApiResponse({ status: 404, description: "If user doesn't exists" })
 	@Delete('/:id')
 	delete(@Param('id') id: number) {
-		return this.service.delete(id);
+		return this.userService.delete(id);
 	}
 
 	@ApiOperation({ summary: 'Getting all users' })
 	@ApiResponse({ status: 200, description: 'Successfully getting all users', type: [User] })
 	@Get()
 	getAll() {
-		return this.service.getAll();
+		return this.userService.getAll();
 	}
 
 	@ApiOperation({ summary: 'Getting one user by ID' })
@@ -38,7 +38,7 @@ export class UserController {
 	@ApiResponse({ status: 404, description: "If user doesn't exists" })
 	@Get('/:id')
 	getOneById(@Param('id') id: number) {
-		return this.service.getOneById(id);
+		return this.userService.getOneById(id);
 	}
 
 	@ApiOperation({ summary: 'User updating' })
@@ -46,6 +46,6 @@ export class UserController {
 	@ApiResponse({ status: 404, description: "If user doesn't exists" })
 	@Patch('/:id')
 	update(@Param('id') id: number, @Body() userDto: UpdateUserDto) {
-		return this.service.update(id, userDto);
+		return this.userService.update(id, userDto);
 	}
 }

@@ -5,5 +5,5 @@ import { RoleService } from './role.service';
 @ApiTags('Role interactions')
 @Controller('role')
 export class RoleController {
-	constructor(private readonly service: RoleService) {}
+	constructor(private readonly roleService: RoleService) {}
 }

@@ -10,7 +10,7 @@ import { UserService } from 'src/user/user.service';
 @Injectable()
 export class PostService {
 	constructor(
-		@InjectModel(Post) private readonly repo: typeof Post,
+		@InjectModel(Post) private readonly postRepo: typeof Post,
 		private readonly filesService: FilesService,
 		private readonly userService: UserService,
 	) {}
@@ -18,12 +18,12 @@ export class PostService {
 	async create(postDto: CreatePostDto, image?: any) {
 		await this.userService.getOneById(postDto.userId);
 		const fileName = image ? await this.filesService.createFile(image) : null;
-		const post = await this.repo.create({ ...postDto, image: fileName });
+		const post = await this.postRepo.create({ ...postDto, image: fileName });
 		return post;
 	}
 
 	async delete(id: number) {
-		const post = await this.repo.findByPk(id);
+		const post = await this.postRepo.findByPk(id);
 		if (!post) throw new NotFoundException('Post not found.');
 		const fileName = post.image;
 		await post.destroy();
@@ -32,7 +32,7 @@ export class PostService {
 	}
 
 	async update(id: number, postDto: UpdatePostDto, image?: any) {
-		const post = await this.repo.findByPk(id);
+		const post = await this.postRepo.findByPk(id);
 		if (!post) throw new NotFoundException('Post not found.');
 		if (image) {
 			const fileName = await this.filesService.createFile(image);
@@ -44,12 +44,12 @@ export class PostService {
 	}
 
 	async getAll() {
-		const posts = await this.repo.findAll({ include: { all: true, nested: true } });
+		const posts = await this.postRepo.findAll({ include: { all: true, nested: true } });
 		return posts;
 	}
 
 	async getOneById(id: number) {
-		const post = await this.repo.findByPk(id, { include: { all: true, nested: true } });
+		const post = await this.postRepo.findByPk(id, { include: { all: true, nested: true } });
 		if (!post) throw new NotFoundException('Post not found.');
 		return post;
 	}
