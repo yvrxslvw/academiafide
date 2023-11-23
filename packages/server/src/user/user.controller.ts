@@ -12,7 +12,7 @@ import { RecoveryPasswordDto } from './dto/recovery-password.dto';
 export class UserController {
 	constructor(private readonly userService: UserService) {}
 
-	@ApiOperation({ summary: 'Edit user profile info' })
+	@ApiOperation({ summary: 'Edit user profile info [Authorized]' })
 	@ApiResponse({ status: 200, description: 'Successfully editing user info' })
 	@ApiResponse({ status: 400, description: 'Incorrect rows values' })
 	@ApiResponse({ status: 403, description: 'If login already exists or user is unauthorized' })
@@ -37,5 +37,14 @@ export class UserController {
 	@Get('/recovery/:recoveryId')
 	recoveryConfirm(@Param('recoveryId') recoveryId: string, @Res() response: Response) {
 		return this.userService.recoveryConfirm(recoveryId, response);
+	}
+
+	@ApiOperation({ summary: 'Get user info [Authorized]' })
+	@ApiResponse({ status: 200, description: 'Successfully getting user info' })
+	@ApiResponse({ status: 404, description: "If user doesn't exists" })
+	@UseGuards(JwtAuthGuard)
+	@Get()
+	getInfo(@Req() request: Request) {
+		return this.userService.getInfo(request['user'].id);
 	}
 }

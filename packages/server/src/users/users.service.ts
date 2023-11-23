@@ -77,7 +77,7 @@ export class UsersService {
 			if (!isString(dto.password)) throw new BadRequestException('Incorrect password.');
 		}
 		if (dto.email_news) {
-			if (!isBoolean(dto.email_news)) throw new BadRequestException('Incorrect type "email_news".');
+			if (!isBoolean(dto.email_news)) throw new BadRequestException('Incorrect type email_news.');
 		}
 		if (image) {
 			const fileName = await this.filesService.createFile(image);

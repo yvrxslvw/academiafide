@@ -43,4 +43,10 @@ export class UserService {
 		await user.update({ password: hashPassword, recovery_link: null });
 		return response.send(`redirect to the successful page ${generatedPassword}`);
 	}
+
+	async getInfo(id: number) {
+		const user = await this.usersService.getOneById(id);
+		if (!user) throw new NotFoundException('User not found.');
+		return user;
+	}
 }
