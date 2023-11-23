@@ -1,5 +1,5 @@
 import { Dispatch, FC, SetStateAction, useEffect } from 'react';
-import { Button, useLogupMutation } from 'shared';
+import { Button, isErrorFromBackend, useLogupMutation } from 'shared';
 import { LogupModels } from 'entities';
 
 interface NextButtonProps {
@@ -8,7 +8,7 @@ interface NextButtonProps {
 }
 
 export const NextButton: FC<NextButtonProps> = ({ logupData, setLogupData }) => {
-	const [logup, { data }] = useLogupMutation();
+	const [logup, { data, error }] = useLogupMutation();
 
 	const onClickHandler = async () => {
 		setLogupData({ ...logupData, loginError: false, passwordError: false, passwordConfirmError: false });
@@ -38,11 +38,20 @@ export const NextButton: FC<NextButtonProps> = ({ logupData, setLogupData }) => 
 		}
 
 		await logup({ login, password });
+		// todo: navigate to the user account
 	};
 
 	useEffect(() => {
 		if (data) window.localStorage.setItem('accessToken', data.token);
 	}, [data]);
+
+	useEffect(() => {
+		if (isErrorFromBackend(error) && error.data.statusCode === 403) {
+			// todo: login already taken error popup
+		} else {
+			// todo: unexpected error popup
+		}
+	}, [error]);
 
 	return (
 		<Button type='submit' onClick={onClickHandler}>
