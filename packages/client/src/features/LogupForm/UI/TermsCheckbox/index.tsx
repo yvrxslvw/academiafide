@@ -1,10 +1,11 @@
 import { ChangeEvent, Dispatch, FC, SetStateAction } from 'react';
 import { Checkbox, Link, PublicRouterPaths } from 'shared';
+import { LogupModels } from 'entities';
 import cl from './style.module.scss';
 
 interface TermsCheckboxProps {
-	state: boolean;
-	setState: Dispatch<SetStateAction<boolean>>;
+	data: LogupModels.LogupData;
+	setData: Dispatch<SetStateAction<LogupModels.LogupData>>;
 }
 
 const CheckboxLabel: FC = () => {
@@ -19,10 +20,10 @@ const CheckboxLabel: FC = () => {
 	);
 };
 
-export const TermsCheckbox: FC<TermsCheckboxProps> = ({ state, setState }) => {
+export const TermsCheckbox: FC<TermsCheckboxProps> = ({ data, setData }) => {
 	const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-		setState(event.target.checked);
+		setData({ ...data, terms: event.target.checked });
 	};
 
-	return <Checkbox label={<CheckboxLabel />} checked={state} onChange={onChangeHandler} />;
+	return <Checkbox label={<CheckboxLabel />} checked={data.terms} onChange={onChangeHandler} />;
 };

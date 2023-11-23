@@ -1,15 +1,16 @@
 import { ChangeEvent, Dispatch, FC, SetStateAction } from 'react';
 import { Input } from 'shared';
+import { LogupModels } from 'entities';
 
 interface LoginInputProps {
-	state: string;
-	setState: Dispatch<SetStateAction<string>>;
+	data: LogupModels.LogupData;
+	setData: Dispatch<SetStateAction<LogupModels.LogupData>>;
 }
 
-export const LoginInput: FC<LoginInputProps> = ({ state, setState }) => {
+export const LoginInput: FC<LoginInputProps> = ({ data, setData }) => {
 	const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-		setState(event.target.value);
+		setData({ ...data, login: event.target.value, loginError: false });
 	};
 
-	return <Input label='Nombre de usario' value={state} onChange={onChangeHandler} />;
+	return <Input label='Nombre de usario' value={data.login} onChange={onChangeHandler} error={data.loginError} />;
 };
