@@ -65,11 +65,6 @@ export class UsersService {
 			const exists = await this.userRepo.findOne({ where: { login: dto.login } });
 			if (exists) throw new ForbiddenException('Login already exists.');
 		}
-		if (dto.email) {
-			if (!isEmail(dto.email)) throw new BadRequestException('Incorrect email.');
-			const exists = await this.userRepo.findOne({ where: { email: dto.email } });
-			if (exists) throw new ForbiddenException('Email already exists.');
-		}
 		if (dto.password) {
 			if (!isString(dto.password)) throw new BadRequestException('Incorrect password.');
 		}
