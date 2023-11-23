@@ -1,7 +1,6 @@
 import { Controller, Put, Delete, Body, Get, Param, Patch, UseGuards } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { UsersService } from './users.service';
-import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './user.model';
 import { Roles } from 'src/auth/roles.decorator';
@@ -9,20 +8,10 @@ import { RolesGuard } from 'src/auth/roles.guard';
 import { RoleDto } from './dto/role.dto';
 import { Role } from 'src/roles/role.model';
 
-@ApiTags('User interactions')
+@ApiTags('Users interactions from ADMIN role')
 @Controller('users')
 export class UsersController {
 	constructor(private readonly usersService: UsersService) {}
-
-	@ApiOperation({ summary: 'User creating [ADMIN]' })
-	@ApiResponse({ status: 200, description: 'Successfully creating user', type: User })
-	@ApiResponse({ status: 403, description: "If login already exists or you don't have ADMIN role" })
-	@Roles('ADMIN')
-	@UseGuards(RolesGuard)
-	@Put()
-	create(@Body() dto: CreateUserDto) {
-		return this.usersService.create(dto);
-	}
 
 	@ApiOperation({ summary: 'User deleting [ADMIN]' })
 	@ApiResponse({ status: 200, description: 'Successfully deleting user' })
