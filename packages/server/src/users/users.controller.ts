@@ -11,6 +11,7 @@ import { Role } from 'src/roles/role.model';
 import { SendCodeEmailDto } from './dto/send-code-email.dto';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { Request } from 'express';
+import { ConfirmCodeEmailDto } from './dto/confirm-code-email.dto';
 
 @ApiTags('User interactions')
 @Controller('users')
@@ -101,5 +102,18 @@ export class UsersController {
 	@Post('/email')
 	sendCodeEmail(@Req() request: Request, @Body() dto: SendCodeEmailDto) {
 		return this.usersService.sendCodeEmail(request['user'].id, dto);
+	}
+
+	@ApiOperation({ summary: 'Confirmation user email [Authorized]' })
+	@ApiResponse({ status: 200, description: 'Successfully confirmation' })
+	@ApiResponse({
+		status: 403,
+		description: "If user is unauthorized or wrong code or user doesn't have the confirmation code",
+	})
+	@ApiResponse({ status: 404, description: "If user doesn't exists" })
+	@UseGuards(JwtAuthGuard)
+	@Patch('/email')
+	confirmCodeEmail(@Req() request: Request, @Body() dto: ConfirmCodeEmailDto) {
+		return this.usersService.confirmCodeEmail(request['user'].id, dto);
 	}
 }

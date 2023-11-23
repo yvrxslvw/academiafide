@@ -31,11 +31,11 @@ export class User extends Model<User, UserCreationAttributes> {
 	declare email_code: number;
 
 	@ApiProperty({ example: false, description: 'Is user email confirmed' })
-	@Column({ type: DataType.BOOLEAN, defaultValue: false })
+	@Column({ type: DataType.BOOLEAN, defaultValue: false, allowNull: false })
 	declare email_confirmed: boolean;
 
 	@ApiProperty({ example: false, description: 'Whether to send news to the user' })
-	@Column({ type: DataType.BOOLEAN, defaultValue: false })
+	@Column({ type: DataType.BOOLEAN, defaultValue: false, allowNull: false })
 	declare email_news: boolean;
 
 	@ApiProperty({ example: 'IAmSecretPassword', description: 'User password' })

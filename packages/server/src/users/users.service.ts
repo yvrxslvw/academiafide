@@ -14,6 +14,7 @@ import { RoleDto } from './dto/role.dto';
 import { isEmail, isString, length } from 'class-validator';
 import { MailerService } from 'src/mailer/mailer.service';
 import { SendCodeEmailDto } from './dto/send-code-email.dto';
+import { ConfirmCodeEmailDto } from './dto/confirm-code-email.dto';
 
 @Injectable()
 export class UsersService {
@@ -110,5 +111,14 @@ export class UsersService {
 		);
 		if (isSent) return 'The code was sent.';
 		else throw new InternalServerErrorException('Unexpected error... Try again later.');
+	}
+
+	async confirmCodeEmail(id: number, dto: ConfirmCodeEmailDto) {
+		const user = await this.userRepo.findByPk(id);
+		if (!user) throw new NotFoundException('User not found.');
+		if (!user.email_code) throw new ForbiddenException();
+		if (dto.code !== user.email_code) throw new ForbiddenException('Wrong code.');
+		await user.update({ email_confirmed: true, email_code: null });
+		return 'Confirmed.';
 	}
 }
