@@ -8,7 +8,7 @@ interface NextButtonProps {
 }
 
 export const NextButton: FC<NextButtonProps> = ({ logupData, setLogupData }) => {
-	const [logup, { data, error }] = useLogupMutation();
+	const [fetchLogup, { data, error }] = useLogupMutation();
 
 	const onClickHandler = async () => {
 		setLogupData({ ...logupData, loginError: false, passwordError: false, passwordConfirmError: false });
@@ -37,7 +37,7 @@ export const NextButton: FC<NextButtonProps> = ({ logupData, setLogupData }) => 
 			return;
 		}
 
-		await logup({ login, password });
+		await fetchLogup({ login, password });
 		// todo: navigate to the user account
 	};
 
