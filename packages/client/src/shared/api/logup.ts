@@ -6,7 +6,7 @@ export const LogupApi = createApi({
 	tagTypes: ['logup'],
 	baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
 	endpoints: builder => ({
-		logup: builder.mutation<null, { login: string; password: string }>({
+		logup: builder.mutation<{ token: string }, { login: string; password: string }>({
 			query: body => ({
 				url: '/api/auth/logup',
 				method: 'POST',

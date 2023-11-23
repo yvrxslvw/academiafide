@@ -27,7 +27,7 @@ export const Window: FC = () => {
 					passwordInput={<PasswordInput data={logupData} setData={setLogupData} />}
 					passwordConfirmInput={<PasswordConfirmInput data={logupData} setData={setLogupData} />}
 					termsCheckbox={<TermsCheckbox data={logupData} setData={setLogupData} />}
-					nextButton={<NextButton data={logupData} setData={setLogupData} />}
+					nextButton={<NextButton logupData={logupData} setLogupData={setLogupData} />}
 				/>
 			</div>
 		</div>
