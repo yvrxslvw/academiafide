@@ -2,7 +2,6 @@
 
 .Container {
 	@include container;
-	padding: 0px 0px 25px 0px;
 
 	.Title {
 		margin-bottom: 25px;
@@ -14,10 +13,6 @@
 
 		.Post {
 			margin-bottom: 25px;
-
-			&:first-child {
-				margin: 0px;
-			}
 		}
 	}
 }

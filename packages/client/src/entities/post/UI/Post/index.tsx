@@ -1,6 +1,6 @@
 import { FC, HTMLAttributes } from 'react';
 import cn from 'classnames';
-import { Paragraph, Title, formatDate, formatImageUrl } from 'shared';
+import { Paragraph, Title } from 'shared';
 import cl from './style.module.scss';
 
 interface PostProps extends HTMLAttributes<HTMLDivElement> {
@@ -13,11 +13,11 @@ interface PostProps extends HTMLAttributes<HTMLDivElement> {
 export const Post: FC<PostProps> = ({ title, content, image, createdAt, className, ...props }) => {
 	return (
 		<div className={cn(cl.Post, className)} {...props}>
-			{image && <img className={cl.Image} src={formatImageUrl(image)} alt='Post' />}
+			{image && <img className={cl.Image} src={image} alt='Post' />}
 			<Title className={cl.Title}>{title}</Title>
 			<Paragraph className={cl.Content} dangerouslySetInnerHTML={{ __html: content }} />
 			<Paragraph className={cl.Date} small color='primary'>
-				Enviado a las {formatDate(createdAt)}
+				Enviado a las {createdAt}
 			</Paragraph>
 		</div>
 	);

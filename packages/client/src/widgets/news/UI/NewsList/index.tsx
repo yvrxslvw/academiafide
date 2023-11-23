@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Paragraph, Title, modelEntries, useAppSelector, useGetPostsQuery } from 'shared';
+import { Paragraph, Title, formatDate, formatImageUrl, modelEntries, useAppSelector, useGetPostsQuery } from 'shared';
 import { PostEntities } from 'entities';
 import cl from './style.module.scss';
 import { formatContent } from '../../utils';
@@ -27,8 +27,8 @@ export const NewsList: FC = () => {
 							className={cl.Post}
 							title={title}
 							content={formatContent(content)}
-							image={image}
-							createdAt={createdAt}
+							image={formatImageUrl(image)}
+							createdAt={formatDate(createdAt)}
 							key={id}
 						/>
 					))
