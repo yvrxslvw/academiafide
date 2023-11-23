@@ -1,10 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { NotFoundException } from '@nestjs/common/exceptions';
+import { BadRequestException, NotFoundException } from '@nestjs/common/exceptions';
 import { InjectModel } from '@nestjs/sequelize';
 import { Post } from './post.model';
 import { FilesService } from 'src/files/files.service';
 import { CreatePostDto } from './dto/create-post.dto';
 import { UpdatePostDto } from './dto/update-post.dto';
+import { isString, length } from 'class-validator';
 
 @Injectable()
 export class PostsService {
@@ -32,6 +33,12 @@ export class PostsService {
 			const fileName = await this.filesService.createFile(image);
 			if (post.image) await this.filesService.deleteFile(post.image);
 			await post.update({ image: fileName });
+		}
+		if (dto.title) {
+			if (!isString(dto.title) || !length(3, 255)) throw new BadRequestException('Incorrect title.');
+		}
+		if (dto.content) {
+			if (!isString(dto.content) || !length(3, 65535)) throw new BadRequestException('Incorrect content.');
 		}
 		await post.update({ ...dto });
 		return post;
