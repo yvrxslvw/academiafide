@@ -14,6 +14,10 @@ export class User extends Model<User, UserCreationAttributes> {
 	@Column({ type: DataType.INTEGER, primaryKey: true, autoIncrement: true })
 	declare id: number;
 
+	@ApiProperty({ example: 'avatar.jpg', description: 'User profile image' })
+	@Column({ type: DataType.STRING(64), allowNull: true })
+	declare image: string;
+
 	@ApiProperty({ example: 'yvrxslvw', description: 'User login' })
 	@Column({ type: DataType.STRING(24), unique: true, allowNull: false })
 	declare login: string;
@@ -21,6 +25,18 @@ export class User extends Model<User, UserCreationAttributes> {
 	@ApiProperty({ example: null, description: 'User email' })
 	@Column({ type: DataType.STRING(256), unique: true, allowNull: true })
 	declare email: string;
+
+	@ApiProperty({ example: null, description: 'Email confirmation code' })
+	@Column({ type: DataType.INTEGER, allowNull: true })
+	declare email_code: number;
+
+	@ApiProperty({ example: false, description: 'Is user email confirmed' })
+	@Column({ type: DataType.BOOLEAN, defaultValue: false })
+	declare email_confirmed: boolean;
+
+	@ApiProperty({ example: false, description: 'Whether to send news to the user' })
+	@Column({ type: DataType.BOOLEAN, defaultValue: false })
+	declare email_news: boolean;
 
 	@ApiProperty({ example: 'IAmSecretPassword', description: 'User password' })
 	@Column({ type: DataType.STRING(64), allowNull: false })
