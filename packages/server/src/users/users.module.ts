@@ -8,6 +8,7 @@ import { Role } from 'src/roles/role.model';
 import { UserRoles } from 'src/roles/user-roles.model';
 import { RolesModule } from 'src/roles/roles.module';
 import { AuthModule } from 'src/auth/auth.module';
+import { MailerModule } from 'src/mailer/mailer.module';
 
 @Module({
 	controllers: [UsersController],
@@ -16,6 +17,7 @@ import { AuthModule } from 'src/auth/auth.module';
 		SequelizeModule.forFeature([User, Post, Role, UserRoles]),
 		forwardRef(() => AuthModule),
 		forwardRef(() => RolesModule),
+		forwardRef(() => MailerModule),
 	],
 	exports: [UsersService],
 })

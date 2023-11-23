@@ -1,4 +1,4 @@
-import { Controller, Put, Delete, Body, Get, Param, Patch, UseGuards } from '@nestjs/common';
+import { Controller, Put, Delete, Body, Get, Param, Patch, UseGuards, Post, Req } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -8,6 +8,9 @@ import { Roles } from 'src/auth/roles.decorator';
 import { RolesGuard } from 'src/auth/roles.guard';
 import { RoleDto } from './dto/role.dto';
 import { Role } from 'src/roles/role.model';
+import { SendCodeEmailDto } from './dto/send-code-email.dto';
+import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { Request } from 'express';
 
 @ApiTags('User interactions')
 @Controller('users')
@@ -87,5 +90,16 @@ export class UsersController {
 	@Delete('/:id/role')
 	removeRole(@Param('id') id: number, @Body() dto: RoleDto) {
 		return this.usersService.removeRole(id, dto);
+	}
+
+	@ApiOperation({ summary: 'Sending email confirmation code [Authorized]' })
+	@ApiResponse({ status: 200, description: 'Successfully sending the code' })
+	@ApiResponse({ status: 403, description: 'If email already exists or user is unauthorized' })
+	@ApiResponse({ status: 404, description: "If user doesn't exists" })
+	@ApiResponse({ status: 500, description: 'If the code was not sent' })
+	@UseGuards(JwtAuthGuard)
+	@Post('/email')
+	sendCodeEmail(@Req() request: Request, @Body() dto: SendCodeEmailDto) {
+		return this.usersService.sendCodeEmail(request['user'].id, dto);
 	}
 }
