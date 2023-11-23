@@ -1,8 +1,12 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, UseGuards, Req } from '@nestjs/common';
 import { LoginUserDto } from './dto/login-user.dto';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { JwtAuthGuard } from './jwt-auth.guard';
+import { Request } from 'express';
+import { SendCodeEmailDto } from './dto/send-code-email.dto';
+import { ConfirmCodeEmailDto } from './dto/confirm-code-email.dto';
 
 @ApiTags('Authorization')
 @Controller('auth')
@@ -23,5 +27,29 @@ export class AuthController {
 	@Post('/logup')
 	logup(@Body() dto: CreateUserDto) {
 		return this.authService.logup(dto);
+	}
+
+	@ApiOperation({ summary: 'Sending email confirmation code [Authorized]' })
+	@ApiResponse({ status: 200, description: 'Successfully sending the code' })
+	@ApiResponse({ status: 403, description: 'If email already exists or user is unauthorized' })
+	@ApiResponse({ status: 404, description: "If user doesn't exists" })
+	@ApiResponse({ status: 500, description: 'If the code was not sent' })
+	@UseGuards(JwtAuthGuard)
+	@Post('/email')
+	sendCodeEmail(@Req() request: Request, @Body() dto: SendCodeEmailDto) {
+		return this.authService.sendCodeEmail(request['user'].id, dto);
+	}
+
+	@ApiOperation({ summary: 'Confirmation user email [Authorized]' })
+	@ApiResponse({ status: 200, description: 'Successfully confirmation' })
+	@ApiResponse({
+		status: 403,
+		description: "If user is unauthorized or wrong code or user doesn't have the confirmation code",
+	})
+	@ApiResponse({ status: 404, description: "If user doesn't exists" })
+	@UseGuards(JwtAuthGuard)
+	@Post('/email_confirmation')
+	confirmCodeEmail(@Req() request: Request, @Body() dto: ConfirmCodeEmailDto) {
+		return this.authService.confirmCodeEmail(request['user'].id, dto);
 	}
 }

@@ -4,6 +4,7 @@ import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
 import { UsersModule } from 'src/users/users.module';
 import { ConfigService } from '@nestjs/config';
+import { MailerModule } from 'src/mailer/mailer.module';
 
 @Module({
 	controllers: [AuthController],
@@ -19,6 +20,7 @@ import { ConfigService } from '@nestjs/config';
 			}),
 		}),
 		forwardRef(() => UsersModule),
+		forwardRef(() => MailerModule),
 	],
 })
 export class AuthModule {}

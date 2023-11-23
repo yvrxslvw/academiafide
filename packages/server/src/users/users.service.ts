@@ -1,10 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import {
-	BadRequestException,
-	ForbiddenException,
-	InternalServerErrorException,
-	NotFoundException,
-} from '@nestjs/common/exceptions';
+import { BadRequestException, ForbiddenException, NotFoundException } from '@nestjs/common/exceptions';
 import { InjectModel } from '@nestjs/sequelize';
 import { User } from './user.model';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -12,17 +7,10 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { RolesService } from 'src/roles/roles.service';
 import { RoleDto } from './dto/role.dto';
 import { isEmail, isString, length } from 'class-validator';
-import { MailerService } from 'src/mailer/mailer.service';
-import { SendCodeEmailDto } from './dto/send-code-email.dto';
-import { ConfirmCodeEmailDto } from './dto/confirm-code-email.dto';
 
 @Injectable()
 export class UsersService {
-	constructor(
-		@InjectModel(User) private readonly userRepo: typeof User,
-		private readonly rolesService: RolesService,
-		private readonly mailerService: MailerService,
-	) {}
+	constructor(@InjectModel(User) private readonly userRepo: typeof User, private readonly rolesService: RolesService) {}
 
 	async create(dto: CreateUserDto) {
 		const loginExisted = await this.userRepo.findOne({ where: { login: dto.login } });
@@ -56,6 +44,11 @@ export class UsersService {
 
 	async getOneByLogin(login: string) {
 		const user = await this.userRepo.findOne({ where: { login }, include: { all: true, nested: true } });
+		return user;
+	}
+
+	async getOneByEmail(email: string) {
+		const user = await this.userRepo.findOne({ where: { email }, include: { all: true, nested: true } });
 		return user;
 	}
 
@@ -95,30 +88,5 @@ export class UsersService {
 		if (!(await user.$has('role', role.id))) throw new ForbiddenException("User haven't this role.");
 		await user.$remove('role', role.id);
 		return role;
-	}
-
-	async sendCodeEmail(id: number, dto: SendCodeEmailDto) {
-		const user = await this.userRepo.findByPk(id);
-		if (!user) throw new NotFoundException('User not found.');
-		const emailExists = await this.userRepo.findOne({ where: { email: dto.email } });
-		if (emailExists) throw new ForbiddenException('Email already exists.');
-		const code = Math.round(Math.random() * (100000 - 999999) + 999999);
-		await user.update({ email: dto.email, email_code: code });
-		const isSent = await this.mailerService.sendMessage(
-			dto.email,
-			'Confirmación de dirección postal en Academia Fide',
-			`Para confirmar su dirección postal, utilice este código: ${code}.`,
-		);
-		if (isSent) return 'The code was sent.';
-		else throw new InternalServerErrorException('Unexpected error... Try again later.');
-	}
-
-	async confirmCodeEmail(id: number, dto: ConfirmCodeEmailDto) {
-		const user = await this.userRepo.findByPk(id);
-		if (!user) throw new NotFoundException('User not found.');
-		if (!user.email_code) throw new ForbiddenException();
-		if (dto.code !== user.email_code) throw new ForbiddenException('Wrong code.');
-		await user.update({ email_confirmed: true, email_code: null });
-		return 'Confirmed.';
 	}
 }
