@@ -1,9 +1,10 @@
-import { ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Product } from './product.model';
 import { CreateProductDto } from './dto/create-product.dto';
 import { FilesService } from 'src/files/files.service';
 import { UpdateProductDto } from './dto/update-product.dto';
+import { isNumber, isString, length } from 'class-validator';
 
 @Injectable()
 export class ProductsService {
@@ -46,6 +47,18 @@ export class ProductsService {
 			const fileName = await this.filesService.createFile(image);
 			if (product.image) await this.filesService.deleteFile(product.image);
 			await product.update({ image: fileName });
+		}
+		if (dto.title) {
+			if (!isString(dto.title) || !length(dto.title, 3, 24)) throw new BadRequestException('Incorrect title.');
+			const exists = await this.productRepo.findOne({ where: { title: dto.title } });
+			if (exists) throw new ForbiddenException('This product already exists.');
+		}
+		if (dto.description) {
+			if (!isString(dto.description) || !length(dto.description, 3, 255))
+				throw new BadRequestException('Incorrect description.');
+		}
+		if (dto.price) {
+			if (!isNumber(dto.price)) throw new BadRequestException('Incorrect price.');
 		}
 		await product.update({ ...dto });
 		return product;
