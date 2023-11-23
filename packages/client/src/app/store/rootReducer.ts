@@ -1,5 +1,5 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import { PostApi, ShopApi } from 'shared';
+import { LogupApi, PostApi, ShopApi } from 'shared';
 import { PostSlice, ShopSlice } from 'entities';
 import { UserSlice } from './models';
 
@@ -9,4 +9,5 @@ export const rootReducer = combineReducers({
 	post: PostSlice.reducer,
 	[ShopApi.reducerPath]: ShopApi.reducer,
 	shop: ShopSlice.reducer,
+	[LogupApi.reducerPath]: LogupApi.reducer,
 });
