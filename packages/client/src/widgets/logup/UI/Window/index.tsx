@@ -6,13 +6,12 @@ import cl from './style.module.scss';
 
 export const Window: FC = () => {
 	const [login, setLogin] = useState('');
-	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const [passwordConfirm, setPasswordConfirm] = useState('');
 	const [terms, setTerms] = useState(false);
 
 	const { Form } = LogupEntities;
-	const { LoginInput, EmailInput, PasswordInput, PasswordConfirmInput, TermsCheckbox, NextButton } = LogupFormFeatures;
+	const { LoginInput, PasswordInput, PasswordConfirmInput, TermsCheckbox, NextButton } = LogupFormFeatures;
 
 	return (
 		<div className={cl.Container}>
@@ -20,11 +19,10 @@ export const Window: FC = () => {
 				<Title className={cl.Title}>Registro</Title>
 				<Form
 					loginInput={<LoginInput state={login} setState={setLogin} />}
-					emailInput={<EmailInput state={email} setState={setEmail} />}
 					passwordInput={<PasswordInput state={password} setState={setPassword} />}
 					passwordConfirmInput={<PasswordConfirmInput state={passwordConfirm} setState={setPasswordConfirm} />}
 					termsCheckbox={<TermsCheckbox state={terms} setState={setTerms} />}
-					nextButton={<NextButton data={{ login, email, password, passwordConfirm, terms }} />}
+					nextButton={<NextButton data={{ login, password, passwordConfirm, terms }} />}
 				/>
 			</div>
 		</div>

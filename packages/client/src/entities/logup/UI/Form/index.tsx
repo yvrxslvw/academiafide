@@ -4,21 +4,13 @@ import cl from './style.module.scss';
 
 interface FormProps {
 	loginInput: ReactNode;
-	emailInput: ReactNode;
 	passwordInput: ReactNode;
 	passwordConfirmInput: ReactNode;
 	termsCheckbox: ReactNode;
 	nextButton: ReactNode;
 }
 
-export const Form: FC<FormProps> = ({
-	loginInput,
-	emailInput,
-	passwordInput,
-	passwordConfirmInput,
-	termsCheckbox,
-	nextButton,
-}) => {
+export const Form: FC<FormProps> = ({ loginInput, passwordInput, passwordConfirmInput, termsCheckbox, nextButton }) => {
 	const onSubmitHandler = (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 	};
@@ -26,7 +18,6 @@ export const Form: FC<FormProps> = ({
 	return (
 		<form onSubmit={onSubmitHandler} className={cl.Form}>
 			<section className={cl.Item}>{loginInput}</section>
-			<section className={cl.Item}>{emailInput}</section>
 			<section className={cl.Item}>{passwordInput}</section>
 			<section className={cl.Item}>{passwordConfirmInput}</section>
 			<section className={cl.Item}>{termsCheckbox}</section>

@@ -3,7 +3,6 @@ import { Button } from 'shared';
 
 interface Data {
 	login: string;
-	email: string;
 	password: string;
 	passwordConfirm: string;
 	terms: boolean;
