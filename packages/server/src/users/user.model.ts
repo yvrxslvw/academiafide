@@ -14,13 +14,13 @@ export class User extends Model<User, UserCreationAttributes> {
 	@Column({ type: DataType.INTEGER, primaryKey: true, autoIncrement: true })
 	declare id: number;
 
-	@ApiProperty({ example: 'avatar.jpg', description: 'User profile image' })
-	@Column({ type: DataType.STRING(64), allowNull: true })
-	declare image: string;
-
 	@ApiProperty({ example: 'yvrxslvw', description: 'User login' })
 	@Column({ type: DataType.STRING(24), unique: true, allowNull: false })
 	declare login: string;
+
+	@ApiProperty({ example: 'avatar.jpg', description: 'User profile image' })
+	@Column({ type: DataType.STRING(64), allowNull: true })
+	declare image: string;
 
 	@ApiProperty({ example: null, description: 'User email' })
 	@Column({ type: DataType.STRING(256), unique: true, allowNull: true })
