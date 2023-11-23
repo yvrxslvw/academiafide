@@ -52,8 +52,11 @@ export class UsersService {
 		return user;
 	}
 
-	async getOneByEmail(email: string) {
-		const user = await this.userRepo.findOne({ where: { email }, include: { all: true, nested: true } });
+	async getOneByEmail(email: string, isEmailConfirmed: boolean) {
+		const user = await this.userRepo.findOne({
+			where: { email, email_confirmed: isEmailConfirmed },
+			include: { all: true, nested: true },
+		});
 		return user;
 	}
 

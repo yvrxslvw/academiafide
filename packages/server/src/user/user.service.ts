@@ -18,7 +18,7 @@ export class UserService {
 	}
 
 	async recovery(dto: RecoveryPasswordDto) {
-		const user = await this.usersService.getOneByEmail(dto.email);
+		const user = await this.usersService.getOneByEmail(dto.email, true);
 		if (!user) throw new NotFoundException('User email not found.');
 		const recoveryId = uuidv4();
 		const recoveryLink = `${process.env.API_URL}/api/user/recovery/${recoveryId}`;

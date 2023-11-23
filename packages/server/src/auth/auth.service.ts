@@ -34,7 +34,7 @@ export class AuthService {
 
 	async sendCodeEmail(id: number, dto: SendCodeEmailDto) {
 		const user = await this.usersService.getOneById(id);
-		const emailExists = await this.usersService.getOneByEmail(dto.email);
+		const emailExists = await this.usersService.getOneByEmail(dto.email, false);
 		if (emailExists) throw new ForbiddenException('Email already exists.');
 		const code = Math.round(Math.random() * (100000 - 999999) + 999999);
 		const isSent = await this.mailerService.sendMessage(
