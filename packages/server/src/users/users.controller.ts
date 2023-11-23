@@ -112,7 +112,7 @@ export class UsersController {
 	})
 	@ApiResponse({ status: 404, description: "If user doesn't exists" })
 	@UseGuards(JwtAuthGuard)
-	@Patch('/email')
+	@Post('/email_confirmation')
 	confirmCodeEmail(@Req() request: Request, @Body() dto: ConfirmCodeEmailDto) {
 		return this.usersService.confirmCodeEmail(request['user'].id, dto);
 	}
