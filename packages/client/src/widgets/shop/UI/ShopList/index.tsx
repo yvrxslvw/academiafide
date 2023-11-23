@@ -24,11 +24,10 @@ export const ShopList: FC = () => {
 				) : data.length === 0 ? (
 					<Paragraph small>Aún no hay productos.</Paragraph>
 				) : (
-					data.map(({ id, title, description, price, image }) => (
+					data.map(({ id, title, description, image }) => (
 						<Item
 							title={title}
 							description={description}
-							price={price}
 							imageUrl={formatImageUrl(image)}
 							purchaseButton={<PurchaseButton itemName={title} />}
 							key={id}
