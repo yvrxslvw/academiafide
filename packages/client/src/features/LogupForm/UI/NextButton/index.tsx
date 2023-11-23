@@ -48,6 +48,7 @@ export const NextButton: FC<NextButtonProps> = ({ logupData, setLogupData }) => 
 	useEffect(() => {
 		if (isErrorFromBackend(error) && error.data.statusCode === 403) {
 			// todo: login already taken error popup
+			setLogupData({ ...logupData, loginError: true });
 		} else {
 			// todo: unexpected error popup
 		}

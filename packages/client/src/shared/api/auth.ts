@@ -13,6 +13,13 @@ export const AuthApi = createApi({
 				body,
 			}),
 		}),
+		login: builder.mutation<{ token: string }, { login: string; password: string }>({
+			query: body => ({
+				url: '/login',
+				method: 'POST',
+				body,
+			}),
+		}),
 	}),
 });
 
