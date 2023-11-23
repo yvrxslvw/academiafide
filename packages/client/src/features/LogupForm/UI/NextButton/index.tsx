@@ -10,7 +10,7 @@ interface NextButtonProps {
 export const NextButton: FC<NextButtonProps> = ({ logupData, setLogupData }) => {
 	const [logup, { data }] = useLogupMutation();
 
-	const onClickHandler = () => {
+	const onClickHandler = async () => {
 		setLogupData({ ...logupData, loginError: false, passwordError: false, passwordConfirmError: false });
 		const { login, password, passwordConfirm, terms } = logupData;
 		const loginRegex = /^(?=.*[a-z])[a-z0-9.]{3,24}$/;
@@ -37,12 +37,11 @@ export const NextButton: FC<NextButtonProps> = ({ logupData, setLogupData }) => 
 			return;
 		}
 
-		logup({ login, password });
+		await logup({ login, password });
 	};
 
 	useEffect(() => {
-		// eslint-disable-next-line no-console
-		console.log(data?.token);
+		if (data) window.localStorage.setItem('accessToken', data.token);
 	}, [data]);
 
 	return (
