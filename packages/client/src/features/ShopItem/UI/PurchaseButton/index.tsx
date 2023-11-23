@@ -2,13 +2,13 @@ import { FC } from 'react';
 import { Button } from 'shared';
 
 interface PurchaseButtonProps {
-	itemName: string;
+	itemId: number;
 }
 
-export const PurchaseButton: FC<PurchaseButtonProps> = ({ itemName }) => {
+export const PurchaseButton: FC<PurchaseButtonProps> = ({ itemId }) => {
 	const onClickHandler = () => {
 		// eslint-disable-next-line no-console
-		console.log('Purchase logic', itemName);
+		console.log('Purchase logic', itemId);
 	};
 
 	return <Button onClick={onClickHandler}>Comprar</Button>;

@@ -29,7 +29,7 @@ export const ShopList: FC = () => {
 							title={title}
 							description={description}
 							imageUrl={formatImageUrl(image)}
-							purchaseButton={<PurchaseButton itemName={title} />}
+							purchaseButton={<PurchaseButton itemId={id} />}
 							key={id}
 						/>
 					))
