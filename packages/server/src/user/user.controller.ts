@@ -1,10 +1,10 @@
-import { Body, Controller, Post, Req, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Req, Res, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { UserService } from './user.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { Request } from 'express';
+import { Request, Response } from 'express';
 import { UpdateUserDto } from 'src/users/dto/update-user.dto';
-import { FileInterceptor } from '@nestjs/platform-express';
 import { RecoveryPasswordDto } from './dto/recovery-password.dto';
 
 @ApiTags('User interactions')
@@ -23,12 +23,19 @@ export class UserController {
 		return this.userService.update(request['user'].id, dto, image);
 	}
 
-	@ApiOperation({ summary: 'Recovery user account' })
+	@ApiOperation({ summary: 'Sending recovery message' })
 	@ApiResponse({ status: 200, description: 'Successfully sending email recovery message' })
 	@ApiResponse({ status: 404, description: "If user doesn't exists" })
 	@ApiResponse({ status: 500, description: 'If message was not sent.' })
 	@Post('/recovery')
 	recovery(@Body() dto: RecoveryPasswordDto) {
 		return this.userService.recovery(dto);
+	}
+
+	@ApiOperation({ summary: 'Recovery user account' })
+	@ApiResponse({ status: 308, description: 'Redirect to the successful or error frontend page' })
+	@Get('/recovery/:recoveryId')
+	recoveryConfirm(@Param('recoveryId') recoveryId: string, @Res() response: Response) {
+		return this.userService.recoveryConfirm(recoveryId, response);
 	}
 }

@@ -1,4 +1,5 @@
 import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
+import { Response } from 'express';
 import * as bcrypt from 'bcrypt';
 import { v4 as uuidv4 } from 'uuid';
 import { MailerService } from 'src/mailer/mailer.service';
@@ -30,5 +31,16 @@ export class UserService {
 			await user.update({ recovery_link: recoveryId });
 			return 'The recovery link was sent.';
 		} else throw new InternalServerErrorException('Unexpected error... Try again later.');
+	}
+
+	async recoveryConfirm(recoveryId: string, response: Response) {
+		const user = await this.usersService.getOneByRecoveryId(recoveryId);
+		if (!user) {
+			return response.send('redirect to the error page');
+		}
+		const generatedPassword = 'AcademiaFidePassword'; // todo: generating password
+		const hashPassword = await bcrypt.hash(generatedPassword, 5);
+		await user.update({ password: hashPassword, recovery_link: null });
+		return response.send(`redirect to the successful page ${generatedPassword}`);
 	}
 }
