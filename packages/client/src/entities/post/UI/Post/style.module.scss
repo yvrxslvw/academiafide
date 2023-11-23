@@ -2,10 +2,19 @@
 
 .Post {
 	padding: 15px 5px;
-	border-bottom: 1px solid $black_color;
+	border: 1px solid $black_color;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+
+	.Image {
+		max-height: 300px;
+		align-self: center;
+		margin-bottom: 15px;
+	}
 
 	.Title {
-		text-align: left;
+		text-align: center;
 		margin-bottom: 15px;
 	}
 
@@ -32,7 +41,7 @@
 		}
 	}
 
-	&:last-child {
-		border: none;
+	.Date {
+		align-self: flex-end;
 	}
 }

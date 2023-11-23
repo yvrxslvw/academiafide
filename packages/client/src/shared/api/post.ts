@@ -6,7 +6,7 @@ export const PostApi = createApi({
 	tagTypes: ['post'],
 	baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
 	endpoints: builder => ({
-		getPosts: builder.query<IPost[], void>({
+		getPosts: builder.query<IPost[], null>({
 			query: () => ({
 				url: '/api/posts',
 				method: 'GET',

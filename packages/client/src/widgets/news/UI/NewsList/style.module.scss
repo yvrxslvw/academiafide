@@ -7,4 +7,17 @@
 	.Title {
 		margin-bottom: 25px;
 	}
+
+	.PostBody {
+		display: flex;
+		flex-direction: column-reverse;
+
+		.Post {
+			margin-bottom: 25px;
+
+			&:first-child {
+				margin: 0px;
+			}
+		}
+	}
 }
