@@ -52,13 +52,13 @@ export class UsersService {
 		if (!user) throw new NotFoundException('User not found.');
 		if (dto.login) {
 			if (!isString(dto.login) || !length(dto.login, 3, 24)) throw new BadRequestException('Incorrect login.');
-			const loginExists = await this.userRepo.findOne({ where: { login: dto.login } });
-			if (loginExists) throw new ForbiddenException('Login already exists.');
+			const exists = await this.userRepo.findOne({ where: { login: dto.login } });
+			if (exists) throw new ForbiddenException('Login already exists.');
 		}
 		if (dto.email) {
 			if (!isEmail(dto.email)) throw new BadRequestException('Incorrect email.');
-			const emailExists = await this.userRepo.findOne({ where: { email: dto.email } });
-			if (emailExists) throw new ForbiddenException('Email already exists.');
+			const exists = await this.userRepo.findOne({ where: { email: dto.email } });
+			if (exists) throw new ForbiddenException('Email already exists.');
 		}
 		if (dto.password) {
 			if (!isString(dto.password)) throw new BadRequestException('Incorrect password.');
