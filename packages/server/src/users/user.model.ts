@@ -42,6 +42,10 @@ export class User extends Model<User, UserCreationAttributes> {
 	@Column({ type: DataType.STRING(64), allowNull: false })
 	declare password: string;
 
+	@ApiProperty({ example: null, description: 'Recovery password ID' })
+	@Column({ type: DataType.STRING(64), allowNull: true })
+	declare recovery_link: string;
+
 	@ApiProperty({ example: [], description: "User's roles" })
 	@BelongsToMany(() => Role, () => UserRoles)
 	declare roles: Role[];

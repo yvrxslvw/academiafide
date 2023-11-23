@@ -37,14 +37,15 @@ export class AuthService {
 		const emailExists = await this.usersService.getOneByEmail(dto.email);
 		if (emailExists) throw new ForbiddenException('Email already exists.');
 		const code = Math.round(Math.random() * (100000 - 999999) + 999999);
-		await user.update({ email: dto.email, email_code: code });
 		const isSent = await this.mailerService.sendMessage(
 			dto.email,
 			'Confirmación de dirección postal en Academia Fide',
-			`Para confirmar su dirección postal, utilice este código: ${code}.`,
+			`<h3>Para confirmar su dirección postal, utilice este código: ${code}.</h3>`,
 		);
-		if (isSent) return 'The code was sent.';
-		else throw new InternalServerErrorException('Unexpected error... Try again later.');
+		if (isSent) {
+			await user.update({ email: dto.email, email_code: code });
+			return 'The code was sent.';
+		} else throw new InternalServerErrorException('Unexpected error... Try again later.');
 	}
 
 	async confirmCodeEmail(id: number, dto: ConfirmCodeEmailDto) {

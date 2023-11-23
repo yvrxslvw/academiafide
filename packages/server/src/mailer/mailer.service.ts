@@ -56,8 +56,10 @@ export class MailerService {
 			to: recipient,
 			subject: title,
 			html: `
-				<h1>Academia Fide</h1>
-				<h3>${text}</h3>
+				<div>
+					<h1>Academia Fide</h1>
+					${text}
+				</div>
 			`,
 		});
 		if (info.accepted.length > 0 && info.rejected.length === 0) return true;
