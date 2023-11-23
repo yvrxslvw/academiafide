@@ -5,7 +5,6 @@ import { UserRoles } from 'src/roles/user-roles.model';
 
 interface UserCreationAttributes {
 	login: string;
-	email: string;
 	password: string;
 }
 
@@ -19,8 +18,8 @@ export class User extends Model<User, UserCreationAttributes> {
 	@Column({ type: DataType.STRING(24), unique: true, allowNull: false })
 	declare login: string;
 
-	@ApiProperty({ example: 'yvrxslvv@gmail.com', description: 'User email' })
-	@Column({ type: DataType.STRING(256), unique: true, allowNull: false })
+	@ApiProperty({ example: null, description: 'User email' })
+	@Column({ type: DataType.STRING(256), unique: true, allowNull: true })
 	declare email: string;
 
 	@ApiProperty({ example: 'IAmSecretPassword', description: 'User password' })

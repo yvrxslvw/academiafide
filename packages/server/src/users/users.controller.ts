@@ -16,7 +16,7 @@ export class UsersController {
 
 	@ApiOperation({ summary: 'User creating [ADMIN]' })
 	@ApiResponse({ status: 200, description: 'Successfully creating user', type: User })
-	@ApiResponse({ status: 403, description: "If login or email already exists or you don't have ADMIN role" })
+	@ApiResponse({ status: 403, description: "If login already exists or you don't have ADMIN role" })
 	@Roles('ADMIN')
 	@UseGuards(RolesGuard)
 	@Put()
@@ -58,7 +58,7 @@ export class UsersController {
 
 	@ApiOperation({ summary: 'User updating [ADMIN]' })
 	@ApiResponse({ status: 200, description: 'Successfully user updating', type: User })
-	@ApiResponse({ status: 403, description: "If you don't have ADMIN role" })
+	@ApiResponse({ status: 403, description: "If login or email already exists or you don't have ADMIN role" })
 	@ApiResponse({ status: 404, description: "If user doesn't exists" })
 	@Roles('ADMIN')
 	@UseGuards(RolesGuard)

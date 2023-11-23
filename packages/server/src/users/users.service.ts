@@ -1,11 +1,12 @@
 import { Injectable } from '@nestjs/common';
-import { ForbiddenException, NotFoundException } from '@nestjs/common/exceptions';
+import { BadRequestException, ForbiddenException, NotFoundException } from '@nestjs/common/exceptions';
 import { InjectModel } from '@nestjs/sequelize';
 import { User } from './user.model';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { RolesService } from 'src/roles/roles.service';
 import { RoleDto } from './dto/role.dto';
+import { isEmail, isString, length } from 'class-validator';
 
 @Injectable()
 export class UsersService {
@@ -13,9 +14,7 @@ export class UsersService {
 
 	async create(dto: CreateUserDto) {
 		const loginExisted = await this.userRepo.findOne({ where: { login: dto.login } });
-		const emailExisted = await this.userRepo.findOne({ where: { email: dto.email } });
 		if (loginExisted) throw new ForbiddenException('Login already existed.');
-		if (emailExisted) throw new ForbiddenException('Email already existed.');
 		const user = await this.userRepo.create(dto);
 		const role = await this.rolesService.findOneByTag('USER');
 		if (role) {
@@ -51,6 +50,19 @@ export class UsersService {
 	async update(id: number, dto: UpdateUserDto) {
 		const user = await this.userRepo.findByPk(id, { include: { all: true, nested: true } });
 		if (!user) throw new NotFoundException('User not found.');
+		if (dto.login) {
+			if (!isString(dto.login) || !length(dto.login, 3, 24)) throw new BadRequestException('Incorrect login.');
+			const loginExists = await this.userRepo.findOne({ where: { login: dto.login } });
+			if (loginExists) throw new ForbiddenException('Login already exists.');
+		}
+		if (dto.email) {
+			if (!isEmail(dto.email)) throw new BadRequestException('Incorrect email.');
+			const emailExists = await this.userRepo.findOne({ where: { email: dto.email } });
+			if (emailExists) throw new ForbiddenException('Email already exists.');
+		}
+		if (dto.password) {
+			if (!isString(dto.password)) throw new BadRequestException('Incorrect password.');
+		}
 		await user.update({ ...dto });
 		return user;
 	}
@@ -63,7 +75,7 @@ export class UsersService {
 		await user.$add('role', role.id);
 		return role;
 	}
-	
+
 	async removeRole(id: number, dto: RoleDto) {
 		const user = await this.userRepo.findByPk(id, { include: { all: true, nested: true } });
 		const role = await this.rolesService.findOneByTag(dto.tag);
