@@ -6,11 +6,16 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { RolesService } from 'src/roles/roles.service';
 import { RoleDto } from './dto/role.dto';
-import { isEmail, isString, length } from 'class-validator';
+import { isBoolean, isEmail, isString, length } from 'class-validator';
+import { FilesService } from 'src/files/files.service';
 
 @Injectable()
 export class UsersService {
-	constructor(@InjectModel(User) private readonly userRepo: typeof User, private readonly rolesService: RolesService) {}
+	constructor(
+		@InjectModel(User) private readonly userRepo: typeof User,
+		private readonly rolesService: RolesService,
+		private readonly filesService: FilesService,
+	) {}
 
 	async create(dto: CreateUserDto) {
 		const loginExisted = await this.userRepo.findOne({ where: { login: dto.login } });
@@ -52,7 +57,7 @@ export class UsersService {
 		return user;
 	}
 
-	async update(id: number, dto: UpdateUserDto) {
+	async update(id: number, dto: UpdateUserDto, image?: any) {
 		const user = await this.userRepo.findByPk(id, { include: { all: true, nested: true } });
 		if (!user) throw new NotFoundException('User not found.');
 		if (dto.login) {
@@ -67,6 +72,14 @@ export class UsersService {
 		}
 		if (dto.password) {
 			if (!isString(dto.password)) throw new BadRequestException('Incorrect password.');
+		}
+		if (dto.email_news) {
+			if (!isBoolean(dto.email_news)) throw new BadRequestException('Incorrect type "email_news".');
+		}
+		if (image) {
+			const fileName = await this.filesService.createFile(image);
+			if (user.image) await this.filesService.deleteFile(user.image);
+			await user.update({ image: fileName });
 		}
 		await user.update({ ...dto });
 		return user;

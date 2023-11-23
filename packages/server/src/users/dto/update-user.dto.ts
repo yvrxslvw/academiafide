@@ -9,4 +9,7 @@ export class UpdateUserDto {
 
 	@ApiProperty({ example: 'newSecretPassword', description: 'New user password', required: false })
 	declare password?: string;
+
+	@ApiProperty({ example: true, description: 'Activate email news subscription', required: false })
+	declare email_news?: boolean;
 }
