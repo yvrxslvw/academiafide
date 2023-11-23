@@ -14,6 +14,7 @@ import { Role } from './roles/role.model';
 import { UserRoles } from './roles/user-roles.model';
 import { ProductsModule } from './products/products.module';
 import { Product } from './products/product.model';
+import { MailerModule } from './mailer/mailer.module';
 
 const isDev = process.env.APP_MODE === 'development';
 const envFilePath = isDev ? '.env.development' : '.env';
@@ -44,6 +45,7 @@ const envFilePath = isDev ? '.env.development' : '.env';
 		AuthModule,
 		RolesModule,
 		ProductsModule,
+		MailerModule,
 	],
 })
 export class AppModule {}
