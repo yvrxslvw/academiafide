@@ -1,14 +1,14 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { API_URL } from 'shared';
 
-export const LogupApi = createApi({
-	reducerPath: 'api/logup',
-	tagTypes: ['logup'],
-	baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
+export const AuthApi = createApi({
+	reducerPath: 'api/auth',
+	tagTypes: ['auth'],
+	baseQuery: fetchBaseQuery({ baseUrl: API_URL + '/api/auth' }),
 	endpoints: builder => ({
 		logup: builder.mutation<{ token: string }, { login: string; password: string }>({
 			query: body => ({
-				url: '/api/auth/logup',
+				url: '/logup',
 				method: 'POST',
 				body,
 			}),
@@ -16,4 +16,4 @@ export const LogupApi = createApi({
 	}),
 });
 
-export const { useLogupMutation } = LogupApi;
+export const { useLogupMutation } = AuthApi;
