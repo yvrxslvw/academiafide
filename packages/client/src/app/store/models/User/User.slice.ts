@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { login, logout } from './User.actions';
 import { IUser } from 'shared';
+import { login, logout } from './User.actions';
 
 export interface UserState {
 	userInfo: IUser;
@@ -11,8 +11,13 @@ const initialState: UserState = {
 	userInfo: {
 		id: -1,
 		login: '',
+		email: null,
+		email_confirmed: false,
+		email_news: false,
+		password: '',
+		image: null,
+		createdAt: '',
 		roles: [],
-		avatarUrl: 'https://via.placeholder.com/600/92c952', // !
 	},
 	isLogged: false,
 };

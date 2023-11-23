@@ -1,5 +1,5 @@
 export interface IRole {
 	id: number;
-	name: string;
+	tag: string;
 	description: string;
 }

@@ -6,7 +6,7 @@ export const UserApi = createApi({
 	tagTypes: ['user'],
 	baseQuery: fetchBaseQuery({ baseUrl: API_URL + '/api/user' }),
 	endpoints: builder => ({
-		getInfo: builder.query<IUser, string>({
+		getUserInfo: builder.mutation<IUser, string>({
 			query: token => ({
 				url: '/',
 				method: 'GET',
@@ -18,4 +18,4 @@ export const UserApi = createApi({
 	}),
 });
 
-export const { useGetInfoQuery } = UserApi;
+export const { useGetUserInfoMutation } = UserApi;
