@@ -10,7 +10,7 @@
 
 	.ShopList {
 		display: grid;
-		grid-template-columns: repeat(4, 24%);
+		grid-template-columns: repeat(3, 33%);
 		gap: 15px;
 
 		@media (max-width: 1280px) {

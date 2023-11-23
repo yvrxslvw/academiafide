@@ -1,6 +1,9 @@
 export interface IShop {
 	id: number;
-	imageUrl?: string;
 	title: string;
-	content: string;
+	description: string;
+	price: number;
+	image?: string;
+	createdAt: string;
+	updatedAt: string;
 }

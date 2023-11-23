@@ -1,11 +1,12 @@
 import { combineReducers } from '@reduxjs/toolkit';
+import { PostApi, ShopApi } from 'shared';
 import { PostSlice, ShopSlice } from 'entities';
 import { UserSlice } from './models';
-import { PostApi } from 'shared';
 
 export const rootReducer = combineReducers({
 	user: UserSlice.reducer,
 	[PostApi.reducerPath]: PostApi.reducer,
 	post: PostSlice.reducer,
+	[ShopApi.reducerPath]: ShopApi.reducer,
 	shop: ShopSlice.reducer,
 });
