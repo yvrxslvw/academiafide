@@ -7,7 +7,8 @@
 	"license": "MIT",
 	"scripts": {
 		"build": "nest build",
-		"dev": "cross-env APP_MODE=development nest start --watch"
+		"dev": "cross-env APP_MODE=development nest start --watch",
+		"lint": "eslint ./src"
 	},
 	"dependencies": {
 		"@nestjs/common": "^10.0.0",

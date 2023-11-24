@@ -6,7 +6,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { RolesService } from 'src/roles/roles.service';
 import { RoleDto } from './dto/role.dto';
-import { isBoolean, isEmail, isString, length } from 'class-validator';
+import { isBoolean, isString, length } from 'class-validator';
 import { FilesService } from 'src/files/files.service';
 
 @Injectable()
