@@ -28,8 +28,8 @@ export const NextButton: FC<NextButtonProps> = ({ recoveryData, setRecoveryData 
 	};
 
 	useEffect(() => {
-		if (isErrorFromBackend(error)) {
-			if (error.data.statusCode === 404) {
+		if (error) {
+			if (isErrorFromBackend(error) && error.data.statusCode === 404) {
 				createPopup('Correo electronico incorrecto.');
 				setRecoveryData({ ...recoveryData, emailError: true });
 			} else {

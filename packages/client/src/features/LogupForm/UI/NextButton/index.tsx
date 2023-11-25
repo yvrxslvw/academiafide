@@ -47,8 +47,8 @@ export const NextButton: FC<NextButtonProps> = ({ logupData, setLogupData }) => 
 	}, [data]);
 
 	useEffect(() => {
-		if (isErrorFromBackend(error)) {
-			if (error.data.statusCode === 403) {
+		if (error) {
+			if (isErrorFromBackend(error) && error.data.statusCode === 403) {
 				setLogupData({ ...logupData, loginError: true });
 				createPopup('Este nombre de usuario ya está en uso.');
 			} else {

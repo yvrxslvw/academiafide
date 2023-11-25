@@ -22,18 +22,18 @@ export const NextButton: FC<NextButtonProps> = ({ loginData, setLoginData }) => 
 		}
 
 		await fetchLogin({ login, password });
-		// todo: navigate to the user account
 	};
 
 	useEffect(() => {
 		if (data) {
 			window.localStorage.setItem('accessToken', data.token);
+			// todo: navigate to the user account
 		}
 	}, [data]);
 
 	useEffect(() => {
-		if (isErrorFromBackend(error)) {
-			if (error.data.statusCode === 403) {
+		if (error) {
+			if (isErrorFromBackend(error) && error.data.statusCode === 403) {
 				createPopup('Nombre de usuario o contraseña incorrectos.');
 				setLoginData({ ...loginData, loginError: true, passwordError: true });
 			} else {
