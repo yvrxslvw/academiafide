@@ -1,6 +1,6 @@
 import { combineReducers } from '@reduxjs/toolkit';
 import { AuthApi, PostApi, ShopApi, UserApi } from 'shared';
-import { PostSlice, ShopSlice } from 'entities';
+import { PostSlice, ShopSlice, PopupSlice } from 'entities';
 import { UserSlice } from './models';
 
 export const rootReducer = combineReducers({
@@ -11,4 +11,5 @@ export const rootReducer = combineReducers({
 	shop: ShopSlice.reducer,
 	[AuthApi.reducerPath]: AuthApi.reducer,
 	[UserApi.reducerPath]: UserApi.reducer,
+	popup: PopupSlice.reducer,
 });

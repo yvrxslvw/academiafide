@@ -4,3 +4,4 @@ export * from './LoginForm';
 export * from './LogupForm';
 export * from './RecoveryForm';
 export * from './ShopItem';
+export * from './Popup';
