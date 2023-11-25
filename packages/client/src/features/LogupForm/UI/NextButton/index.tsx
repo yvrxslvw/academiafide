@@ -1,6 +1,6 @@
 import { Dispatch, FC, SetStateAction, useEffect } from 'react';
 import { Button, isErrorFromBackend, useLogupMutation } from 'shared';
-import { LogupModels } from 'entities';
+import { LogupModels, usePopup } from 'entities';
 
 interface NextButtonProps {
 	logupData: LogupModels.LogupData;
@@ -9,6 +9,7 @@ interface NextButtonProps {
 
 export const NextButton: FC<NextButtonProps> = ({ logupData, setLogupData }) => {
 	const [fetchLogup, { data, error }] = useLogupMutation();
+	const { createPopup } = usePopup();
 
 	const onClickHandler = async () => {
 		setLogupData({ ...logupData, loginError: false, passwordError: false, passwordConfirmError: false });
@@ -18,22 +19,22 @@ export const NextButton: FC<NextButtonProps> = ({ logupData, setLogupData }) => 
 			/^(?=.*[a-z])(?=.*[0-9!@#$%^&*()_+\-=/\\[\]?.,;:'"{}<>|])[a-zA-Z0-9!@#$%^&*()_+\-=/\\[\]?.,;:'"{}<>|]{3,}/;
 
 		if (login.search(loginRegex) === -1) {
-			// todo: shop popup
+			createPopup('Nombre de usuario es incorrecto.');
 			setLogupData({ ...logupData, loginError: true });
 			return;
 		}
 		if (password.search(passwordRegex) === -1) {
-			// todo: show popup
+			createPopup('Contraseña es incorrecta.');
 			setLogupData({ ...logupData, passwordError: true });
 			return;
 		}
 		if (!passwordConfirm || passwordConfirm !== password) {
-			// todo: show popup
+			createPopup('Contraseñas no coincide.');
 			setLogupData({ ...logupData, passwordConfirmError: true });
 			return;
 		}
 		if (!terms) {
-			// todo: show popup
+			createPopup('No has aceptado los términos y condiciones de uso.');
 			return;
 		}
 
@@ -46,11 +47,13 @@ export const NextButton: FC<NextButtonProps> = ({ logupData, setLogupData }) => 
 	}, [data]);
 
 	useEffect(() => {
-		if (isErrorFromBackend(error) && error.data.statusCode === 403) {
-			// todo: login already taken error popup
-			setLogupData({ ...logupData, loginError: true });
-		} else {
-			// todo: unexpected error popup
+		if (isErrorFromBackend(error)) {
+			if (error.data.statusCode === 403) {
+				setLogupData({ ...logupData, loginError: true });
+				createPopup('Este nombre de usuario ya está en uso.');
+			} else {
+				createPopup('Se produjo un error inesperado... Vuelva a intentarlo más tarde.');
+			}
 		}
 	}, [error]);
 

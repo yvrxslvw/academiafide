@@ -16,7 +16,7 @@ export const NextButton: FC<NextButtonProps> = ({ loginData, setLoginData }) => 
 		const { login, password } = loginData;
 
 		if (!login || !password) {
-			createPopup('Nombre de usuario o contraseña incorrectos');
+			createPopup('Nombre de usuario o contraseña incorrectos.');
 			setLoginData({ ...loginData, loginError: true, passwordError: true });
 			return;
 		}
@@ -34,7 +34,7 @@ export const NextButton: FC<NextButtonProps> = ({ loginData, setLoginData }) => 
 	useEffect(() => {
 		if (isErrorFromBackend(error)) {
 			if (error.data.statusCode === 403) {
-				createPopup('Nombre de usuario o contraseña incorrectos');
+				createPopup('Nombre de usuario o contraseña incorrectos.');
 				setLoginData({ ...loginData, loginError: true, passwordError: true });
 			} else {
 				createPopup('Se produjo un error inesperado... Vuelva a intentarlo más tarde.');
