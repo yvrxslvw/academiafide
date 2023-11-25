@@ -2,6 +2,8 @@
 
 .Container {
 	@include container;
+	display: flex;
+	flex-direction: column;
 
 	.Title {
 		margin-bottom: 25px;
@@ -14,5 +16,10 @@
 		.Post {
 			margin-bottom: 25px;
 		}
+	}
+
+	.AddNewButton {
+		align-self: flex-end;
+		margin-top: 25px;
 	}
 }

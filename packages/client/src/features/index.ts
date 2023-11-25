@@ -5,3 +5,4 @@ export * from './LogupForm';
 export * from './RecoveryForm';
 export * from './ShopItem';
 export * from './Popup';
+export * from './Post';

@@ -1,13 +1,16 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { Paragraph, Title, formatDate, formatImageUrl, modelEntries, useAppSelector, useGetPostsQuery } from 'shared';
 import { PostEntities } from 'entities';
+import { PostFeatures } from 'features';
 import cl from './style.module.scss';
 import { formatContent } from '../../utils';
 
 export const NewsList: FC = () => {
+	const [isModalShown, setIsModalShown] = useState(false);
 	const { isError, isLoading } = useGetPostsQuery(null, { pollingInterval: 60 * 1000 });
 	const { entries } = useAppSelector(state => state.post);
-	const { Post } = PostEntities;
+	const { Post, CreatePostModal } = PostEntities;
+	const { AddNewButton } = PostFeatures;
 
 	const data = modelEntries(entries);
 
@@ -34,6 +37,10 @@ export const NewsList: FC = () => {
 					))
 				)}
 			</section>
+			<section className={cl.AddNewButton}>
+				<AddNewButton setModalShown={setIsModalShown} />
+			</section>
+			<CreatePostModal modalShown={isModalShown} setModalShown={setIsModalShown} />
 		</div>
 	);
 };
