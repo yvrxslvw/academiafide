@@ -1,15 +1,24 @@
 import { ChangeEvent, Dispatch, FC, InputHTMLAttributes, SetStateAction } from 'react';
 import { Input } from 'shared';
+import { RecoveryModels } from 'entities';
 
 interface EmailInputProps extends InputHTMLAttributes<HTMLInputElement> {
-	state: string;
-	setState: Dispatch<SetStateAction<string>>;
+	recoveryData: RecoveryModels.RecoveryData;
+	setRecoveryData: Dispatch<SetStateAction<RecoveryModels.RecoveryData>>;
 }
 
-export const EmailInput: FC<EmailInputProps> = ({ state, setState }) => {
+export const EmailInput: FC<EmailInputProps> = ({ recoveryData, setRecoveryData }) => {
 	const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-		setState(event.target.value);
+		setRecoveryData({ ...recoveryData, email: event.target.value, emailError: false });
 	};
 
-	return <Input label='Dirección de correo electrónico' type='email' value={state} onChange={onChangeHandler} />;
+	return (
+		<Input
+			label='Dirección de correo electrónico'
+			type='email'
+			value={recoveryData.email}
+			onChange={onChangeHandler}
+			error={recoveryData.emailError}
+		/>
+	);
 };

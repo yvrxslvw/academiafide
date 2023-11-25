@@ -1,11 +1,14 @@
 import { FC, useState } from 'react';
 import { Paragraph, Title } from 'shared';
-import { RecoveryEntities } from 'entities';
+import { RecoveryEntities, RecoveryModels } from 'entities';
 import { RecoveryFormFeatures } from 'features';
 import cl from './style.module.scss';
 
 export const Window: FC = () => {
-	const [email, setEmail] = useState('');
+	const [recoveryData, setRecoveryData] = useState<RecoveryModels.RecoveryData>({
+		email: '',
+		emailError: false,
+	});
 
 	const { Form } = RecoveryEntities;
 	const { EmailInput, NextButton } = RecoveryFormFeatures;
@@ -18,7 +21,10 @@ export const Window: FC = () => {
 					Para restaurar el acceso a su cuenta, necesitaremos la dirección de correo electrónico que proporcionó al
 					registrar su cuenta.
 				</Paragraph>
-				<Form emailInput={<EmailInput state={email} setState={setEmail} />} nextButton={<NextButton email={email} />} />
+				<Form
+					emailInput={<EmailInput recoveryData={recoveryData} setRecoveryData={setRecoveryData} />}
+					nextButton={<NextButton recoveryData={recoveryData} setRecoveryData={setRecoveryData} />}
+				/>
 			</div>
 		</div>
 	);
