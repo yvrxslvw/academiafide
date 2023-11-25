@@ -1,0 +1,33 @@
+@use '@styles' as *;
+
+.Menu {
+	display: flex;
+	flex-direction: column;
+
+	.InitialButton {
+		align-self: flex-end;
+		min-width: 25px;
+	}
+
+	.Items {
+		display: flex;
+		flex-direction: column;
+		background-color: $grey_color;
+		padding: 2px 5px;
+		border-radius: 10px;
+
+		.Item {
+			border: none;
+			outline: none;
+			background-color: initial;
+			cursor: pointer;
+			font-size: 24px;
+			border-bottom: 1px solid $black_color;
+			padding: 5px 10px;
+
+			&:last-child {
+				border: none;
+			}
+		}
+	}
+}

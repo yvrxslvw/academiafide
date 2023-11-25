@@ -6,6 +6,13 @@
 	border-radius: 10px;
 	display: flex;
 	flex-direction: column;
+	position: relative;
+
+	.Actions {
+		position: absolute;
+		right: 10px;
+		top: 5px;
+	}
 
 	.Image {
 		max-width: 100%;

@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import { Paragraph, Title, formatDate, formatImageUrl, modelEntries, useAppSelector, useGetPostsQuery } from 'shared';
 import { PostEntities } from 'entities';
-import { NewPostFeatures } from 'features';
+import { NewPostFeatures, PostFeatures } from 'features';
 import cl from './style.module.scss';
 import { formatContent } from '../../utils';
 import { AddNewPost } from '../AddNewPost';
@@ -12,6 +12,7 @@ export const NewsList: FC = () => {
 	const { entries } = useAppSelector(state => state.post);
 	const { Post } = PostEntities;
 	const { AddNewButton } = NewPostFeatures;
+	const { Actions } = PostFeatures;
 
 	const data = modelEntries(entries);
 
@@ -36,6 +37,7 @@ export const NewsList: FC = () => {
 							content={formatContent(content)}
 							image={formatImageUrl(image)}
 							createdAt={formatDate(createdAt)}
+							actions={<Actions id={id} />}
 							key={id}
 						/>
 					))

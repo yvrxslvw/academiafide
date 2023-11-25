@@ -1,0 +1,14 @@
+.DropdownItems-enter {
+	opacity: 0;
+}
+.DropdownItems-enter-active {
+	opacity: 1;
+	transition: opacity 300ms, transform 300ms;
+}
+.DropdownItems-exit {
+	opacity: 1;
+}
+.DropdownItems-exit-active {
+	opacity: 0;
+	transition: opacity 300ms, transform 300ms;
+}

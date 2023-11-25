@@ -6,3 +6,4 @@ export * from './RecoveryForm';
 export * from './ShopItem';
 export * from './Popup';
 export * from './NewPost';
+export * from './Post';
