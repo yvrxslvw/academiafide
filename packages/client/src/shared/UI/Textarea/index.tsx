@@ -8,7 +8,7 @@ interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
 }
 
 export const Textarea: FC<TextareaProps> = ({ label, max, className, onChange, value, ...props }) => {
-	const [length, setLength] = useState(value?.toString().length);
+	const [length, setLength] = useState(value?.toString().length ?? 0);
 	const [isMax, setIsMax] = useState(false);
 
 	const onChangeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {

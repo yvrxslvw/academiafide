@@ -1,7 +1,7 @@
 @use '@styles' as *;
 
 .Modal {
-	position: absolute;
+	position: fixed;
 	width: 100%;
 	height: 100vh;
 	top: 0px;
@@ -10,12 +10,12 @@
 	justify-content: center;
 	align-items: center;
 	color: $primary_color;
-	
+
 	.Blackout {
 		background-color: $blackout_color;
 		width: 100%;
 		height: 100%;
-		position: absolute;
+		position: fixed;
 	}
 
 	.Window {

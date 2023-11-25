@@ -1,22 +1,26 @@
 import { FC, useState } from 'react';
 import { Paragraph, Title, formatDate, formatImageUrl, modelEntries, useAppSelector, useGetPostsQuery } from 'shared';
 import { PostEntities } from 'entities';
-import { PostFeatures } from 'features';
+import { NewPostFeatures } from 'features';
 import cl from './style.module.scss';
 import { formatContent } from '../../utils';
+import { AddNewPost } from '../AddNewPost';
 
 export const NewsList: FC = () => {
 	const [isModalShown, setIsModalShown] = useState(false);
-	const { isError, isLoading } = useGetPostsQuery(null, { pollingInterval: 60 * 1000 });
+	const { isError, isLoading, refetch } = useGetPostsQuery(null, { pollingInterval: 60 * 1000 });
 	const { entries } = useAppSelector(state => state.post);
-	const { Post, CreatePostModal } = PostEntities;
-	const { AddNewButton } = PostFeatures;
+	const { Post } = PostEntities;
+	const { AddNewButton } = NewPostFeatures;
 
 	const data = modelEntries(entries);
 
 	return (
 		<div className={cl.Container}>
 			<Title className={cl.Title}>Últimas noticias</Title>
+			<section className={cl.AddNewButton}>
+				<AddNewButton setModalShown={setIsModalShown} />
+			</section>
 			<section className={cl.PostBody}>
 				{isLoading ? (
 					<Paragraph small>Cargando por favor espere...</Paragraph>
@@ -37,10 +41,7 @@ export const NewsList: FC = () => {
 					))
 				)}
 			</section>
-			<section className={cl.AddNewButton}>
-				<AddNewButton setModalShown={setIsModalShown} />
-			</section>
-			<CreatePostModal modalShown={isModalShown} setModalShown={setIsModalShown} />
+			<AddNewPost isModalShown={isModalShown} setIsModalShown={setIsModalShown} refetch={refetch} />
 		</div>
 	);
 };

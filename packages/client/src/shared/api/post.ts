@@ -4,15 +4,25 @@ import { API_URL, IPost } from 'shared';
 export const PostApi = createApi({
 	reducerPath: 'api/posts',
 	tagTypes: ['post'],
-	baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
+	baseQuery: fetchBaseQuery({ baseUrl: API_URL + '/api' }),
 	endpoints: builder => ({
 		getPosts: builder.query<IPost[], null>({
 			query: () => ({
-				url: '/api/posts',
+				url: '/posts',
 				method: 'GET',
+			}),
+		}),
+		createPost: builder.mutation<IPost, FormData>({
+			query: body => ({
+				url: '/posts',
+				method: 'PUT',
+				body,
+				headers: {
+					Authorization: `Bearer ${window.localStorage.getItem('accessToken')}`,
+				},
 			}),
 		}),
 	}),
 });
 
-export const { useGetPostsQuery } = PostApi;
+export const { useGetPostsQuery, useCreatePostMutation } = PostApi;
