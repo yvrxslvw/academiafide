@@ -25,4 +25,10 @@
 		top: 5px;
 		right: 10px;
 	}
+
+	@media (max-width: 605px) {
+		& {
+			width: 100%;
+		}
+	}
 }
