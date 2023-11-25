@@ -79,7 +79,7 @@ export class UsersService {
 			if (user.image) await this.filesService.deleteFile(user.image);
 			await user.update({ image: fileName });
 		}
-		await user.update({ ...dto });
+		await user.update({ ...dto, recovery_password: null });
 		return user;
 	}
 
