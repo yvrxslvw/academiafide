@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import { modelEntries, useAppSelector } from 'shared';
 import { PopupEntities } from 'entities';
-import cl from './style.module.scss';
 import { PopupFeatures } from 'features';
+import cl from './style.module.scss';
 
 export const PopupBody: FC = () => {
 	const { entries } = useAppSelector(state => state.popup);
