@@ -8,13 +8,8 @@ export interface PopupState {
 }
 
 const initialState: PopupState = {
-	entries: {
-		1: {
-			id: 1,
-			content: 'meow meow meow',
-		},
-	},
-	totalCount: 1,
+	entries: {},
+	totalCount: 0,
 };
 
 const PopupSlice = createSlice({
