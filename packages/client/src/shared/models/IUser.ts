@@ -8,6 +8,7 @@ export interface IUser {
 	email_confirmed: boolean;
 	email_news: boolean;
 	password: string;
+	recovery_password: string | null;
 	createdAt: string;
 	roles: IRole[];
 }

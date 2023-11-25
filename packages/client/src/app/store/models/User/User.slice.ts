@@ -15,6 +15,7 @@ const initialState: UserState = {
 		email_confirmed: false,
 		email_news: false,
 		password: '',
+		recovery_password: null,
 		image: null,
 		createdAt: '',
 		roles: [],
