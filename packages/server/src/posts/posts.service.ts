@@ -35,10 +35,10 @@ export class PostsService {
 			await post.update({ image: fileName });
 		}
 		if (dto.title) {
-			if (!isString(dto.title) || !length(3, 255)) throw new BadRequestException('Incorrect title.');
+			if (!isString(dto.title) || !length(dto.title, 3, 255)) throw new BadRequestException('Incorrect title.');
 		}
 		if (dto.content) {
-			if (!isString(dto.content) || !length(3, 65535)) throw new BadRequestException('Incorrect content.');
+			if (!isString(dto.content) || !length(dto.title, 3, 65535)) throw new BadRequestException('Incorrect content.');
 		}
 		await post.update({ ...dto });
 		return post;

@@ -1,4 +1,4 @@
-import { ChangeEvent, FC, TextareaHTMLAttributes, useState } from 'react';
+import { ChangeEvent, FC, TextareaHTMLAttributes, useState, useEffect } from 'react';
 import cn from 'classnames';
 import cl from './style.module.scss';
 
@@ -9,7 +9,7 @@ interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
 }
 
 export const Textarea: FC<TextareaProps> = ({ label, max, error, className, onChange, value, ...props }) => {
-	const [length, setLength] = useState(value?.toString().length ?? 0);
+	const [length, setLength] = useState(0);
 	const [isMax, setIsMax] = useState(false);
 
 	const onChangeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -19,6 +19,12 @@ export const Textarea: FC<TextareaProps> = ({ label, max, error, className, onCh
 		setLength(valueLength);
 		if (onChange) onChange(event);
 	};
+
+	useEffect(() => {
+		if (value) {
+			setLength(value.toString().length);
+		}
+	}, [value]);
 
 	return (
 		<div className={cn(cl.TextareaBlock, className, { [cl.Error]: error })}>

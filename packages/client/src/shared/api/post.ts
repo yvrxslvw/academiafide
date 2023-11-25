@@ -31,7 +31,17 @@ export const PostApi = createApi({
 				},
 			}),
 		}),
+		editPost: builder.mutation<IPost, FormData>({
+			query: body => ({
+				url: `/posts/${body.get('id')}`,
+				method: 'PATCH',
+				body,
+				headers: {
+					Authorization: `Bearer ${window.localStorage.getItem('accessToken')}`,
+				},
+			}),
+		}),
 	}),
 });
 
-export const { useGetPostsQuery, useCreatePostMutation, useDeletePostMutation } = PostApi;
+export const { useGetPostsQuery, useCreatePostMutation, useDeletePostMutation, useEditPostMutation } = PostApi;

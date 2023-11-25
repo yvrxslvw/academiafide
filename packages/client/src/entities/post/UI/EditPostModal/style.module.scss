@@ -1,0 +1,13 @@
+.Item {
+	margin-bottom: 15px;
+
+	&:last-child {
+		margin: 0px;
+	}
+}
+
+.Button {
+	width: 100%;
+	display: flex;
+	justify-content: center;
+}

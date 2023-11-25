@@ -8,9 +8,17 @@ interface ActionsProps {
 	id: number;
 	setDeleteModalShown: Dispatch<SetStateAction<boolean>>;
 	setDeletionId: Dispatch<SetStateAction<number>>;
+	setEditModalShown: Dispatch<SetStateAction<boolean>>;
+	setEditionId: Dispatch<SetStateAction<number>>;
 }
 
-export const Actions: FC<ActionsProps> = ({ id, setDeleteModalShown, setDeletionId }) => {
+export const Actions: FC<ActionsProps> = ({
+	id,
+	setDeleteModalShown,
+	setDeletionId,
+	setEditModalShown,
+	setEditionId,
+}) => {
 	const { userInfo } = useAppSelector(state => state.user);
 	const [menuShown, setMenuShown] = useState(false);
 
@@ -19,9 +27,9 @@ export const Actions: FC<ActionsProps> = ({ id, setDeleteModalShown, setDeletion
 	};
 
 	const onClickEditHandler = () => {
-		// eslint-disable-next-line no-console
-		console.log('edit', id);
 		setMenuShown(false);
+		setEditionId(id);
+		setEditModalShown(true);
 	};
 
 	const onClickDeleteHandler = () => {

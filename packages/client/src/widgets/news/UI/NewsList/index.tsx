@@ -6,11 +6,14 @@ import cl from './style.module.scss';
 import { formatContent } from '../../utils';
 import { AddNewPost } from '../AddNewPost';
 import { DeletePost } from '../DeletePost';
+import { EditPost } from '../EditPost';
 
 export const NewsList: FC = () => {
 	const [isAddNewModalShown, setIsAddNewModalShown] = useState(false);
 	const [isDeleteModalShown, setIsDeleteModalShown] = useState(false);
 	const [deletionId, setDeletionId] = useState(-1);
+	const [isEditModalShown, setIsEditModalShown] = useState(false);
+	const [editionId, setEditionId] = useState(-1);
 	const { isError, isLoading, refetch } = useGetPostsQuery(null, { pollingInterval: 60 * 1000 });
 	const { entries } = useAppSelector(state => state.post);
 	const { Post } = PostEntities;
@@ -40,7 +43,15 @@ export const NewsList: FC = () => {
 							content={formatContent(content)}
 							image={formatImageUrl(image)}
 							createdAt={formatDate(createdAt)}
-							actions={<Actions id={id} setDeleteModalShown={setIsDeleteModalShown} setDeletionId={setDeletionId} />}
+							actions={
+								<Actions
+									id={id}
+									setDeleteModalShown={setIsDeleteModalShown}
+									setDeletionId={setDeletionId}
+									setEditModalShown={setIsEditModalShown}
+									setEditionId={setEditionId}
+								/>
+							}
 							key={id}
 						/>
 					))
@@ -52,6 +63,12 @@ export const NewsList: FC = () => {
 				setIsModalShown={setIsDeleteModalShown}
 				refetch={refetch}
 				post={entries[deletionId]}
+			/>
+			<EditPost
+				isModalShown={isEditModalShown}
+				setIsModalShown={setIsEditModalShown}
+				refetch={refetch}
+				post={entries[editionId]}
 			/>
 		</div>
 	);

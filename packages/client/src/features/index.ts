@@ -8,3 +8,4 @@ export * from './Popup';
 export * from './NewPost';
 export * from './Post';
 export * from './DeletePost';
+export * from './EditPost';
