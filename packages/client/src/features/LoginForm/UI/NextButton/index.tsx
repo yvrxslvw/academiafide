@@ -1,7 +1,7 @@
 import { FC, SetStateAction, Dispatch } from 'react';
 import { Button } from 'shared';
 import { LoginModels } from 'entities';
-import { useFetchLogin, useLoginUser } from '../../lib';
+import { useFetchLogin } from '../../lib';
 
 interface NextButtonProps {
 	loginData: LoginModels.LoginData;
@@ -9,8 +9,7 @@ interface NextButtonProps {
 }
 
 export const NextButton: FC<NextButtonProps> = ({ loginData, setLoginData }) => {
-	const { loginUser } = useLoginUser();
-	const { fetchLogin, isLoading, createPopup } = useFetchLogin(loginData, setLoginData, loginUser);
+	const { fetchLogin, isLoading, createPopup } = useFetchLogin(loginData, setLoginData);
 
 	const onClickHandler = async () => {
 		setLoginData({ ...loginData, loginError: false, passwordError: false });

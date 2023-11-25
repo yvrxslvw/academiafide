@@ -1,20 +1,22 @@
 import { Dispatch, SetStateAction, useEffect } from 'react';
-import { isErrorFromBackend, useLoginMutation } from 'shared';
+import { useNavigate } from 'react-router';
+import { PublicRouterPaths, isErrorFromBackend, useGetUserInfoMutation, useLoginMutation } from 'shared';
 import { LoginModels, usePopup } from 'entities';
 
 export const useFetchLogin = (
 	loginData: LoginModels.LoginData,
 	setLoginData: Dispatch<SetStateAction<LoginModels.LoginData>>,
-	loginUser: () => void,
 ) => {
 	const [fetchLogin, { data, error, isLoading }] = useLoginMutation();
+	const [loginUser] = useGetUserInfoMutation();
 	const { createPopup } = usePopup();
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		if (data) {
 			window.localStorage.setItem('accessToken', data.token);
 			loginUser();
-			// todo: navigate to the user account
+			navigate(PublicRouterPaths.MAIN_PAGE); // !
 		}
 	}, [data]);
 
