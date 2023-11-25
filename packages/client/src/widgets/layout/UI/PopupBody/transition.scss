@@ -1,0 +1,14 @@
+.popup-enter {
+	opacity: 0;
+}
+.popup-enter-active {
+	opacity: 1;
+	transition: opacity 0.3s ease;
+}
+.popup-exit {
+	opacity: 1;
+}
+.popup-exit-active {
+	opacity: 0;
+	transition: opacity 0.3s ease;
+}
