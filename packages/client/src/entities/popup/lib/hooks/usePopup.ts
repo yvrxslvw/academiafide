@@ -8,7 +8,7 @@ export const usePopup = () => {
 
 	const createPopup = async (content: string) => {
 		dispatch(showPopup(content));
-		await timer(3 * 1000);
+		await timer(5 * 1000);
 		dispatch(deletePopup(totalCount + 1));
 	};
 

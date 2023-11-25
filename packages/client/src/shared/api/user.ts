@@ -15,7 +15,16 @@ export const UserApi = createApi({
 				},
 			}),
 		}),
+		recoveryPassword: builder.mutation<{ message: string }, string>({
+			query: email => ({
+				url: '/recovery',
+				method: 'POST',
+				body: {
+					email,
+				},
+			}),
+		}),
 	}),
 });
 
-export const { useGetUserInfoMutation } = UserApi;
+export const { useGetUserInfoMutation, useRecoveryPasswordMutation } = UserApi;

@@ -28,7 +28,7 @@ export class UserService {
 		const isSent = await this.mailerService.sendMessage(dto.email, 'Restablecer el acceso', html);
 		if (isSent) {
 			await user.update({ recovery_password: hashPassword });
-			return 'The recovery password was sent.';
+			return { message: 'The recovery password was sent.' };
 		} else throw new InternalServerErrorException('Unexpected error... Try again later.');
 	}
 
