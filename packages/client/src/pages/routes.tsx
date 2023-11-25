@@ -48,4 +48,29 @@ export const PublicRoutes: RouteObject[] = [
 	},
 ];
 
-export const PrivateRoutes: RouteObject[] = [...PublicRoutes];
+export const PrivateRoutes: RouteObject[] = [
+	{
+		path: '/*',
+		element: <Navigate to={PublicRouterPaths.MAIN_PAGE} replace />,
+	},
+	{
+		path: PublicRouterPaths.MAIN_PAGE,
+		element: <MainPage />,
+	},
+	{
+		path: PublicRouterPaths.TERMS_PAGE,
+		element: <TermsPage />,
+	},
+	{
+		path: PublicRouterPaths.NEWS_PAGE,
+		element: <NewsPage />,
+	},
+	{
+		path: PublicRouterPaths.ABOUT_PAGE,
+		element: <AboutPage />,
+	},
+	{
+		path: PublicRouterPaths.SHOP_PAGE,
+		element: <ShopPage />,
+	},
+];
