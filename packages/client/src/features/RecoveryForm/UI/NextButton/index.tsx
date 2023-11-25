@@ -10,7 +10,7 @@ interface NextButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export const NextButton: FC<NextButtonProps> = ({ recoveryData, setRecoveryData }) => {
 	const { createPopup } = usePopup();
-	const [recovery, { error, data }] = useRecoveryPasswordMutation();
+	const [recovery, { error, data, isLoading }] = useRecoveryPasswordMutation();
 	const navigate = useNavigate();
 
 	const onClickHandler = async () => {
@@ -48,7 +48,7 @@ export const NextButton: FC<NextButtonProps> = ({ recoveryData, setRecoveryData 
 	}, [data]);
 
 	return (
-		<Button type='submit' onClick={onClickHandler}>
+		<Button type='submit' onClick={onClickHandler} loading={isLoading}>
 			Siguente
 		</Button>
 	);

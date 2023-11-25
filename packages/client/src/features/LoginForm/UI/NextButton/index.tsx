@@ -8,7 +8,7 @@ interface NextButtonProps {
 }
 
 export const NextButton: FC<NextButtonProps> = ({ loginData, setLoginData }) => {
-	const [fetchLogin, { data, error }] = useLoginMutation();
+	const [fetchLogin, { data, error, isLoading }] = useLoginMutation();
 	const { createPopup } = usePopup();
 
 	const onClickHandler = async () => {
@@ -43,7 +43,7 @@ export const NextButton: FC<NextButtonProps> = ({ loginData, setLoginData }) => 
 	}, [error]);
 
 	return (
-		<Button type='submit' onClick={onClickHandler}>
+		<Button type='submit' onClick={onClickHandler} loading={isLoading}>
 			Siguente
 		</Button>
 	);
