@@ -6,3 +6,4 @@ export * from './Paragraph';
 export * from './Input';
 export * from './Checkbox';
 export * from './Modal';
+export * from './Textarea';
