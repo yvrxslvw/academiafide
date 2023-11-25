@@ -6,12 +6,12 @@ export const UserApi = createApi({
 	tagTypes: ['user'],
 	baseQuery: fetchBaseQuery({ baseUrl: API_URL + '/api/user' }),
 	endpoints: builder => ({
-		getUserInfo: builder.mutation<IUser, string>({
-			query: token => ({
+		getUserInfo: builder.mutation<IUser, void>({
+			query: () => ({
 				url: '/',
 				method: 'GET',
 				headers: {
-					Authorization: `Bearer ${token}`,
+					Authorization: `Bearer ${window.localStorage.getItem('accessToken')}`,
 				},
 			}),
 		}),
