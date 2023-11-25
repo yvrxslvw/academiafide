@@ -1,7 +1,6 @@
 import { Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
-import { Response } from 'express';
 import * as bcrypt from 'bcrypt';
-import { v4 as uuidv4 } from 'uuid';
+import { generate as generatePassword } from 'generate-password';
 import { MailerService } from 'src/mailer/mailer.service';
 import { UpdateUserDto } from 'src/users/dto/update-user.dto';
 import { UsersService } from 'src/users/users.service';
@@ -20,28 +19,17 @@ export class UserService {
 	async recovery(dto: RecoveryPasswordDto) {
 		const user = await this.usersService.getOneByEmail(dto.email, true);
 		if (!user) throw new NotFoundException('User email not found.');
-		const recoveryId = uuidv4();
-		const recoveryLink = `${process.env.API_URL}/api/user/recovery/${recoveryId}`;
+		const newPassword = generatePassword({ length: 10, numbers: true });
+		const hashPassword = await bcrypt.hash(newPassword, 5);
 		const html = `
 			<h3>Se envió una solicitud para restaurar el acceso a su cuenta, si no era usted, simplemente ignore este mensaje.</h3>
-			<h3>Para restaurar el acceso, simplemente siga el enlace: <a href="${recoveryLink}">Restaurar acceso</a></h3>
+			<h3>Utilice la nueva contraseña para iniciar sesión en su cuenta: <h2>${newPassword}</h2>.</h3>
 		`;
-		const isSent = this.mailerService.sendMessage(dto.email, 'Restablecer el acceso', html);
+		const isSent = await this.mailerService.sendMessage(dto.email, 'Restablecer el acceso', html);
 		if (isSent) {
-			await user.update({ recovery_link: recoveryId });
-			return 'The recovery link was sent.';
+			await user.update({ recovery_password: hashPassword });
+			return 'The recovery password was sent.';
 		} else throw new InternalServerErrorException('Unexpected error... Try again later.');
-	}
-
-	async recoveryConfirm(recoveryId: string, response: Response) {
-		const user = await this.usersService.getOneByRecoveryId(recoveryId);
-		if (!user) {
-			return response.send('redirect to the error page');
-		}
-		const generatedPassword = 'AcademiaFidePassword'; // todo: generating password
-		const hashPassword = await bcrypt.hash(generatedPassword, 5);
-		await user.update({ password: hashPassword, recovery_link: null });
-		return response.send(`redirect to the successful page ${generatedPassword}`);
 	}
 
 	async getInfo(id: number) {

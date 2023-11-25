@@ -22,7 +22,12 @@ export class AuthService {
 		const user = await this.usersService.getOneByLogin(dto.login);
 		if (!user) throw new ForbiddenException('Incorrect login or password.');
 		const isPasswordCorrect = await bcrypt.compare(dto.password, user.password);
-		if (!isPasswordCorrect) throw new ForbiddenException('Incorrect login or password.');
+		if (!isPasswordCorrect) {
+			if (user.recovery_password) {
+				const isRecoveryPasswordCorrect = await bcrypt.compare(dto.password, user.recovery_password);
+				if (!isRecoveryPasswordCorrect) throw new ForbiddenException('Incorrect login or password.');
+			} else throw new ForbiddenException('Incorrect login or password.');
+		}
 		return this.generateToken(user);
 	}
 

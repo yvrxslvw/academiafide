@@ -1,9 +1,9 @@
-import { Body, Controller, Get, Param, Post, Req, Res, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
+import { Body, Controller, Get, Post, Req, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { UserService } from './user.service';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
-import { Request, Response } from 'express';
+import { Request } from 'express';
 import { UpdateUserDto } from 'src/users/dto/update-user.dto';
 import { RecoveryPasswordDto } from './dto/recovery-password.dto';
 
@@ -30,13 +30,6 @@ export class UserController {
 	@Post('/recovery')
 	recovery(@Body() dto: RecoveryPasswordDto) {
 		return this.userService.recovery(dto);
-	}
-
-	@ApiOperation({ summary: 'Recovery user account' })
-	@ApiResponse({ status: 308, description: 'Redirect to the successful or error frontend page' })
-	@Get('/recovery/:recoveryId')
-	recoveryConfirm(@Param('recoveryId') recoveryId: string, @Res() response: Response) {
-		return this.userService.recoveryConfirm(recoveryId, response);
 	}
 
 	@ApiOperation({ summary: 'Get user info [Authorized]' })

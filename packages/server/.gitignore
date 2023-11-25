@@ -7,3 +7,6 @@ dist
 # Environment files
 .env.development
 .env.production
+
+# Database dump
+academiafide.sql

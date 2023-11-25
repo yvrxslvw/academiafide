@@ -60,11 +60,6 @@ export class UsersService {
 		return user;
 	}
 
-	async getOneByRecoveryId(recovery_link: string) {
-		const user = await this.userRepo.findOne({ where: { recovery_link } });
-		return user;
-	}
-
 	async update(id: number, dto: UpdateUserDto, image?: any) {
 		const user = await this.userRepo.findByPk(id, { include: { all: true, nested: true } });
 		if (!user) throw new NotFoundException('User not found.');
