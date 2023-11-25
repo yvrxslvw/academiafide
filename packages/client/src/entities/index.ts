@@ -6,3 +6,4 @@ export * from './post';
 export * from './card';
 export * from './block';
 export * from './shop';
+export * from './popup';

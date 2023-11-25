@@ -1,7 +1,6 @@
 import { FC, SetStateAction, Dispatch, useEffect } from 'react';
-import { Button, isErrorFromBackend, useAppDispatch, useGetUserInfoMutation, useLoginMutation } from 'shared';
+import { Button, isErrorFromBackend, useLoginMutation } from 'shared';
 import { LoginModels } from 'entities';
-import { UserSlice } from 'app/store/models';
 
 interface NextButtonProps {
 	loginData: LoginModels.LoginData;
@@ -9,10 +8,7 @@ interface NextButtonProps {
 }
 
 export const NextButton: FC<NextButtonProps> = ({ loginData, setLoginData }) => {
-	const [fetchLogin, { data: fetchLoginData, error: fetchLoginError }] = useLoginMutation();
-	const [fetchGetUserInfo, { data: fetchGetUserInfoData, error: fetchGetUserInfoError }] = useGetUserInfoMutation();
-	const dispatch = useAppDispatch();
-	const { login } = UserSlice.actions;
+	const [fetchLogin, { data, error }] = useLoginMutation();
 
 	const onClickHandler = async () => {
 		setLoginData({ ...loginData, loginError: false, passwordError: false });
@@ -29,32 +25,19 @@ export const NextButton: FC<NextButtonProps> = ({ loginData, setLoginData }) => 
 	};
 
 	useEffect(() => {
-		if (fetchLoginData) {
-			window.localStorage.setItem('accessToken', fetchLoginData.token);
-			fetchGetUserInfo(fetchLoginData.token); // ! await
+		if (data) {
+			window.localStorage.setItem('accessToken', data.token);
 		}
-	}, [fetchLoginData]);
+	}, [data]);
 
 	useEffect(() => {
-		if (fetchGetUserInfoData) {
-			dispatch(login(fetchGetUserInfoData));
-		}
-	}, [fetchGetUserInfoData]);
-
-	useEffect(() => {
-		if (isErrorFromBackend(fetchLoginError) && fetchLoginError.data.statusCode === 403) {
+		if (isErrorFromBackend(error) && error.data.statusCode === 403) {
 			// todo: wrong data error popup
 			setLoginData({ ...loginData, loginError: true, passwordError: true });
 		} else {
 			// todo: unexpected error popup
 		}
-	}, [fetchLoginError]);
-
-	useEffect(() => {
-		if (fetchGetUserInfoError) {
-			// todo: unexpected error popup
-		}
-	}, [fetchGetUserInfoError]);
+	}, [error]);
 
 	return (
 		<Button type='submit' onClick={onClickHandler}>

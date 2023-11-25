@@ -7,4 +7,17 @@
 	main {
 		flex: 1 1 auto;
 	}
+
+	.PopupBody {
+		position: fixed;
+		bottom: 10px;
+		left: 50%;
+		transform: translateX(-50%);
+
+		@media (max-width: 620px) {
+			& {
+				width: 100%;
+			}
+		}
+	}
 }
