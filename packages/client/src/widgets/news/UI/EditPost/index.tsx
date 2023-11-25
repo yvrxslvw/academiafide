@@ -31,7 +31,7 @@ export const EditPost: FC<EditPostProps> = ({ isModalShown, setIsModalShown, ref
 				contentError: false,
 			});
 		}
-	}, [post]);
+	}, [isModalShown]);
 
 	return (
 		<EditPostModal
