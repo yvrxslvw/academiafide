@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useState, Dispatch, SetStateAction } from 'react';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Dropdown, isAdmin, useAppSelector } from 'shared';
@@ -6,9 +6,11 @@ import cl from './style.module.scss';
 
 interface ActionsProps {
 	id: number;
+	setDeleteModalShown: Dispatch<SetStateAction<boolean>>;
+	setDeletionId: Dispatch<SetStateAction<number>>;
 }
 
-export const Actions: FC<ActionsProps> = ({ id }) => {
+export const Actions: FC<ActionsProps> = ({ id, setDeleteModalShown, setDeletionId }) => {
 	const { userInfo } = useAppSelector(state => state.user);
 	const [menuShown, setMenuShown] = useState(false);
 
@@ -23,9 +25,9 @@ export const Actions: FC<ActionsProps> = ({ id }) => {
 	};
 
 	const onClickDeleteHandler = () => {
-		// eslint-disable-next-line no-console
-		console.log('delete', id);
 		setMenuShown(false);
+		setDeletionId(id);
+		setDeleteModalShown(true);
 	};
 
 	if (!isAdmin(userInfo)) return null;

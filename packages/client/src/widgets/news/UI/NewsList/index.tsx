@@ -5,9 +5,12 @@ import { NewPostFeatures, PostFeatures } from 'features';
 import cl from './style.module.scss';
 import { formatContent } from '../../utils';
 import { AddNewPost } from '../AddNewPost';
+import { DeletePost } from '../DeletePost';
 
 export const NewsList: FC = () => {
-	const [isModalShown, setIsModalShown] = useState(false);
+	const [isAddNewModalShown, setIsAddNewModalShown] = useState(false);
+	const [isDeleteModalShown, setIsDeleteModalShown] = useState(false);
+	const [deletionId, setDeletionId] = useState(-1);
 	const { isError, isLoading, refetch } = useGetPostsQuery(null, { pollingInterval: 60 * 1000 });
 	const { entries } = useAppSelector(state => state.post);
 	const { Post } = PostEntities;
@@ -20,7 +23,7 @@ export const NewsList: FC = () => {
 		<div className={cl.Container}>
 			<Title className={cl.Title}>Últimas noticias</Title>
 			<section className={cl.AddNewButton}>
-				<AddNewButton setModalShown={setIsModalShown} />
+				<AddNewButton setModalShown={setIsAddNewModalShown} />
 			</section>
 			<section className={cl.PostBody}>
 				{isLoading ? (
@@ -37,13 +40,19 @@ export const NewsList: FC = () => {
 							content={formatContent(content)}
 							image={formatImageUrl(image)}
 							createdAt={formatDate(createdAt)}
-							actions={<Actions id={id} />}
+							actions={<Actions id={id} setDeleteModalShown={setIsDeleteModalShown} setDeletionId={setDeletionId} />}
 							key={id}
 						/>
 					))
 				)}
 			</section>
-			<AddNewPost isModalShown={isModalShown} setIsModalShown={setIsModalShown} refetch={refetch} />
+			<AddNewPost isModalShown={isAddNewModalShown} setIsModalShown={setIsAddNewModalShown} refetch={refetch} />
+			<DeletePost
+				isModalShown={isDeleteModalShown}
+				setIsModalShown={setIsDeleteModalShown}
+				refetch={refetch}
+				post={entries[deletionId]}
+			/>
 		</div>
 	);
 };
