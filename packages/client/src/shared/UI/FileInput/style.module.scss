@@ -1,0 +1,32 @@
+@use '@styles' as *;
+
+.FileInputBlock {
+	.Title {
+		margin-bottom: 15px;
+	}
+
+	.Label {
+		cursor: pointer;
+		background-color: $button_color;
+		color: $white_color;
+		font-weight: 700;
+		font-size: 20px;
+		padding: 5px 10px;
+		border-radius: 10px;
+		transition: all 0.4s ease;
+
+		&:hover {
+			background-color: $button_hover_color;
+		}
+	}
+
+	.Input {
+		display: none;
+	}
+
+	.FileList {
+		margin-top: 10px;
+		font-size: 16px;
+		color: $primary_color;
+	}
+}
