@@ -8,8 +8,10 @@ interface TitleTextAreaProps {
 
 export const TitleTextArea: FC<TitleTextAreaProps> = ({ data, setData }) => {
 	const onChangeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
-		setData({ ...data, title: event.target.value });
+		setData({ ...data, title: event.target.value, titleError: false });
 	};
 
-	return <Textarea label='Publicar título' max={255} value={data.title} onChange={onChangeHandler} />;
+	return (
+		<Textarea label='Publicar título' max={255} value={data.title} onChange={onChangeHandler} error={data.titleError} />
+	);
 };

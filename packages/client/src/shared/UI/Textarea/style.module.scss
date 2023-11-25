@@ -1,6 +1,10 @@
 @use '@styles' as *;
 
 .TextareaBlock {
+	.Label {
+		transition: color 0.4s ease;
+	}
+
 	.Textarea {
 		border: 1px solid $black_color;
 		outline: none;
@@ -10,14 +14,32 @@
 		height: 100px;
 		font-size: 18px;
 		margin-top: 10px;
+		border-radius: 10px;
+		padding: 5px;
+		transition: border-color 0.4s ease;
 	}
 
 	.Length {
 		text-align: right;
 		margin-top: 10px;
 		color: $gray_color;
+		transition: color 0.4s ease;
 
 		&.Max {
+			color: $red_color;
+		}
+	}
+
+	&.Error {
+		.Label {
+			color: $red_color;
+		}
+
+		.Textarea {
+			border-color: $red_color;
+		}
+
+		.Length {
 			color: $red_color;
 		}
 	}
