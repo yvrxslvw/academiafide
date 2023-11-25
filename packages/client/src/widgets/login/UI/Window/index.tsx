@@ -11,7 +11,6 @@ export const Window: FC = () => {
 		loginError: false,
 		passwordError: false,
 	});
-
 	const { Form } = LoginEntities;
 	const { LoginInput, PasswordInput, NextButton } = LoginFormFeatures;
 
