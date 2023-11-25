@@ -8,7 +8,9 @@
 	background-color: $gray_color;
 	display: flex;
 	align-items: center;
+	width: 600px;
 	min-height: 75px;
+	position: relative;
 
 	&:last-child {
 		margin: 0px;
