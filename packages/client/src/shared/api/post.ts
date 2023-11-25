@@ -22,7 +22,16 @@ export const PostApi = createApi({
 				},
 			}),
 		}),
+		deletePost: builder.mutation<{ message: string }, number>({
+			query: id => ({
+				url: `/posts/${id}`,
+				method: 'DELETE',
+				headers: {
+					Authorization: `Bearer ${window.localStorage.getItem('accessToken')}`,
+				},
+			}),
+		}),
 	}),
 });
 
-export const { useGetPostsQuery, useCreatePostMutation } = PostApi;
+export const { useGetPostsQuery, useCreatePostMutation, useDeletePostMutation } = PostApi;

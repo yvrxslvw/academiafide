@@ -23,7 +23,7 @@ export class PostsService {
 		const fileName = post.image;
 		await post.destroy();
 		if (fileName) await this.filesService.deleteFile(fileName);
-		return 'Deleted.';
+		return { message: 'Deleted.' };
 	}
 
 	async update(id: number, dto: UpdatePostDto, image?: any) {

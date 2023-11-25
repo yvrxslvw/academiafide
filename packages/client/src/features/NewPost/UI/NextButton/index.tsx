@@ -39,6 +39,7 @@ export const NextButton: FC<NextButtonProps> = ({ data, setData, refetch, setIsM
 			setIsModalShown(false);
 			refetch();
 			setData({ title: '', titleError: false, content: '', contentError: false, image: {} as File });
+			createPopup('Creado con éxito.');
 		}
 	}, [fetchData]);
 
