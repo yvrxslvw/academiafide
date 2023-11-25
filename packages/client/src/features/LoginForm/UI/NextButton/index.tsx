@@ -1,6 +1,6 @@
 import { FC, SetStateAction, Dispatch, useEffect } from 'react';
 import { Button, isErrorFromBackend, useLoginMutation } from 'shared';
-import { LoginModels } from 'entities';
+import { LoginModels, usePopup } from 'entities';
 
 interface NextButtonProps {
 	loginData: LoginModels.LoginData;
@@ -9,13 +9,14 @@ interface NextButtonProps {
 
 export const NextButton: FC<NextButtonProps> = ({ loginData, setLoginData }) => {
 	const [fetchLogin, { data, error }] = useLoginMutation();
+	const { createPopup } = usePopup();
 
 	const onClickHandler = async () => {
 		setLoginData({ ...loginData, loginError: false, passwordError: false });
 		const { login, password } = loginData;
 
 		if (!login || !password) {
-			// todo: show popup
+			createPopup('Nombre de usuario o contraseña incorrectos');
 			setLoginData({ ...loginData, loginError: true, passwordError: true });
 			return;
 		}
@@ -32,10 +33,10 @@ export const NextButton: FC<NextButtonProps> = ({ loginData, setLoginData }) => 
 
 	useEffect(() => {
 		if (isErrorFromBackend(error) && error.data.statusCode === 403) {
-			// todo: wrong data error popup
+			createPopup('Nombre de usuario o contraseña incorrectos');
 			setLoginData({ ...loginData, loginError: true, passwordError: true });
 		} else {
-			// todo: unexpected error popup
+			createPopup('Se produjo un error inesperado... Vuelva a intentarlo más tarde.');
 		}
 	}, [error]);
 
