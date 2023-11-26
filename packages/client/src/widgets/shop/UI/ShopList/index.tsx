@@ -7,7 +7,7 @@ import { AddNewProduct } from '../AddNewProduct';
 
 export const ShopList: FC = () => {
 	const [isCreateProductModalShown, setIsCreateProductModalShown] = useState(false);
-	const { data, isError, isLoading } = useGetProductsQuery(null, { pollingInterval: 60 * 1000 });
+	const { data, isError, isLoading, refetch } = useGetProductsQuery(null, { pollingInterval: 60 * 1000 });
 	const { Item } = ShopEntities;
 	const { PurchaseButton } = ShopItemFeatures;
 	const { AddNewButton } = ShopListFeatures;
@@ -39,7 +39,11 @@ export const ShopList: FC = () => {
 			)}
 			{data && (
 				<>
-					<AddNewProduct isModalShown={isCreateProductModalShown} setIsModalShown={setIsCreateProductModalShown} />
+					<AddNewProduct
+						isModalShown={isCreateProductModalShown}
+						setIsModalShown={setIsCreateProductModalShown}
+						refetch={refetch}
+					/>
 				</>
 			)}
 		</div>

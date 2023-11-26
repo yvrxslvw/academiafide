@@ -6,9 +6,10 @@ import { ShopListFeatures } from 'features';
 interface AddNewProductProps {
 	isModalShown: boolean;
 	setIsModalShown: Dispatch<SetStateAction<boolean>>;
+	refetch: () => void;
 }
 
-export const AddNewProduct: FC<AddNewProductProps> = ({ isModalShown, setIsModalShown }) => {
+export const AddNewProduct: FC<AddNewProductProps> = ({ isModalShown, setIsModalShown, refetch }) => {
 	const [data, setData] = useState<INewProduct>({
 		title: '',
 		description: '',
@@ -28,7 +29,7 @@ export const AddNewProduct: FC<AddNewProductProps> = ({ isModalShown, setIsModal
 			titleInput={<TitleInput data={data} setData={setData} />}
 			descriptionTextarea={<DescriptionTextarea data={data} setData={setData} />}
 			priceInput={<PriceInput data={data} setData={setData} />}
-			nextButton={<NextButton data={data} setData={setData} />}
+			nextButton={<NextButton data={data} setData={setData} setIsModalShown={setIsModalShown} refetch={refetch} />}
 			imageInput={<ImageInput data={data} setData={setData} />}
 		/>
 	);

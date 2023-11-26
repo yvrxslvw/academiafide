@@ -12,7 +12,17 @@ export const ShopApi = createApi({
 				method: 'GET',
 			}),
 		}),
+		createProduct: builder.mutation<IShop, FormData>({
+			query: body => ({
+				url: '/api/products',
+				method: 'PUT',
+				body,
+				headers: {
+					Authorization: `Bearer ${window.localStorage.getItem('accessToken')}`,
+				},
+			}),
+		}),
 	}),
 });
 
-export const { useGetProductsQuery } = ShopApi;
+export const { useGetProductsQuery, useCreateProductMutation } = ShopApi;

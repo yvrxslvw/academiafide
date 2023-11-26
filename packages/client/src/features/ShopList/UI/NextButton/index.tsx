@@ -1,14 +1,17 @@
 import { usePopup } from 'entities';
-import { Dispatch, FC, SetStateAction } from 'react';
-import { Button, INewProduct } from 'shared';
+import { Dispatch, FC, SetStateAction, useEffect } from 'react';
+import { Button, INewProduct, isErrorFromBackend, useCreateProductMutation } from 'shared';
 
 interface NextButtonProps {
 	data: INewProduct;
 	setData: Dispatch<SetStateAction<INewProduct>>;
+	setIsModalShown: Dispatch<SetStateAction<boolean>>;
+	refetch: () => void;
 }
 
-export const NextButton: FC<NextButtonProps> = ({ data, setData }) => {
+export const NextButton: FC<NextButtonProps> = ({ data, setData, setIsModalShown, refetch }) => {
 	const { createPopup } = usePopup();
+	const [createProduct, { data: fetchData, error: fetchError, isLoading }] = useCreateProductMutation();
 
 	const onClickHandler = async () => {
 		setData({ ...data, titleError: false, descriptionError: false, priceError: false });
@@ -35,7 +38,32 @@ export const NextButton: FC<NextButtonProps> = ({ data, setData }) => {
 		formData.append('description', description);
 		formData.append('price', price.toString());
 		if (image) formData.append('image', image);
+
+		await createProduct(formData);
 	};
 
-	return <Button onClick={onClickHandler}>Siguiente</Button>;
+	useEffect(() => {
+		if (fetchError) {
+			if (isErrorFromBackend(fetchError)) {
+				if (fetchError.data.statusCode === 403) createPopup('Este producto ya existe.');
+			} else {
+				createPopup('Se produjo un error inesperado... Vuelva a intentarlo más tarde.');
+			}
+		}
+	}, [fetchError]);
+
+	useEffect(() => {
+		if (fetchData) {
+			setIsModalShown(false);
+			refetch();
+			createPopup('El producto ha sido creado exitosamente.');
+			setData({ ...data, title: '', description: '', price: 0, image: {} as File });
+		}
+	}, [fetchData]);
+
+	return (
+		<Button onClick={onClickHandler} loading={isLoading}>
+			Siguiente
+		</Button>
+	);
 };

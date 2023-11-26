@@ -28,7 +28,7 @@ export class ProductsService {
 		const exists = await this.productRepo.findOne({ where: { title: dto.title } });
 		if (exists) throw new ForbiddenException('This product already exists.');
 		const fileName = image ? await this.filesService.createFile(image) : null;
-		const product = await this.productRepo.create({ ...dto, image: fileName });
+		const product = await this.productRepo.create({ ...dto, image: fileName, price: Number(dto.price) });
 		return product;
 	}
 
