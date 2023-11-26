@@ -1,10 +1,9 @@
 import { FC } from 'react';
-import { Paragraph, Title, formatImageUrl, useGetProductsQuery } from 'shared';
+import { Loader, Paragraph, Title, formatImageUrl, useGetProductsQuery } from 'shared';
 import { ShopEntities } from 'entities';
 import { ShopItemFeatures } from 'features';
 import cl from './style.module.scss';
 
-// ! To review
 export const ShopList: FC = () => {
 	const { data, isError, isLoading } = useGetProductsQuery(null, { pollingInterval: 60 * 1000 });
 	const { Item } = ShopEntities;
@@ -15,7 +14,7 @@ export const ShopList: FC = () => {
 			<Title className={cl.Title}>Tienda de Academia Fide</Title>
 			<section className={cl.ShopList}>
 				{isLoading ? (
-					<Paragraph small>Cargando por favor espere...</Paragraph>
+					<Loader />
 				) : isError ? (
 					<Paragraph small>Se produjo un error inesperado... Vuelva a intentarlo más tarde.</Paragraph>
 				) : !data ? (

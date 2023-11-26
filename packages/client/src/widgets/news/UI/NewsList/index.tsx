@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { Paragraph, Title, formatDate, formatImageUrl, useGetPostsQuery } from 'shared';
+import { Loader, Paragraph, Title, formatDate, formatImageUrl, useGetPostsQuery } from 'shared';
 import { PostEntities } from 'entities';
 import { NewPostFeatures, PostFeatures } from 'features';
 import cl from './style.module.scss';
@@ -27,7 +27,7 @@ export const NewsList: FC = () => {
 			</section>
 			<section className={cl.PostBody}>
 				{isLoading ? (
-					<Paragraph small>Cargando por favor espere...</Paragraph>
+					<Loader />
 				) : isError ? (
 					<Paragraph small>Se produjo un error inesperado... Vuelva a intentarlo más tarde.</Paragraph>
 				) : !data ? (

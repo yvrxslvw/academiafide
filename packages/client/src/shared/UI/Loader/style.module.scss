@@ -1,0 +1,27 @@
+@use '@styles' as *;
+
+.LoaderBlock {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	.Label {
+		font-size: 20px;
+		color: $primary_color;
+		margin-bottom: 10px;
+	}
+
+	.Loader {
+		width: 50px;
+		height: 50px;
+		border: 5px dashed $primary_color;
+		border-radius: 50%;
+		animation: loader infinite 1s;
+
+		@keyframes loader {
+			from {
+				transform: rotate(360deg);
+			}
+		}
+	}
+}

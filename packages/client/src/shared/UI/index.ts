@@ -9,3 +9,4 @@ export * from './Modal';
 export * from './Textarea';
 export * from './FileInput';
 export * as Dropdown from './Dropdown';
+export * from './Loader';
