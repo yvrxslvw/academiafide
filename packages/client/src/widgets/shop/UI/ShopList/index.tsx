@@ -12,15 +12,15 @@ export const ShopList: FC = () => {
 	return (
 		<div className={cl.Container}>
 			<Title className={cl.Title}>Tienda de Academia Fide</Title>
-			<section className={cl.ShopList}>
-				{isLoading ? (
-					<Loader />
-				) : isError ? (
-					<Paragraph small>Se produjo un error inesperado... Vuelva a intentarlo más tarde.</Paragraph>
-				) : !data ? (
-					<Paragraph small>Aún no hay productos.</Paragraph>
-				) : (
-					data.map(({ id, title, description, image }) => (
+			{isLoading ? (
+				<Loader />
+			) : isError ? (
+				<Paragraph small>Se produjo un error inesperado... Vuelva a intentarlo más tarde.</Paragraph>
+			) : !data ? (
+				<Paragraph small>Aún no hay productos.</Paragraph>
+			) : (
+				<section className={cl.ShopList}>
+					{data.map(({ id, title, description, image }) => (
 						<Item
 							title={title}
 							description={description}
@@ -28,9 +28,9 @@ export const ShopList: FC = () => {
 							purchaseButton={<PurchaseButton itemId={id} />}
 							key={id}
 						/>
-					))
-				)}
-			</section>
+					))}
+				</section>
+			)}
 		</div>
 	);
 };
