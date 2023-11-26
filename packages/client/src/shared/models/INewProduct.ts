@@ -5,5 +5,5 @@ export interface INewProduct {
 	descriptionError: boolean;
 	price: number;
 	priceError: boolean;
-	image: File;
+	image: File | null;
 }
