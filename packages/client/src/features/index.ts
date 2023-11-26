@@ -9,3 +9,4 @@ export * from './NewPost';
 export * from './Post';
 export * from './DeletePost';
 export * from './EditPost';
+export * from './ShopList';

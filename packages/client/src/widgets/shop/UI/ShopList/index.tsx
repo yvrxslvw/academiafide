@@ -1,17 +1,21 @@
 import { FC } from 'react';
 import { Loader, Paragraph, Title, formatImageUrl, useGetProductsQuery } from 'shared';
 import { ShopEntities } from 'entities';
-import { ShopItemFeatures } from 'features';
+import { ShopItemFeatures, ShopListFeatures } from 'features';
 import cl from './style.module.scss';
 
 export const ShopList: FC = () => {
 	const { data, isError, isLoading } = useGetProductsQuery(null, { pollingInterval: 60 * 1000 });
 	const { Item } = ShopEntities;
 	const { PurchaseButton } = ShopItemFeatures;
+	const { AddNewButton } = ShopListFeatures;
 
 	return (
 		<div className={cl.Container}>
 			<Title className={cl.Title}>Tienda de Academia Fide</Title>
+			<section className={cl.AddNewButton}>
+				<AddNewButton />
+			</section>
 			{isLoading ? (
 				<Loader />
 			) : isError ? (

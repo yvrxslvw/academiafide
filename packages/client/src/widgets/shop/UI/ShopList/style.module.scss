@@ -3,8 +3,15 @@
 .Container {
 	@include container;
 	margin-bottom: 25px;
+	display: flex;
+	flex-direction: column;
 
 	.Title {
+		margin-bottom: 25px;
+	}
+
+	.AddNewButton {
+		align-self: flex-end;
 		margin-bottom: 25px;
 	}
 
