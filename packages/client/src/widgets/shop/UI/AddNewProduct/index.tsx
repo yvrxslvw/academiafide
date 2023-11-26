@@ -16,9 +16,10 @@ export const AddNewProduct: FC<AddNewProductProps> = ({ isModalShown, setIsModal
 		titleError: false,
 		descriptionError: false,
 		priceError: false,
+		image: {} as File,
 	});
 	const { CreateProductModal } = ShopEntities;
-	const { TitleInput, DescriptionTextarea, PriceInput, NextButton } = ShopListFeatures;
+	const { TitleInput, DescriptionTextarea, PriceInput, ImageInput, NextButton } = ShopListFeatures;
 
 	return (
 		<CreateProductModal
@@ -28,6 +29,7 @@ export const AddNewProduct: FC<AddNewProductProps> = ({ isModalShown, setIsModal
 			descriptionTextarea={<DescriptionTextarea data={data} setData={setData} />}
 			priceInput={<PriceInput data={data} setData={setData} />}
 			nextButton={<NextButton data={data} setData={setData} />}
+			imageInput={<ImageInput data={data} setData={setData} />}
 		/>
 	);
 };

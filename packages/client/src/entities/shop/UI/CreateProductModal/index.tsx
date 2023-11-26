@@ -8,6 +8,7 @@ interface CreateProductModalProps {
 	titleInput: ReactNode;
 	descriptionTextarea: ReactNode;
 	priceInput: ReactNode;
+	imageInput: ReactNode;
 	nextButton: ReactNode;
 }
 
@@ -17,6 +18,7 @@ export const CreateProductModal: FC<CreateProductModalProps> = ({
 	titleInput,
 	descriptionTextarea,
 	priceInput,
+	imageInput,
 	nextButton,
 }) => {
 	return (
@@ -24,6 +26,7 @@ export const CreateProductModal: FC<CreateProductModalProps> = ({
 			<section className={cl.Item}>{titleInput}</section>
 			<section className={cl.Item}>{priceInput}</section>
 			<section className={cl.Item}>{descriptionTextarea}</section>
+			<section className={cl.Item}>{imageInput}</section>
 			<section className={cl.Item}>{nextButton}</section>
 		</Modal>
 	);
