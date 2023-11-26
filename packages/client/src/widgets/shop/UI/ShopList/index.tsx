@@ -3,11 +3,12 @@ import { Loader, Paragraph, Title, formatImageUrl, useGetProductsQuery } from 's
 import { ShopEntities } from 'entities';
 import { ShopItemFeatures, ShopListFeatures } from 'features';
 import cl from './style.module.scss';
+import { AddNewProduct } from '../AddNewProduct';
 
 export const ShopList: FC = () => {
 	const [isCreateProductModalShown, setIsCreateProductModalShown] = useState(false);
 	const { data, isError, isLoading } = useGetProductsQuery(null, { pollingInterval: 60 * 1000 });
-	const { Item, CreateProductModal } = ShopEntities;
+	const { Item } = ShopEntities;
 	const { PurchaseButton } = ShopItemFeatures;
 	const { AddNewButton } = ShopListFeatures;
 
@@ -38,7 +39,7 @@ export const ShopList: FC = () => {
 			)}
 			{data && (
 				<>
-					<CreateProductModal isModalShown={isCreateProductModalShown} setIsModalShown={setIsCreateProductModalShown} />
+					<AddNewProduct isModalShown={isCreateProductModalShown} setIsModalShown={setIsCreateProductModalShown} />
 				</>
 			)}
 		</div>
