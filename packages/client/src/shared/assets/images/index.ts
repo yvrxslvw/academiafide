@@ -1,4 +1,4 @@
-import cardImage from './cardimage.png';
+import cardImage from './cardimage.jpg';
 import AdrianImage from './Adrian.jpg';
 import FernandoImage from './Fernando.jpg';
 import AlejoImage from './Alejo.jpg';
