@@ -1,12 +1,13 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { Loader, Paragraph, Title, formatImageUrl, useGetProductsQuery } from 'shared';
 import { ShopEntities } from 'entities';
 import { ShopItemFeatures, ShopListFeatures } from 'features';
 import cl from './style.module.scss';
 
 export const ShopList: FC = () => {
+	const [isCreateProductModalShown, setIsCreateProductModalShown] = useState(false);
 	const { data, isError, isLoading } = useGetProductsQuery(null, { pollingInterval: 60 * 1000 });
-	const { Item } = ShopEntities;
+	const { Item, CreateProductModal } = ShopEntities;
 	const { PurchaseButton } = ShopItemFeatures;
 	const { AddNewButton } = ShopListFeatures;
 
@@ -14,7 +15,7 @@ export const ShopList: FC = () => {
 		<div className={cl.Container}>
 			<Title className={cl.Title}>Tienda de Academia Fide</Title>
 			<section className={cl.AddNewButton}>
-				<AddNewButton />
+				<AddNewButton setIsModalShown={setIsCreateProductModalShown} />
 			</section>
 			{isLoading ? (
 				<Loader />
@@ -34,6 +35,11 @@ export const ShopList: FC = () => {
 						/>
 					))}
 				</section>
+			)}
+			{data && (
+				<>
+					<CreateProductModal isModalShown={isCreateProductModalShown} setIsModalShown={setIsCreateProductModalShown} />
+				</>
 			)}
 		</div>
 	);

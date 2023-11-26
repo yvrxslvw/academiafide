@@ -1,16 +1,15 @@
-import { FC } from 'react';
+import { Dispatch, FC, SetStateAction } from 'react';
 import { Button, isAdmin, useAppSelector } from 'shared';
 
 interface AddNewButtonProps {
-
+	setIsModalShown: Dispatch<SetStateAction<boolean>>;
 }
 
-export const AddNewButton: FC<AddNewButtonProps> = () => {
+export const AddNewButton: FC<AddNewButtonProps> = ({ setIsModalShown }) => {
 	const { userInfo } = useAppSelector(state => state.user);
 
 	const onClickHandler = () => {
-		// eslint-disable-next-line no-console
-		console.log('add new');
+		setIsModalShown(true);
 	};
 
 	if (!isAdmin(userInfo)) return null;
