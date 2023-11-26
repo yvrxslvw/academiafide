@@ -22,8 +22,8 @@ export const CreateProductModal: FC<CreateProductModalProps> = ({
 	return (
 		<Modal shown={isModalShown} setShown={setIsModalShown} title='Agregar un nuevo producto'>
 			<section className={cl.Item}>{titleInput}</section>
-			<section className={cl.Item}>{descriptionTextarea}</section>
 			<section className={cl.Item}>{priceInput}</section>
+			<section className={cl.Item}>{descriptionTextarea}</section>
 			<section className={cl.Item}>{nextButton}</section>
 		</Modal>
 	);
