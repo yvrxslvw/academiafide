@@ -1,4 +1,5 @@
-import { Dispatch, FC, SetStateAction } from 'react';
+import { Dispatch, FC, SetStateAction, useState } from 'react';
+import { INewProduct } from 'shared';
 import { ShopEntities } from 'entities';
 import { ShopListFeatures } from 'features';
 
@@ -8,6 +9,14 @@ interface AddNewProductProps {
 }
 
 export const AddNewProduct: FC<AddNewProductProps> = ({ isModalShown, setIsModalShown }) => {
+	const [data, setData] = useState<INewProduct>({
+		title: '',
+		description: '',
+		price: 0,
+		titleError: false,
+		descriptionError: false,
+		priceError: false,
+	});
 	const { CreateProductModal } = ShopEntities;
 	const { TitleInput, DescriptionTextarea, PriceInput, NextButton } = ShopListFeatures;
 
@@ -15,10 +24,10 @@ export const AddNewProduct: FC<AddNewProductProps> = ({ isModalShown, setIsModal
 		<CreateProductModal
 			isModalShown={isModalShown}
 			setIsModalShown={setIsModalShown}
-			titleInput={<TitleInput />}
-			descriptionTextarea={<DescriptionTextarea />}
-			priceInput={<PriceInput />}
-			nextButton={<NextButton />}
+			titleInput={<TitleInput data={data} setData={setData} />}
+			descriptionTextarea={<DescriptionTextarea data={data} setData={setData} />}
+			priceInput={<PriceInput data={data} setData={setData} />}
+			nextButton={<NextButton data={data} setData={setData} />}
 		/>
 	);
 };
