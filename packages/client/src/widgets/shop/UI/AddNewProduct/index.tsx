@@ -9,7 +9,7 @@ interface AddNewProductProps {
 
 export const AddNewProduct: FC<AddNewProductProps> = ({ isModalShown, setIsModalShown }) => {
 	const { CreateProductModal } = ShopEntities;
-	const { TitleInput, DescriptionTextarea, PriceInput } = ShopListFeatures;
+	const { TitleInput, DescriptionTextarea, PriceInput, NextButton } = ShopListFeatures;
 
 	return (
 		<CreateProductModal
@@ -18,6 +18,7 @@ export const AddNewProduct: FC<AddNewProductProps> = ({ isModalShown, setIsModal
 			titleInput={<TitleInput />}
 			descriptionTextarea={<DescriptionTextarea />}
 			priceInput={<PriceInput />}
+			nextButton={<NextButton />}
 		/>
 	);
 };
