@@ -1,19 +1,22 @@
-import { Block } from 'entities';
 import { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link, Paragraph, PublicRouterPaths } from 'shared';
+import { Block } from 'entities';
 
 export const Actions: FC = () => {
+	const { t } = useTranslation();
+
 	return (
-		<Block title='¿Que estamos haciendo?' grey>
+		<Block title={t('¿Que estamos haciendo?')} grey>
 			<Paragraph>
-				Impartimos clases tanto online como presenciales, organizamos torneos de ajedrez, vendemos cursos de ajedrez
-				para todos los niveles, también organizamos nuestros propios seminarios y preparamos a jugadores de todos los
-				niveles para los próximos torneos.
+				{t(
+					'Impartimos clases tanto online como presenciales, organizamos torneos de ajedrez, vendemos cursos de ajedrez para todos los niveles, también organizamos nuestros propios seminarios y preparamos a jugadores de todos los niveles para los próximos torneos.',
+				)}
 			</Paragraph>
 			<Paragraph>
-				Y además, te recomendamos que conozcas más sobre nuestro equipo y quiénes somos en el mundo del ajedrez:
+				{t('Y además, te recomendamos que conozcas más sobre nuestro equipo y quiénes somos en el mundo del ajedrez:')}
 			</Paragraph>
-			<Link to={PublicRouterPaths.ABOUT_PAGE}>Quiénes somos y qué hacemos</Link>
+			<Link to={PublicRouterPaths.ABOUT_PAGE}>{t('Quiénes somos y qué hacemos')}</Link>
 		</Block>
 	);
 };
