@@ -1,4 +1,5 @@
 import { Dispatch, FC, SetStateAction, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Button, isErrorFromBackend, useLogupMutation } from 'shared';
 import { LogupModels, usePopup } from 'entities';
 
@@ -8,6 +9,7 @@ interface NextButtonProps {
 }
 
 export const NextButton: FC<NextButtonProps> = ({ logupData, setLogupData }) => {
+	const { t } = useTranslation();
 	const [fetchLogup, { data, error, isLoading }] = useLogupMutation();
 	const { createPopup } = usePopup();
 
@@ -19,22 +21,22 @@ export const NextButton: FC<NextButtonProps> = ({ logupData, setLogupData }) => 
 			/^(?=.*[a-z])(?=.*[0-9!@#$%^&*()_+\-=/\\[\]?.,;:'"{}<>|])[a-zA-Z0-9!@#$%^&*()_+\-=/\\[\]?.,;:'"{}<>|]{3,}/;
 
 		if (login.search(loginRegex) === -1) {
-			createPopup('Nombre de usuario es incorrecto.');
+			createPopup(t('Nombre de usuario es incorrecto.'));
 			setLogupData({ ...logupData, loginError: true });
 			return;
 		}
 		if (password.search(passwordRegex) === -1) {
-			createPopup('Contraseña es incorrecta.');
+			createPopup(t('Contraseña es incorrecta.'));
 			setLogupData({ ...logupData, passwordError: true });
 			return;
 		}
 		if (!passwordConfirm || passwordConfirm !== password) {
-			createPopup('Contraseñas no coincide.');
+			createPopup(t('Contraseñas no coincide.'));
 			setLogupData({ ...logupData, passwordConfirmError: true });
 			return;
 		}
 		if (!terms) {
-			createPopup('No has aceptado los términos y condiciones de uso.');
+			createPopup(t('No has aceptado los términos y condiciones de uso.'));
 			return;
 		}
 
@@ -50,16 +52,16 @@ export const NextButton: FC<NextButtonProps> = ({ logupData, setLogupData }) => 
 		if (error) {
 			if (isErrorFromBackend(error) && error.data.statusCode === 403) {
 				setLogupData({ ...logupData, loginError: true });
-				createPopup('Este nombre de usuario ya está en uso.');
+				createPopup(t('Este nombre de usuario ya está en uso.'));
 			} else {
-				createPopup('Se produjo un error inesperado... Vuelva a intentarlo más tarde.');
+				createPopup(t('Se produjo un error inesperado... Vuelva a intentarlo más tarde.'));
 			}
 		}
 	}, [error]);
 
 	return (
 		<Button type='submit' onClick={onClickHandler} loading={isLoading}>
-			Siguente
+			{t('Siguiente')}
 		</Button>
 	);
 };

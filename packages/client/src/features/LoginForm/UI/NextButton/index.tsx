@@ -28,7 +28,7 @@ export const NextButton: FC<NextButtonProps> = ({ loginData, setLoginData }) => 
 
 	return (
 		<Button type='submit' onClick={onClickHandler} loading={isLoading}>
-			{t('Siguente')}
+			{t('Siguiente')}
 		</Button>
 	);
 };

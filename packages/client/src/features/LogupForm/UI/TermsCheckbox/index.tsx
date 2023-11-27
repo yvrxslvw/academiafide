@@ -1,4 +1,5 @@
 import { ChangeEvent, Dispatch, FC, SetStateAction } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Checkbox, Link, PublicRouterPaths } from 'shared';
 import { LogupModels } from 'entities';
 import cl from './style.module.scss';
@@ -9,13 +10,15 @@ interface TermsCheckboxProps {
 }
 
 const CheckboxLabel: FC = () => {
+	const { t } = useTranslation();
+
 	return (
 		<>
-			Acepto los{' '}
+			{t('Acepto los')}{' '}
 			<Link to={PublicRouterPaths.TERMS_PAGE} target='_blank' className={cl.TermsLink}>
-				términos
+				{t('términos')}
 			</Link>{' '}
-			de uso de este Servicio
+			{t('de uso de este Servicio')}
 		</>
 	);
 };

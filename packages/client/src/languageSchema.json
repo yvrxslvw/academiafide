@@ -29,7 +29,7 @@
 			"¿No tienes una cuenta?": "¿No tienes una cuenta?",
 			"Nombre de usuario": "Nombre de usuario",
 			"Nombre de usuario o contraseña incorrectos.": "Nombre de usuario o contraseña incorrectos.",
-			"Siguente": "Siguente",
+			"Siguiente": "Siguiente",
 			"Contraseña": "Contraseña",
 			"Autorización": "Autorización",
 			"Dirección de correo electrónico": "Dirección de correo electrónico",
@@ -37,7 +37,17 @@
 			"Se produjo un error inesperado... Vuelva a intentarlo más tarde.": "Se produjo un error inesperado... Vuelva a intentarlo más tarde.",
 			"Se ha enviado un correo electrónico con una nueva contraseña a su correo electrónico": "Se ha enviado un correo electrónico con una nueva contraseña a su correo electrónico",
 			"Recuperación de acceso": "Recuperación de acceso",
-			"Para restaurar el acceso a su cuenta, necesitaremos la dirección de correo electrónico que proporcionó al registrar su cuenta.": "Para restaurar el acceso a su cuenta, necesitaremos la dirección de correo electrónico que proporcionó al registrar su cuenta."
+			"Para restaurar el acceso a su cuenta, necesitaremos la dirección de correo electrónico que proporcionó al registrar su cuenta.": "Para restaurar el acceso a su cuenta, necesitaremos la dirección de correo electrónico que proporcionó al registrar su cuenta.",
+			"Nombre de usuario es incorrecto.": "Nombre de usuario es incorrecto.",
+			"Contraseña es incorrecta.": "Contraseña es incorrecta.",
+			"Contraseñas no coincide.": "Contraseñas no coincide.",
+			"No has aceptado los términos y condiciones de uso.": "No has aceptado los términos y condiciones de uso.",
+			"Este nombre de usuario ya está en uso.": "Este nombre de usuario ya está en uso.",
+			"Registro de cuenta": "Registro de cuenta",
+			"Confirmación de contraseña": "Confirmación de contraseña",
+			"Acepto los": "Acepto los",
+			"términos": "términos",
+			"de uso de este Servicio": "de uso de este Servicio"
 		}
 	},
 	"en": {
@@ -70,7 +80,7 @@
 			"¿No tienes una cuenta?": "You do not have an account?",
 			"Nombre de usuario": "Username",
 			"Nombre de usuario o contraseña incorrectos.": "Username or password incorrect.",
-			"Siguente": "Next",
+			"Siguiente": "Next",
 			"Contraseña": "Password",
 			"Autorización": "Authorization",
 			"Dirección de correo electrónico": "Email address",
@@ -78,7 +88,17 @@
 			"Se produjo un error inesperado... Vuelva a intentarlo más tarde.": "An unexpected error occurred... Please try again later.",
 			"Se ha enviado un correo electrónico con una nueva contraseña a su correo electrónico": "An email with a new password has been sent to your email",
 			"Recuperación de acceso": "Access recovery",
-			"Para restaurar el acceso a su cuenta, necesitaremos la dirección de correo electrónico que proporcionó al registrar su cuenta.": "To restore access to your account, we will need the email address you provided when registering your account."
+			"Para restaurar el acceso a su cuenta, necesitaremos la dirección de correo electrónico que proporcionó al registrar su cuenta.": "To restore access to your account, we will need the email address you provided when registering your account.",
+			"Nombre de usuario es incorrecto.": "Username is incorrect.",
+			"Contraseña es incorrecta.": "Password is incorrect.",
+			"Contraseñas no coincide.": "Passwords do not match.",
+			"No has aceptado los términos y condiciones de uso.": "You have not accepted the terms and conditions of use.",
+			"Este nombre de usuario ya está en uso.": "This username is already in use.",
+			"Registro de cuenta": "Account registration",
+			"Confirmación de contraseña": "Password confirmation",
+			"Acepto los": "I accept the",
+			"términos": "terms",
+			"de uso de este Servicio": "of use of this Service"
 		}
 	},
 	"ru": {
@@ -111,7 +131,7 @@
 			"¿No tienes una cuenta?": "У вас нет аккаунта?",
 			"Nombre de usuario": "Имя пользователя",
 			"Nombre de usuario o contraseña incorrectos.": "Неверное имя пользователя или пароль.",
-			"Siguente": "Далее",
+			"Siguiente": "Далее",
 			"Contraseña": "Пароль",
 			"Autorización": "Авторизация",
 			"Dirección de correo electrónico": "Адрес электронной почты",
@@ -119,7 +139,17 @@
 			"Se produjo un error inesperado... Vuelva a intentarlo más tarde.": "Произошла непредвиденная ошибка... Повторите попытку позже.",
 			"Se ha enviado un correo electrónico con una nueva contraseña a su correo electrónico": "Письмо с новым паролем было отправлено на почту",
 			"Recuperación de acceso": "Восстановление доступа",
-			"Para restaurar el acceso a su cuenta, necesitaremos la dirección de correo electrónico que proporcionó al registrar su cuenta.": "Чтобы восстановить доступ к Вашей учетной записи, нам понадобится адрес электронной почты, который вы указали при регистрации учетной записи."
+			"Para restaurar el acceso a su cuenta, necesitaremos la dirección de correo electrónico que proporcionó al registrar su cuenta.": "Чтобы восстановить доступ к Вашей учетной записи, нам понадобится адрес электронной почты, который вы указали при регистрации учетной записи.",
+			"Nombre de usuario es incorrecto.": "Некорректное имя пользователя.",
+			"Contraseña es incorrecta.": "Некорректный пароль.",
+			"Contraseñas no coincide.": "Пароли не совпадают.",
+			"No has aceptado los términos y condiciones de uso.": "Вы не приняли условия использования.",
+			"Este nombre de usuario ya está en uso.": "Это имя пользователя уже используется.",
+			"Registro de cuenta": "Регистрация аккаунта",
+			"Confirmación de contraseña": "Подтверждение пароля",
+			"Acepto los": "Я принимаю",
+			"términos": "условия",
+			"de uso de este Servicio": "использования данного Сервиса"
 		}
 	}
 }
