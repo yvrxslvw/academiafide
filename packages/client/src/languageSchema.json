@@ -20,7 +20,11 @@
 			"¿Tiene usted alguna pregunta? ¡Contáctenos!": "¿Tiene usted alguna pregunta? ¡Contáctenos!",
 			"¡Puede contactarnos de la forma que más le convenga y hacer la pregunta que le interese en cualquier momento!": "¡Puede contactarnos de la forma que más le convenga y hacer la pregunta que le interese en cualquier momento!",
 			"Teléfono": "Teléfono",
-			"Correo electrónico": "Correo electrónico"
+			"Correo electrónico": "Correo electrónico",
+			"Todos los Derechos Reservados.": "Todos los Derechos Reservados.",
+			"Términos y condiciones": "Términos y condiciones",
+			"Cerrar sesión": "Cerrar sesión",
+			"Iniciar sesión": "Iniciar sesión"
 		}
 	},
 	"en": {
@@ -44,7 +48,11 @@
 			"¿Tiene usted alguna pregunta? ¡Contáctenos!": "Do you have any questions? Contact Us!",
 			"¡Puede contactarnos de la forma que más le convenga y hacer la pregunta que le interese en cualquier momento!": "You can contact us in any way that suits you and ask the question you are interested in at any time!",
 			"Teléfono": "Phone",
-			"Correo electrónico": "Email"
+			"Correo electrónico": "Email",
+			"Todos los Derechos Reservados.": "All rights reserved.",
+			"Términos y condiciones": "Terms and Conditions",
+			"Cerrar sesión": "Sign out",
+			"Iniciar sesión": "Sign in"
 		}
 	},
 	"ru": {
@@ -68,7 +76,11 @@
 			"¿Tiene usted alguna pregunta? ¡Contáctenos!": "Есть вопросы? Свяжитесь с нами!",
 			"¡Puede contactarnos de la forma que más le convenga y hacer la pregunta que le interese en cualquier momento!": "Вы можете связаться с нами любым удобным для вас способом и задать интересующий вас вопрос в любое время!",
 			"Teléfono": "Телефон",
-			"Correo electrónico": "Электронная почта"
+			"Correo electrónico": "Электронная почта",
+			"Todos los Derechos Reservados.": "Все права защищены.",
+			"Términos y condiciones": "Условия и термины",
+			"Cerrar sesión": "Выйти из аккаунта",
+			"Iniciar sesión": "Авторизоваться"
 		}
 	}
 }
