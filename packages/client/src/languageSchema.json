@@ -24,7 +24,14 @@
 			"Todos los Derechos Reservados.": "Todos los Derechos Reservados.",
 			"Términos y condiciones": "Términos y condiciones",
 			"Cerrar sesión": "Cerrar sesión",
-			"Iniciar sesión": "Iniciar sesión"
+			"Iniciar sesión": "Iniciar sesión",
+			"¿Olvidaste tu contraseña?": "¿Olvidaste tu contraseña?",
+			"¿No tienes una cuenta?": "¿No tienes una cuenta?",
+			"Nombre de usuario": "Nombre de usuario",
+			"Nombre de usuario o contraseña incorrectos.": "Nombre de usuario o contraseña incorrectos.",
+			"Siguente": "Siguente",
+			"Contraseña": "Contraseña",
+			"Autorización": "Autorización"
 		}
 	},
 	"en": {
@@ -52,7 +59,14 @@
 			"Todos los Derechos Reservados.": "All rights reserved.",
 			"Términos y condiciones": "Terms and Conditions",
 			"Cerrar sesión": "Sign out",
-			"Iniciar sesión": "Sign in"
+			"Iniciar sesión": "Sign in",
+			"¿Olvidaste tu contraseña?": "Forget your password?",
+			"¿No tienes una cuenta?": "You do not have an account?",
+			"Nombre de usuario": "Username",
+			"Nombre de usuario o contraseña incorrectos.": "Username or password incorrect.",
+			"Siguente": "Next",
+			"Contraseña": "Password",
+			"Autorización": "Authorization"
 		}
 	},
 	"ru": {
@@ -80,7 +94,14 @@
 			"Todos los Derechos Reservados.": "Все права защищены.",
 			"Términos y condiciones": "Условия и термины",
 			"Cerrar sesión": "Выйти из аккаунта",
-			"Iniciar sesión": "Авторизоваться"
+			"Iniciar sesión": "Авторизоваться",
+			"¿Olvidaste tu contraseña?": "Забыли свой пароль?",
+			"¿No tienes una cuenta?": "У вас нет аккаунта?",
+			"Nombre de usuario": "Имя пользователя",
+			"Nombre de usuario o contraseña incorrectos.": "Неверное имя пользователя или пароль.",
+			"Siguente": "Далее",
+			"Contraseña": "Пароль",
+			"Autorización": "Авторизация"
 		}
 	}
 }

@@ -1,4 +1,5 @@
 import { FC, SetStateAction, Dispatch } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Button } from 'shared';
 import { LoginModels } from 'entities';
 import { useFetchLogin } from '../../lib';
@@ -9,6 +10,7 @@ interface NextButtonProps {
 }
 
 export const NextButton: FC<NextButtonProps> = ({ loginData, setLoginData }) => {
+	const { t } = useTranslation();
 	const { fetchLogin, isLoading, createPopup } = useFetchLogin(loginData, setLoginData);
 
 	const onClickHandler = async () => {
@@ -16,7 +18,7 @@ export const NextButton: FC<NextButtonProps> = ({ loginData, setLoginData }) => 
 		const { login, password } = loginData;
 
 		if (!login || !password) {
-			createPopup('Nombre de usuario o contraseña incorrectos.');
+			createPopup(t('Nombre de usuario o contraseña incorrectos.'));
 			setLoginData({ ...loginData, loginError: true, passwordError: true });
 			return;
 		}
@@ -26,7 +28,7 @@ export const NextButton: FC<NextButtonProps> = ({ loginData, setLoginData }) => 
 
 	return (
 		<Button type='submit' onClick={onClickHandler} loading={isLoading}>
-			Siguente
+			{t('Siguente')}
 		</Button>
 	);
 };
