@@ -3,6 +3,7 @@
 .Menu {
 	display: flex;
 	flex-direction: column;
+	position: relative;
 
 	.InitialButton {
 		align-self: flex-end;
@@ -15,6 +16,9 @@
 		background-color: $gray_color;
 		padding: 2px 5px;
 		border-radius: 10px;
+		position: absolute;
+		top: 25px;
+		right: 0px;
 
 		.Item {
 			border: none;

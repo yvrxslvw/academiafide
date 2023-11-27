@@ -1,7 +1,7 @@
 import { FC, useState, Dispatch, SetStateAction } from 'react';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Dropdown, isAdmin, useAppSelector } from 'shared';
+import { Dropdown, isAdmin, timer, useAppSelector } from 'shared';
 import cl from './style.module.scss';
 
 interface ActionsProps {
@@ -26,14 +26,21 @@ export const Actions: FC<ActionsProps> = ({
 		setMenuShown(prev => !prev);
 	};
 
-	const onClickEditHandler = () => {
+	const onMouseEnterHandler = () => {
+		setMenuShown(true);
+	};
+
+	const onMouseLeaveHandler = async () => {
+		await timer(500);
 		setMenuShown(false);
+	};
+
+	const onClickEditHandler = () => {
 		setEditionId(id);
 		setEditModalShown(true);
 	};
 
 	const onClickDeleteHandler = () => {
-		setMenuShown(false);
 		setDeletionId(id);
 		setDeleteModalShown(true);
 	};
@@ -48,6 +55,8 @@ export const Actions: FC<ActionsProps> = ({
 					</button>
 				}
 				shown={menuShown}
+				onMouseEnter={onMouseEnterHandler}
+				onMouseLeave={onMouseLeaveHandler}
 			>
 				<Dropdown.Item onClick={onClickEditHandler}>Editar</Dropdown.Item>
 				<Dropdown.Item onClick={onClickDeleteHandler}>Eliminar</Dropdown.Item>

@@ -9,7 +9,7 @@ export const ShopList: FC = () => {
 	const [isCreateProductModalShown, setIsCreateProductModalShown] = useState(false);
 	const { data, isError, isLoading, refetch } = useGetProductsQuery(null, { pollingInterval: 60 * 1000 });
 	const { Item } = ShopEntities;
-	const { PurchaseButton } = ShopItemFeatures;
+	const { PurchaseButton, ActionsDropdown } = ShopItemFeatures;
 	const { AddNewButton } = ShopListFeatures;
 
 	return (
@@ -32,6 +32,7 @@ export const ShopList: FC = () => {
 							description={description}
 							imageUrl={formatImageUrl(image)}
 							purchaseButton={<PurchaseButton itemId={id} />}
+							actionsDropdown={<ActionsDropdown />}
 							key={id}
 						/>
 					))}
