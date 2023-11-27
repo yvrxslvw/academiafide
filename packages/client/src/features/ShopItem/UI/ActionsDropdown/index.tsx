@@ -1,7 +1,7 @@
 import { FC, useState } from 'react';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Dropdown, timer } from 'shared';
+import { Dropdown, isAdmin, timer, useAppSelector } from 'shared';
 import cl from './style.module.scss';
 
 interface ActionsDropdownProps {
@@ -12,6 +12,7 @@ interface ActionsDropdownProps {
 
 export const ActionsDropdown: FC<ActionsDropdownProps> = ({ productId, onEditHandler, onDeleteHandler }) => {
 	const [isMenuShown, setIsMenuShown] = useState(false);
+	const { userInfo } = useAppSelector(state => state.user);
 
 	const onMenuClickHandler = () => {
 		setIsMenuShown(prev => !prev);
@@ -34,19 +35,21 @@ export const ActionsDropdown: FC<ActionsDropdownProps> = ({ productId, onEditHan
 		onDeleteHandler(productId);
 	};
 
-	return (
-		<Dropdown.Menu
-			initialButton={
-				<button className={cl.Dropdown} onClick={onMenuClickHandler}>
-					<FontAwesomeIcon icon={faEllipsisVertical} />
-				</button>
-			}
-			shown={isMenuShown}
-			onMouseEnter={onMouseEnterHandler}
-			onMouseLeave={onMouseLeaveHandler}
-		>
-			<Dropdown.Item onClick={onClickEditHandler}>Editar</Dropdown.Item>
-			<Dropdown.Item onClick={onClickDeleteHandler}>Eliminar</Dropdown.Item>
-		</Dropdown.Menu>
-	);
+	if (!isAdmin(userInfo)) return null;
+	else
+		return (
+			<Dropdown.Menu
+				initialButton={
+					<button className={cl.Dropdown} onClick={onMenuClickHandler}>
+						<FontAwesomeIcon icon={faEllipsisVertical} />
+					</button>
+				}
+				shown={isMenuShown}
+				onMouseEnter={onMouseEnterHandler}
+				onMouseLeave={onMouseLeaveHandler}
+			>
+				<Dropdown.Item onClick={onClickEditHandler}>Editar</Dropdown.Item>
+				<Dropdown.Item onClick={onClickDeleteHandler}>Eliminar</Dropdown.Item>
+			</Dropdown.Menu>
+		);
 };
