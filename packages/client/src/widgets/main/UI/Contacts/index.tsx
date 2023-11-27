@@ -1,24 +1,27 @@
 import { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Paragraph } from 'shared';
-import cl from './style.module.scss';
 import { Block } from 'entities';
+import cl from './style.module.scss';
 
 export const Contacts: FC = () => {
+	const { t } = useTranslation();
+
 	return (
-		<Block title='¿Tiene usted alguna pregunta? ¡Contáctenos!' grey>
+		<Block title={t('¿Tiene usted alguna pregunta? ¡Contáctenos!')} grey>
 			<Paragraph>
-				¡Puede contactarnos de la forma que más le convenga y hacer la pregunta que le interese en cualquier momento!
+				{t('¡Puede contactarnos de la forma que más le convenga y hacer la pregunta que le interese en cualquier momento!')}
 			</Paragraph>
 			<br />
 			<Paragraph>
-				Teléfono{' '}
+				{t('Teléfono')}{' '}
 				<a href='tel:+34722369868' className={cl.Link}>
 					+34 722 369 868
 				</a>
 			</Paragraph>
 			<br />
 			<Paragraph>
-				Correo electrónico{' '}
+				{t('Correo electrónico')}{' '}
 				<a href='mailto:fideacademia@gmail.com' className={cl.Link}>
 					fideacademia@gmail.com
 				</a>
