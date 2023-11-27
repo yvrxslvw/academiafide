@@ -1,0 +1,29 @@
+{
+	"es": {
+		"translation": {
+			"¡Únete hoy!": "¡Únete hoy!",
+			"Academia Fide enseña y prepara a jugadores avanzados para torneos y competiciones de ajedrez.": "Academia Fide enseña y prepara a jugadores avanzados para torneos y competiciones de ajedrez.",
+			"También organizamos grandes seminarios en nombre de grandes maestros para el mejor avance en el ajedrez.": "También organizamos grandes seminarios en nombre de grandes maestros para el mejor avance en el ajedrez.",
+			"Impartimos cursos de ajedrez individuales y grupales tanto presenciales como online.": "Impartimos cursos de ajedrez individuales y grupales tanto presenciales como online.",
+			"Unirse": "Unirse"
+		}
+	},
+	"en": {
+		"translation": {
+			"¡Únete hoy!": "Join today!",
+			"Academia Fide enseña y prepara a jugadores avanzados para torneos y competiciones de ajedrez.": "Academia Fide teaches and prepares advanced players for chess tournaments and competitions.",
+			"También organizamos grandes seminarios en nombre de grandes maestros para el mejor avance en el ajedrez.": "We also organize seminars on behalf of grandmasters for the best advancement in chess.",
+			"Impartimos cursos de ajedrez individuales y grupales tanto presenciales como online.": "We teach individual and group chess courses both in person and online.",
+			"Unirse": "Join"
+		}
+	},
+	"ru": {
+		"translation": {
+			"¡Únete hoy!": "Присоединяйтесь сегодня!",
+			"Academia Fide enseña y prepara a jugadores avanzados para torneos y competiciones de ajedrez.": "Academia Fide обучает и готовит продвинутых игроков к шахматным турнирам и соревнованиям.",
+			"También organizamos grandes seminarios en nombre de grandes maestros para el mejor avance en el ajedrez.": "Мы также организуем семинары от имени гроссмейстеров для лучшего развития в шахматах.",
+			"Impartimos cursos de ajedrez individuales y grupales tanto presenciales como online.": "Мы проводим индивидуальные и групповые курсы по шахматам как очно, так и онлайн.",
+			"Unirse": "Присоединиться"
+		}
+	}
+}
