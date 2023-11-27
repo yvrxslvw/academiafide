@@ -1,4 +1,5 @@
 import { ButtonHTMLAttributes, Dispatch, FC, SetStateAction, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Button, PublicRouterPaths, isErrorFromBackend, useRecoveryPasswordMutation } from 'shared';
 import { RecoveryModels, usePopup } from 'entities';
 import { useNavigate } from 'react-router';
@@ -9,6 +10,7 @@ interface NextButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export const NextButton: FC<NextButtonProps> = ({ recoveryData, setRecoveryData }) => {
+	const { t } = useTranslation();
 	const { createPopup } = usePopup();
 	const [recovery, { error, data, isLoading }] = useRecoveryPasswordMutation();
 	const navigate = useNavigate();
@@ -19,7 +21,7 @@ export const NextButton: FC<NextButtonProps> = ({ recoveryData, setRecoveryData 
 			/(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*)@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:)\])/;
 
 		if (email.search(emailRegex) === -1) {
-			createPopup('Correo electronico incorrecto.');
+			createPopup(t('Correo electronico incorrecto.'));
 			setRecoveryData({ ...recoveryData, emailError: true });
 			return;
 		}
@@ -30,10 +32,10 @@ export const NextButton: FC<NextButtonProps> = ({ recoveryData, setRecoveryData 
 	useEffect(() => {
 		if (error) {
 			if (isErrorFromBackend(error) && error.data.statusCode === 404) {
-				createPopup('Correo electronico incorrecto.');
+				createPopup(t('Correo electronico incorrecto.'));
 				setRecoveryData({ ...recoveryData, emailError: true });
 			} else {
-				createPopup('Se produjo un error inesperado... Vuelva a intentarlo más tarde.');
+				createPopup(t('Se produjo un error inesperado... Vuelva a intentarlo más tarde.'));
 			}
 		}
 	}, [error]);
@@ -41,7 +43,7 @@ export const NextButton: FC<NextButtonProps> = ({ recoveryData, setRecoveryData 
 	useEffect(() => {
 		if (data) {
 			createPopup(
-				`Se ha enviado un correo electrónico con una nueva contraseña a su correo electrónico ${recoveryData.email}.`,
+				`${t('Se ha enviado un correo electrónico con una nueva contraseña a su correo electrónico')} ${recoveryData.email}.`,
 			);
 			navigate(PublicRouterPaths.LOGIN_PAGE);
 		}
@@ -49,7 +51,7 @@ export const NextButton: FC<NextButtonProps> = ({ recoveryData, setRecoveryData 
 
 	return (
 		<Button type='submit' onClick={onClickHandler} loading={isLoading}>
-			Siguente
+			{t('Siguente')}
 		</Button>
 	);
 };

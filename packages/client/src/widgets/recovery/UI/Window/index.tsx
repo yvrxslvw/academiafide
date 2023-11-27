@@ -1,10 +1,12 @@
 import { FC, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Paragraph, Title } from 'shared';
 import { RecoveryEntities, RecoveryModels } from 'entities';
 import { RecoveryFormFeatures } from 'features';
 import cl from './style.module.scss';
 
 export const Window: FC = () => {
+	const { t } = useTranslation();
 	const [recoveryData, setRecoveryData] = useState<RecoveryModels.RecoveryData>({
 		email: '',
 		emailError: false,
@@ -16,10 +18,11 @@ export const Window: FC = () => {
 	return (
 		<div className={cl.Container}>
 			<div className={cl.Window}>
-				<Title className={cl.Title}>Recuperación de acceso</Title>
+				<Title className={cl.Title}>{t('Recuperación de acceso')}</Title>
 				<Paragraph className={cl.Text}>
-					Para restaurar el acceso a su cuenta, necesitaremos la dirección de correo electrónico que proporcionó al
-					registrar su cuenta.
+					{t(
+						'Para restaurar el acceso a su cuenta, necesitaremos la dirección de correo electrónico que proporcionó al registrar su cuenta.',
+					)}
 				</Paragraph>
 				<Form
 					emailInput={<EmailInput recoveryData={recoveryData} setRecoveryData={setRecoveryData} />}

@@ -31,7 +31,13 @@
 			"Nombre de usuario o contraseña incorrectos.": "Nombre de usuario o contraseña incorrectos.",
 			"Siguente": "Siguente",
 			"Contraseña": "Contraseña",
-			"Autorización": "Autorización"
+			"Autorización": "Autorización",
+			"Dirección de correo electrónico": "Dirección de correo electrónico",
+			"Correo electronico incorrecto.": "Correo electronico incorrecto.",
+			"Se produjo un error inesperado... Vuelva a intentarlo más tarde.": "Se produjo un error inesperado... Vuelva a intentarlo más tarde.",
+			"Se ha enviado un correo electrónico con una nueva contraseña a su correo electrónico": "Se ha enviado un correo electrónico con una nueva contraseña a su correo electrónico",
+			"Recuperación de acceso": "Recuperación de acceso",
+			"Para restaurar el acceso a su cuenta, necesitaremos la dirección de correo electrónico que proporcionó al registrar su cuenta.": "Para restaurar el acceso a su cuenta, necesitaremos la dirección de correo electrónico que proporcionó al registrar su cuenta."
 		}
 	},
 	"en": {
@@ -66,7 +72,13 @@
 			"Nombre de usuario o contraseña incorrectos.": "Username or password incorrect.",
 			"Siguente": "Next",
 			"Contraseña": "Password",
-			"Autorización": "Authorization"
+			"Autorización": "Authorization",
+			"Dirección de correo electrónico": "Email address",
+			"Correo electronico incorrecto.": "Incorrect email.",
+			"Se produjo un error inesperado... Vuelva a intentarlo más tarde.": "An unexpected error occurred... Please try again later.",
+			"Se ha enviado un correo electrónico con una nueva contraseña a su correo electrónico": "An email with a new password has been sent to your email",
+			"Recuperación de acceso": "Access recovery",
+			"Para restaurar el acceso a su cuenta, necesitaremos la dirección de correo electrónico que proporcionó al registrar su cuenta.": "To restore access to your account, we will need the email address you provided when registering your account."
 		}
 	},
 	"ru": {
@@ -101,7 +113,13 @@
 			"Nombre de usuario o contraseña incorrectos.": "Неверное имя пользователя или пароль.",
 			"Siguente": "Далее",
 			"Contraseña": "Пароль",
-			"Autorización": "Авторизация"
+			"Autorización": "Авторизация",
+			"Dirección de correo electrónico": "Адрес электронной почты",
+			"Correo electronico incorrecto.": "Неверный почтовый ящик.",
+			"Se produjo un error inesperado... Vuelva a intentarlo más tarde.": "Произошла непредвиденная ошибка... Повторите попытку позже.",
+			"Se ha enviado un correo electrónico con una nueva contraseña a su correo electrónico": "Письмо с новым паролем было отправлено на почту",
+			"Recuperación de acceso": "Восстановление доступа",
+			"Para restaurar el acceso a su cuenta, necesitaremos la dirección de correo electrónico que proporcionó al registrar su cuenta.": "Чтобы восстановить доступ к Вашей учетной записи, нам понадобится адрес электронной почты, который вы указали при регистрации учетной записи."
 		}
 	}
 }
