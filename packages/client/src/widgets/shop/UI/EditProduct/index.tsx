@@ -14,6 +14,7 @@ export const EditProduct: FC<EditProductProps> = ({ product, isModalShown, setIs
 	const { EditModal } = ShopEntities;
 	const { TitleInput, PriceInput, DescriptionTextarea, ImageInput, EditButton } = ShopListFeatures;
 
+	const [oldTitle, setOldTitle] = useState('');
 	const [data, setData] = useState<INewProduct>({
 		title: '',
 		description: '',
@@ -37,6 +38,7 @@ export const EditProduct: FC<EditProductProps> = ({ product, isModalShown, setIs
 				priceError: false,
 			});
 			setProductId(product.id);
+			setOldTitle(product.title);
 		}
 	}, [isModalShown]);
 
@@ -55,7 +57,7 @@ export const EditProduct: FC<EditProductProps> = ({ product, isModalShown, setIs
 					setIsModalShown={setIsModalShown}
 					refetch={refetch}
 					productId={productId}
-					oldTitle={data.title}
+					oldTitle={oldTitle}
 				/>
 			}
 		/>
