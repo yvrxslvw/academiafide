@@ -22,7 +22,17 @@ export const ShopApi = createApi({
 				},
 			}),
 		}),
+		editProduct: builder.mutation<IShop, { id: number; body: FormData }>({
+			query: ({ id, body }) => ({
+				url: `/api/products/${id}`,
+				method: 'PATCH',
+				body,
+				headers: {
+					Authorization: `Bearer ${window.localStorage.getItem('accessToken')}`,
+				},
+			}),
+		}),
 	}),
 });
 
-export const { useGetProductsQuery, useCreateProductMutation } = ShopApi;
+export const { useGetProductsQuery, useCreateProductMutation, useEditProductMutation } = ShopApi;

@@ -1,17 +1,19 @@
-import { usePopup } from 'entities';
 import { Dispatch, FC, SetStateAction, useEffect } from 'react';
-import { Button, INewProduct, isErrorFromBackend, useCreateProductMutation } from 'shared';
+import { Button, INewProduct, isErrorFromBackend, useEditProductMutation } from 'shared';
+import { usePopup } from 'entities';
 
-interface NextButtonProps {
+interface EditButtonProps {
+	productId: number;
+	oldTitle: string;
 	data: INewProduct;
 	setData: Dispatch<SetStateAction<INewProduct>>;
 	setIsModalShown: Dispatch<SetStateAction<boolean>>;
 	refetch: () => void;
 }
 
-export const NextButton: FC<NextButtonProps> = ({ data, setData, setIsModalShown, refetch }) => {
+export const EditButton: FC<EditButtonProps> = ({ productId, oldTitle, data, setData, setIsModalShown, refetch }) => {
 	const { createPopup } = usePopup();
-	const [createProduct, { data: fetchData, error: fetchError, isLoading }] = useCreateProductMutation();
+	const [editProduct, { data: fetchData, error: fetchError, isLoading }] = useEditProductMutation();
 
 	const onClickHandler = async () => {
 		setData({ ...data, titleError: false, descriptionError: false, priceError: false });
@@ -34,12 +36,12 @@ export const NextButton: FC<NextButtonProps> = ({ data, setData, setIsModalShown
 		}
 
 		const formData = new FormData();
-		formData.append('title', title);
+		if (title !== oldTitle) formData.append('title', title);
 		formData.append('description', description);
 		formData.append('price', price.toString());
 		if (image) formData.append('image', image);
 
-		await createProduct(formData);
+		await editProduct({ id: productId, body: formData });
 	};
 
 	useEffect(() => {

@@ -4,7 +4,7 @@ import { Product } from './product.model';
 import { CreateProductDto } from './dto/create-product.dto';
 import { FilesService } from 'src/files/files.service';
 import { UpdateProductDto } from './dto/update-product.dto';
-import { isNumber, isString, length } from 'class-validator';
+import { isString, length } from 'class-validator';
 
 @Injectable()
 export class ProductsService {
@@ -43,11 +43,6 @@ export class ProductsService {
 	async update(id: number, dto: UpdateProductDto, image?: any) {
 		const product = await this.productRepo.findByPk(id);
 		if (!product) throw new NotFoundException("Product doesn't exists.");
-		if (image) {
-			const fileName = await this.filesService.createFile(image);
-			if (product.image) await this.filesService.deleteFile(product.image);
-			await product.update({ image: fileName });
-		}
 		if (dto.title) {
 			if (!isString(dto.title) || !length(dto.title, 3, 24)) throw new BadRequestException('Incorrect title.');
 			const exists = await this.productRepo.findOne({ where: { title: dto.title } });
@@ -57,8 +52,10 @@ export class ProductsService {
 			if (!isString(dto.description) || !length(dto.description, 3, 255))
 				throw new BadRequestException('Incorrect description.');
 		}
-		if (dto.price) {
-			if (!isNumber(dto.price)) throw new BadRequestException('Incorrect price.');
+		if (image) {
+			const fileName = await this.filesService.createFile(image);
+			if (product.image) await this.filesService.deleteFile(product.image);
+			await product.update({ image: fileName });
 		}
 		await product.update({ ...dto });
 		return product;

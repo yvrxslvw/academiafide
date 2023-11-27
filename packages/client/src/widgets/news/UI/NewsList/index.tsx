@@ -10,10 +10,10 @@ import { EditPost } from '../EditPost';
 
 export const NewsList: FC = () => {
 	const [isAddNewModalShown, setIsAddNewModalShown] = useState(false);
-	const [isDeleteModalShown, setIsDeleteModalShown] = useState(false);
-	const [deletionId, setDeletionId] = useState(-1);
 	const [isEditModalShown, setIsEditModalShown] = useState(false);
+	const [isDeleteModalShown, setIsDeleteModalShown] = useState(false);
 	const [editionId, setEditionId] = useState(-1);
+	const [deletionId, setDeletionId] = useState(-1);
 	const { data, isError, isLoading, refetch } = useGetPostsQuery(null, { pollingInterval: 60 * 1000 });
 	const { Post } = PostEntities;
 	const { AddNewButton } = NewPostFeatures;

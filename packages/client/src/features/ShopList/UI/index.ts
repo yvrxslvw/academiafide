@@ -3,4 +3,5 @@ export * from './TItleInput';
 export * from './DescriptionTextarea';
 export * from './PriceInput';
 export * from './ImageInput';
-export * from './NextButton';
+export * from './AddButton';
+export * from './EditButton';

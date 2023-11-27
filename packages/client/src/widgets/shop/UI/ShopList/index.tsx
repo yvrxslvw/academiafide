@@ -4,13 +4,23 @@ import { ShopEntities } from 'entities';
 import { ShopItemFeatures, ShopListFeatures } from 'features';
 import cl from './style.module.scss';
 import { AddNewProduct } from '../AddNewProduct';
+import { EditProduct } from '../EditProduct';
 
 export const ShopList: FC = () => {
 	const [isCreateProductModalShown, setIsCreateProductModalShown] = useState(false);
+	const [isEditProductModalShown, setIsEditProductModalShown] = useState(false);
+	const [editionId, setEditionId] = useState(-1);
 	const { data, isError, isLoading, refetch } = useGetProductsQuery(null, { pollingInterval: 60 * 1000 });
 	const { Item } = ShopEntities;
 	const { PurchaseButton, ActionsDropdown } = ShopItemFeatures;
 	const { AddNewButton } = ShopListFeatures;
+
+	const onEditHandler = (id: number) => {
+		setEditionId(id);
+		setIsEditProductModalShown(true);
+	};
+
+	const onDeleteHandler = (id: number) => {};
 
 	return (
 		<div className={cl.Container}>
@@ -32,7 +42,9 @@ export const ShopList: FC = () => {
 							description={description}
 							imageUrl={formatImageUrl(image)}
 							purchaseButton={<PurchaseButton itemId={id} />}
-							actionsDropdown={<ActionsDropdown />}
+							actionsDropdown={
+								<ActionsDropdown productId={id} onEditHandler={onEditHandler} onDeleteHandler={onDeleteHandler} />
+							}
 							key={id}
 						/>
 					))}
@@ -43,6 +55,12 @@ export const ShopList: FC = () => {
 					<AddNewProduct
 						isModalShown={isCreateProductModalShown}
 						setIsModalShown={setIsCreateProductModalShown}
+						refetch={refetch}
+					/>
+					<EditProduct
+						product={data[data.findIndex(product => product.id === editionId)]}
+						isModalShown={isEditProductModalShown}
+						setIsModalShown={setIsEditProductModalShown}
 						refetch={refetch}
 					/>
 				</>

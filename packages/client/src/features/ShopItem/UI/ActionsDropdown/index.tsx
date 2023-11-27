@@ -1,12 +1,16 @@
-import { FC, PropsWithChildren, useState } from 'react';
+import { FC, useState } from 'react';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Dropdown, timer } from 'shared';
 import cl from './style.module.scss';
 
-interface ActionsDropdownProps extends PropsWithChildren {}
+interface ActionsDropdownProps {
+	productId: number;
+	onEditHandler: (id: number) => void;
+	onDeleteHandler: (id: number) => void;
+}
 
-export const ActionsDropdown: FC<ActionsDropdownProps> = () => {
+export const ActionsDropdown: FC<ActionsDropdownProps> = ({ productId, onEditHandler, onDeleteHandler }) => {
 	const [isMenuShown, setIsMenuShown] = useState(false);
 
 	const onMenuClickHandler = () => {
@@ -23,13 +27,11 @@ export const ActionsDropdown: FC<ActionsDropdownProps> = () => {
 	};
 
 	const onClickEditHandler = () => {
-		// eslint-disable-next-line no-console
-		console.log('edit');
+		onEditHandler(productId);
 	};
 
 	const onClickDeleteHandler = () => {
-		// eslint-disable-next-line no-console
-		console.log('delete');
+		onDeleteHandler(productId);
 	};
 
 	return (

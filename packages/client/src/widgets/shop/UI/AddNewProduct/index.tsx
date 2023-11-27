@@ -20,7 +20,7 @@ export const AddNewProduct: FC<AddNewProductProps> = ({ isModalShown, setIsModal
 		image: {} as File,
 	});
 	const { CreateProductModal } = ShopEntities;
-	const { TitleInput, DescriptionTextarea, PriceInput, ImageInput, NextButton } = ShopListFeatures;
+	const { TitleInput, DescriptionTextarea, PriceInput, ImageInput, AddButton } = ShopListFeatures;
 
 	return (
 		<CreateProductModal
@@ -29,8 +29,8 @@ export const AddNewProduct: FC<AddNewProductProps> = ({ isModalShown, setIsModal
 			titleInput={<TitleInput data={data} setData={setData} />}
 			descriptionTextarea={<DescriptionTextarea data={data} setData={setData} />}
 			priceInput={<PriceInput data={data} setData={setData} />}
-			nextButton={<NextButton data={data} setData={setData} setIsModalShown={setIsModalShown} refetch={refetch} />}
 			imageInput={<ImageInput data={data} setData={setData} />}
+			nextButton={<AddButton data={data} setData={setData} setIsModalShown={setIsModalShown} refetch={refetch} />}
 		/>
 	);
 };
