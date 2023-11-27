@@ -1,15 +1,19 @@
-import { Block } from 'entities';
 import { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link, Paragraph, PublicRouterPaths } from 'shared';
+import { Block } from 'entities';
 
 export const News: FC = () => {
+	const { t } = useTranslation();
+
 	return (
-		<Block title='Últimas noticias'>
+		<Block title={t('Últimas noticias')}>
 			<Paragraph>
-				Siga nuestras noticias, cambios y actualidad, y también infórmese sobre los cursos disponibles actualmente
-				directamente en nuestro sitio web:
+				{t(
+					'Siga nuestras noticias, cambios y actualidad, y también infórmese sobre los cursos disponibles actualmente directamente en nuestro sitio web:',
+				)}
 			</Paragraph>
-			<Link to={PublicRouterPaths.NEWS_PAGE}>Últimas noticias, cursos, etc.</Link>
+			<Link to={PublicRouterPaths.NEWS_PAGE}>{t('Últimas noticias, cursos, etc.')}</Link>
 		</Block>
 	);
 };
