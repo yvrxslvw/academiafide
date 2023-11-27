@@ -1,4 +1,5 @@
 import { FC, Dispatch, SetStateAction, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Button, useDeletePostMutation } from 'shared';
 import { usePopup } from 'entities';
 
@@ -9,11 +10,12 @@ interface ConfirmButtonProps {
 }
 
 export const ConfirmButton: FC<ConfirmButtonProps> = ({ postId, refetch, setModalShown }) => {
+	const { t } = useTranslation();
 	const [deletePost, { data, error, isLoading }] = useDeletePostMutation();
 	const { createPopup } = usePopup();
 
 	const onClickHandler = async () => {
-		if (!postId) return createPopup('Se produjo un error inesperado... Vuelva a intentarlo más tarde.');
+		if (!postId) return createPopup(t('Se produjo un error inesperado... Vuelva a intentarlo más tarde.'));
 		await deletePost(postId);
 	};
 
@@ -21,19 +23,19 @@ export const ConfirmButton: FC<ConfirmButtonProps> = ({ postId, refetch, setModa
 		if (data) {
 			refetch();
 			setModalShown(false);
-			createPopup('Eliminado con éxito.');
+			createPopup(t('Eliminado con éxito.'));
 		}
 	}, [data]);
 
 	useEffect(() => {
 		if (error) {
-			createPopup('Se produjo un error inesperado... Vuelva a intentarlo más tarde.');
+			createPopup(t('Se produjo un error inesperado... Vuelva a intentarlo más tarde.'));
 		}
 	}, [error]);
 
 	return (
 		<Button onClick={onClickHandler} loading={isLoading}>
-			Confirmar
+			{t('Confirmar')}
 		</Button>
 	);
 };

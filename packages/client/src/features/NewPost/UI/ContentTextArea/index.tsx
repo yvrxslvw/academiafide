@@ -1,4 +1,5 @@
 import { FC, ChangeEvent, Dispatch, SetStateAction } from 'react';
+import { useTranslation } from 'react-i18next';
 import { INewPost, Textarea } from 'shared';
 
 interface ContentTextAreaProps {
@@ -7,13 +8,15 @@ interface ContentTextAreaProps {
 }
 
 export const ContentTextArea: FC<ContentTextAreaProps> = ({ data, setData }) => {
+	const { t } = useTranslation();
+
 	const onChangeHandler = (event: ChangeEvent<HTMLTextAreaElement>) => {
 		setData({ ...data, content: event.target.value, contentError: false });
 	};
 
 	return (
 		<Textarea
-			label='Publicar contenido'
+			label={t('Publicar contenido')}
 			max={65535}
 			value={data.content}
 			onChange={onChangeHandler}

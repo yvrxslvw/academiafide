@@ -53,7 +53,26 @@
 			"La categoría de precio para cada lección de video o material de video, así como para los cursos para cada nivel, se indica de antemano en la página de la tienda del sitio web.": "La categoría de precio para cada lección de video o material de video, así como para los cursos para cada nivel, se indica de antemano en la página de la tienda del sitio web.",
 			"Al comprar lecciones personales con entrenadores de la FIDE, el precio y las condiciones se negocian por adelantado.": "Al comprar lecciones personales con entrenadores de Academia Fide, el precio y las condiciones se negocian por adelantado.",
 			"Si el visitante del sitio web (en lo sucesivo, el cliente) no recibió el material de video como tal, entonces tiene derecho a recuperar el dinero gastado en la compra de cualquier material.": "Si el visitante del sitio web (en lo sucesivo, el cliente) no recibió el material de video como tal, entonces tiene derecho a recuperar el dinero gastado en la compra de cualquier material.",
-			"La calidad de la enseñanza en lecciones personales, en materiales de video, en lecciones de video y en seminarios no está sujeta a apelación.": "La calidad de la enseñanza en lecciones personales, en materiales de video, en lecciones de video y en seminarios no está sujeta a apelación."
+			"La calidad de la enseñanza en lecciones personales, en materiales de video, en lecciones de video y en seminarios no está sujeta a apelación.": "La calidad de la enseñanza en lecciones personales, en materiales de video, en lecciones de video y en seminarios no está sujeta a apelación.",
+			"No hay novedades por el momento.": "No hay novedades por el momento.",
+			"Agregar nueva publicación": "Agregar nueva publicación",
+			"Agregando una nueva publicación": "Agregando una nueva publicación",
+			"Publicar título": "Publicar título",
+			"Publicar contenido": "Publicar contenido",
+			"Publicar imagen": "Publicar imagen",
+			"El título debe tener al menos 3 caracteres.": "El título debe tener al menos 3 caracteres.",
+			"El contenido debe tener al menos 3 caracteres.": "El contenido debe tener al menos 3 caracteres.",
+			"Creado con éxito.": "Creado con éxito.",
+			"Subir archivo": "Subir archivo",
+			"Enviado a las": "Enviado a las",
+			"Editar": "Editar",
+			"Eliminar": "Eliminar",
+			"Editado con éxito.": "Editado con éxito.",
+			"¿Estás seguro de que quieres eliminar la publicación": "¿Estás seguro de que quieres eliminar la publicación",
+			"Eliminar una publicación": "Eliminar una publicación",
+			"Eliminado con éxito.": "Eliminado con éxito.",
+			"Confirmar": "Confirmar",
+			"Editar una publicación": "Editar una publicación"
 		}
 	},
 	"en": {
@@ -110,7 +129,26 @@
 			"La categoría de precio para cada lección de video o material de video, así como para los cursos para cada nivel, se indica de antemano en la página de la tienda del sitio web.": "The price category for each video lesson or video material, as well as for courses for each level, is indicated in advance on the store page of the website.",
 			"Al comprar lecciones personales con entrenadores de la FIDE, el precio y las condiciones se negocian por adelantado.": "When purchasing personal lessons with Academia Fide coaches, the price and conditions are negotiated in advance.",
 			"Si el visitante del sitio web (en lo sucesivo, el cliente) no recibió el material de video como tal, entonces tiene derecho a recuperar el dinero gastado en la compra de cualquier material.": "If the visitor of the website (hereinafter referred to as the client) did not receive the video material as such, then he has the right to recover the money spent on the purchase of any material.",
-			"La calidad de la enseñanza en lecciones personales, en materiales de video, en lecciones de video y en seminarios no está sujeta a apelación.": "The quality of teaching in personal lessons, in video materials, in video lessons and in seminars is not subject to appeal."
+			"La calidad de la enseñanza en lecciones personales, en materiales de video, en lecciones de video y en seminarios no está sujeta a apelación.": "The quality of teaching in personal lessons, in video materials, in video lessons and in seminars is not subject to appeal.",
+			"No hay novedades por el momento.": "There is no news at the moment.",
+			"Agregar nueva publicación": "Add new post",
+			"Agregando una nueva publicación": "Adding a new post",
+			"Publicar título": "Post title",
+			"Publicar contenido": "Post content",
+			"Publicar imagen": "Post image",
+			"El título debe tener al menos 3 caracteres.": "The title must be at least 3 characters.",
+			"El contenido debe tener al menos 3 caracteres.": "The content must be at least 3 characters.",
+			"Creado con éxito.": "Created successfully.",
+			"Subir archivo": "Upload file",
+			"Enviado a las": "Sent at",
+			"Editar": "Edit",
+			"Eliminar": "Delete",
+			"Editado con éxito.": "Edited successfully.",
+			"¿Estás seguro de que quieres eliminar la publicación": "Are you sure you want to delete the post",
+			"Eliminar una publicación": "Deletion a post",
+			"Eliminado con éxito.": "Deleted successfully.",
+			"Confirmar": "Confirm",
+			"Editar una publicación": "Edition a post"
 		}
 	},
 	"ru": {
@@ -167,7 +205,26 @@
 			"La categoría de precio para cada lección de video o material de video, así como para los cursos para cada nivel, se indica de antemano en la página de la tienda del sitio web.": "Ценовая категория на каждый видеоурок или видеоматериал, а также на курсы каждого уровня указывается заранее на странице магазина сайта.",
 			"Al comprar lecciones personales con entrenadores de la FIDE, el precio y las condiciones se negocian por adelantado.": "При покупке персональных занятий с тренерами Academia Fide цена и условия оговариваются заранее.",
 			"Si el visitante del sitio web (en lo sucesivo, el cliente) no recibió el material de video como tal, entonces tiene derecho a recuperar el dinero gastado en la compra de cualquier material.": "Если посетитель сайта (далее — клиент) не получил видеоматериал как таковой, то он имеет право вернуть деньги, потраченные на приобретение любого материала.",
-			"La calidad de la enseñanza en lecciones personales, en materiales de video, en lecciones de video y en seminarios no está sujeta a apelación.": "Качество преподавания на индивидуальных занятиях, в видеоматериалах, на видеоуроках и на семинарах апелляциям не подлежит."
+			"La calidad de la enseñanza en lecciones personales, en materiales de video, en lecciones de video y en seminarios no está sujeta a apelación.": "Качество преподавания на индивидуальных занятиях, в видеоматериалах, на видеоуроках и на семинарах апелляциям не подлежит.",
+			"No hay novedades por el momento.": "На данный момент новостей нет.",
+			"Agregar nueva publicación": "Добавить новый пост",
+			"Agregando una nueva publicación": "Добавление нового поста",
+			"Publicar título": "Заголовок поста",
+			"Publicar contenido": "Содержание поста",
+			"Publicar imagen": "Изображение поста",
+			"El título debe tener al menos 3 caracteres.": "Заголовок должен состоять минимум из 3 символов.",
+			"El contenido debe tener al menos 3 caracteres.": "Содержимое должно быть не менее 3 символов.",
+			"Creado con éxito.": "Успешно создано.",
+			"Subir archivo": "Загрузить файл",
+			"Enviado a las": "Отправлено в",
+			"Editar": "Редактировать",
+			"Eliminar": "Удалить",
+			"Editado con éxito.": "Успешно отредактировано.",
+			"¿Estás seguro de que quieres eliminar la publicación": "Вы уверены, что хотите удалить пост",
+			"Eliminar una publicación": "Удаление поста",
+			"Eliminado con éxito.": "Успешно удалено.",
+			"Confirmar": "Подтвердить",
+			"Editar una publicación": "Редактирование поста"
 		}
 	}
 }

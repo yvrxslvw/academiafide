@@ -1,4 +1,5 @@
 import { FC, useState, Dispatch, SetStateAction } from 'react';
+import { useTranslation } from 'react-i18next';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Dropdown, isAdmin, timer, useAppSelector } from 'shared';
@@ -19,6 +20,7 @@ export const Actions: FC<ActionsProps> = ({
 	setEditModalShown,
 	setEditionId,
 }) => {
+	const { t } = useTranslation();
 	const { userInfo } = useAppSelector(state => state.user);
 	const [menuShown, setMenuShown] = useState(false);
 
@@ -58,8 +60,8 @@ export const Actions: FC<ActionsProps> = ({
 				onMouseEnter={onMouseEnterHandler}
 				onMouseLeave={onMouseLeaveHandler}
 			>
-				<Dropdown.Item onClick={onClickEditHandler}>Editar</Dropdown.Item>
-				<Dropdown.Item onClick={onClickDeleteHandler}>Eliminar</Dropdown.Item>
+				<Dropdown.Item onClick={onClickEditHandler}>{t('Editar')}</Dropdown.Item>
+				<Dropdown.Item onClick={onClickDeleteHandler}>{t('Eliminar')}</Dropdown.Item>
 			</Dropdown.Menu>
 		);
 };

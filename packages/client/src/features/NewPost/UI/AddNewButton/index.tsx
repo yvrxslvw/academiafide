@@ -1,4 +1,5 @@
 import { Dispatch, FC, SetStateAction } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Button, isAdmin, useAppSelector } from 'shared';
 
 interface AddNewButtonProps {
@@ -6,6 +7,7 @@ interface AddNewButtonProps {
 }
 
 export const AddNewButton: FC<AddNewButtonProps> = ({ setModalShown }) => {
+	const { t } = useTranslation();
 	const { userInfo } = useAppSelector(state => state.user);
 
 	const onClickHandler = () => {
@@ -13,5 +15,5 @@ export const AddNewButton: FC<AddNewButtonProps> = ({ setModalShown }) => {
 	};
 
 	if (!isAdmin(userInfo)) return null;
-	else return <Button onClick={onClickHandler}>Agregar nueva publicación</Button>;
+	else return <Button onClick={onClickHandler}>{t('Agregar nueva publicación')}</Button>;
 };

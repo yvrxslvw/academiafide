@@ -1,4 +1,5 @@
 import { FC, ChangeEvent, Dispatch, SetStateAction } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FileInput, INewPost } from 'shared';
 
 interface ImageFileInputProps {
@@ -7,6 +8,8 @@ interface ImageFileInputProps {
 }
 
 export const ImageFileInput: FC<ImageFileInputProps> = ({ data, setData }) => {
+	const { t } = useTranslation();
+
 	const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
 		const files = event.target.files;
 
@@ -17,5 +20,5 @@ export const ImageFileInput: FC<ImageFileInputProps> = ({ data, setData }) => {
 		}
 	};
 
-	return <FileInput label='Publicar imagen' accept='image/png, image/jpeg' onChange={onChangeHandler} />;
+	return <FileInput label={t('Publicar imagen')} accept='image/png, image/jpeg' onChange={onChangeHandler} />;
 };

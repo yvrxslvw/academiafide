@@ -1,4 +1,5 @@
 import { Dispatch, FC, ReactNode, SetStateAction } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Modal } from 'shared';
 import cl from './style.module.scss';
 
@@ -19,8 +20,10 @@ export const CreatePostModal: FC<CreatePostModalProps> = ({
 	imageFileInput,
 	nextButton,
 }) => {
+	const { t } = useTranslation();
+
 	return (
-		<Modal shown={modalShown} setShown={setModalShown} title='Agregando una nueva publicación'>
+		<Modal shown={modalShown} setShown={setModalShown} title={t('Agregando una nueva publicación')}>
 			<section className={cl.Item}>{titleTextArea}</section>
 			<section className={cl.Item}>{contentTextArea}</section>
 			<section className={cl.Item}>{imageFileInput}</section>

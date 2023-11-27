@@ -1,4 +1,5 @@
 import { FC, HTMLAttributes, ReactNode } from 'react';
+import { useTranslation } from 'react-i18next';
 import cn from 'classnames';
 import { Paragraph, Title } from 'shared';
 import cl from './style.module.scss';
@@ -12,6 +13,8 @@ interface PostProps extends HTMLAttributes<HTMLDivElement> {
 }
 
 export const Post: FC<PostProps> = ({ title, content, image, createdAt, actions, className, ...props }) => {
+	const { t } = useTranslation();
+
 	return (
 		<div className={cn(cl.Post, className)} {...props}>
 			<section className={cl.Actions}>{actions}</section>
@@ -19,7 +22,7 @@ export const Post: FC<PostProps> = ({ title, content, image, createdAt, actions,
 			<Title className={cl.Title}>{title}</Title>
 			<Paragraph className={cl.Content} dangerouslySetInnerHTML={{ __html: content }} />
 			<Paragraph className={cl.Date} small color='primary'>
-				Enviado a las {createdAt}
+				{t('Enviado a las')} {createdAt}
 			</Paragraph>
 		</div>
 	);

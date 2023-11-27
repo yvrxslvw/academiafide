@@ -1,4 +1,5 @@
 import { FC, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Loader, Paragraph, Title, formatDate, formatImageUrl, useGetPostsQuery } from 'shared';
 import { PostEntities } from 'entities';
 import { NewPostFeatures, PostFeatures } from 'features';
@@ -9,6 +10,7 @@ import { DeletePost } from '../DeletePost';
 import { EditPost } from '../EditPost';
 
 export const NewsList: FC = () => {
+	const { t } = useTranslation();
 	const [isAddNewModalShown, setIsAddNewModalShown] = useState(false);
 	const [isEditModalShown, setIsEditModalShown] = useState(false);
 	const [isDeleteModalShown, setIsDeleteModalShown] = useState(false);
@@ -21,7 +23,7 @@ export const NewsList: FC = () => {
 
 	return (
 		<div className={cl.Container}>
-			<Title className={cl.Title}>Últimas noticias</Title>
+			<Title className={cl.Title}>{t('Últimas noticias')}</Title>
 			<section className={cl.AddNewButton}>
 				<AddNewButton setModalShown={setIsAddNewModalShown} />
 			</section>
@@ -29,9 +31,9 @@ export const NewsList: FC = () => {
 				{isLoading ? (
 					<Loader />
 				) : isError || !data ? (
-					<Paragraph small>Se produjo un error inesperado... Vuelva a intentarlo más tarde.</Paragraph>
+					<Paragraph small>{t('Se produjo un error inesperado... Vuelva a intentarlo más tarde.')}</Paragraph>
 				) : data.length === 0 ? (
-					<Paragraph small>No hay novedades por el momento.</Paragraph>
+					<Paragraph small>{t('No hay novedades por el momento.')}</Paragraph>
 				) : (
 					data.map(({ id, title, content, image, createdAt }) => (
 						<Post
