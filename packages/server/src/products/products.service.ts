@@ -37,7 +37,7 @@ export class ProductsService {
 		if (!product) throw new NotFoundException("Product doesn't exists.");
 		if (product.image) await this.filesService.deleteFile(product.image);
 		await product.destroy();
-		return 'Deleted.';
+		return { message: 'Deleted.' };
 	}
 
 	async update(id: number, dto: UpdateProductDto, image?: any) {

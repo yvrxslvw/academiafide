@@ -32,7 +32,17 @@ export const ShopApi = createApi({
 				},
 			}),
 		}),
+		deleteProduct: builder.mutation<{ message: string }, number>({
+			query: id => ({
+				url: `/api/products/${id}`,
+				method: 'DELETE',
+				headers: {
+					Authorization: `Bearer ${window.localStorage.getItem('accessToken')}`,
+				},
+			}),
+		}),
 	}),
 });
 
-export const { useGetProductsQuery, useCreateProductMutation, useEditProductMutation } = ShopApi;
+export const { useGetProductsQuery, useCreateProductMutation, useEditProductMutation, useDeleteProductMutation } =
+	ShopApi;

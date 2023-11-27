@@ -5,11 +5,14 @@ import { ShopItemFeatures, ShopListFeatures } from 'features';
 import cl from './style.module.scss';
 import { AddNewProduct } from '../AddNewProduct';
 import { EditProduct } from '../EditProduct';
+import { DeleteProduct } from '../DeleteProduct';
 
 export const ShopList: FC = () => {
 	const [isCreateProductModalShown, setIsCreateProductModalShown] = useState(false);
 	const [isEditProductModalShown, setIsEditProductModalShown] = useState(false);
+	const [isDeleteProductModalShown, setIsDeleteProductModalShown] = useState(false);
 	const [editionId, setEditionId] = useState(-1);
+	const [deletionId, setDeletionId] = useState(-1);
 	const { data, isError, isLoading, refetch } = useGetProductsQuery(null, { pollingInterval: 60 * 1000 });
 	const { Item } = ShopEntities;
 	const { PurchaseButton, ActionsDropdown } = ShopItemFeatures;
@@ -20,7 +23,10 @@ export const ShopList: FC = () => {
 		setIsEditProductModalShown(true);
 	};
 
-	const onDeleteHandler = (id: number) => {};
+	const onDeleteHandler = (id: number) => {
+		setDeletionId(id);
+		setIsDeleteProductModalShown(true);
+	};
 
 	return (
 		<div className={cl.Container}>
@@ -61,6 +67,12 @@ export const ShopList: FC = () => {
 						product={data[data.findIndex(product => product.id === editionId)]}
 						isModalShown={isEditProductModalShown}
 						setIsModalShown={setIsEditProductModalShown}
+						refetch={refetch}
+					/>
+					<DeleteProduct
+						product={data[data.findIndex(product => product.id === deletionId)]}
+						isModalShown={isDeleteProductModalShown}
+						setIsModalShown={setIsDeleteProductModalShown}
 						refetch={refetch}
 					/>
 				</>

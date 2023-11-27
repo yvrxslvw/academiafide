@@ -21,14 +21,14 @@ export const Modal: FC<ModalProps> = ({ shown, setShown, title, children, classN
 
 	return (
 		<CSSTransition in={shown} nodeRef={modalRef} timeout={300} classNames='modal' unmountOnExit>
-			<div className={cn(cl.Modal, className)} ref={modalRef} {...props}>
+			<div className={cl.Modal} ref={modalRef} {...props}>
 				<div className={cl.Blackout} onClick={onClickHandler} />
 				<div className={cl.Window}>
 					<button className={cl.CloseButton} onClick={onClickHandler}>
 						<FontAwesomeIcon icon={faXmark} />
 					</button>
 					<h2 className={cl.Title}>{title}</h2>
-					<section className={cl.Content}>{children}</section>
+					<section className={cn(cl.Content, className)}>{children}</section>
 				</div>
 			</div>
 		</CSSTransition>

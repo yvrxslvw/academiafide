@@ -11,7 +11,7 @@ interface EditProductProps {
 }
 
 export const EditProduct: FC<EditProductProps> = ({ product, isModalShown, setIsModalShown, refetch }) => {
-	const { CreateProductModal } = ShopEntities;
+	const { EditModal } = ShopEntities;
 	const { TitleInput, PriceInput, DescriptionTextarea, ImageInput, EditButton } = ShopListFeatures;
 
 	const [data, setData] = useState<INewProduct>({
@@ -41,7 +41,7 @@ export const EditProduct: FC<EditProductProps> = ({ product, isModalShown, setIs
 	}, [isModalShown]);
 
 	return (
-		<CreateProductModal
+		<EditModal
 			isModalShown={isModalShown}
 			setIsModalShown={setIsModalShown}
 			titleInput={<TitleInput data={data} setData={setData} />}

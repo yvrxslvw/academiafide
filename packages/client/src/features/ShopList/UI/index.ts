@@ -5,3 +5,4 @@ export * from './PriceInput';
 export * from './ImageInput';
 export * from './AddButton';
 export * from './EditButton';
+export * from './DeleteButton';

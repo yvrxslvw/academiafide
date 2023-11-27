@@ -15,5 +15,5 @@ export const ImageInput: FC<ImageInputProps> = ({ data, setData }) => {
 		}
 	};
 
-	return <FileInput label='Subir archivo' onChange={onChangeHandler} />;
+	return <FileInput label='Subir archivo' onChange={onChangeHandler} accept='image/png, image/jpeg' />;
 };
