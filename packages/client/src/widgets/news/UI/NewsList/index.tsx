@@ -28,9 +28,9 @@ export const NewsList: FC = () => {
 			<section className={cl.PostBody}>
 				{isLoading ? (
 					<Loader />
-				) : isError ? (
+				) : isError || !data ? (
 					<Paragraph small>Se produjo un error inesperado... Vuelva a intentarlo más tarde.</Paragraph>
-				) : !data ? (
+				) : data.length === 0 ? (
 					<Paragraph small>No hay novedades por el momento.</Paragraph>
 				) : (
 					data.map(({ id, title, content, image, createdAt }) => (

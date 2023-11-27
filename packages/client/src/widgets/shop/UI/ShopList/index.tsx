@@ -20,9 +20,9 @@ export const ShopList: FC = () => {
 			</section>
 			{isLoading ? (
 				<Loader />
-			) : isError ? (
+			) : isError || !data ? (
 				<Paragraph small>Se produjo un error inesperado... Vuelva a intentarlo más tarde.</Paragraph>
-			) : !data ? (
+			) : data.length === 0 ? (
 				<Paragraph small>Aún no hay productos.</Paragraph>
 			) : (
 				<section className={cl.ShopList}>
