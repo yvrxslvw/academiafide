@@ -9,7 +9,7 @@ if (!root) throw new Error('Root element not found.');
 
 i18n.use(initReactI18next).init({
 	resources,
-	lng: 'ru', // !
+	lng: 'es',
 	fallbackLng: ['es', 'en', 'ru'],
 	interpolation: {
 		escapeValue: false,
