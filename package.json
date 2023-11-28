@@ -14,7 +14,10 @@
 	],
 	"scripts": {
 		"dev:client": "yarn workspace client dev",
-		"dev:server": "yarn workspace server dev"
+		"dev:server": "yarn workspace server dev",
+		"build:client": "yarn workspace client build",
+		"build:server": "yarn workspace server build",
+		"prod:server": "yarn workspace server prod"
 	},
 	"repository": {
 		"url": "https://github.com/yvrxslvw/academiafide"

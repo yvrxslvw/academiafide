@@ -18,7 +18,7 @@ import { MailerModule } from './mailer/mailer.module';
 import { UserModule } from './user/user.module';
 
 const isDev = process.env.APP_MODE === 'development';
-const envFilePath = isDev ? '.env.development' : '.env';
+const envFilePath = isDev ? '.env.development' : path.resolve(__dirname, '.env');
 
 @Module({
 	imports: [

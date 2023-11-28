@@ -15,4 +15,7 @@ export default defineConfig({
 			'@styles': '/src/shared/styles/index.scss',
 		},
 	},
+	build: {
+		chunkSizeWarningLimit: 1024,
+	},
 });

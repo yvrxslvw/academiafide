@@ -1,3 +1,5 @@
+/// <reference types="vite/client" />
+
 declare module '*.module.scss' {
 	interface IClassNames {
 		[className: string]: string;
@@ -21,4 +23,12 @@ declare module '*.png' {
 declare module '*.svg' {
 	const src: string;
 	export = src;
+}
+
+interface ImportMetaEnv {
+	readonly VITE_API_URL: string;
+}
+
+interface ImportMeta {
+	readonly env: ImportMetaEnv;
 }

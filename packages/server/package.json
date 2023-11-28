@@ -8,6 +8,7 @@
 	"scripts": {
 		"build": "nest build",
 		"dev": "cross-env APP_MODE=development nest start --watch",
+		"prod": "node ./dist/main.js",
 		"lint": "eslint ./src"
 	},
 	"dependencies": {

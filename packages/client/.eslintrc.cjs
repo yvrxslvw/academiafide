@@ -21,7 +21,7 @@ module.exports = {
 			version: 'detect',
 		},
 	},
-	ignorePatterns: ['./dist', './.eslintrc.cjs', './node_modules', './vite.config.ts'],
+	ignorePatterns: ['/dist', '/.eslintrc.cjs', '/node_modules', '/vite.config.ts'],
 	rules: {
 		'import/prefer-default-export': 0,
 		'import/no-unresolved': 0,

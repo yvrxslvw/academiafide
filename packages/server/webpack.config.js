@@ -6,7 +6,6 @@ module.exports = () => {
 	const envFile = path.resolve(__dirname, '.env.production');
 	const pkgFile = path.resolve(__dirname, 'package.json');
 	const pkg = jetpack.read(pkgFile, 'json');
-	const isDev = process.env.APP_MODE === 'development';
 
 	jetpack.remove(buildOutput + '/.env');
 	jetpack.remove(buildOutput + '/main.js');
@@ -27,7 +26,7 @@ module.exports = () => {
 	});
 
 	const config = {
-		mode: isDev ? 'development' : 'production',
+		mode: 'none',
 		output: {
 			path: buildOutput,
 			filename: '[name].js',
