@@ -1,4 +1,5 @@
 import { Dispatch, FC, ReactNode, SetStateAction } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Modal } from 'shared';
 import cl from './style.module.scss';
 
@@ -21,8 +22,10 @@ export const CreateProductModal: FC<CreateProductModalProps> = ({
 	imageInput,
 	nextButton,
 }) => {
+	const { t } = useTranslation();
+
 	return (
-		<Modal shown={isModalShown} setShown={setIsModalShown} title='Agregar un nuevo producto'>
+		<Modal shown={isModalShown} setShown={setIsModalShown} title={t('Agregar un nuevo producto')}>
 			<section className={cl.Item}>{titleInput}</section>
 			<section className={cl.Item}>{priceInput}</section>
 			<section className={cl.Item}>{descriptionTextarea}</section>

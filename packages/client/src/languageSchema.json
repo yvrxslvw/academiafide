@@ -96,7 +96,24 @@
 			"- Campeón de Argentina en dos ocasiones;": "- Campeón de Argentina en dos ocasiones;",
 			"- Ganador de numerosos abiertos internacionales en Europa y América;": "- Ganador de numerosos abiertos internacionales en Europa y América;",
 			"- Más de 15 años de experiencia como profesor y entrenador de ajedrez de alto rendimiento;": "- Más de 15 años de experiencia como profesor y entrenador de ajedrez de alto rendimiento;",
-			"- Maestro Internacional y FIDE Trainer (FIDE).": "- Maestro Internacional y FIDE Trainer (FIDE)."
+			"- Maestro Internacional y FIDE Trainer (FIDE).": "- Maestro Internacional y FIDE Trainer (FIDE).",
+			"Tienda de Academia Fide": "Tienda de Academia Fide",
+			"Aún no hay productos.": "Aún no hay productos.",
+			"Comprar": "Comprar",
+			"Añadir un nuevo producto": "Añadir un nuevo producto",
+			"Nombre de producto incorrecto.": "Nombre de producto incorrecto.",
+			"Precio del producto incorrecto.": "Precio del producto incorrecto.",
+			"Descripción del producto incorrecta.": "Descripción del producto incorrecta.",
+			"Este producto ya existe.": "Este producto ya existe.",
+			"El producto ha sido creado exitosamente.": "El producto ha sido creado exitosamente.",
+			"Descripción del nuevo producto": "Descripción del nuevo producto",
+			"Precio del nuevo producto": "Precio del nuevo producto",
+			"El nombre del producto": "El nombre del producto",
+			"¿Estás seguro de que deseas eliminar el producto:": "¿Estás seguro de que deseas eliminar el producto:",
+			"Agregar un nuevo producto": "Agregar un nuevo producto",
+			"El producto ha sido editado exitosamente.": "El producto ha sido editado exitosamente.",
+			"Eliminar un producto": "Eliminar un producto",
+			"Cargando por favor espere...": "Cargando por favor espere..."
 		}
 	},
 	"en": {
@@ -196,7 +213,24 @@
 			"- Campeón de Argentina en dos ocasiones;": "- Champion of Argentina on two occasions;",
 			"- Ganador de numerosos abiertos internacionales en Europa y América;": "- Winner of numerous international open competitions in Europe and America;",
 			"- Más de 15 años de experiencia como profesor y entrenador de ajedrez de alto rendimiento;": "- More than 15 years of experience as a high-performance chess teacher and coach;",
-			"- Maestro Internacional y FIDE Trainer (FIDE).": "- International Master and FIDE Trainer (FIDE)."
+			"- Maestro Internacional y FIDE Trainer (FIDE).": "- International Master and FIDE Trainer (FIDE).",
+			"Tienda de Academia Fide": "Academia Fide store",
+			"Aún no hay productos.": "There are no products yet.",
+			"Comprar": "Purchase",
+			"Añadir un nuevo producto": "Add a new product",
+			"Nombre de producto incorrecto.": "Incorrect product name.",
+			"Precio del producto incorrecto.": "Incorrect product price.",
+			"Descripción del producto incorrecta.": "Incorrect product description.",
+			"Este producto ya existe.": "This product already exists.",
+			"El producto ha sido creado exitosamente.": "The product has been created successfully.",
+			"Descripción del nuevo producto": "New Product Description",
+			"Precio del nuevo producto": "Price of the new product",
+			"El nombre del producto": "Product name",
+			"¿Estás seguro de que deseas eliminar el producto:": "Are you sure you want to remove the product:",
+			"Agregar un nuevo producto": "Add a new product",
+			"El producto ha sido editado exitosamente.": "The product has been successfully edited.",
+			"Eliminar un producto": "Delete a product",
+			"Cargando por favor espere...": "Loading Please wait..."
 		}
 	},
 	"ru": {
@@ -233,7 +267,7 @@
 			"Contraseña": "Пароль",
 			"Autorización": "Авторизация",
 			"Dirección de correo electrónico": "Адрес электронной почты",
-			"Correo electronico incorrecto.": "Неверный почтовый ящик.",
+			"Correo electronico incorrecto.": "Неверный адрес электронной почты.",
 			"Se produjo un error inesperado... Vuelva a intentarlo más tarde.": "Произошла непредвиденная ошибка... Повторите попытку позже.",
 			"Se ha enviado un correo electrónico con una nueva contraseña a su correo electrónico": "Письмо с новым паролем было отправлено на почту",
 			"Recuperación de acceso": "Восстановление доступа",
@@ -296,7 +330,24 @@
 			"- Campeón de Argentina en dos ocasiones;": "- Двукратный Чемпион Аргентины;",
 			"- Ganador de numerosos abiertos internacionales en Europa y América;": "- Победитель многочисленных международных открытых соревнований в Европе и Америке;",
 			"- Más de 15 años de experiencia como profesor y entrenador de ajedrez de alto rendimiento;": "- Более 15 лет опыта работы высококлассным преподавателем и тренером по шахматам;",
-			"- Maestro Internacional y FIDE Trainer (FIDE).": "- Международный мастер и тренер FIDE (FIDE)."
+			"- Maestro Internacional y FIDE Trainer (FIDE).": "- Международный мастер и тренер FIDE (FIDE).",
+			"Tienda de Academia Fide": "Магазин Academia Fide",
+			"Aún no hay productos.": "Товаров пока нет.",
+			"Comprar": "Приобрести",
+			"Añadir un nuevo producto": "Добавить новый продукт",
+			"Nombre de producto incorrecto.": "Неверное название продукта.",
+			"Precio del producto incorrecto.": "Неправильная цена товара.",
+			"Descripción del producto incorrecta.": "Неверное описание товара.",
+			"Este producto ya existe.": "Этот продукт уже существует.",
+			"El producto ha sido creado exitosamente.": "Продукт успешно создан.",
+			"Descripción del nuevo producto": "Описание нового продукта",
+			"Precio del nuevo producto": "Цена нового продукта",
+			"El nombre del producto": "Наименование товара",
+			"¿Estás seguro de que deseas eliminar el producto:": "Вы уверены, что хотите удалить товар:",
+			"Agregar un nuevo producto": "Добавить новый продукт",
+			"El producto ha sido editado exitosamente.": "Продукт успешно отредактирован.",
+			"Eliminar un producto": "Удалить продукт",
+			"Cargando por favor espere...": "Загрузка, пожалуйста подождите..."
 		}
 	}
 }

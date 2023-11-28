@@ -1,4 +1,5 @@
 import { Dispatch, SetStateAction, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
 import { PublicRouterPaths, isErrorFromBackend, useGetUserInfoMutation, useLoginMutation } from 'shared';
 import { LoginModels, usePopup } from 'entities';
@@ -7,6 +8,7 @@ export const useFetchLogin = (
 	loginData: LoginModels.LoginData,
 	setLoginData: Dispatch<SetStateAction<LoginModels.LoginData>>,
 ) => {
+	const { t } = useTranslation();
 	const [fetchLogin, { data, error, isLoading }] = useLoginMutation();
 	const [loginUser] = useGetUserInfoMutation();
 	const { createPopup } = usePopup();
@@ -23,10 +25,10 @@ export const useFetchLogin = (
 	useEffect(() => {
 		if (error) {
 			if (isErrorFromBackend(error) && error.data.statusCode === 403) {
-				createPopup('Nombre de usuario o contraseña incorrectos.');
+				createPopup(t('Nombre de usuario o contraseña incorrectos.'));
 				setLoginData({ ...loginData, loginError: true, passwordError: true });
 			} else {
-				createPopup('Se produjo un error inesperado... Vuelva a intentarlo más tarde.');
+				createPopup(t('Se produjo un error inesperado... Vuelva a intentarlo más tarde.'));
 			}
 		}
 	}, [error]);

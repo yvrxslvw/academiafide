@@ -1,4 +1,5 @@
 import { ChangeEvent, Dispatch, FC, SetStateAction } from 'react';
+import { useTranslation } from 'react-i18next';
 import { INewProduct, Input } from 'shared';
 
 interface TitleInputProps {
@@ -7,9 +8,11 @@ interface TitleInputProps {
 }
 
 export const TitleInput: FC<TitleInputProps> = ({ data, setData }) => {
+	const { t } = useTranslation();
+
 	const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
 		setData({ ...data, title: event.target.value, titleError: false });
 	};
 
-	return <Input label='El nombre del producto' value={data.title} onChange={onChangeHandler} error={data.titleError} />;
+	return <Input label={t('El nombre del producto')} value={data.title} onChange={onChangeHandler} error={data.titleError} />;
 };

@@ -1,4 +1,5 @@
 import { FC, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Dropdown, isAdmin, timer, useAppSelector } from 'shared';
@@ -11,6 +12,7 @@ interface ActionsDropdownProps {
 }
 
 export const ActionsDropdown: FC<ActionsDropdownProps> = ({ productId, onEditHandler, onDeleteHandler }) => {
+	const { t } = useTranslation();
 	const [isMenuShown, setIsMenuShown] = useState(false);
 	const { userInfo } = useAppSelector(state => state.user);
 
@@ -48,8 +50,8 @@ export const ActionsDropdown: FC<ActionsDropdownProps> = ({ productId, onEditHan
 				onMouseEnter={onMouseEnterHandler}
 				onMouseLeave={onMouseLeaveHandler}
 			>
-				<Dropdown.Item onClick={onClickEditHandler}>Editar</Dropdown.Item>
-				<Dropdown.Item onClick={onClickDeleteHandler}>Eliminar</Dropdown.Item>
+				<Dropdown.Item onClick={onClickEditHandler}>{t('Editar')}</Dropdown.Item>
+				<Dropdown.Item onClick={onClickDeleteHandler}>{t('Eliminar')}</Dropdown.Item>
 			</Dropdown.Menu>
 		);
 };

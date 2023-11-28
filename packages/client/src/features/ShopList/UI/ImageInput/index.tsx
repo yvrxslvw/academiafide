@@ -1,4 +1,5 @@
 import { ChangeEvent, Dispatch, FC, SetStateAction } from 'react';
+import { useTranslation } from 'react-i18next';
 import { FileInput, INewProduct } from 'shared';
 
 interface ImageInputProps {
@@ -7,6 +8,8 @@ interface ImageInputProps {
 }
 
 export const ImageInput: FC<ImageInputProps> = ({ data, setData }) => {
+	const { t } = useTranslation();
+
 	const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
 		if (event.target.files) {
 			for (const file of event.target.files) {
@@ -15,5 +18,5 @@ export const ImageInput: FC<ImageInputProps> = ({ data, setData }) => {
 		}
 	};
 
-	return <FileInput label='Subir archivo' onChange={onChangeHandler} accept='image/png, image/jpeg' />;
+	return <FileInput label={t('Subir archivo')} onChange={onChangeHandler} accept='image/png, image/jpeg' />;
 };

@@ -1,4 +1,5 @@
 import { FC, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Loader, Paragraph, Title, formatImageUrl, useGetProductsQuery } from 'shared';
 import { ShopEntities } from 'entities';
 import { ShopItemFeatures, ShopListFeatures } from 'features';
@@ -8,6 +9,7 @@ import { EditProduct } from '../EditProduct';
 import { DeleteProduct } from '../DeleteProduct';
 
 export const ShopList: FC = () => {
+	const { t } = useTranslation();
 	const [isCreateProductModalShown, setIsCreateProductModalShown] = useState(false);
 	const [isEditProductModalShown, setIsEditProductModalShown] = useState(false);
 	const [isDeleteProductModalShown, setIsDeleteProductModalShown] = useState(false);
@@ -30,16 +32,16 @@ export const ShopList: FC = () => {
 
 	return (
 		<div className={cl.Container}>
-			<Title className={cl.Title}>Tienda de Academia Fide</Title>
+			<Title className={cl.Title}>{t('Tienda de Academia Fide')}</Title>
 			<section className={cl.AddNewButton}>
 				<AddNewButton setIsModalShown={setIsCreateProductModalShown} />
 			</section>
 			{isLoading ? (
 				<Loader />
 			) : isError || !data ? (
-				<Paragraph small>Se produjo un error inesperado... Vuelva a intentarlo más tarde.</Paragraph>
+				<Paragraph small>{t('Se produjo un error inesperado... Vuelva a intentarlo más tarde.')}</Paragraph>
 			) : data.length === 0 ? (
-				<Paragraph small>Aún no hay productos.</Paragraph>
+				<Paragraph small>{t('Aún no hay productos.')}</Paragraph>
 			) : (
 				<section className={cl.ShopList}>
 					{data.map(({ id, title, description, image }) => (

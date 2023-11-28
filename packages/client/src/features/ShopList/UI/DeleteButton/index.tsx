@@ -1,6 +1,7 @@
-import { usePopup } from 'entities';
 import { Dispatch, FC, SetStateAction, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Button, useDeleteProductMutation } from 'shared';
+import { usePopup } from 'entities';
 
 interface DeleteButtonProps {
 	productId: number;
@@ -9,6 +10,7 @@ interface DeleteButtonProps {
 }
 
 export const DeleteButton: FC<DeleteButtonProps> = ({ productId, refetch, setIsModalShown }) => {
+	const { t } = useTranslation();
 	const [deleteProduct, { data: fetchData, error: fetchError, isLoading }] = useDeleteProductMutation();
 	const { createPopup } = usePopup();
 
@@ -18,7 +20,7 @@ export const DeleteButton: FC<DeleteButtonProps> = ({ productId, refetch, setIsM
 
 	useEffect(() => {
 		if (fetchError) {
-			createPopup('Se produjo un error inesperado... Vuelva a intentarlo más tarde.');
+			createPopup(t('Se produjo un error inesperado... Vuelva a intentarlo más tarde.'));
 		}
 	}, [fetchError]);
 
@@ -26,13 +28,13 @@ export const DeleteButton: FC<DeleteButtonProps> = ({ productId, refetch, setIsM
 		if (fetchData) {
 			refetch();
 			setIsModalShown(false);
-			createPopup('Eliminado con éxito.');
+			createPopup(t('Eliminado con éxito.'));
 		}
 	}, [fetchData]);
 
 	return (
 		<Button onClick={onClickHandler} loading={isLoading}>
-			Eliminar
+			{t('Eliminar')}
 		</Button>
 	);
 };
