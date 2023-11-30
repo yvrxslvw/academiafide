@@ -38,6 +38,11 @@ export class AuthService {
 		return this.generateToken(user, response);
 	}
 
+	async logout(response: Response) {
+		response.clearCookie('refreshToken', { path: '/api/auth/refresh', secure: true, sameSite: 'none' });
+		return response.json({ message: 'Successfully.' });
+	}
+
 	async sendCodeEmail(id: number, dto: SendCodeEmailDto) {
 		const user = await this.usersService.getOneById(id);
 		const emailExists = await this.usersService.getOneByEmail(dto.email, false);

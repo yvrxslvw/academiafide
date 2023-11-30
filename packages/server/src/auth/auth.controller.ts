@@ -29,6 +29,13 @@ export class AuthController {
 		return this.authService.logup(dto, response);
 	}
 
+	@ApiOperation({ summary: 'Logout user' })
+	@ApiResponse({ status: 201, description: 'Successful logouting' })
+	@Post('/logout')
+	logout(@Res() response: Response) {
+		return this.authService.logout(response);
+	}
+
 	@ApiOperation({ summary: 'Sending email confirmation code [Authorized]' })
 	@ApiResponse({ status: 200, description: 'Successfully sending the code' })
 	@ApiResponse({ status: 403, description: 'If email already exists or user is unauthorized' })
