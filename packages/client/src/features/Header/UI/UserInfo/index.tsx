@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, PublicRouterPaths, formatImageUrl, useAppDispatch, useAppSelector } from 'shared';
+import { Link, PublicRouterPaths, formatImageUrl, useAppDispatch, useAppSelector, useLogoutMutation } from 'shared';
 import cl from './style.module.scss';
 import { UserSlice } from 'app/store/models';
 
@@ -9,13 +9,15 @@ export const UserInfo: FC = () => {
 	const { userInfo } = useAppSelector(state => state.user);
 	const dispatch = useAppDispatch();
 	const { logout } = UserSlice.actions;
+	const [logoutUser] = useLogoutMutation();
 
 	const onClickAvatarHandler = () => {
 		// eslint-disable-next-line no-console
 		console.info('will be account actions here');
 	};
 
-	const onClickLogoutHandler = () => {
+	const onClickLogoutHandler = async () => {
+		await logoutUser();
 		dispatch(logout());
 		window.localStorage.removeItem('accessToken');
 	};
