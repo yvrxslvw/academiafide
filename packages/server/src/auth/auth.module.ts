@@ -16,7 +16,6 @@ import { MailerModule } from 'src/mailer/mailer.module';
 			useFactory: (config: ConfigService) => ({
 				global: true,
 				secret: config.get<string>('API_SECRET_KEY'),
-				signOptions: { expiresIn: '24h' },
 			}),
 		}),
 		forwardRef(() => UsersModule),

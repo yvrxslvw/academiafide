@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
+import * as cookieParser from 'cookie-parser';
 import { AppModule } from './App.module';
 import { Role } from './roles/role.model';
 
@@ -10,9 +11,10 @@ const bootstrap = async () => {
 	const HOST = process.env.API_HOST ?? 'localhost';
 	const PORT = Number(process.env.API_PORT) ?? 3001;
 	const CLIENT_URL = process.env.CLIENT_URL ?? 'http://localhost:3000';
-	const app = await NestFactory.create(AppModule, { cors: { origin: CLIENT_URL } });
+	const app = await NestFactory.create(AppModule, { cors: { origin: CLIENT_URL, credentials: true } });
 	app.setGlobalPrefix('/api');
 	app.useGlobalPipes(new ValidationPipe());
+	app.use(cookieParser());
 
 	if (isDev) {
 		const swaggerConfig = new DocumentBuilder()

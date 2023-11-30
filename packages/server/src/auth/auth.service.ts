@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
-import { ForbiddenException, InternalServerErrorException } from '@nestjs/common/exceptions';
+import { ForbiddenException, InternalServerErrorException, UnauthorizedException } from '@nestjs/common/exceptions';
 import { JwtService } from '@nestjs/jwt';
+import { Response, Request } from 'express';
 import * as bcrypt from 'bcrypt';
 import { UsersService } from 'src/users/users.service';
 import { LoginUserDto } from './dto/login-user.dto';
@@ -18,7 +19,7 @@ export class AuthService {
 		private readonly mailerService: MailerService,
 	) {}
 
-	async login(dto: LoginUserDto) {
+	async login(dto: LoginUserDto, response: Response) {
 		const user = await this.usersService.getOneByLogin(dto.login);
 		if (!user) throw new ForbiddenException('Incorrect login or password.');
 		const isPasswordCorrect = await bcrypt.compare(dto.password, user.password);
@@ -28,13 +29,13 @@ export class AuthService {
 				if (!isRecoveryPasswordCorrect) throw new ForbiddenException('Incorrect login or password.');
 			} else throw new ForbiddenException('Incorrect login or password.');
 		}
-		return this.generateToken(user);
+		return this.generateToken(user, response);
 	}
 
-	async logup(dto: CreateUserDto) {
+	async logup(dto: CreateUserDto, response: Response) {
 		const hashPassword = await bcrypt.hash(dto.password, 5);
 		const user = await this.usersService.create({ ...dto, password: hashPassword });
-		return this.generateToken(user);
+		return this.generateToken(user, response);
 	}
 
 	async sendCodeEmail(id: number, dto: SendCodeEmailDto) {
@@ -61,10 +62,26 @@ export class AuthService {
 		return 'Confirmed.';
 	}
 
-	private async generateToken(user: User) {
-		const payload = { id: user.id, roles: user.roles };
-		return {
-			token: this.jwtService.sign(payload),
-		};
+	async refresh(request: Request, response: Response) {
+		const token = request.cookies['refreshToken'];
+		if (!token) throw new UnauthorizedException('Not authorized.');
+		const { id } = await this.jwtService.verifyAsync<{ id: number }>(token);
+		const user = await this.usersService.getOneById(id);
+		return this.generateToken(user, response);
+	}
+
+	private async generateToken(user: User, response: Response) {
+		const accessPayload = { id: user.id, roles: user.roles };
+		const refreshPayload = { id: user.id };
+
+		response.cookie('refreshToken', this.jwtService.sign(refreshPayload, { expiresIn: '30d' }), {
+			expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30),
+			path: '/api/auth/refresh',
+			secure: true,
+		});
+
+		return response.json({
+			token: this.jwtService.sign(accessPayload, { expiresIn: '10s' }),
+		});
 	}
 }

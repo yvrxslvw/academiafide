@@ -1,10 +1,10 @@
-import { Controller, Post, Body, UseGuards, Req } from '@nestjs/common';
+import { Controller, Post, Body, UseGuards, Req, Res } from '@nestjs/common';
+import { Request, Response } from 'express';
 import { LoginUserDto } from './dto/login-user.dto';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from './jwt-auth.guard';
-import { Request } from 'express';
 import { SendCodeEmailDto } from './dto/send-code-email.dto';
 import { ConfirmCodeEmailDto } from './dto/confirm-code-email.dto';
 
@@ -17,16 +17,16 @@ export class AuthController {
 	@ApiResponse({ status: 201, description: 'Successful authorization and get the token' })
 	@ApiResponse({ status: 403, description: 'Incorrect login or password' })
 	@Post('/login')
-	login(@Body() dto: LoginUserDto) {
-		return this.authService.login(dto);
+	login(@Body() dto: LoginUserDto, @Res() response: Response) {
+		return this.authService.login(dto, response);
 	}
 
 	@ApiOperation({ summary: 'Register user' })
 	@ApiResponse({ status: 201, description: 'Successful registration and get the token' })
 	@ApiResponse({ status: 403, description: 'If login or email already exists' })
 	@Post('/logup')
-	logup(@Body() dto: CreateUserDto) {
-		return this.authService.logup(dto);
+	logup(@Body() dto: CreateUserDto, @Res() response: Response) {
+		return this.authService.logup(dto, response);
 	}
 
 	@ApiOperation({ summary: 'Sending email confirmation code [Authorized]' })
@@ -51,5 +51,14 @@ export class AuthController {
 	@Post('/email_confirmation')
 	confirmCodeEmail(@Req() request: Request, @Body() dto: ConfirmCodeEmailDto) {
 		return this.authService.confirmCodeEmail(request['user'].id, dto);
+	}
+
+	@ApiOperation({ summary: 'Refresh tokens [Authorized]' })
+	@ApiResponse({ status: 200, description: 'Successfully refreshing' })
+	@ApiResponse({ status: 401, description: 'If user is unauthorized' })
+	@UseGuards(JwtAuthGuard)
+	@Post('/refresh')
+	refresh(@Req() request: Request, @Res() response: Response) {
+		return this.authService.refresh(request, response);
 	}
 }
