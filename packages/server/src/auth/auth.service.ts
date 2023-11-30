@@ -73,15 +73,17 @@ export class AuthService {
 	private async generateToken(user: User, response: Response) {
 		const accessPayload = { id: user.id, roles: user.roles };
 		const refreshPayload = { id: user.id };
+		const refreshToken = await this.jwtService.signAsync(refreshPayload, { expiresIn: '30d' });
 
-		response.cookie('refreshToken', this.jwtService.sign(refreshPayload, { expiresIn: '30d' }), {
-			expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 30),
+		response.cookie('refreshToken', refreshToken, {
+			maxAge: 1000 * 60 * 60 * 24 * 30,
 			path: '/api/auth/refresh',
 			secure: true,
+			sameSite: 'none',
 		});
 
 		return response.json({
-			token: this.jwtService.sign(accessPayload, { expiresIn: '10s' }),
+			token: this.jwtService.sign(accessPayload, { expiresIn: '10m' }),
 		});
 	}
 }

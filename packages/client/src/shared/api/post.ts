@@ -1,10 +1,11 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { API_URL, IPost } from 'shared';
+import { createApi } from '@reduxjs/toolkit/query/react';
+import { IPost } from 'shared';
+import { baseQuery } from './baseQuery';
 
 export const PostApi = createApi({
 	reducerPath: 'api/posts',
 	tagTypes: ['post'],
-	baseQuery: fetchBaseQuery({ baseUrl: API_URL + '/api' }),
+	baseQuery,
 	endpoints: builder => ({
 		getPosts: builder.query<IPost[], null>({
 			query: () => ({
@@ -16,29 +17,20 @@ export const PostApi = createApi({
 			query: body => ({
 				url: '/posts',
 				method: 'PUT',
-				body,
-				headers: {
-					Authorization: `Bearer ${window.localStorage.getItem('accessToken')}`,
-				},
+				body
 			}),
 		}),
 		deletePost: builder.mutation<{ message: string }, number>({
 			query: id => ({
 				url: `/posts/${id}`,
-				method: 'DELETE',
-				headers: {
-					Authorization: `Bearer ${window.localStorage.getItem('accessToken')}`,
-				},
+				method: 'DELETE'
 			}),
 		}),
 		editPost: builder.mutation<IPost, FormData>({
 			query: body => ({
 				url: `/posts/${body.get('id')}`,
 				method: 'PATCH',
-				body,
-				headers: {
-					Authorization: `Bearer ${window.localStorage.getItem('accessToken')}`,
-				},
+				body
 			}),
 		}),
 	}),

@@ -1,44 +1,36 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { API_URL, IShop } from 'shared';
+import { createApi } from '@reduxjs/toolkit/query/react';
+import { IShop } from 'shared';
+import { baseQuery } from './baseQuery';
 
 export const ShopApi = createApi({
 	reducerPath: 'api/shop',
 	tagTypes: ['shop'],
-	baseQuery: fetchBaseQuery({ baseUrl: API_URL }),
+	baseQuery,
 	endpoints: builder => ({
 		getProducts: builder.query<IShop[], null>({
 			query: () => ({
-				url: '/api/products',
+				url: '/products',
 				method: 'GET',
 			}),
 		}),
 		createProduct: builder.mutation<IShop, FormData>({
 			query: body => ({
-				url: '/api/products',
+				url: '/products',
 				method: 'PUT',
-				body,
-				headers: {
-					Authorization: `Bearer ${window.localStorage.getItem('accessToken')}`,
-				},
+				body
 			}),
 		}),
 		editProduct: builder.mutation<IShop, { id: number; body: FormData }>({
 			query: ({ id, body }) => ({
-				url: `/api/products/${id}`,
+				url: `/products/${id}`,
 				method: 'PATCH',
-				body,
-				headers: {
-					Authorization: `Bearer ${window.localStorage.getItem('accessToken')}`,
-				},
+				body
 			}),
 		}),
 		deleteProduct: builder.mutation<{ message: string }, number>({
 			query: id => ({
-				url: `/api/products/${id}`,
-				method: 'DELETE',
-				headers: {
-					Authorization: `Bearer ${window.localStorage.getItem('accessToken')}`,
-				},
+				url: `/products/${id}`,
+				method: 'DELETE'
 			}),
 		}),
 	}),

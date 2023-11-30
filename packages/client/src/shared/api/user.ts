@@ -1,23 +1,21 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { API_URL, IUser } from 'shared';
+import { createApi } from '@reduxjs/toolkit/query/react';
+import { IUser } from 'shared';
+import { baseQuery } from './baseQuery';
 
 export const UserApi = createApi({
 	reducerPath: 'api/user',
 	tagTypes: ['user'],
-	baseQuery: fetchBaseQuery({ baseUrl: API_URL + '/api/user' }),
+	baseQuery,
 	endpoints: builder => ({
 		getUserInfo: builder.mutation<IUser, void>({
 			query: () => ({
-				url: '/',
-				method: 'GET',
-				headers: {
-					Authorization: `Bearer ${window.localStorage.getItem('accessToken')}`,
-				},
+				url: '/user',
+				method: 'GET'
 			}),
 		}),
 		recoveryPassword: builder.mutation<{ message: string }, string>({
 			query: email => ({
-				url: '/recovery',
+				url: '/user/recovery',
 				method: 'POST',
 				body: {
 					email,

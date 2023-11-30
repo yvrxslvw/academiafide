@@ -53,10 +53,9 @@ export class AuthController {
 		return this.authService.confirmCodeEmail(request['user'].id, dto);
 	}
 
-	@ApiOperation({ summary: 'Refresh tokens [Authorized]' })
+	@ApiOperation({ summary: 'Refresh tokens' })
 	@ApiResponse({ status: 200, description: 'Successfully refreshing' })
 	@ApiResponse({ status: 401, description: 'If user is unauthorized' })
-	@UseGuards(JwtAuthGuard)
 	@Post('/refresh')
 	refresh(@Req() request: Request, @Res() response: Response) {
 		return this.authService.refresh(request, response);
