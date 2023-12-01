@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Paragraph } from 'shared';
-import { Block } from 'entities';
+import { Paragraph } from 'shared/UI';
+import { Block } from 'entities/block';
 
 export const History: FC = () => {
 	const { t } = useTranslation();

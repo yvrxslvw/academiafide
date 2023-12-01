@@ -1,5 +1,5 @@
 import { BaseQueryFn, FetchArgs, FetchBaseQueryError, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { API_URL } from 'shared';
+import { API_URL } from '../constants';
 
 const query = fetchBaseQuery({
 	baseUrl: API_URL + '/api',

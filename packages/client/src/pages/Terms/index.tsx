@@ -1,9 +1,7 @@
 import { FC, useEffect } from 'react';
-import { TermsWidgets } from 'widgets';
+import { Terms } from 'widgets/terms';
 
 export const TermsPage: FC = () => {
-	const { Terms } = TermsWidgets;
-
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);

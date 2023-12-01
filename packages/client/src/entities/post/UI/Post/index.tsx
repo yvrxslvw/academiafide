@@ -1,7 +1,7 @@
 import { FC, HTMLAttributes, ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import cn from 'classnames';
-import { Paragraph, Title } from 'shared';
+import { Paragraph, Title } from 'shared/UI';
 import cl from './style.module.scss';
 
 interface PostProps extends HTMLAttributes<HTMLDivElement> {

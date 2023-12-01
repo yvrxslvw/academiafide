@@ -1,5 +1,6 @@
-import { timer, useAppDispatch, useAppSelector } from 'shared';
-import { PopupSlice } from '../../models';
+import { timer } from 'shared/utils';
+import { useAppDispatch, useAppSelector } from 'shared/hooks';
+import { PopupSlice } from 'entities/popup';
 
 export const usePopup = () => {
 	const { totalCount } = useAppSelector(state => state.popup);

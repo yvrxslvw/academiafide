@@ -1,1 +1,1 @@
-export * as NewPostFeatures from './UI';
+export * from './UI';

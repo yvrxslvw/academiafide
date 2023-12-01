@@ -1,1 +1,1 @@
-export * as LogupFormFeatures from './UI';
+export * from './UI';

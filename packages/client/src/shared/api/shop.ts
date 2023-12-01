@@ -1,5 +1,5 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
-import { IShop } from 'shared';
+import { IShop } from '../models';
 import { baseQuery } from './baseQuery';
 
 export const ShopApi = createApi({
@@ -17,20 +17,20 @@ export const ShopApi = createApi({
 			query: body => ({
 				url: '/products',
 				method: 'PUT',
-				body
+				body,
 			}),
 		}),
 		editProduct: builder.mutation<IShop, { id: number; body: FormData }>({
 			query: ({ id, body }) => ({
 				url: `/products/${id}`,
 				method: 'PATCH',
-				body
+				body,
 			}),
 		}),
 		deleteProduct: builder.mutation<{ message: string }, number>({
 			query: id => ({
 				url: `/products/${id}`,
-				method: 'DELETE'
+				method: 'DELETE',
 			}),
 		}),
 	}),

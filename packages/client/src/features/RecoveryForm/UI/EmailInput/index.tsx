@@ -1,11 +1,11 @@
 import { ChangeEvent, Dispatch, FC, InputHTMLAttributes, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Input } from 'shared';
-import { RecoveryModels } from 'entities';
+import { Input } from 'shared/UI';
+import { RecoveryData } from 'entities/recovery';
 
 interface EmailInputProps extends InputHTMLAttributes<HTMLInputElement> {
-	recoveryData: RecoveryModels.RecoveryData;
-	setRecoveryData: Dispatch<SetStateAction<RecoveryModels.RecoveryData>>;
+	recoveryData: RecoveryData;
+	setRecoveryData: Dispatch<SetStateAction<RecoveryData>>;
 }
 
 export const EmailInput: FC<EmailInputProps> = ({ recoveryData, setRecoveryData }) => {

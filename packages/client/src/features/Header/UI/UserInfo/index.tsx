@@ -1,8 +1,12 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, PublicRouterPaths, formatImageUrl, useAppDispatch, useAppSelector, useLogoutMutation } from 'shared';
-import cl from './style.module.scss';
+import { useAppDispatch, useAppSelector } from 'shared/hooks';
+import { useLogoutMutation } from 'shared/api';
+import { PublicRouterPaths } from 'shared/constants';
+import { Link } from 'shared/UI';
+import { formatImageUrl } from 'shared/utils';
 import { UserSlice } from 'app/store/models';
+import cl from './style.module.scss';
 
 export const UserInfo: FC = () => {
 	const { t } = useTranslation();

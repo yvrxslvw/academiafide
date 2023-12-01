@@ -1,7 +1,8 @@
 import { Dispatch, FC, SetStateAction, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, useDeleteProductMutation } from 'shared';
-import { usePopup } from 'entities';
+import { Button } from 'shared/UI';
+import { useDeleteProductMutation } from 'shared/api';
+import { usePopup } from 'processes/Popup';
 
 interface DeleteButtonProps {
 	productId: number;

@@ -1,7 +1,7 @@
 import { FC, Dispatch, SetStateAction, useState } from 'react';
-import { PostEntities } from 'entities';
-import { NewPostFeatures } from 'features';
-import { INewPost } from 'shared';
+import { INewPost } from 'shared/models';
+import { CreatePostModal } from 'entities/post';
+import { ContentTextArea, ImageFileInput, NextButton, TitleTextArea } from 'features/NewPost';
 
 interface AddNewPostProps {
 	isModalShown: boolean;
@@ -10,8 +10,6 @@ interface AddNewPostProps {
 }
 
 export const AddNewPost: FC<AddNewPostProps> = ({ isModalShown, setIsModalShown, refetch }) => {
-	const { CreatePostModal } = PostEntities;
-	const { TitleTextArea, ContentTextArea, ImageFileInput, NextButton } = NewPostFeatures;
 	const [data, setData] = useState<INewPost>({
 		title: '',
 		titleError: false,

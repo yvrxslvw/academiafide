@@ -1,2 +1,2 @@
-export * as LoginEntities from './UI';
-export * as LoginModels from './models';
+export * from './UI';
+export * from './models';

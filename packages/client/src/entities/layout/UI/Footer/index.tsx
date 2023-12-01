@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link, Paragraph, PublicRouterPaths } from 'shared';
+import { Link, Paragraph } from 'shared/UI';
+import { PublicRouterPaths } from 'shared/constants';
 import cl from './style.module.scss';
 
 interface FooterProps {}

@@ -1,5 +1,5 @@
 import { CombinedState, PayloadAction } from '@reduxjs/toolkit';
-import { IPopup } from 'shared';
+import { IPopup } from 'shared/models';
 import { PopupState } from './Popup.slice';
 
 type State = CombinedState<PopupState>;

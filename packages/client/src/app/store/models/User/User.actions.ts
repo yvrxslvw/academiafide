@@ -1,10 +1,10 @@
 import { CombinedState, PayloadAction } from '@reduxjs/toolkit';
+import { IUser } from 'shared/models';
 import { UserState } from './User.slice';
-import { IUser } from 'shared';
 
 type State = CombinedState<UserState>;
 
-export const login = (state: State, action: PayloadAction<{ token: string, user: IUser }>) => {
+export const login = (state: State, action: PayloadAction<{ token: string; user: IUser }>) => {
 	state.userInfo = action.payload.user;
 	state.isLogged = true;
 };

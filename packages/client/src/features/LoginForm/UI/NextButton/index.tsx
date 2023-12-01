@@ -1,12 +1,12 @@
 import { FC, SetStateAction, Dispatch } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button } from 'shared';
-import { LoginModels } from 'entities';
+import { Button } from 'shared/UI';
+import { LoginData } from 'entities/login';
 import { useFetchLogin } from '../../lib';
 
 interface NextButtonProps {
-	loginData: LoginModels.LoginData;
-	setLoginData: Dispatch<SetStateAction<LoginModels.LoginData>>;
+	loginData: LoginData;
+	setLoginData: Dispatch<SetStateAction<LoginData>>;
 }
 
 export const NextButton: FC<NextButtonProps> = ({ loginData, setLoginData }) => {

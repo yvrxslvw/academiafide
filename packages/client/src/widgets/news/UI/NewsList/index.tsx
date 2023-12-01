@@ -1,8 +1,11 @@
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Loader, Paragraph, Title, formatDate, formatImageUrl, useGetPostsQuery } from 'shared';
-import { PostEntities } from 'entities';
-import { NewPostFeatures, PostFeatures } from 'features';
+import { useGetPostsQuery } from 'shared/api';
+import { Loader, Paragraph, Title } from 'shared/UI';
+import { formatDate, formatImageUrl } from 'shared/utils';
+import { Post } from 'entities/post';
+import { Actions } from 'features/Post';
+import { AddNewButton } from 'features/NewPost';
 import cl from './style.module.scss';
 import { formatContent } from '../../utils';
 import { AddNewPost } from '../AddNewPost';
@@ -17,9 +20,6 @@ export const NewsList: FC = () => {
 	const [editionId, setEditionId] = useState(-1);
 	const [deletionId, setDeletionId] = useState(-1);
 	const { data, isError, isLoading, refetch } = useGetPostsQuery(null, { pollingInterval: 60 * 1000 });
-	const { Post } = PostEntities;
-	const { AddNewButton } = NewPostFeatures;
-	const { Actions } = PostFeatures;
 
 	return (
 		<div className={cl.Container}>

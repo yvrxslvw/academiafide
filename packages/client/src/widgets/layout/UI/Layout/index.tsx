@@ -1,15 +1,13 @@
 import { FC } from 'react';
 import { Outlet } from 'react-router-dom';
-import { useAppSelector } from 'shared';
-import { LayoutEntities } from 'entities';
-import { HeaderFeatures } from 'features';
+import { useAppSelector } from 'shared/hooks';
+import { Footer, Header } from 'entities/layout';
+import { RegInfo, UserInfo } from 'features/Header';
 import cl from './style.module.scss';
 import { PopupBody } from '../PopupBody';
 
 export const Layout: FC = () => {
 	const { isLogged } = useAppSelector(state => state.user);
-	const { Header, Footer } = LayoutEntities;
-	const { UserInfo, RegInfo } = HeaderFeatures;
 
 	return (
 		<div className={cl.Layout}>

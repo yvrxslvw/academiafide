@@ -1,1 +1,1 @@
-export * as TermsWidgets from './UI';
+export * from './UI';

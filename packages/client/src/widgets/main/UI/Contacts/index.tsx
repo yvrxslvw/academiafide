@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Paragraph } from 'shared';
-import { Block } from 'entities';
+import { Paragraph } from 'shared/UI';
+import { Block } from 'entities/block';
 import cl from './style.module.scss';
 
 export const Contacts: FC = () => {
@@ -10,7 +10,9 @@ export const Contacts: FC = () => {
 	return (
 		<Block title={t('¿Tiene usted alguna pregunta? ¡Contáctenos!')} grey>
 			<Paragraph>
-				{t('¡Puede contactarnos de la forma que más le convenga y hacer la pregunta que le interese en cualquier momento!')}
+				{t(
+					'¡Puede contactarnos de la forma que más le convenga y hacer la pregunta que le interese en cualquier momento!',
+				)}
 			</Paragraph>
 			<br />
 			<Paragraph>

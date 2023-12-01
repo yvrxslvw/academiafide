@@ -1,9 +1,7 @@
 import { FC, useEffect } from 'react';
-import { MainWidgets } from 'widgets';
+import { Actions, Contacts, JoinCard, News, Shop } from 'widgets/main';
 
 export const MainPage: FC = () => {
-	const { JoinCard, News, Actions, Shop, Contacts } = MainWidgets;
-
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);

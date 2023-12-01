@@ -1,5 +1,5 @@
 import { Navigate, RouteObject } from 'react-router-dom';
-import { PublicRouterPaths } from 'shared';
+import { PublicRouterPaths } from 'shared/constants';
 import { MainPage } from './Main';
 import { TermsPage } from './Terms';
 import { LoginPage } from './Login';

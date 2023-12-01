@@ -1,6 +1,7 @@
 import { FC, ChangeEvent, Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
-import { FileInput, INewPost } from 'shared';
+import { FileInput } from 'shared/UI';
+import { INewPost } from 'shared/models';
 
 interface ImageFileInputProps {
 	data: INewPost;

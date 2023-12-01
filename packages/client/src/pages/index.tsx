@@ -1,7 +1,8 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { useAppSelector, useRefreshMutation } from 'shared';
-import { Layout } from 'widgets';
+import { useAppSelector } from 'shared/hooks';
+import { Layout } from 'widgets/layout';
+import { useRefresh } from 'processes/Auth';
 import { PrivateRoutes, PublicRoutes } from './routes';
 
 const PublicRouter = createBrowserRouter([
@@ -19,12 +20,8 @@ const PrivateRouter = createBrowserRouter([
 ]);
 
 export const AppRouter: FC = () => {
-	const [loginUser] = useRefreshMutation();
 	const { isLogged } = useAppSelector(state => state.user);
-
-	useEffect(() => {
-		loginUser();
-	}, []);
+	useRefresh();
 
 	return <RouterProvider router={isLogged ? PrivateRouter : PublicRouter} />;
 };

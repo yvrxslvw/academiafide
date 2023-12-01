@@ -1,9 +1,7 @@
 import { FC, useEffect } from 'react';
-import { RecoveryWidgets } from 'widgets';
+import { Window } from 'widgets/recovery';
 
 export const RecoveryPage: FC = () => {
-	const { Window } = RecoveryWidgets;
-
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);

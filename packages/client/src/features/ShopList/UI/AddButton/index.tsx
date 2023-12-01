@@ -1,7 +1,10 @@
 import { Dispatch, FC, SetStateAction, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, INewProduct, isErrorFromBackend, useCreateProductMutation } from 'shared';
-import { usePopup } from 'entities';
+import { Button } from 'shared/UI';
+import { useCreateProductMutation } from 'shared/api';
+import { INewProduct } from 'shared/models';
+import { isErrorFromBackend } from 'shared/utils';
+import { usePopup } from 'processes/Popup';
 
 interface AddButtonProps {
 	data: INewProduct;

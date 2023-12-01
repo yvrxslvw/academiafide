@@ -1,6 +1,7 @@
 import { FC, Dispatch, SetStateAction, ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
-import { IPost, Modal, Paragraph } from 'shared';
+import { Modal, Paragraph } from 'shared/UI';
+import { IPost } from 'shared/models';
 import cl from './style.module.scss';
 
 interface DeletePostModalProps {
@@ -15,7 +16,9 @@ export const DeletePostModal: FC<DeletePostModalProps> = ({ shown, setShown, pos
 
 	return (
 		<Modal shown={shown} setShown={setShown} title={t('Eliminar una publicación')} className={cl.Modal}>
-			<Paragraph>{t('¿Estás seguro de que quieres eliminar la publicación')} &quot;{post?.title}&quot;?</Paragraph>
+			<Paragraph>
+				{t('¿Estás seguro de que quieres eliminar la publicación')} &quot;{post?.title}&quot;?
+			</Paragraph>
 			<section className={cl.ButtonBody}>{confirmButton}</section>
 		</Modal>
 	);

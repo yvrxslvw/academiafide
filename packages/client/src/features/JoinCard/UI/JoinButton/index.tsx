@@ -1,7 +1,8 @@
 import { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { Button, PublicRouterPaths } from 'shared';
+import { Button } from 'shared/UI';
+import { PublicRouterPaths } from 'shared/constants';
 
 export const JoinButton: FC = () => {
 	const navigate = useNavigate();

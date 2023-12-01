@@ -1,19 +1,16 @@
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Paragraph, Title } from 'shared';
-import { RecoveryEntities, RecoveryModels } from 'entities';
-import { RecoveryFormFeatures } from 'features';
+import { Paragraph, Title } from 'shared/UI';
+import { Form, RecoveryData } from 'entities/recovery';
+import { EmailInput, NextButton } from 'features/RecoveryForm';
 import cl from './style.module.scss';
 
 export const Window: FC = () => {
 	const { t } = useTranslation();
-	const [recoveryData, setRecoveryData] = useState<RecoveryModels.RecoveryData>({
+	const [recoveryData, setRecoveryData] = useState<RecoveryData>({
 		email: '',
 		emailError: false,
 	});
-
-	const { Form } = RecoveryEntities;
-	const { EmailInput, NextButton } = RecoveryFormFeatures;
 
 	return (
 		<div className={cl.Container}>

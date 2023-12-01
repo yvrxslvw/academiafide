@@ -1,1 +1,1 @@
-export * as RecoveryWidgets from './UI';
+export * from './UI';

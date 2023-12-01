@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { AuthApi, IUser } from 'shared';
+import { AuthApi } from 'shared/api';
+import { IUser } from 'shared/models';
 import { login, logout } from './User.actions';
 
 export interface UserState {

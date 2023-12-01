@@ -1,1 +1,1 @@
-export * as LogupWidgets from './UI';
+export * from './UI';

@@ -1,6 +1,6 @@
 import { Dispatch, FC, ReactNode, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Modal, Paragraph } from 'shared';
+import { Modal, Paragraph } from 'shared/UI';
 import cl from './style.module.scss';
 
 interface DeleteModalProps {

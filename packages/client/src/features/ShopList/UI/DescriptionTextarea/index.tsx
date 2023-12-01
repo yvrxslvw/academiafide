@@ -1,6 +1,7 @@
 import { ChangeEvent, Dispatch, FC, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
-import { INewProduct, Textarea } from 'shared';
+import { Textarea } from 'shared/UI';
+import { INewProduct } from 'shared/models';
 
 interface DescriptionTextareaProps {
 	data: INewProduct;

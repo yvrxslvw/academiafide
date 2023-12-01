@@ -1,1 +1,1 @@
-export * as NewsWidgets from './UI';
+export * from './UI';

@@ -1,1 +1,1 @@
-export * as AboutWidgets from './UI';
+export * from './UI';

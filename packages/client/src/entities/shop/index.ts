@@ -1,1 +1,1 @@
-export * as ShopEntities from './UI';
+export * from './UI';

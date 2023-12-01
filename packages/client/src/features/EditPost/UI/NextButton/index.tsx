@@ -1,7 +1,9 @@
 import { FC, Dispatch, SetStateAction, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, INewPost, useEditPostMutation } from 'shared';
-import { usePopup } from 'entities';
+import { Button } from 'shared/UI';
+import { useEditPostMutation } from 'shared/api';
+import { INewPost } from 'shared/models';
+import { usePopup } from 'processes/Popup';
 
 interface NextButtonProps {
 	data: INewPost;

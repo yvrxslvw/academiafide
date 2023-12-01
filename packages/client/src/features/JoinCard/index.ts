@@ -1,1 +1,1 @@
-export * as JoinCardFeatures from './UI';
+export * from './UI';

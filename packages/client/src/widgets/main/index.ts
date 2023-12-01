@@ -1,1 +1,1 @@
-export * as MainWidgets from './UI';
+export * from './UI';

@@ -1,6 +1,7 @@
 import { ChangeEvent, Dispatch, FC, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
-import { INewProduct, Input } from 'shared';
+import { Input } from 'shared/UI';
+import { INewProduct } from 'shared/models';
 
 interface PriceInputProps {
 	data: INewProduct;

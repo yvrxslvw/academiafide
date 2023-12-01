@@ -1,11 +1,10 @@
 import { FC, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Block } from 'entities';
-import { AboutWidgets } from 'widgets';
+import { Block } from 'entities/block';
+import { Adrian, Alejo, Data, Experience, Fernando, History } from 'widgets/about';
 
 export const AboutPage: FC = () => {
 	const { t } = useTranslation();
-	const { History, Experience, Data, Adrian, Fernando, Alejo } = AboutWidgets;
 
 	useEffect(() => {
 		window.scrollTo(0, 0);

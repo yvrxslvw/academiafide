@@ -1,6 +1,6 @@
 import { FC, HTMLAttributes } from 'react';
 import cn from 'classnames';
-import { Icons } from 'shared';
+import { Icons } from '../../assets';
 import cl from './style.module.scss';
 
 interface LogoProps extends HTMLAttributes<HTMLDivElement> {}

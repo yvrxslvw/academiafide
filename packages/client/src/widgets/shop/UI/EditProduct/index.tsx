@@ -1,7 +1,7 @@
 import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
-import { INewProduct, IShop } from 'shared';
-import { ShopEntities } from 'entities';
-import { ShopListFeatures } from 'features';
+import { INewProduct, IShop } from 'shared/models';
+import { EditModal } from 'entities/shop';
+import { DescriptionTextarea, EditButton, ImageInput, PriceInput, TitleInput } from 'features/ShopList';
 
 interface EditProductProps {
 	product: IShop | undefined;
@@ -11,9 +11,6 @@ interface EditProductProps {
 }
 
 export const EditProduct: FC<EditProductProps> = ({ product, isModalShown, setIsModalShown, refetch }) => {
-	const { EditModal } = ShopEntities;
-	const { TitleInput, PriceInput, DescriptionTextarea, ImageInput, EditButton } = ShopListFeatures;
-
 	const [oldTitle, setOldTitle] = useState('');
 	const [data, setData] = useState<INewProduct>({
 		title: '',

@@ -1,1 +1,1 @@
-export * as PostFeatures from './UI';
+export * from './UI';

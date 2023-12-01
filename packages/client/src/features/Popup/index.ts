@@ -1,1 +1,1 @@
-export * as PopupFeatures from './UI';
+export * from './UI';

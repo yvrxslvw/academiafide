@@ -1,6 +1,8 @@
 import { Dispatch, FC, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, isAdmin, useAppSelector } from 'shared';
+import { Button } from 'shared/UI';
+import { useAppSelector } from 'shared/hooks';
+import { isAdmin } from 'shared/utils';
 
 interface AddNewButtonProps {
 	setIsModalShown: Dispatch<SetStateAction<boolean>>;

@@ -1,5 +1,5 @@
 import { FC, ReactNode } from 'react';
-import { Paragraph, Title } from 'shared';
+import { Paragraph, Title } from 'shared/UI';
 import cl from './style.module.scss';
 
 interface ItemProps {

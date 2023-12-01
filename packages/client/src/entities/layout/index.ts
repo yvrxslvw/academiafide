@@ -1,1 +1,1 @@
-export * as LayoutEntities from './UI';
+export * from './UI';

@@ -1,13 +1,13 @@
 import { Dispatch, SetStateAction, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
-import { PublicRouterPaths, isErrorFromBackend, useLoginMutation } from 'shared';
-import { LoginModels, usePopup } from 'entities';
+import { useLoginMutation } from 'shared/api';
+import { PublicRouterPaths } from 'shared/constants';
+import { isErrorFromBackend } from 'shared/utils';
+import { LoginData } from 'entities/login';
+import { usePopup } from 'processes/Popup';
 
-export const useFetchLogin = (
-	loginData: LoginModels.LoginData,
-	setLoginData: Dispatch<SetStateAction<LoginModels.LoginData>>,
-) => {
+export const useFetchLogin = (loginData: LoginData, setLoginData: Dispatch<SetStateAction<LoginData>>) => {
 	const { t } = useTranslation();
 	const [loginUser, { data, error, isLoading }] = useLoginMutation();
 	const { createPopup } = usePopup();

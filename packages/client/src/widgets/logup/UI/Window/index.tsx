@@ -1,17 +1,14 @@
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Title } from 'shared';
-import { LogupEntities, LogupModels } from 'entities';
-import { LogupFormFeatures } from 'features';
+import { Title } from 'shared/UI';
+import { Form, LogupData } from 'entities/logup';
+import { LoginInput, NextButton, PasswordConfirmInput, PasswordInput, TermsCheckbox } from 'features/LogupForm';
 import cl from './style.module.scss';
 
 export const Window: FC = () => {
 	const { t } = useTranslation();
 
-	const { Form } = LogupEntities;
-	const { LoginInput, PasswordInput, PasswordConfirmInput, TermsCheckbox, NextButton } = LogupFormFeatures;
-
-	const [logupData, setLogupData] = useState<LogupModels.LogupData>({
+	const [logupData, setLogupData] = useState<LogupData>({
 		login: '',
 		password: '',
 		passwordConfirm: '',

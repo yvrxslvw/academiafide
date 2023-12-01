@@ -1,7 +1,7 @@
 import { Dispatch, FC, SetStateAction, useState } from 'react';
-import { INewProduct } from 'shared';
-import { ShopEntities } from 'entities';
-import { ShopListFeatures } from 'features';
+import { INewProduct } from 'shared/models';
+import { AddButton, DescriptionTextarea, ImageInput, PriceInput, TitleInput } from 'features/ShopList';
+import { CreateProductModal } from 'entities/shop';
 
 interface AddNewProductProps {
 	isModalShown: boolean;
@@ -19,8 +19,6 @@ export const AddNewProduct: FC<AddNewProductProps> = ({ isModalShown, setIsModal
 		priceError: false,
 		image: {} as File,
 	});
-	const { CreateProductModal } = ShopEntities;
-	const { TitleInput, DescriptionTextarea, PriceInput, ImageInput, AddButton } = ShopListFeatures;
 
 	return (
 		<CreateProductModal

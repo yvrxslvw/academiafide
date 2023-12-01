@@ -1,1 +1,1 @@
-export * as DeletePostFeatures from './UI';
+export * from './UI';

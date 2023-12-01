@@ -1,6 +1,6 @@
 import { FC, PropsWithChildren } from 'react';
 import cn from 'classnames';
-import { Title } from 'shared';
+import { Title } from 'shared/UI';
 import cl from './style.module.scss';
 
 interface BlockProps extends PropsWithChildren {

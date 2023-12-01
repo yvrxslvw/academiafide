@@ -1,1 +1,1 @@
-export * as ShopListFeatures from './UI';
+export * from './UI';

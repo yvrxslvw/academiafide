@@ -1,6 +1,6 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import { AuthApi, PostApi, ShopApi } from 'shared';
-import { PopupSlice } from 'entities';
+import { AuthApi, PostApi, ShopApi } from 'shared/api';
+import { PopupSlice } from 'entities/popup';
 import { UserSlice } from './models';
 
 export const rootReducer = combineReducers({

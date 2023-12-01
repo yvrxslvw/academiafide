@@ -1,5 +1,5 @@
 import { Dispatch, FC, ReactNode, SetStateAction } from 'react';
-import { Modal } from 'shared';
+import { Modal } from 'shared/UI';
 import cl from './style.module.scss';
 
 interface EditModalProps {

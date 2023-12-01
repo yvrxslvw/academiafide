@@ -1,8 +1,11 @@
 import { FC, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Loader, Paragraph, Title, formatImageUrl, useGetProductsQuery } from 'shared';
-import { ShopEntities } from 'entities';
-import { ShopItemFeatures, ShopListFeatures } from 'features';
+import { useGetProductsQuery } from 'shared/api';
+import { Loader, Paragraph, Title } from 'shared/UI';
+import { formatImageUrl } from 'shared/utils';
+import { Item } from 'entities/shop';
+import { AddNewButton } from 'features/NewPost';
+import { ActionsDropdown, PurchaseButton } from 'features/ShopItem';
 import cl from './style.module.scss';
 import { AddNewProduct } from '../AddNewProduct';
 import { EditProduct } from '../EditProduct';
@@ -16,9 +19,6 @@ export const ShopList: FC = () => {
 	const [editionId, setEditionId] = useState(-1);
 	const [deletionId, setDeletionId] = useState(-1);
 	const { data, isError, isLoading, refetch } = useGetProductsQuery(null, { pollingInterval: 60 * 1000 });
-	const { Item } = ShopEntities;
-	const { PurchaseButton, ActionsDropdown } = ShopItemFeatures;
-	const { AddNewButton } = ShopListFeatures;
 
 	const onEditHandler = (id: number) => {
 		setEditionId(id);
@@ -34,7 +34,7 @@ export const ShopList: FC = () => {
 		<div className={cl.Container}>
 			<Title className={cl.Title}>{t('Tienda de Academia Fide')}</Title>
 			<section className={cl.AddNewButton}>
-				<AddNewButton setIsModalShown={setIsCreateProductModalShown} />
+				<AddNewButton setModalShown={setIsCreateProductModalShown} />
 			</section>
 			{isLoading ? (
 				<Loader />

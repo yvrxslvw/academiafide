@@ -1,9 +1,7 @@
 import { FC, useEffect } from 'react';
-import { NewsWidgets } from 'widgets';
+import { NewsList } from 'widgets/news';
 
 export const NewsPage: FC = () => {
-	const { NewsList } = NewsWidgets;
-
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);

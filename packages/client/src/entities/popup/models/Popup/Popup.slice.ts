@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IPopup } from 'shared';
+import { IPopup } from 'shared/models';
 import { showPopup, deletePopup } from './Popup.actions';
 
 export interface PopupState {

@@ -1,1 +1,1 @@
-export * as RecoveryFormFeatures from './UI';
+export * from './UI';

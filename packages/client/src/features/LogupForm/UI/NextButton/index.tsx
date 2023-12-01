@@ -1,11 +1,14 @@
 import { Dispatch, FC, SetStateAction, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, isErrorFromBackend, useLogupMutation } from 'shared';
-import { LogupModels, usePopup } from 'entities';
+import { Button } from 'shared/UI';
+import { useLogupMutation } from 'shared/api';
+import { isErrorFromBackend } from 'shared/utils';
+import { LogupData } from 'entities/logup';
+import { usePopup } from 'processes/Popup';
 
 interface NextButtonProps {
-	logupData: LogupModels.LogupData;
-	setLogupData: Dispatch<SetStateAction<LogupModels.LogupData>>;
+	logupData: LogupData;
+	setLogupData: Dispatch<SetStateAction<LogupData>>;
 }
 
 export const NextButton: FC<NextButtonProps> = ({ logupData, setLogupData }) => {

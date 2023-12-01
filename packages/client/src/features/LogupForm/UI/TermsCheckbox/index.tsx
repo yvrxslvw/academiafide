@@ -1,12 +1,13 @@
 import { ChangeEvent, Dispatch, FC, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Checkbox, Link, PublicRouterPaths } from 'shared';
-import { LogupModels } from 'entities';
+import { Checkbox, Link } from 'shared/UI';
+import { PublicRouterPaths } from 'shared/constants';
+import { LogupData } from 'entities/logup';
 import cl from './style.module.scss';
 
 interface TermsCheckboxProps {
-	data: LogupModels.LogupData;
-	setData: Dispatch<SetStateAction<LogupModels.LogupData>>;
+	data: LogupData;
+	setData: Dispatch<SetStateAction<LogupData>>;
 }
 
 const CheckboxLabel: FC = () => {

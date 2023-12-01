@@ -1,11 +1,11 @@
 import { ChangeEvent, Dispatch, FC, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Input } from 'shared';
-import { LoginModels } from 'entities';
+import { Input } from 'shared/UI';
+import { LoginData } from 'entities/login';
 
 interface LoginInputProps {
-	loginData: LoginModels.LoginData;
-	setLoginData: Dispatch<SetStateAction<LoginModels.LoginData>>;
+	loginData: LoginData;
+	setLoginData: Dispatch<SetStateAction<LoginData>>;
 }
 
 export const LoginInput: FC<LoginInputProps> = ({ loginData, setLoginData }) => {

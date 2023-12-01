@@ -1,15 +1,14 @@
 import { FC } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { modelEntries, useAppSelector } from 'shared';
-import { PopupEntities } from 'entities';
-import { PopupFeatures } from 'features';
+import { useAppSelector } from 'shared/hooks';
+import { modelEntries } from 'shared/utils';
+import { CloseButton } from 'features/Popup';
+import { Popup } from 'entities/popup';
 import cl from './style.module.scss';
 import './transition.scss';
 
 export const PopupBody: FC = () => {
 	const { entries } = useAppSelector(state => state.popup);
-	const { Popup } = PopupEntities;
-	const { CloseButton } = PopupFeatures;
 
 	return (
 		<section className={cl.PopupBody}>

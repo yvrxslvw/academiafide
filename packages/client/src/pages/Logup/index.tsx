@@ -1,9 +1,7 @@
 import { FC, useEffect } from 'react';
-import { LogupWidgets } from 'widgets';
+import { Window } from 'widgets/logup';
 
 export const LogupPage: FC = () => {
-	const { Window } = LogupWidgets;
-
 	useEffect(() => {
 		window.scrollTo(0, 0);
 	}, []);

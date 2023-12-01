@@ -1,12 +1,12 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Paragraph, Images } from 'shared';
-import { Card } from 'entities';
-import { JoinCardFeatures } from 'features';
+import { Paragraph } from 'shared/UI';
+import { Images } from 'shared/assets';
+import { Card } from 'entities/card';
+import { JoinButton } from 'features/JoinCard';
 import cl from './style.module.scss';
 
 export const JoinCard: FC = () => {
-	const { JoinButton } = JoinCardFeatures;
 	const { t } = useTranslation();
 
 	return (

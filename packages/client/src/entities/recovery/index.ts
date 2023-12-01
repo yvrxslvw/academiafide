@@ -1,2 +1,2 @@
-export * as RecoveryEntities from './UI';
-export * as RecoveryModels from './models';
+export * from './UI';
+export * from './models';

@@ -1,7 +1,8 @@
 import { FC, FormEvent, ReactNode } from 'react';
 import { useTranslation } from 'react-i18next';
 import cn from 'classnames';
-import { Link, PublicRouterPaths } from 'shared';
+import { Link } from 'shared/UI';
+import { PublicRouterPaths } from 'shared/constants';
 import cl from './style.module.scss';
 
 interface FormProps {

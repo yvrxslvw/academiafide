@@ -1,1 +1,1 @@
-export * as EditPostFeatures from './UI';
+export * from './UI';

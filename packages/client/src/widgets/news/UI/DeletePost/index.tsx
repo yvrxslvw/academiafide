@@ -1,7 +1,7 @@
-import { PostEntities } from 'entities';
-import { DeletePostFeatures } from 'features';
 import { FC, Dispatch, SetStateAction } from 'react';
-import { IPost } from 'shared';
+import { IPost } from 'shared/models';
+import { DeletePostModal } from 'entities/post';
+import { ConfirmButton } from 'features/DeletePost';
 
 interface DeletePostProps {
 	isModalShown: boolean;
@@ -11,9 +11,6 @@ interface DeletePostProps {
 }
 
 export const DeletePost: FC<DeletePostProps> = ({ isModalShown, setIsModalShown, refetch, post }) => {
-	const { DeletePostModal } = PostEntities;
-	const { ConfirmButton } = DeletePostFeatures;
-
 	return (
 		<DeletePostModal
 			shown={isModalShown}

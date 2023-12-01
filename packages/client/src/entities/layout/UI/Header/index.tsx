@@ -1,5 +1,6 @@
 import { FC, ReactNode } from 'react';
-import { Link, Logo, PublicRouterPaths } from 'shared';
+import { Link, Logo } from 'shared/UI';
+import { PublicRouterPaths } from 'shared/constants';
 import cl from './style.module.scss';
 
 interface HeaderProps {

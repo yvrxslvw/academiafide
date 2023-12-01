@@ -1,7 +1,7 @@
 import { FC, Dispatch, SetStateAction, useState, useEffect } from 'react';
-import { INewPost, IPost } from 'shared';
-import { PostEntities } from 'entities';
-import { EditPostFeatures } from 'features';
+import { INewPost, IPost } from 'shared/models';
+import { EditPostModal } from 'entities/post';
+import { ContentTextArea, ImageFileInput, NextButton, TitleTextArea } from 'features/EditPost';
 
 interface EditPostProps {
 	isModalShown: boolean;
@@ -11,8 +11,6 @@ interface EditPostProps {
 }
 
 export const EditPost: FC<EditPostProps> = ({ isModalShown, setIsModalShown, refetch, post }) => {
-	const { EditPostModal } = PostEntities;
-	const { TitleTextArea, ContentTextArea, ImageFileInput, NextButton } = EditPostFeatures;
 	const [data, setData] = useState<INewPost>({
 		title: '',
 		titleError: false,

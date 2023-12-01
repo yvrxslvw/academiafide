@@ -1,1 +1,1 @@
-export * as HeaderFeatures from './UI';
+export * from './UI';

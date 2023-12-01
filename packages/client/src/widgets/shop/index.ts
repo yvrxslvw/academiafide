@@ -1,1 +1,1 @@
-export * as ShopWidgets from './UI';
+export * from './UI';

@@ -1,11 +1,11 @@
 import { ChangeEvent, Dispatch, FC, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Input } from 'shared';
-import { LogupModels } from 'entities';
+import { Input } from 'shared/UI';
+import { LogupData } from 'entities/logup';
 
 interface PasswordInputProps {
-	data: LogupModels.LogupData;
-	setData: Dispatch<SetStateAction<LogupModels.LogupData>>;
+	data: LogupData;
+	setData: Dispatch<SetStateAction<LogupData>>;
 }
 
 export const PasswordInput: FC<PasswordInputProps> = ({ data, setData }) => {

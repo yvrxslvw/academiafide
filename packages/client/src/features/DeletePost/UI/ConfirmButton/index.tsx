@@ -1,7 +1,8 @@
 import { FC, Dispatch, SetStateAction, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, useDeletePostMutation } from 'shared';
-import { usePopup } from 'entities';
+import { Button } from 'shared/UI';
+import { useDeletePostMutation } from 'shared/api';
+import { usePopup } from 'processes/Popup';
 
 interface ConfirmButtonProps {
 	postId: number | undefined;

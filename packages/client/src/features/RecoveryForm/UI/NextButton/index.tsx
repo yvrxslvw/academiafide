@@ -1,12 +1,16 @@
 import { ButtonHTMLAttributes, Dispatch, FC, SetStateAction, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, PublicRouterPaths, isErrorFromBackend, useRecoveryMutation } from 'shared';
-import { RecoveryModels, usePopup } from 'entities';
 import { useNavigate } from 'react-router';
+import { Button } from 'shared/UI';
+import { useRecoveryMutation } from 'shared/api';
+import { PublicRouterPaths } from 'shared/constants';
+import { isErrorFromBackend } from 'shared/utils';
+import { RecoveryData } from 'entities/recovery';
+import { usePopup } from 'processes/Popup';
 
 interface NextButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-	recoveryData: RecoveryModels.RecoveryData;
-	setRecoveryData: Dispatch<SetStateAction<RecoveryModels.RecoveryData>>;
+	recoveryData: RecoveryData;
+	setRecoveryData: Dispatch<SetStateAction<RecoveryData>>;
 }
 
 export const NextButton: FC<NextButtonProps> = ({ recoveryData, setRecoveryData }) => {
@@ -43,7 +47,9 @@ export const NextButton: FC<NextButtonProps> = ({ recoveryData, setRecoveryData 
 	useEffect(() => {
 		if (data) {
 			createPopup(
-				`${t('Se ha enviado un correo electrónico con una nueva contraseña a su correo electrónico')} ${recoveryData.email}.`,
+				`${t('Se ha enviado un correo electrónico con una nueva contraseña a su correo electrónico')} ${
+					recoveryData.email
+				}.`,
 			);
 			navigate(PublicRouterPaths.LOGIN_PAGE);
 		}

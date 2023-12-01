@@ -1,7 +1,8 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Images, Paragraph } from 'shared';
-import { Card } from 'entities';
+import { Paragraph } from 'shared/UI';
+import { Images } from 'shared/assets';
+import { Card } from 'entities/card';
 
 export const Alejo: FC = () => {
 	const { t } = useTranslation();

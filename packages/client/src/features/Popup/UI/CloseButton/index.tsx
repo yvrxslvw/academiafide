@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons/faXmark';
+import { useAppDispatch } from 'shared/hooks';
+import { PopupSlice } from 'entities/popup';
 import cl from './style.module.scss';
-import { useAppDispatch } from 'shared';
-import { PopupSlice } from 'entities';
 
 interface CloseButtonProps {
 	id: number;

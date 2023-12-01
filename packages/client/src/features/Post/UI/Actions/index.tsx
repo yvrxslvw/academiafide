@@ -2,7 +2,9 @@ import { FC, useState, Dispatch, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
 import { faEllipsisVertical } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Dropdown, isAdmin, timer, useAppSelector } from 'shared';
+import { useAppSelector } from 'shared/hooks';
+import { isAdmin, timer } from 'shared/utils';
+import { Dropdown } from 'shared/UI';
 import cl from './style.module.scss';
 
 interface ActionsProps {

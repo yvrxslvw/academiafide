@@ -11,6 +11,7 @@ export default defineConfig({
 			features: '/src/features',
 			widgets: '/src/widgets',
 			pages: '/src/pages',
+			'processes': '/src/processes',
 			app: '/src/app',
 			'@styles': '/src/shared/styles/index.scss',
 		},

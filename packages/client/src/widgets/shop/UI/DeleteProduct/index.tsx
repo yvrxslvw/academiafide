@@ -1,7 +1,7 @@
 import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
-import { ShopEntities } from 'entities';
-import { IShop } from 'shared';
-import { ShopListFeatures } from 'features';
+import { IShop } from 'shared/models';
+import { DeleteModal } from 'entities/shop';
+import { DeleteButton } from 'features/ShopList';
 
 interface DeleteProductProps {
 	product: IShop | undefined;
@@ -13,8 +13,6 @@ interface DeleteProductProps {
 export const DeleteProduct: FC<DeleteProductProps> = ({ product, isModalShown, setIsModalShown, refetch }) => {
 	const [productTitle, setProductTitle] = useState('');
 	const [productId, setProductId] = useState(-1);
-	const { DeleteModal } = ShopEntities;
-	const { DeleteButton } = ShopListFeatures;
 
 	useEffect(() => {
 		if (product) {
