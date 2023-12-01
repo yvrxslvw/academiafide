@@ -18,22 +18,22 @@ To run this project, you will need to create `.env.development` and `.env.produc
 
 Install dependencies
 
-*npm*
+* *npm*
 ```bash
   npm install
 ```
-*or yarn*
+* *or yarn*
 ```bash
   yarn
 ```
 
 Start the server
 
-*npm*
+* *npm*
 ```bash
   npm run dev
 ```
-*or yarn*
+* *or yarn*
 ```bash
   yarn dev
 ```
@@ -50,11 +50,11 @@ More details can be found at the http://{host}:{port}/api/documentation
 
 To build this project run
 
-*npm*
+* *npm*
 ```bash
   npm run build
 ```
-*or yarn*
+* *or yarn*
 ```bash
   yarn build
 ```
