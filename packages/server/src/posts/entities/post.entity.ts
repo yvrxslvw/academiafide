@@ -18,10 +18,10 @@ export class Post extends Model<Post, PostCreationAttributes> {
 	declare title: string;
 
 	@ApiProperty({ example: 'I am a content', description: 'Post content' })
-	@Column({ type: DataType.TEXT, allowNull: false })
+	@Column({ type: DataType.STRING(4096), allowNull: false })
 	declare content: string;
 
-	@ApiProperty({ example: 'someImageName.jpg', description: 'Post image name that the backend has it' })
+	@ApiProperty({ example: 'someImageName.jpg', description: 'Post image' })
 	@Column({ type: DataType.STRING(64), allowNull: true })
 	declare image: string;
 }

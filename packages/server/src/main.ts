@@ -3,15 +3,16 @@ import { ValidationPipe } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import * as cookieParser from 'cookie-parser';
 import { AppModule } from './App.module';
-import { Role } from './roles/role.model';
+import { Role } from './roles/entities/role.entity';
 
 const isDev = process.env.APP_MODE === 'development';
+const HOST = process.env.API_HOST;
+const PORT = Number(process.env.API_PORT);
+const CLIENT_URL = process.env.CLIENT_URL;
 
 const bootstrap = async () => {
-	const HOST = process.env.API_HOST ?? 'localhost';
-	const PORT = Number(process.env.API_PORT) ?? 3001;
-	const CLIENT_URL = process.env.CLIENT_URL ?? 'http://localhost:3000';
 	const app = await NestFactory.create(AppModule, { cors: { origin: CLIENT_URL, credentials: true } });
+
 	app.setGlobalPrefix('/api');
 	app.useGlobalPipes(new ValidationPipe());
 	app.use(cookieParser());
@@ -21,6 +22,8 @@ const bootstrap = async () => {
 			.setTitle('Academia Fide backend server')
 			.setDescription('This is REST API backend server documentation for Academia Fide.')
 			.setVersion('0.0.1')
+			.addBearerAuth({ type: 'apiKey' }, 'accessToken')
+			.addCookieAuth('refreshToken')
 			.build();
 		const swaggerDocument = SwaggerModule.createDocument(app, swaggerConfig);
 		SwaggerModule.setup('/api/documentation', app, swaggerDocument);

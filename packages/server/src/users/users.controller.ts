@@ -1,80 +1,88 @@
 import { Controller, Put, Delete, Body, Get, Param, Patch, UseGuards } from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { UsersService } from './users.service';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { User } from './user.model';
-import { Roles } from 'src/auth/roles.decorator';
-import { RolesGuard } from 'src/auth/roles.guard';
+import { User } from './entities/user.entity';
+import { Roles } from 'src/auth/decorators/roles.decorator';
+import { RolesGuard } from 'src/auth/guards/roles.guard';
 import { RoleDto } from './dto/role.dto';
-import { Role } from 'src/roles/role.model';
 
-@ApiTags('Users interactions from ADMIN role')
+@ApiTags('User interactions')
 @Controller('users')
 export class UsersController {
 	constructor(private readonly usersService: UsersService) {}
 
-	@ApiOperation({ summary: 'User deleting [ADMIN]' })
-	@ApiResponse({ status: 200, description: 'Successfully deleting user' })
-	@ApiResponse({ status: 403, description: "If you don't have ADMIN role" })
-	@ApiResponse({ status: 404, description: "If user doesn't exists" })
-	@Roles('ADMIN')
-	@UseGuards(RolesGuard)
-	@Delete('/:id')
-	delete(@Param('id') id: number) {
-		return this.usersService.delete(id);
-	}
-
-	@ApiOperation({ summary: 'Getting all users [ADMIN]' })
+	@ApiBearerAuth()
+	@ApiOperation({ summary: 'Getting all users' })
 	@ApiResponse({ status: 200, description: 'Successfully getting all users', type: [User] })
-	@ApiResponse({ status: 403, description: "If you don't have ADMIN role" })
+	@ApiResponse({ status: 401, description: "You don't have ADMIN role" })
 	@Roles('ADMIN')
 	@UseGuards(RolesGuard)
 	@Get()
-	getAll() {
+	getAll(): Promise<User[]> {
 		return this.usersService.getAll();
 	}
 
-	@ApiOperation({ summary: 'Getting one user by ID [ADMIN]' })
-	@ApiResponse({ status: 200, description: 'Successfully getting one user', type: User })
-	@ApiResponse({ status: 403, description: "If you don't have ADMIN role" })
-	@ApiResponse({ status: 404, description: "If user doesn't exists" })
+	@ApiBearerAuth()
+	@ApiOperation({ summary: 'Getting a user by ID' })
+	@ApiResponse({ status: 200, description: 'Successfully getting a user', type: User })
+	@ApiResponse({ status: 401, description: "You don't have ADMIN role" })
+	@ApiResponse({ status: 404, description: "User doesn't exist" })
 	@Roles('ADMIN')
 	@UseGuards(RolesGuard)
 	@Get('/:id')
-	getOneById(@Param('id') id: number) {
+	getOneById(@Param('id') id: number): Promise<User> {
 		return this.usersService.getOneById(id);
 	}
 
-	@ApiOperation({ summary: 'User updating [ADMIN]' })
-	@ApiResponse({ status: 200, description: 'Successfully user updating', type: User })
-	@ApiResponse({ status: 403, description: "If login or email already exists or you don't have ADMIN role" })
-	@ApiResponse({ status: 404, description: "If user doesn't exists" })
+	@ApiBearerAuth()
+	@ApiOperation({ summary: 'Updating a user' })
+	@ApiResponse({ status: 200, description: 'Successful user updation', type: User })
+	@ApiResponse({ status: 401, description: "You don't have ADMIN role" })
+	@ApiResponse({ status: 403, description: 'Login already exists' })
+	@ApiResponse({ status: 404, description: "User doesn't exist" })
 	@Roles('ADMIN')
 	@UseGuards(RolesGuard)
 	@Patch('/:id')
-	update(@Param('id') id: number, @Body() dto: UpdateUserDto) {
+	update(@Param('id') id: number, @Body() dto: UpdateUserDto): Promise<User> {
 		return this.usersService.update(id, dto);
 	}
 
-	@ApiOperation({ summary: 'User role adding [ADMIN]' })
-	@ApiResponse({ status: 200, description: 'Successfully adding role', type: Role })
-	@ApiResponse({ status: 403, description: "If user already have this role or you don't have ADMIN role" })
-	@ApiResponse({ status: 404, description: "If user or role doesn't exists" })
+	@ApiBearerAuth()
+	@ApiOperation({ summary: 'Deleting a user' })
+	@ApiResponse({ status: 200, description: 'Successful user deletion' })
+	@ApiResponse({ status: 401, description: "You don't have ADMIN role" })
+	@ApiResponse({ status: 404, description: "User doesn't exist" })
 	@Roles('ADMIN')
 	@UseGuards(RolesGuard)
-	@Put('/:id/role')
-	addRole(@Param('id') id: number, @Body() dto: RoleDto) {
+	@Delete('/:id')
+	delete(@Param('id') id: number): Promise<{ message: string }> {
+		return this.usersService.delete(id);
+	}
+
+	@ApiBearerAuth()
+	@ApiOperation({ summary: 'Adding role to a user' })
+	@ApiResponse({ status: 200, description: 'Successful addition of role', type: User })
+	@ApiResponse({ status: 401, description: "You don't have ADMIN role" })
+	@ApiResponse({ status: 403, description: 'User already has this role' })
+	@ApiResponse({ status: 404, description: "User or role doesn't exist" })
+	@Roles('ADMIN')
+	@UseGuards(RolesGuard)
+	@Put('/:id/roles')
+	addRole(@Param('id') id: number, @Body() dto: RoleDto): Promise<User> {
 		return this.usersService.addRole(id, dto);
 	}
 
-	@ApiOperation({ summary: 'User role deleting [ADMIN]' })
-	@ApiResponse({ status: 200, description: 'Successfully deleting role', type: Role })
-	@ApiResponse({ status: 403, description: "If user haven't this role or you don't have ADMIN role" })
-	@ApiResponse({ status: 404, description: "If user or role doesn't exists" })
+	@ApiBearerAuth()
+	@ApiOperation({ summary: 'Removing role from a user' })
+	@ApiResponse({ status: 200, description: 'Successful role deletion', type: User })
+	@ApiResponse({ status: 401, description: "You don't have ADMIN role" })
+	@ApiResponse({ status: 403, description: "User doesn't have this role" })
+	@ApiResponse({ status: 404, description: "User or role doesn't exist" })
 	@Roles('ADMIN')
 	@UseGuards(RolesGuard)
-	@Delete('/:id/role')
-	removeRole(@Param('id') id: number, @Body() dto: RoleDto) {
+	@Delete('/:id/roles')
+	removeRole(@Param('id') id: number, @Body() dto: RoleDto): Promise<User> {
 		return this.usersService.removeRole(id, dto);
 	}
 }

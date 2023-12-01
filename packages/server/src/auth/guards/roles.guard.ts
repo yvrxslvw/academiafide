@@ -3,8 +3,8 @@ import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
 import { Observable } from 'rxjs';
 import { Request } from 'express';
-import { ROLES_KEY } from './roles.decorator';
-import { User } from 'src/users/user.model';
+import { ROLES_KEY } from '../decorators/roles.decorator';
+import { User } from 'src/users/entities/user.entity';
 
 @Injectable()
 export class RolesGuard implements CanActivate {
@@ -24,7 +24,7 @@ export class RolesGuard implements CanActivate {
 			request['user'] = payload;
 			return payload.roles.some(role => requiredRoles.includes(role.tag));
 		} catch (error) {
-			throw new UnauthorizedException('No access.');
+			throw new UnauthorizedException('Not authorized.');
 		}
 	}
 

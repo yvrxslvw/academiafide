@@ -10,13 +10,13 @@ import {
 	UseGuards,
 	UseInterceptors,
 } from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ProductsService } from './products.service';
-import { Product } from './product.model';
+import { Product } from './entities/product.entity';
 import { CreateProductDto } from './dto/create-product.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { Roles } from 'src/auth/roles.decorator';
-import { RolesGuard } from 'src/auth/roles.guard';
+import { Roles } from 'src/auth/decorators/roles.decorator';
+import { RolesGuard } from 'src/auth/guards/roles.guard';
 import { UpdateProductDto } from './dto/update-product.dto';
 
 @ApiTags('Product interactions')
@@ -24,52 +24,56 @@ import { UpdateProductDto } from './dto/update-product.dto';
 export class ProductsController {
 	constructor(private readonly productsService: ProductsService) {}
 
-	@ApiOperation({ summary: 'Getting all products' })
-	@ApiResponse({ status: 200, description: 'Successfully getting all products', type: [Product] })
-	@Get()
-	getAll() {
-		return this.productsService.getAll();
-	}
-
-	@ApiOperation({ summary: 'Getting one product by ID' })
-	@ApiResponse({ status: 200, description: 'Successfully getting one product by ID', type: Product })
-	@ApiResponse({ status: 404, description: "If product doesn't exists" })
-	@Get('/:id')
-	getOneById(@Param('id') id: number) {
-		return this.productsService.getOneById(id);
-	}
-
-	@ApiOperation({ summary: 'Product creating [ADMIN]' })
-	@ApiResponse({ status: 200, description: 'Successfully creating new product', type: Product })
-	@ApiResponse({ status: 403, description: "If product already exists or you don't have ADMIN role" })
+	@ApiBearerAuth()
+	@ApiOperation({ summary: 'Creating a product' })
+	@ApiResponse({ status: 200, description: 'Successful product creation', type: Product })
+	@ApiResponse({ status: 401, description: "You don't have ADMIN role" })
+	@ApiResponse({ status: 403, description: 'Product already exist' })
 	@Roles('ADMIN')
 	@UseGuards(RolesGuard)
 	@Put()
 	@UseInterceptors(FileInterceptor('image'))
-	create(@Body() dto: CreateProductDto, @UploadedFile() image?: any) {
+	create(@Body() dto: CreateProductDto, @UploadedFile() image?: any): Promise<Product> {
 		return this.productsService.create(dto, image);
 	}
 
-	@ApiOperation({ summary: 'Product deleting [ADMIN]' })
-	@ApiResponse({ status: 200, description: 'Successfully deleting product' })
-	@ApiResponse({ status: 403, description: "If you don't have ADMIN role" })
-	@ApiResponse({ status: 404, description: "If product doesn't exists" })
-	@Roles('ADMIN')
-	@UseGuards(RolesGuard)
-	@Delete('/:id')
-	delete(@Param('id') id: number) {
-		return this.productsService.delete(id);
+	@ApiOperation({ summary: 'Getting all products' })
+	@ApiResponse({ status: 200, description: 'Successfully getting all products', type: [Product] })
+	@Get()
+	getAll(): Promise<Product[]> {
+		return this.productsService.getAll();
 	}
 
-	@ApiOperation({ summary: 'Product updating [ADMIN]' })
-	@ApiResponse({ status: 200, description: 'Successfully updating product', type: Product })
-	@ApiResponse({ status: 403, description: "If you don't have ADMIN role" })
-	@ApiResponse({ status: 404, description: "If product doesn't exists" })
+	@ApiOperation({ summary: 'Getting a product by ID' })
+	@ApiResponse({ status: 200, description: 'Successfully getting a product', type: Product })
+	@ApiResponse({ status: 404, description: "Product doesn't exist" })
+	@Get('/:id')
+	getOneById(@Param('id') id: number): Promise<Product> {
+		return this.productsService.getOneById(id);
+	}
+
+	@ApiBearerAuth()
+	@ApiOperation({ summary: 'Updating a product' })
+	@ApiResponse({ status: 200, description: 'Successfully product updation', type: Product })
+	@ApiResponse({ status: 401, description: "You don't have ADMIN role" })
+	@ApiResponse({ status: 404, description: "Product doesn't exist" })
 	@Roles('ADMIN')
 	@UseGuards(RolesGuard)
 	@Patch('/:id')
 	@UseInterceptors(FileInterceptor('image'))
-	update(@Param('id') id: number, @Body() dto: UpdateProductDto, @UploadedFile() image?: any) {
+	update(@Param('id') id: number, @Body() dto: UpdateProductDto, @UploadedFile() image?: any): Promise<Product> {
 		return this.productsService.update(id, dto, image);
+	}
+
+	@ApiBearerAuth()
+	@ApiOperation({ summary: 'Deleting a product' })
+	@ApiResponse({ status: 200, description: 'Successful product deletion' })
+	@ApiResponse({ status: 401, description: "You don't have ADMIN role" })
+	@ApiResponse({ status: 404, description: "Product doesn't exist" })
+	@Roles('ADMIN')
+	@UseGuards(RolesGuard)
+	@Delete('/:id')
+	delete(@Param('id') id: number): Promise<{ message: string }> {
+		return this.productsService.delete(id);
 	}
 }

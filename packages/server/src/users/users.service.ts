@@ -1,12 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { BadRequestException, ForbiddenException, NotFoundException } from '@nestjs/common/exceptions';
+import { ForbiddenException, NotFoundException } from '@nestjs/common/exceptions';
 import { InjectModel } from '@nestjs/sequelize';
-import { User } from './user.model';
+import { User } from './entities/user.entity';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { RolesService } from 'src/roles/roles.service';
 import { RoleDto } from './dto/role.dto';
-import { isBoolean, isString, length } from 'class-validator';
 import { FilesService } from 'src/files/files.service';
 
 @Injectable()
@@ -17,42 +16,33 @@ export class UsersService {
 		private readonly filesService: FilesService,
 	) {}
 
-	async create(dto: CreateUserDto) {
-		const loginExisted = await this.userRepo.findOne({ where: { login: dto.login } });
-		if (loginExisted) throw new ForbiddenException('Login already existed.');
+	async create(dto: CreateUserDto): Promise<User> {
+		const candidate = await this.userRepo.findOne({ where: { login: dto.login } });
+		if (candidate) throw new ForbiddenException('Login already exist.');
 		const user = await this.userRepo.create(dto);
 		const role = await this.rolesService.findOneByTag('USER');
-		if (role) {
-			await user.$set('roles', [role.id]);
-			user.roles = [role];
-		}
+		await user.$set('roles', [role.id]);
+		user.roles = [role];
 		return user;
 	}
 
-	async delete(id: number) {
-		const user = await this.userRepo.findByPk(id);
-		if (!user) throw new NotFoundException('User not found.');
-		await user.destroy();
-		return 'Deleted.';
-	}
-
-	async getAll() {
+	async getAll(): Promise<User[]> {
 		const users = await this.userRepo.findAll({ include: { all: true, nested: true } });
 		return users;
 	}
 
-	async getOneById(id: number) {
+	async getOneById(id: number): Promise<User> {
 		const user = await this.userRepo.findByPk(id, { include: { all: true, nested: true } });
-		if (!user) throw new NotFoundException('User not found.');
+		if (!user) throw new NotFoundException("User doesn't exist.");
 		return user;
 	}
 
-	async getOneByLogin(login: string) {
+	async getOneByLogin(login: string): Promise<User> {
 		const user = await this.userRepo.findOne({ where: { login }, include: { all: true, nested: true } });
 		return user;
 	}
 
-	async getOneByEmail(email: string, isEmailConfirmed: boolean) {
+	async getOneByEmail(email: string, isEmailConfirmed: boolean): Promise<User> {
 		const user = await this.userRepo.findOne({
 			where: { email, email_confirmed: isEmailConfirmed },
 			include: { all: true, nested: true },
@@ -60,19 +50,12 @@ export class UsersService {
 		return user;
 	}
 
-	async update(id: number, dto: UpdateUserDto, image?: any) {
+	async update(id: number, dto: UpdateUserDto, image?: any): Promise<User> {
 		const user = await this.userRepo.findByPk(id, { include: { all: true, nested: true } });
-		if (!user) throw new NotFoundException('User not found.');
+		if (!user) throw new NotFoundException("User doesn't exist.");
 		if (dto.login) {
-			if (!isString(dto.login) || !length(dto.login, 3, 24)) throw new BadRequestException('Incorrect login.');
-			const exists = await this.userRepo.findOne({ where: { login: dto.login } });
-			if (exists) throw new ForbiddenException('Login already exists.');
-		}
-		if (dto.password) {
-			if (!isString(dto.password)) throw new BadRequestException('Incorrect password.');
-		}
-		if (dto.email_news) {
-			if (!isBoolean(dto.email_news)) throw new BadRequestException('Incorrect type email_news.');
+			const candidate = await this.userRepo.findOne({ where: { login: dto.login } });
+			if (candidate) throw new ForbiddenException('Login already exist.');
 		}
 		if (image) {
 			const fileName = await this.filesService.createFile(image);
@@ -83,21 +66,28 @@ export class UsersService {
 		return user;
 	}
 
-	async addRole(id: number, dto: RoleDto) {
-		const user = await this.userRepo.findByPk(id, { include: { all: true, nested: true } });
-		const role = await this.rolesService.findOneByTag(dto.tag);
-		if (!user || !role) throw new NotFoundException('User or role has not been found.');
-		if (await user.$has('role', role.id)) throw new ForbiddenException('User already have this role.');
-		await user.$add('role', role.id);
-		return role;
+	async delete(id: number): Promise<{ message: string }> {
+		const user = await this.userRepo.findByPk(id);
+		if (!user) throw new NotFoundException("User doesn't exist.");
+		await user.destroy();
+		return { message: 'Deleted.' };
 	}
 
-	async removeRole(id: number, dto: RoleDto) {
+	async addRole(id: number, dto: RoleDto): Promise<User> {
+		const user = await this.userRepo.findByPk(id, { include: { all: true, nested: true } });
+		const role = await this.rolesService.findOneByTag(dto.tag);
+		if (!user || !role) throw new NotFoundException("User or role doesn't exist.");
+		if (await user.$has('role', role.id)) throw new ForbiddenException('User already has this role.');
+		await user.$add('role', role.id);
+		return user;
+	}
+
+	async removeRole(id: number, dto: RoleDto): Promise<User> {
 		const user = await this.userRepo.findByPk(id, { include: { all: true, nested: true } });
 		const role = await this.rolesService.findOneByTag(dto.tag);
 		if (!user || !role) throw new NotFoundException('User or role has not been found.');
-		if (!(await user.$has('role', role.id))) throw new ForbiddenException("User haven't this role.");
+		if (!(await user.$has('role', role.id))) throw new ForbiddenException("User doesn't have this role.");
 		await user.$remove('role', role.id);
-		return role;
+		return user;
 	}
 }

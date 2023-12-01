@@ -1,9 +1,4 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { PartialType } from '@nestjs/swagger';
+import { CreateRoleDto } from './create-role.dto';
 
-export class UpdateRoleDto {
-	@ApiProperty({ example: 'NEW', description: 'New role tag', required: false })
-	declare tag?: string;
-
-	@ApiProperty({ example: 'New role', description: 'New role description', required: false })
-	declare description?: string;
-}
+export class UpdateRoleDto extends PartialType(CreateRoleDto) {}

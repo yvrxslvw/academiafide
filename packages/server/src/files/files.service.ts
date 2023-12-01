@@ -15,7 +15,7 @@ export class FilesService {
 
 	async deleteFile(fileName: string) {
 		const filePath = path.resolve(__dirname, 'static', fileName);
-		if (!filePath) throw new Error("File doesn't exists");
+		if (!filePath) throw new Error("File doesn't exist");
 		fs.rmSync(filePath);
 	}
 }

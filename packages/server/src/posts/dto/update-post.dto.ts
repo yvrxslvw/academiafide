@@ -1,9 +1,4 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { PartialType } from '@nestjs/swagger';
+import { CreatePostDto } from './create-post.dto';
 
-export class UpdatePostDto {
-	@ApiProperty({ example: 'I am a new title!', description: 'New post title', required: false })
-	declare title?: string;
-
-	@ApiProperty({ example: 'I am a new content!', description: 'New post content', required: false })
-	declare content?: string;
-}
+export class UpdatePostDto extends PartialType(CreatePostDto) {}

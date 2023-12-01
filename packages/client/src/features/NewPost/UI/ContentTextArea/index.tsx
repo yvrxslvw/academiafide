@@ -17,7 +17,7 @@ export const ContentTextArea: FC<ContentTextAreaProps> = ({ data, setData }) => 
 	return (
 		<Textarea
 			label={t('Publicar contenido')}
-			max={65535}
+			max={4096}
 			value={data.content}
 			onChange={onChangeHandler}
 			error={data.contentError}

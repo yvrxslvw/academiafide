@@ -3,7 +3,7 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { PostsController } from './posts.controller';
 import { PostsService } from './posts.service';
 import { FilesModule } from 'src/files/files.module';
-import { Post } from './post.model';
+import { Post } from './entities/post.entity';
 import { AuthModule } from 'src/auth/auth.module';
 
 @Module({

@@ -6,5 +6,8 @@
 		"deleteOutDir": false,
 		"builder": "webpack",
 		"webpackConfigPath": "./webpack.config.js"
+	},
+	"generateOptions": {
+		"spec": false
 	}
 }

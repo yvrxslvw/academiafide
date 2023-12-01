@@ -3,68 +3,80 @@ import { Request, Response } from 'express';
 import { LoginUserDto } from './dto/login-user.dto';
 import { AuthService } from './auth.service';
 import { CreateUserDto } from 'src/users/dto/create-user.dto';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { JwtAuthGuard } from './jwt-auth.guard';
+import { ApiBearerAuth, ApiCookieAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { SendCodeEmailDto } from './dto/send-code-email.dto';
 import { ConfirmCodeEmailDto } from './dto/confirm-code-email.dto';
+import { RecoveryPasswordDto } from './dto/recovery-password.dto';
 
-@ApiTags('Authorization')
+@ApiTags('Authorization interactions')
 @Controller('auth')
 export class AuthController {
 	constructor(private readonly authService: AuthService) {}
 
-	@ApiOperation({ summary: 'Authorize user' })
-	@ApiResponse({ status: 201, description: 'Successful authorization and get the token' })
-	@ApiResponse({ status: 403, description: 'Incorrect login or password' })
+	@ApiOperation({ summary: 'User authorization' })
+	@ApiResponse({ status: 201, description: 'Successful user authorization' })
+	@ApiResponse({ status: 403, description: 'Wrong login or password' })
 	@Post('/login')
-	login(@Body() dto: LoginUserDto, @Res() response: Response) {
+	login(@Body() dto: LoginUserDto, @Res() response: Response): Promise<Response> {
 		return this.authService.login(dto, response);
 	}
 
-	@ApiOperation({ summary: 'Register user' })
-	@ApiResponse({ status: 201, description: 'Successful registration and get the token' })
-	@ApiResponse({ status: 403, description: 'If login or email already exists' })
+	@ApiOperation({ summary: 'User registration' })
+	@ApiResponse({ status: 201, description: 'Successful user registration' })
+	@ApiResponse({ status: 403, description: 'Login already exist' })
 	@Post('/logup')
-	logup(@Body() dto: CreateUserDto, @Res() response: Response) {
+	logup(@Body() dto: CreateUserDto, @Res() response: Response): Promise<Response> {
 		return this.authService.logup(dto, response);
 	}
 
 	@ApiOperation({ summary: 'Logout user' })
-	@ApiResponse({ status: 201, description: 'Successful logouting' })
+	@ApiResponse({ status: 201, description: 'Successful user logout' })
 	@Post('/logout')
-	logout(@Res() response: Response) {
+	logout(@Res() response: Response): Promise<Response> {
 		return this.authService.logout(response);
 	}
 
-	@ApiOperation({ summary: 'Sending email confirmation code [Authorized]' })
-	@ApiResponse({ status: 200, description: 'Successfully sending the code' })
-	@ApiResponse({ status: 403, description: 'If email already exists or user is unauthorized' })
-	@ApiResponse({ status: 404, description: "If user doesn't exists" })
-	@ApiResponse({ status: 500, description: 'If the code was not sent' })
+	@ApiOperation({ summary: 'Sending a recovery password message' })
+	@ApiResponse({ status: 201, description: 'Successful sending' })
+	@ApiResponse({ status: 404, description: "User doesn't exist" })
+	@ApiResponse({ status: 500, description: 'Message was not sent' })
+	@Post('/recovery')
+	recovery(@Body() dto: RecoveryPasswordDto): Promise<{ message: string }> {
+		return this.authService.recoveryPassword(dto);
+	}
+
+	@ApiBearerAuth()
+	@ApiOperation({ summary: 'Sending an email confirmation code' })
+	@ApiResponse({ status: 201, description: 'Successfully sending a code' })
+	@ApiResponse({ status: 401, description: 'User is unauthorized' })
+	@ApiResponse({ status: 403, description: 'Email already exist' })
+	@ApiResponse({ status: 404, description: "User doesn't exist" })
+	@ApiResponse({ status: 500, description: 'Code was not sent' })
 	@UseGuards(JwtAuthGuard)
 	@Post('/email')
-	sendCodeEmail(@Req() request: Request, @Body() dto: SendCodeEmailDto) {
-		return this.authService.sendCodeEmail(request['user'].id, dto);
+	sendCodeEmail(@Req() request: Request, @Body() dto: SendCodeEmailDto): Promise<{ message: string }> {
+		return this.authService.sendCodeEmail(request, dto);
 	}
 
-	@ApiOperation({ summary: 'Confirmation user email [Authorized]' })
-	@ApiResponse({ status: 200, description: 'Successfully confirmation' })
-	@ApiResponse({
-		status: 403,
-		description: "If user is unauthorized or wrong code or user doesn't have the confirmation code",
-	})
-	@ApiResponse({ status: 404, description: "If user doesn't exists" })
+	@ApiBearerAuth()
+	@ApiOperation({ summary: 'Email confirmation' })
+	@ApiResponse({ status: 201, description: 'Successful confirmation' })
+	@ApiResponse({ status: 401, description: 'User is unauthorized' })
+	@ApiResponse({ status: 403, description: "Wrong code or user doesn't have a confirmation code" })
+	@ApiResponse({ status: 404, description: "User doesn't exist" })
 	@UseGuards(JwtAuthGuard)
 	@Post('/email_confirmation')
-	confirmCodeEmail(@Req() request: Request, @Body() dto: ConfirmCodeEmailDto) {
-		return this.authService.confirmCodeEmail(request['user'].id, dto);
+	confirmCodeEmail(@Req() request: Request, @Body() dto: ConfirmCodeEmailDto): Promise<{ message: string }> {
+		return this.authService.confirmCodeEmail(request, dto);
 	}
 
-	@ApiOperation({ summary: 'Refresh tokens' })
-	@ApiResponse({ status: 200, description: 'Successfully refreshing' })
-	@ApiResponse({ status: 401, description: 'If user is unauthorized' })
+	@ApiCookieAuth()
+	@ApiOperation({ summary: 'Tokens refreshing' })
+	@ApiResponse({ status: 201, description: 'Successful refreshing' })
+	@ApiResponse({ status: 403, description: 'User is unauthorized' })
 	@Post('/refresh')
-	refresh(@Req() request: Request, @Res() response: Response) {
+	refresh(@Req() request: Request, @Res() response: Response): Promise<Response> {
 		return this.authService.refresh(request, response);
 	}
 }

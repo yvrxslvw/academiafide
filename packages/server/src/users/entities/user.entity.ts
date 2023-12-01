@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Table, Model, Column, DataType, BelongsToMany } from 'sequelize-typescript';
-import { Role } from 'src/roles/role.model';
-import { UserRoles } from 'src/roles/user-roles.model';
+import { Role } from 'src/roles/entities/role.entity';
+import { UserRole } from 'src/roles/entities/user-role.entity';
 
 interface UserCreationAttributes {
 	login: string;
@@ -47,6 +47,6 @@ export class User extends Model<User, UserCreationAttributes> {
 	declare recovery_password: string;
 
 	@ApiProperty({ example: [], description: "User's roles" })
-	@BelongsToMany(() => Role, () => UserRoles)
+	@BelongsToMany(() => Role, () => UserRole)
 	declare roles: Role[];
 }

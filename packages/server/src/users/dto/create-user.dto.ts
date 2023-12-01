@@ -5,10 +5,10 @@ export class CreateUserDto {
 	@ApiProperty({ example: 'yvrxslvw', description: 'User login' })
 	@IsString()
 	@Length(3, 24)
-	declare readonly login: string;
+	declare login: string;
 
 	@ApiProperty({ example: 'IAmSecretPassword', description: 'User password' })
-	@IsString({ message: 'Password must to be a string.' })
+	@IsString()
 	@IsNotEmpty()
-	declare readonly password: string;
+	declare password: string;
 }

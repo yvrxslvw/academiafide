@@ -1,12 +1,4 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { PartialType } from '@nestjs/swagger';
+import { CreateUserDto } from './create-user.dto';
 
-export class UpdateUserDto {
-	@ApiProperty({ example: 'newyvrxslvw', description: 'New user login', required: false })
-	declare login?: string;
-
-	@ApiProperty({ example: 'newSecretPassword', description: 'New user password', required: false })
-	declare password?: string;
-
-	@ApiProperty({ example: true, description: 'Activate email news subscription', required: false })
-	declare email_news?: boolean;
-}
+export class UpdateUserDto extends PartialType(CreateUserDto) {}
