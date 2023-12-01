@@ -1,6 +1,6 @@
 import { FC, useEffect } from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import { useAppSelector, useGetUserInfoMutation } from 'shared';
+import { useAppSelector, useRefreshMutation } from 'shared';
 import { Layout } from 'widgets';
 import { PrivateRoutes, PublicRoutes } from './routes';
 
@@ -19,7 +19,7 @@ const PrivateRouter = createBrowserRouter([
 ]);
 
 export const AppRouter: FC = () => {
-	const [loginUser] = useGetUserInfoMutation();
+	const [loginUser] = useRefreshMutation();
 	const { isLogged } = useAppSelector(state => state.user);
 
 	useEffect(() => {

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { IUser, UserApi } from 'shared';
+import { AuthApi, IUser } from 'shared';
 import { login, logout } from './User.actions';
 
 export interface UserState {
@@ -31,7 +31,9 @@ const UserSlice = createSlice({
 		logout,
 	},
 	extraReducers: builder => {
-		builder.addMatcher(UserApi.endpoints.getUserInfo.matchFulfilled, login);
+		builder.addMatcher(AuthApi.endpoints.login.matchFulfilled, login);
+		builder.addMatcher(AuthApi.endpoints.logup.matchFulfilled, login);
+		builder.addMatcher(AuthApi.endpoints.refresh.matchFulfilled, login);
 	},
 });
 

@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router';
-import { PublicRouterPaths, isErrorFromBackend, useGetUserInfoMutation, useLoginMutation } from 'shared';
+import { PublicRouterPaths, isErrorFromBackend, useLoginMutation } from 'shared';
 import { LoginModels, usePopup } from 'entities';
 
 export const useFetchLogin = (
@@ -9,15 +9,13 @@ export const useFetchLogin = (
 	setLoginData: Dispatch<SetStateAction<LoginModels.LoginData>>,
 ) => {
 	const { t } = useTranslation();
-	const [fetchLogin, { data, error, isLoading }] = useLoginMutation();
-	const [loginUser] = useGetUserInfoMutation();
+	const [loginUser, { data, error, isLoading }] = useLoginMutation();
 	const { createPopup } = usePopup();
 	const navigate = useNavigate();
 
 	useEffect(() => {
 		if (data) {
 			window.localStorage.setItem('accessToken', data.token);
-			loginUser();
 			navigate(PublicRouterPaths.MAIN_PAGE); // !
 		}
 	}, [data]);
@@ -33,5 +31,5 @@ export const useFetchLogin = (
 		}
 	}, [error]);
 
-	return { fetchLogin, isLoading, createPopup };
+	return { fetchLogin: loginUser, isLoading, createPopup };
 };

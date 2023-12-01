@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import i18n from 'i18next';
 import { Outlet } from 'react-router-dom';
 import { useAppSelector } from 'shared';
 import { LayoutEntities } from 'entities';
@@ -14,12 +13,6 @@ export const Layout: FC = () => {
 
 	return (
 		<div className={cl.Layout}>
-			<div>
-				{/* // ! */}
-				<button onClick={() => i18n.changeLanguage('es')}>es</button>
-				<button onClick={() => i18n.changeLanguage('en')}>en</button>
-				<button onClick={() => i18n.changeLanguage('ru')}>ru</button>
-			</div>
 			<Header userBlock={isLogged ? <UserInfo /> : <RegInfo />} />
 			<main>
 				<Outlet />

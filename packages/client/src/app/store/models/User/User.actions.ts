@@ -4,8 +4,8 @@ import { IUser } from 'shared';
 
 type State = CombinedState<UserState>;
 
-export const login = (state: State, action: PayloadAction<IUser>) => {
-	state.userInfo = action.payload;
+export const login = (state: State, action: PayloadAction<{ token: string, user: IUser }>) => {
+	state.userInfo = action.payload.user;
 	state.isLogged = true;
 };
 

@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { AuthApi, PostApi, ShopApi, UserApi } from 'shared';
+import { AuthApi, PostApi, ShopApi } from 'shared';
 import { rootReducer } from './rootReducer';
 
 export const setupStore = () =>
@@ -10,5 +10,4 @@ export const setupStore = () =>
 				.concat(PostApi.middleware)
 				.concat(ShopApi.middleware)
 				.concat(AuthApi.middleware)
-				.concat(UserApi.middleware),
 	});

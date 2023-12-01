@@ -1,6 +1,6 @@
 import { ButtonHTMLAttributes, Dispatch, FC, SetStateAction, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, PublicRouterPaths, isErrorFromBackend, useRecoveryPasswordMutation } from 'shared';
+import { Button, PublicRouterPaths, isErrorFromBackend, useRecoveryMutation } from 'shared';
 import { RecoveryModels, usePopup } from 'entities';
 import { useNavigate } from 'react-router';
 
@@ -12,7 +12,7 @@ interface NextButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 export const NextButton: FC<NextButtonProps> = ({ recoveryData, setRecoveryData }) => {
 	const { t } = useTranslation();
 	const { createPopup } = usePopup();
-	const [recovery, { error, data, isLoading }] = useRecoveryPasswordMutation();
+	const [recovery, { error, data, isLoading }] = useRecoveryMutation();
 	const navigate = useNavigate();
 
 	const onClickHandler = async () => {
@@ -26,7 +26,7 @@ export const NextButton: FC<NextButtonProps> = ({ recoveryData, setRecoveryData 
 			return;
 		}
 
-		await recovery(email);
+		await recovery({ email });
 	};
 
 	useEffect(() => {
