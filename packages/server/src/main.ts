@@ -20,8 +20,14 @@ const bootstrap = async () => {
 	if (isDev) {
 		const swaggerConfig = new DocumentBuilder()
 			.setTitle('Academia Fide backend server')
-			.setDescription('This is REST API backend server documentation for Academia Fide.')
-			.setVersion('0.0.1')
+			.setDescription(
+				'This is REST API backend server for Academia Fide. ' +
+					'Below are some resources and interactions with them. ' +
+					'Some resources require an access token, which is taken after user authorization; also, some interactions require the Administrator role. ' +
+					'A refresh token is required for a refresh resource; it is also taken after user authorization.',
+			)
+			.setVersion('1.0.0')
+			.setContact('yvrxslvw', 'https://github.com/yvrxslvw', 'yvrxslvv@gmail.com')
 			.addBearerAuth({ type: 'http' }, 'accessToken')
 			.addCookieAuth('refreshToken')
 			.build();
