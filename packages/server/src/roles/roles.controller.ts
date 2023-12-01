@@ -12,7 +12,7 @@ import { RolesGuard } from 'src/auth/guards/roles.guard';
 export class RolesController {
 	constructor(private readonly rolesService: RolesService) {}
 
-	@ApiBearerAuth()
+	@ApiBearerAuth('accessToken')
 	@ApiOperation({ summary: 'Creating a role' })
 	@ApiResponse({ status: 200, description: 'Successful role creation', type: Role })
 	@ApiResponse({ status: 401, description: "You don't have ADMIN role" })
@@ -24,7 +24,7 @@ export class RolesController {
 		return this.rolesService.create(dto);
 	}
 
-	@ApiBearerAuth()
+	@ApiBearerAuth('accessToken')
 	@ApiOperation({ summary: 'Getting all roles' })
 	@ApiResponse({ status: 200, description: 'Successfully getting all roles', type: [Role] })
 	@ApiResponse({ status: 401, description: "You don't have ADMIN role" })
@@ -35,7 +35,7 @@ export class RolesController {
 		return this.rolesService.findAll();
 	}
 
-	@ApiBearerAuth()
+	@ApiBearerAuth('accessToken')
 	@ApiOperation({ summary: 'Getting a role by ID' })
 	@ApiResponse({ status: 200, description: 'Successfully getting a role', type: Role })
 	@ApiResponse({ status: 401, description: "You don't have ADMIN role" })
@@ -47,7 +47,7 @@ export class RolesController {
 		return this.rolesService.findOneById(id);
 	}
 
-	@ApiBearerAuth()
+	@ApiBearerAuth('accessToken')
 	@ApiOperation({ summary: 'Updating a role' })
 	@ApiResponse({ status: 200, description: 'Successful role updation', type: Role })
 	@ApiResponse({ status: 401, description: "You don't have ADMIN role" })
@@ -59,7 +59,7 @@ export class RolesController {
 		return this.rolesService.update(id, dto);
 	}
 
-	@ApiBearerAuth()
+	@ApiBearerAuth('accessToken')
 	@ApiOperation({ summary: 'Deleting a role' })
 	@ApiResponse({ status: 200, description: 'Successful role deletion' })
 	@ApiResponse({ status: 401, description: "You don't have ADMIN role" })

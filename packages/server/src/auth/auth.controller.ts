@@ -46,7 +46,7 @@ export class AuthController {
 		return this.authService.recoveryPassword(dto);
 	}
 
-	@ApiBearerAuth()
+	@ApiBearerAuth('accessToken')
 	@ApiOperation({ summary: 'Sending an email confirmation code' })
 	@ApiResponse({ status: 201, description: 'Successfully sending a code' })
 	@ApiResponse({ status: 401, description: 'User is unauthorized' })
@@ -59,7 +59,7 @@ export class AuthController {
 		return this.authService.sendCodeEmail(request, dto);
 	}
 
-	@ApiBearerAuth()
+	@ApiBearerAuth('accessToken')
 	@ApiOperation({ summary: 'Email confirmation' })
 	@ApiResponse({ status: 201, description: 'Successful confirmation' })
 	@ApiResponse({ status: 401, description: 'User is unauthorized' })
@@ -71,7 +71,7 @@ export class AuthController {
 		return this.authService.confirmCodeEmail(request, dto);
 	}
 
-	@ApiCookieAuth()
+	@ApiCookieAuth('refreshToken')
 	@ApiOperation({ summary: 'Tokens refreshing' })
 	@ApiResponse({ status: 201, description: 'Successful refreshing' })
 	@ApiResponse({ status: 403, description: 'User is unauthorized' })

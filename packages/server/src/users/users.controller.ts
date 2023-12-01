@@ -12,7 +12,7 @@ import { RoleDto } from './dto/role.dto';
 export class UsersController {
 	constructor(private readonly usersService: UsersService) {}
 
-	@ApiBearerAuth()
+	@ApiBearerAuth('accessToken')
 	@ApiOperation({ summary: 'Getting all users' })
 	@ApiResponse({ status: 200, description: 'Successfully getting all users', type: [User] })
 	@ApiResponse({ status: 401, description: "You don't have ADMIN role" })
@@ -23,7 +23,7 @@ export class UsersController {
 		return this.usersService.getAll();
 	}
 
-	@ApiBearerAuth()
+	@ApiBearerAuth('accessToken')
 	@ApiOperation({ summary: 'Getting a user by ID' })
 	@ApiResponse({ status: 200, description: 'Successfully getting a user', type: User })
 	@ApiResponse({ status: 401, description: "You don't have ADMIN role" })
@@ -35,7 +35,7 @@ export class UsersController {
 		return this.usersService.getOneById(id);
 	}
 
-	@ApiBearerAuth()
+	@ApiBearerAuth('accessToken')
 	@ApiOperation({ summary: 'Updating a user' })
 	@ApiResponse({ status: 200, description: 'Successful user updation', type: User })
 	@ApiResponse({ status: 401, description: "You don't have ADMIN role" })
@@ -48,7 +48,7 @@ export class UsersController {
 		return this.usersService.update(id, dto);
 	}
 
-	@ApiBearerAuth()
+	@ApiBearerAuth('accessToken')
 	@ApiOperation({ summary: 'Deleting a user' })
 	@ApiResponse({ status: 200, description: 'Successful user deletion' })
 	@ApiResponse({ status: 401, description: "You don't have ADMIN role" })
@@ -60,7 +60,7 @@ export class UsersController {
 		return this.usersService.delete(id);
 	}
 
-	@ApiBearerAuth()
+	@ApiBearerAuth('accessToken')
 	@ApiOperation({ summary: 'Adding role to a user' })
 	@ApiResponse({ status: 200, description: 'Successful addition of role', type: User })
 	@ApiResponse({ status: 401, description: "You don't have ADMIN role" })
@@ -73,7 +73,7 @@ export class UsersController {
 		return this.usersService.addRole(id, dto);
 	}
 
-	@ApiBearerAuth()
+	@ApiBearerAuth('accessToken')
 	@ApiOperation({ summary: 'Removing role from a user' })
 	@ApiResponse({ status: 200, description: 'Successful role deletion', type: User })
 	@ApiResponse({ status: 401, description: "You don't have ADMIN role" })

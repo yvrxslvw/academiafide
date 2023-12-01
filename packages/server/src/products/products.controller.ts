@@ -24,7 +24,7 @@ import { UpdateProductDto } from './dto/update-product.dto';
 export class ProductsController {
 	constructor(private readonly productsService: ProductsService) {}
 
-	@ApiBearerAuth()
+	@ApiBearerAuth('accessToken')
 	@ApiOperation({ summary: 'Creating a product' })
 	@ApiResponse({ status: 200, description: 'Successful product creation', type: Product })
 	@ApiResponse({ status: 401, description: "You don't have ADMIN role" })
@@ -52,7 +52,7 @@ export class ProductsController {
 		return this.productsService.getOneById(id);
 	}
 
-	@ApiBearerAuth()
+	@ApiBearerAuth('accessToken')
 	@ApiOperation({ summary: 'Updating a product' })
 	@ApiResponse({ status: 200, description: 'Successfully product updation', type: Product })
 	@ApiResponse({ status: 401, description: "You don't have ADMIN role" })
@@ -65,7 +65,7 @@ export class ProductsController {
 		return this.productsService.update(id, dto, image);
 	}
 
-	@ApiBearerAuth()
+	@ApiBearerAuth('accessToken')
 	@ApiOperation({ summary: 'Deleting a product' })
 	@ApiResponse({ status: 200, description: 'Successful product deletion' })
 	@ApiResponse({ status: 401, description: "You don't have ADMIN role" })

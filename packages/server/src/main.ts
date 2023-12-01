@@ -22,7 +22,7 @@ const bootstrap = async () => {
 			.setTitle('Academia Fide backend server')
 			.setDescription('This is REST API backend server documentation for Academia Fide.')
 			.setVersion('0.0.1')
-			.addBearerAuth({ type: 'apiKey' }, 'accessToken')
+			.addBearerAuth({ type: 'http' }, 'accessToken')
 			.addCookieAuth('refreshToken')
 			.build();
 		const swaggerDocument = SwaggerModule.createDocument(app, swaggerConfig);

@@ -24,7 +24,7 @@ import { RolesGuard } from 'src/auth/guards/roles.guard';
 export class PostsController {
 	constructor(private readonly postsService: PostsService) {}
 
-	@ApiBearerAuth()
+	@ApiBearerAuth('accessToken')
 	@ApiOperation({ summary: 'Creating a post' })
 	@ApiResponse({ status: 200, description: 'Successful post creation', type: Post })
 	@ApiResponse({ status: 401, description: "You don't have ADMIN role" })
@@ -51,7 +51,7 @@ export class PostsController {
 		return this.postsService.getOneById(id);
 	}
 
-	@ApiBearerAuth()
+	@ApiBearerAuth('accessToken')
 	@ApiOperation({ summary: 'Updating a post' })
 	@ApiResponse({ status: 200, description: 'Successful post updation', type: Post })
 	@ApiResponse({ status: 401, description: "You don't have ADMIN role" })
@@ -64,7 +64,7 @@ export class PostsController {
 		return this.postsService.update(id, dto, image);
 	}
 
-	@ApiBearerAuth()
+	@ApiBearerAuth('accessToken')
 	@ApiOperation({ summary: 'Deleting a post' })
 	@ApiResponse({ status: 200, description: 'Successful post deletion' })
 	@ApiResponse({ status: 401, description: "You don't have ADMIN role" })

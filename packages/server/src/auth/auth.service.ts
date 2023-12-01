@@ -33,13 +33,13 @@ export class AuthService {
 				throw new ForbiddenException('Wrong login or password.');
 			}
 		}
-		return response.json({ token: this.generateToken(user, response), user });
+		return response.json({ token: await this.generateToken(user, response), user });
 	}
 
 	async logup(dto: CreateUserDto, response: Response): Promise<Response> {
 		const hashPassword = await bcrypt.hash(dto.password, 5);
 		const user = await this.usersService.create({ ...dto, password: hashPassword });
-		return response.json({ token: this.generateToken(user, response), user });
+		return response.json({ token: await this.generateToken(user, response), user });
 	}
 
 	async logout(response: Response): Promise<Response> {
@@ -94,7 +94,7 @@ export class AuthService {
 		if (!token) throw new ForbiddenException('Not authorized.');
 		const { id } = await this.jwtService.verifyAsync<{ id: number }>(token);
 		const user = await this.usersService.getOneById(id);
-		return response.json({ token: this.generateToken(user, response), user });
+		return response.json({ token: await this.generateToken(user, response), user });
 	}
 
 	private async generateToken(user: User, response: Response): Promise<string> {
