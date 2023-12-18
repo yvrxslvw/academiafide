@@ -35,6 +35,14 @@ export class UsersController {
 		return this.usersService.getOneById(id);
 	}
 
+	@ApiOperation({ summary: 'Getting a user by login' })
+	@ApiResponse({ status: 200, description: 'Successfully getting a user info' })
+	@ApiResponse({ status: 404, description: "User doesn't exist" })
+	@Get('/info/:login')
+	getOneByLogin(@Param('login') login: string) {
+		return this.usersService.getOneByName(login);
+	}
+
 	@ApiBearerAuth('accessToken')
 	@ApiOperation({ summary: 'Updating a user' })
 	@ApiResponse({ status: 200, description: 'Successful user updation', type: User })

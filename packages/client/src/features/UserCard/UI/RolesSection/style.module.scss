@@ -1,0 +1,26 @@
+.RolesSection {
+	width: 100%;
+	margin-top: 15px;
+
+	.EditRoleButton {
+		border: none;
+		outline: none;
+		background-color: initial;
+		cursor: pointer;
+
+		font-size: 20px;
+	}
+
+	.RolesRow {
+		display: flex;
+		margin-top: 5px;
+
+		.RoleItem {
+			margin-right: 5px;
+
+			&:last-child {
+				margin: 0px;
+			}
+		}
+	}
+}
