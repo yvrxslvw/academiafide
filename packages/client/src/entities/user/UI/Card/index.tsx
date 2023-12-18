@@ -1,8 +1,8 @@
 import { FC, PropsWithChildren } from 'react';
 import { Card } from 'entities/card';
 import { Images } from 'shared/assets';
-import cl from './style.module.scss';
 import { Paragraph, RoleTag } from 'shared/UI';
+import cl from './style.module.scss';
 
 interface UserCardProps extends PropsWithChildren {}
 
@@ -17,6 +17,11 @@ export const UserCard: FC<UserCardProps> = () => {
 					<RoleTag tag='ADMIN' className={cl.RoleItem} />
 					<RoleTag tag='TRAINER' className={cl.RoleItem} />
 				</section>
+			</section>
+			<section className={cl.ButtonSection}>
+				<button>Editar cuenta</button>
+				<button>Restablecer la contraseña</button>
+				<button>Borrar cuenta</button>
 			</section>
 		</Card>
 	);
