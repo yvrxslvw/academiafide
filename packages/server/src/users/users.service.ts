@@ -43,10 +43,12 @@ export class UsersService {
 	}
 
 	async getOneByName(name: string) {
-		const { login, image, email, createdAt, roles } = await this.userRepo.findOne({
+		const user = await this.userRepo.findOne({
 			where: { login: name },
 			include: { all: true, nested: true },
 		});
+		if (!user) throw new NotFoundException('User not found.');
+		const { login, image, email, createdAt, roles } = user;
 		return {
 			login,
 			image,

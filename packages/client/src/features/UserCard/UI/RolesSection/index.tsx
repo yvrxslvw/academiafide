@@ -2,16 +2,14 @@ import { FC } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPen } from '@fortawesome/free-solid-svg-icons';
 import { Paragraph, RoleTag } from 'shared/UI';
-import { useAppSelector } from 'shared/hooks';
+import { IRole } from 'shared/models';
 import cl from './style.module.scss';
 
 interface RolesSectionProps {
-	username: string;
+	roles: IRole[];
 }
 
-export const RolesSection: FC<RolesSectionProps> = ({ username }) => {
-	const { userInfo } = useAppSelector(state => state.user); // !
-
+export const RolesSection: FC<RolesSectionProps> = ({ roles }) => {
 	return (
 		<section className={cl.RolesSection}>
 			<Paragraph>
@@ -21,7 +19,7 @@ export const RolesSection: FC<RolesSectionProps> = ({ username }) => {
 				</button>
 			</Paragraph>
 			<section className={cl.RolesRow}>
-				{userInfo.roles.map(({ id, tag }) => (
+				{roles.map(({ id, tag }) => (
 					<RoleTag tag={tag} className={cl.RoleItem} key={id} />
 				))}
 			</section>

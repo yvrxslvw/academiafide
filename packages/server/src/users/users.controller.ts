@@ -1,4 +1,4 @@
-import { Controller, Put, Delete, Body, Get, Param, Patch, UseGuards } from '@nestjs/common';
+import { Controller, Put, Delete, Body, Get, Param, Patch, UseGuards, UseInterceptors, UploadedFile } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { UsersService } from './users.service';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -6,6 +6,7 @@ import { User } from './entities/user.entity';
 import { Roles } from 'src/auth/decorators/roles.decorator';
 import { RolesGuard } from 'src/auth/guards/roles.guard';
 import { RoleDto } from './dto/role.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
 
 @ApiTags('User interactions')
 @Controller('users')
@@ -52,8 +53,9 @@ export class UsersController {
 	@Roles('ADMIN')
 	@UseGuards(RolesGuard)
 	@Patch('/:id')
-	update(@Param('id') id: number, @Body() dto: UpdateUserDto): Promise<User> {
-		return this.usersService.update(id, dto);
+	@UseInterceptors(FileInterceptor('image'))
+	update(@Param('id') id: number, @Body() dto: UpdateUserDto, @UploadedFile() image?: any): Promise<User> {
+		return this.usersService.update(id, dto, image);
 	}
 
 	@ApiBearerAuth('accessToken')

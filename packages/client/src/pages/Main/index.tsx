@@ -10,7 +10,7 @@ export const MainPage: FC = () => {
 
 	return (
 		<>
-			<Link to={PrivateRouterPaths.USERS_PAGE + '/adrian'}>temp</Link>
+			<Link to={PrivateRouterPaths.USERS_PAGE + '/yvrxslvw'}>temp</Link>
 			<JoinCard />
 			<News />
 			<Actions />

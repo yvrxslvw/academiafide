@@ -47,6 +47,10 @@ export const PublicRoutes: RouteObject[] = [
 		path: PublicRouterPaths.SHOP_PAGE,
 		element: <ShopPage />,
 	},
+	{
+		path: PrivateRouterPaths.USERS_PAGE + '/:login',
+		element: <UserPage />,
+	},
 ];
 
 export const PrivateRoutes: RouteObject[] = [
