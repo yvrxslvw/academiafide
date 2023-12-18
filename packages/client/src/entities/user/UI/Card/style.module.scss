@@ -10,5 +10,18 @@
 	.RolesSection {
 		width: 100%;
 		margin-top: 15px;
+
+		.RolesRow {
+			display: flex;
+			margin-top: 5px;
+
+			.RoleItem {
+				margin-right: 5px;
+
+				&:last-child {
+					margin: 0px;
+				}
+			}
+		}
 	}
 }

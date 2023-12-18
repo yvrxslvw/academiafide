@@ -10,3 +10,4 @@ export * from './Textarea';
 export * from './FileInput';
 export * as Dropdown from './Dropdown';
 export * from './Loader';
+export * from './RoleTag';
