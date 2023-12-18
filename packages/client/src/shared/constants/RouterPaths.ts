@@ -9,4 +9,6 @@ export const enum PublicRouterPaths {
 	SHOP_PAGE = '/shop',
 }
 
-export const enum PrivateRouterPaths {}
+export const enum PrivateRouterPaths {
+	USERS_PAGE = '/users',
+}

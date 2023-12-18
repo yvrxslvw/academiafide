@@ -10,9 +10,9 @@ interface CardProps extends PropsWithChildren, HTMLAttributes<HTMLDivElement> {
 
 export const Card: FC<CardProps> = ({ title, imageUrl, className, children, ...props }) => {
 	return (
-		<div className={cn(cl.JoinCard, className)} {...props}>
+		<div className={cn(cl.JoinCard)} {...props}>
 			<div className={cl.Container}>
-				<div className={cn(cl.Row, cl.FirstRow)}>
+				<div className={cn(cl.Row, cl.FirstRow, className)} style={{ width: imageUrl ? '50%' : '100%' }}>
 					<section>
 						<Title className={cl.Title}>{title}</Title>
 					</section>

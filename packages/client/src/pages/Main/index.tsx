@@ -1,4 +1,6 @@
 import { FC, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { PrivateRouterPaths } from 'shared/constants';
 import { Actions, Contacts, JoinCard, News, Shop } from 'widgets/main';
 
 export const MainPage: FC = () => {
@@ -8,6 +10,7 @@ export const MainPage: FC = () => {
 
 	return (
 		<>
+			<Link to={PrivateRouterPaths.USERS_PAGE + '/artem'}>temp</Link>
 			<JoinCard />
 			<News />
 			<Actions />

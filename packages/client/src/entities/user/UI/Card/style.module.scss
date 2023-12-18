@@ -1,0 +1,14 @@
+.UserCard {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+
+	.UserImage {
+		width: 90%;
+	}
+
+	.RolesSection {
+		width: 100%;
+		margin-top: 15px;
+	}
+}
