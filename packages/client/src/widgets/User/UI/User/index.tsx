@@ -27,11 +27,11 @@ export const User: FC = () => {
 				<UserCard username={data.login} imageSrc={data.image ? `${API_URL}/${data.image}` : Icons.ChessFigure}>
 					<RolesSection roles={data.roles} />
 					<section className={cl.ButtonSection}>
-						<EditAccountButton />
-						<RecoveryPasswordButton />
-						<DeleteAccountButton />
-						<RolesButton />
-						<UsersButton />
+						<EditAccountButton accountLogin={data.login} />
+						<RecoveryPasswordButton accountLogin={data.login} />
+						<DeleteAccountButton accountLogin={data.login} />
+						<RolesButton accountLogin={data.login} />
+						<UsersButton accountLogin={data.login} />
 					</section>
 				</UserCard>
 			) : (
