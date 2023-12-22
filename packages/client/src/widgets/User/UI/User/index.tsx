@@ -17,7 +17,6 @@ export const User: FC = () => {
 	return (
 		<div className={cl.Block}>
 			{data ? (
-				// todo: Make no image avatar
 				<UserCard username={data.login} imageSrc={data.image ? `${API_URL}/${data.image}` : Icons.ChessFigure}>
 					<RolesSection roles={data.roles} />
 					<section className={cl.ButtonSection}>

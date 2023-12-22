@@ -7,6 +7,7 @@ import { Link } from 'shared/UI';
 import { formatImageUrl } from 'shared/utils';
 import { UserSlice } from 'app/store/models';
 import cl from './style.module.scss';
+import { Icons } from 'shared/assets';
 
 export const UserInfo: FC = () => {
 	const { t } = useTranslation();
@@ -31,12 +32,13 @@ export const UserInfo: FC = () => {
 			<Link to={PublicRouterPaths.MAIN_PAGE} onClick={onClickLogoutHandler}>
 				{t('Cerrar sesión')}
 			</Link>
-			<img
-				src={userInfo.image ? formatImageUrl(userInfo.image) : 'https://via.placeholder.com/600/92c952'}
-				alt='Avatar'
-				className={cl.UserAvatar}
-				onClick={onClickAvatarHandler}
-			/>
+			<section className={cl.UserAvatar}>
+				<img
+					src={userInfo.image ? formatImageUrl(userInfo.image) : Icons.ChessFigure}
+					alt='Avatar'
+					onClick={onClickAvatarHandler}
+				/>
+			</section>
 		</>
 	);
 };
