@@ -1,7 +1,13 @@
 import { FC } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-import { RolesSection } from 'features/UserCard';
+import {
+	DeleteAccountButton,
+	EditAccountButton,
+	RecoveryPasswordButton,
+	RolesButton,
+	RolesSection,
+	UsersButton,
+} from 'features/UserCard';
 import { UserCard } from 'entities/user';
 import { useGetUserByNameQuery } from 'shared/api';
 import { API_URL, PublicRouterPaths } from 'shared/constants';
@@ -10,7 +16,6 @@ import { Icons } from 'shared/assets';
 import cl from './style.module.scss';
 
 export const User: FC = () => {
-	const { t } = useTranslation();
 	const location = useLocation();
 	const { data, isLoading } = useGetUserByNameQuery(location.pathname.slice(7));
 
@@ -22,9 +27,11 @@ export const User: FC = () => {
 				<UserCard username={data.login} imageSrc={data.image ? `${API_URL}/${data.image}` : Icons.ChessFigure}>
 					<RolesSection roles={data.roles} />
 					<section className={cl.ButtonSection}>
-						<button>{t('Editar cuenta')}</button>
-						<button>{t('Restablecer la contraseña')}</button>
-						<button>{t('Borrar cuenta')}</button>
+						<EditAccountButton />
+						<RecoveryPasswordButton />
+						<DeleteAccountButton />
+						<RolesButton />
+						<UsersButton />
 					</section>
 				</UserCard>
 			) : (
