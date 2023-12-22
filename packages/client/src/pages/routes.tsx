@@ -1,5 +1,5 @@
 import { Navigate, RouteObject } from 'react-router-dom';
-import { PrivateRouterPaths, PublicRouterPaths } from 'shared/constants';
+import { PublicRouterPaths } from 'shared/constants';
 import { MainPage } from './Main';
 import { TermsPage } from './Terms';
 import { LoginPage } from './Login';
@@ -48,7 +48,7 @@ export const PublicRoutes: RouteObject[] = [
 		element: <ShopPage />,
 	},
 	{
-		path: PrivateRouterPaths.USERS_PAGE + '/:login',
+		path: PublicRouterPaths.USERS_PAGE + '/:login',
 		element: <UserPage />,
 	},
 ];
@@ -79,7 +79,7 @@ export const PrivateRoutes: RouteObject[] = [
 		element: <ShopPage />,
 	},
 	{
-		path: PrivateRouterPaths.USERS_PAGE + '/:login',
+		path: PublicRouterPaths.USERS_PAGE + '/:login',
 		element: <UserPage />,
 	},
 ];

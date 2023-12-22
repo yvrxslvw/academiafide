@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useAppDispatch, useAppSelector } from 'shared/hooks';
 import { useLogoutMutation } from 'shared/api';
@@ -15,10 +16,10 @@ export const UserInfo: FC = () => {
 	const dispatch = useAppDispatch();
 	const { logout } = UserSlice.actions;
 	const [logoutUser] = useLogoutMutation();
+	const navigate = useNavigate();
 
 	const onClickAvatarHandler = () => {
-		// eslint-disable-next-line no-console
-		console.info('will be account actions here');
+		navigate(PublicRouterPaths.USERS_PAGE + `/${userInfo.login}`);
 	};
 
 	const onClickLogoutHandler = async () => {

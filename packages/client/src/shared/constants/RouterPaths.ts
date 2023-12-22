@@ -7,8 +7,5 @@ export const enum PublicRouterPaths {
 	NEWS_PAGE = '/news',
 	ABOUT_PAGE = '/about',
 	SHOP_PAGE = '/shop',
-}
-
-export const enum PrivateRouterPaths {
 	USERS_PAGE = '/users',
 }
