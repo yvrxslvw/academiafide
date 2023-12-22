@@ -113,7 +113,13 @@
 			"Agregar un nuevo producto": "Agregar un nuevo producto",
 			"El producto ha sido editado exitosamente.": "El producto ha sido editado exitosamente.",
 			"Eliminar un producto": "Eliminar un producto",
-			"Cargando por favor espere...": "Cargando por favor espere..."
+			"Cargando por favor espere...": "Cargando por favor espere...",
+			"Editar cuenta": "Editar cuenta",
+			"Restablecer la contraseña": "Restablecer la contraseña",
+			"Borrar cuenta": "Borrar cuenta",
+			"Roles": "Roles",
+			"Gestión de roles": "Gestión de roles",
+			"Gestión de usuarios": "Gestión de usuarios"
 		}
 	},
 	"en": {
@@ -230,7 +236,13 @@
 			"Agregar un nuevo producto": "Add a new product",
 			"El producto ha sido editado exitosamente.": "The product has been successfully edited.",
 			"Eliminar un producto": "Delete a product",
-			"Cargando por favor espere...": "Loading Please wait..."
+			"Cargando por favor espere...": "Loading Please wait...",
+			"Editar cuenta": "Edit account",
+			"Restablecer la contraseña": "Reset password",
+			"Borrar cuenta": "Delete account",
+			"Roles": "Roles",
+			"Gestión de roles": "Role management",
+			"Gestión de usuarios": "User Management"
 		}
 	},
 	"ru": {
@@ -347,7 +359,13 @@
 			"Agregar un nuevo producto": "Добавить новый продукт",
 			"El producto ha sido editado exitosamente.": "Продукт успешно отредактирован.",
 			"Eliminar un producto": "Удалить продукт",
-			"Cargando por favor espere...": "Загрузка, пожалуйста подождите..."
+			"Cargando por favor espere...": "Загрузка, пожалуйста подождите...",
+			"Editar cuenta": "Редактировать аккаунт",
+			"Restablecer la contraseña": "Сбросить пароль",
+			"Borrar cuenta": "Удалить аккаунт",
+			"Roles": "Роли",
+			"Gestión de roles": "Управление ролями",
+			"Gestión de usuarios": "Управление пользователями"
 		}
 	}
 }
