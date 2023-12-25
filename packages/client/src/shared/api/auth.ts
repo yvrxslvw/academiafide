@@ -34,12 +34,14 @@ export const AuthApi = createApi({
 			}),
 		}),
 		recovery: builder.mutation<{ message: string }, { email: string }>({
-			query: () => ({
+			query: body => ({
 				url: '/auth/recovery',
 				method: 'POST',
+				body,
 			}),
 		}),
 	}),
 });
 
-export const { useLogupMutation, useLoginMutation, useLogoutMutation, useRefreshMutation, useRecoveryMutation } = AuthApi;
+export const { useLogupMutation, useLoginMutation, useLogoutMutation, useRefreshMutation, useRecoveryMutation } =
+	AuthApi;
