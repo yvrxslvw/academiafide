@@ -1,7 +1,7 @@
 @use '@styles' as *;
 
 .Block {
-	width: 37%;
+	width: 45%;
 
 	.ButtonSection {
 		width: 100%;
@@ -29,5 +29,9 @@
 				background-color: $grey_color;
 			}
 		}
+	}
+
+	@media (max-width: 430px) {
+		width: 100%;
 	}
 }
