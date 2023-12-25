@@ -21,7 +21,7 @@
 		left: 0;
 		height: 25px;
 		width: 25px;
-		background-color: $white_color;
+		background-color: $grey_color;
 		border-radius: 50%;
 		transition: all 0.4s ease;
 
@@ -45,7 +45,7 @@
 	}
 
 	&:hover .Input ~ .CheckMark {
-		background-color: $white_color;
+		background-color: $grey_color;
 	}
 
 	& .Input:checked {

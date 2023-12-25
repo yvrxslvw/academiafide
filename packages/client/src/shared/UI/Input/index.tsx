@@ -9,7 +9,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 	error?: boolean;
 }
 
-export const Input: FC<InputProps> = ({ label, error, type, className, ...props }) => {
+export const Input: FC<InputProps> = ({ label, error, type, className, disabled, ...props }) => {
 	const [isShown, setIsShown] = useState(false);
 	const inputRef = useRef<HTMLInputElement>(null);
 
@@ -30,12 +30,13 @@ export const Input: FC<InputProps> = ({ label, error, type, className, ...props 
 				className={cn(cl.Input, className, { [cl.Password]: type === 'password' })}
 				placeholder=''
 				ref={inputRef}
+				disabled={disabled}
 				{...props}
 			/>
 			<label className={cl.Label} onClick={onClickLabelHandler}>
 				{label}
 			</label>
-			{type === 'password' && (
+			{type === 'password' && !disabled && (
 				<button type='button' onClick={onClickEyeHandler} className={cl.Button}>
 					{isShown ? <FontAwesomeIcon icon={faEye} /> : <FontAwesomeIcon icon={faEyeSlash} />}
 				</button>

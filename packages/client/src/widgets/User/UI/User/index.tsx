@@ -1,5 +1,5 @@
-import { FC } from 'react';
-import { Navigate, useLocation } from 'react-router-dom';
+import { Dispatch, FC, SetStateAction } from 'react';
+import { Navigate } from 'react-router-dom';
 import {
 	DeleteAccountButton,
 	EditAccountButton,
@@ -9,29 +9,31 @@ import {
 	UsersButton,
 } from 'features/UserCard';
 import { UserCard } from 'entities/user';
-import { useGetUserByNameQuery } from 'shared/api';
 import { API_URL, PublicRouterPaths } from 'shared/constants';
-import { Loader } from 'shared/UI';
 import { Icons } from 'shared/assets';
+import { UserInfo } from 'shared/api';
 import cl from './style.module.scss';
 
-export const User: FC = () => {
-	const location = useLocation();
-	const { data, isLoading } = useGetUserByNameQuery(location.pathname.slice(7));
+interface UserProps {
+	userInfo: UserInfo;
+	setEditProfileShown: Dispatch<SetStateAction<boolean>>;
+}
 
-	if (isLoading) return <Loader />;
-
+export const User: FC<UserProps> = ({ userInfo, setEditProfileShown }) => {
 	return (
 		<div className={cl.Block}>
-			{data ? (
-				<UserCard username={data.login} imageSrc={data.image ? `${API_URL}/${data.image}` : Icons.ChessFigure}>
-					<RolesSection roles={data.roles} />
+			{userInfo ? (
+				<UserCard
+					username={userInfo.login}
+					imageSrc={userInfo.image ? `${API_URL}/${userInfo.image}` : Icons.ChessFigure}
+				>
+					<RolesSection roles={userInfo.roles} />
 					<section className={cl.ButtonSection}>
-						<EditAccountButton accountLogin={data.login} />
-						<RecoveryPasswordButton accountLogin={data.login} />
-						<DeleteAccountButton accountLogin={data.login} />
-						<RolesButton accountLogin={data.login} />
-						<UsersButton accountLogin={data.login} />
+						<EditAccountButton accountLogin={userInfo.login} setModalShown={setEditProfileShown} />
+						<RecoveryPasswordButton accountLogin={userInfo.login} />
+						<DeleteAccountButton accountLogin={userInfo.login} />
+						<RolesButton accountLogin={userInfo.login} />
+						<UsersButton accountLogin={userInfo.login} />
 					</section>
 				</UserCard>
 			) : (

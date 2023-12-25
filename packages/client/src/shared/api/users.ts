@@ -2,7 +2,7 @@ import { createApi } from '@reduxjs/toolkit/query/react';
 import { IRole } from 'shared/models';
 import { baseQuery } from './baseQuery';
 
-interface UserInfo {
+export interface UserInfo {
 	login: string;
 	image: string;
 	email: string;
