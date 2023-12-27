@@ -1,6 +1,9 @@
-import { Dispatch, FC, SetStateAction } from 'react';
-import { Button, Checkbox, FileInput, Input, Modal } from 'shared/UI';
+import { Dispatch, FC, SetStateAction, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { ImageInput } from 'features/EditProfile';
+import { Button, Checkbox, Input, Modal } from 'shared/UI';
 import { UserInfo } from 'shared/api';
+import { IEditProfile } from 'shared/models';
 import cl from './style.module.scss';
 
 interface EditProfileModalProps {
@@ -10,22 +13,34 @@ interface EditProfileModalProps {
 }
 
 export const EditProfileModal: FC<EditProfileModalProps> = ({ userInfo, shown, setShown }) => {
+	const { t } = useTranslation();
+	const [data, setData] = useState<IEditProfile>({
+		image: {} as File,
+		login: userInfo.login,
+		password: '',
+		email: userInfo.email || '',
+		email_news: userInfo.email_news,
+	});
+
 	return (
-		<Modal title='Редактирование профиля' shown={shown} setShown={setShown} className={cl.ModalWindow}>
-			<FileInput label='Изображение профиля' accept='image/png, image/jpeg' />
-			<Input type='text' label='Логин' value={userInfo.login} />
-			<Input type='email' label='Адрес эл.почты' value={userInfo.email} />
+		<Modal title={t('Editando perfil')} shown={shown} setShown={setShown} className={cl.ModalWindow}>
+			<ImageInput data={data} setData={setData} />
+			<Input type='text' label={t('Nombre de usuario')} value={userInfo.login} />
+			<Input type='email' label={t('Correo electrónico')} value={userInfo.email || ''} />
 			{userInfo.email && !userInfo.email_confirmed && (
 				<section>
-					<Button>Подтвердить почту</Button>
+					<Button>{t('Confirmar correo electrónico')}</Button>
 				</section>
 			)}
-			<Input type='password' label='Новый пароль' />
+			<Input type='password' label={t('Nueva contraseña')} />
 			{userInfo.email && userInfo.email_confirmed && (
-				<Checkbox label='Включить/выключить рассылку новостей на почту' checked={userInfo.email_news} />
+				<Checkbox
+					label={t('Activar/desactivar boletines informativos por correo electrónico')}
+					checked={userInfo.email_news}
+				/>
 			)}
 			<section className={cl.ButtonBody}>
-				<Button>Применить</Button>
+				<Button>{t('Aplicar')}</Button>
 			</section>
 		</Modal>
 	);

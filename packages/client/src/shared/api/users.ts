@@ -5,8 +5,8 @@ import { baseQuery } from './baseQuery';
 export interface UserInfo {
 	id: number;
 	login: string;
-	image: string;
-	email: string;
+	image: string | null;
+	email: string | null;
 	email_confirmed: boolean;
 	email_news: boolean;
 	createdAt: string;

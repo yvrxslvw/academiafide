@@ -119,7 +119,13 @@
 			"Borrar cuenta": "Borrar cuenta",
 			"Roles": "Roles",
 			"Gestión de roles": "Gestión de roles",
-			"Gestión de usuarios": "Gestión de usuarios"
+			"Gestión de usuarios": "Gestión de usuarios",
+			"Editando perfil": "Editando perfil",
+			"Foto de perfil": "Foto de perfil",
+			"Confirmar correo electrónico": "Confirmar correo electrónico",
+			"Nueva contraseña": "Nueva contraseña",
+			"Activar/desactivar boletines informativos por correo electrónico": "Activar/desactivar boletines informativos por correo electrónico",
+			"Aplicar": "Aplicar"
 		}
 	},
 	"en": {
@@ -242,7 +248,13 @@
 			"Borrar cuenta": "Delete account",
 			"Roles": "Roles",
 			"Gestión de roles": "Role management",
-			"Gestión de usuarios": "User Management"
+			"Gestión de usuarios": "User Management",
+			"Editando perfil": "Editing profile",
+			"Foto de perfil": "Profile picture",
+			"Confirmar correo electrónico": "Confirm Email",
+			"Nueva contraseña": "New Password",
+			"Activar/desactivar boletines informativos por correo electrónico": "Activate/deactivate email newsletters",
+			"Aplicar": "Apply"
 		}
 	},
 	"ru": {
@@ -365,7 +377,13 @@
 			"Borrar cuenta": "Удалить аккаунт",
 			"Roles": "Роли",
 			"Gestión de roles": "Управление ролями",
-			"Gestión de usuarios": "Управление пользователями"
+			"Gestión de usuarios": "Управление пользователями",
+			"Editando perfil": "Редактирование профиля",
+			"Foto de perfil": "Изображение профиля",
+			"Confirmar correo electrónico": "Подтвердить адрес эл. почты",
+			"Nueva contraseña": "Новый пароль",
+			"Activar/desactivar boletines informativos por correo electrónico": "Включить/Отключить рассылку новостей по электронной почте",
+			"Aplicar": "Применить"
 		}
 	}
 }
