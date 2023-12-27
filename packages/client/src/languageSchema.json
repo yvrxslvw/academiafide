@@ -126,7 +126,8 @@
 			"Nueva contraseña": "Nueva contraseña",
 			"Activar/desactivar boletines informativos por correo electrónico": "Activar/desactivar boletines informativos por correo electrónico",
 			"Aplicar": "Aplicar",
-			"Idioma del sitio web": "Idioma del sitio web"
+			"Idioma del sitio web": "Idioma del sitio web",
+			"Esta dirección de correo electrónico ya está en uso.": "Esta dirección de correo electrónico ya está en uso."
 		}
 	},
 	"en": {
@@ -256,7 +257,8 @@
 			"Nueva contraseña": "New Password",
 			"Activar/desactivar boletines informativos por correo electrónico": "Activate/deactivate email newsletters",
 			"Aplicar": "Apply",
-			"Idioma del sitio web": "Website language"
+			"Idioma del sitio web": "Website language",
+			"Esta dirección de correo electrónico ya está en uso.": "This email address is already in use."
 		}
 	},
 	"ru": {
@@ -386,7 +388,8 @@
 			"Nueva contraseña": "Новый пароль",
 			"Activar/desactivar boletines informativos por correo electrónico": "Включить/Отключить рассылку новостей по электронной почте",
 			"Aplicar": "Применить",
-			"Idioma del sitio web": "Язык сайта"
+			"Idioma del sitio web": "Язык сайта",
+			"Esta dirección de correo electrónico ya está en uso.": "Данный почтовый ящик уже используется."
 		}
 	}
 }

@@ -77,11 +77,13 @@ export class UsersService {
 		if (!user) throw new NotFoundException("User doesn't exist.");
 		if (dto.login) {
 			const candidate = await this.userRepo.findOne({ where: { login: dto.login } });
-			if (candidate) throw new ForbiddenException({ error: 'login', message: 'This login already exist.' });
+			if (candidate && candidate.login !== user.login)
+				throw new ForbiddenException({ error: 'login', message: 'This login already exist.', statusCode: 403 });
 		}
 		if (dto.email) {
 			const candidate = await this.userRepo.findOne({ where: { email: dto.email } });
-			if (candidate) throw new ForbiddenException({ error: 'email', message: 'This email already exist.' });
+			if (candidate && candidate.email !== user.email)
+				throw new ForbiddenException({ error: 'email', message: 'This email already exist.', statusCode: 403 });
 		}
 		if (image) {
 			const fileName = await this.filesService.createFile(image);

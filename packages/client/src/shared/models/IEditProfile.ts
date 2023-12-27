@@ -1,5 +1,5 @@
 export interface IEditProfile {
-	image: File;
+	image: File | null;
 	login: string;
 	password: string;
 	email: string;

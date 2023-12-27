@@ -1,6 +1,6 @@
 import { Dispatch, FC, SetStateAction, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { EmailInput, ImageInput, LoginInput, NewPasswordInput } from 'features/EditProfile';
+import { ApplyButton, EmailInput, ImageInput, LoginInput, NewPasswordInput } from 'features/EditProfile';
 import { Button, Checkbox, Modal } from 'shared/UI';
 import { UserInfo } from 'shared/api';
 import { IEditProfile } from 'shared/models';
@@ -10,12 +10,13 @@ interface EditProfileModalProps {
 	userInfo: UserInfo;
 	shown: boolean;
 	setShown: Dispatch<SetStateAction<boolean>>;
+	refetch: () => void;
 }
 
-export const EditProfileModal: FC<EditProfileModalProps> = ({ userInfo, shown, setShown }) => {
+export const EditProfileModal: FC<EditProfileModalProps> = ({ userInfo, shown, setShown, refetch }) => {
 	const { t } = useTranslation();
 	const [data, setData] = useState<IEditProfile>({
-		image: {} as File,
+		image: null,
 		login: userInfo.login,
 		password: '',
 		email: userInfo.email || '',
@@ -40,7 +41,7 @@ export const EditProfileModal: FC<EditProfileModalProps> = ({ userInfo, shown, s
 				/>
 			)}
 			<section className={cl.ButtonBody}>
-				<Button>{t('Aplicar')}</Button>
+				<ApplyButton data={data} setData={setData} refetch={refetch} setModalShown={setShown} />
 			</section>
 		</Modal>
 	);
