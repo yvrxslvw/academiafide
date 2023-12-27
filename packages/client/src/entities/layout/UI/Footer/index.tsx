@@ -13,7 +13,7 @@ export const Footer: FC<FooterProps> = () => {
 		<footer>
 			<div className={cl.Container}>
 				<Paragraph small color='white'>
-					&#169; 2023 Academia Fide. {t('Todos los Derechos Reservados.')}{' '}
+					&#169; {new Date().getFullYear()} Academia Fide. {t('Todos los Derechos Reservados.')}{' '}
 					<Link to={PublicRouterPaths.TERMS_PAGE} small color='white'>
 						{t('Términos y condiciones')}
 					</Link>
