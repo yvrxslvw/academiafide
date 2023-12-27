@@ -48,8 +48,9 @@ export class UsersService {
 			include: { all: true, nested: true },
 		});
 		if (!user) throw new NotFoundException('User not found.');
-		const { login, image, email, email_confirmed, email_news, createdAt, roles } = user;
+		const { id, login, image, email, email_confirmed, email_news, createdAt, roles } = user;
 		return {
+			id,
 			login,
 			image,
 			email,
@@ -60,12 +61,15 @@ export class UsersService {
 		};
 	}
 
-	async getOneByEmail(email: string, isEmailConfirmed: boolean): Promise<User> {
+	async getOneByEmail(email: string, isEmailConfirmed?: boolean): Promise<User> {
 		const user = await this.userRepo.findOne({
-			where: { email, email_confirmed: isEmailConfirmed },
+			where: { email },
 			include: { all: true, nested: true },
 		});
-		return user;
+		if (isEmailConfirmed !== undefined) {
+			if (isEmailConfirmed === user.email_confirmed) return user;
+			else return null;
+		} else return user;
 	}
 
 	async update(id: number, dto: UpdateUserDto, image?: any): Promise<User> {
@@ -73,14 +77,18 @@ export class UsersService {
 		if (!user) throw new NotFoundException("User doesn't exist.");
 		if (dto.login) {
 			const candidate = await this.userRepo.findOne({ where: { login: dto.login } });
-			if (candidate) throw new ForbiddenException('Login already exist.');
+			if (candidate) throw new ForbiddenException({ error: 'login', message: 'This login already exist.' });
+		}
+		if (dto.email) {
+			const candidate = await this.userRepo.findOne({ where: { email: dto.email } });
+			if (candidate) throw new ForbiddenException({ error: 'email', message: 'This email already exist.' });
 		}
 		if (image) {
 			const fileName = await this.filesService.createFile(image);
 			if (user.image) await this.filesService.deleteFile(user.image);
 			await user.update({ image: fileName });
 		}
-		await user.update({ ...dto, recovery_password: null });
+		await user.update({ ...dto, recovery_password: null, email_confirmed: user.email_confirmed && !dto.email });
 		return user;
 	}
 

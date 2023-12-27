@@ -40,8 +40,21 @@ export const AuthApi = createApi({
 				body,
 			}),
 		}),
+		update: builder.mutation<{ error: string | undefined; message: string }, FormData>({
+			query: body => ({
+				url: '/auth/update',
+				method: 'POST',
+				body,
+			}),
+		}),
 	}),
 });
 
-export const { useLogupMutation, useLoginMutation, useLogoutMutation, useRefreshMutation, useRecoveryMutation } =
-	AuthApi;
+export const {
+	useLogupMutation,
+	useLoginMutation,
+	useLogoutMutation,
+	useRefreshMutation,
+	useRecoveryMutation,
+	useUpdateMutation,
+} = AuthApi;

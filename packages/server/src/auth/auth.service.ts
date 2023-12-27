@@ -12,6 +12,7 @@ import { SendCodeEmailDto } from './dto/send-code-email.dto';
 import { ConfirmCodeEmailDto } from './dto/confirm-code-email.dto';
 import { MailerService } from 'src/mailer/mailer.service';
 import { RecoveryPasswordDto } from './dto/recovery-password.dto';
+import { UpdateUserDto } from 'src/users/dto/update-user.dto';
 
 @Injectable()
 export class AuthService {
@@ -66,7 +67,7 @@ export class AuthService {
 	async sendCodeEmail(request: Request, dto: SendCodeEmailDto): Promise<{ message: string }> {
 		const id: number = request['user'].id;
 		const user = await this.usersService.getOneById(id);
-		const emailExists = await this.usersService.getOneByEmail(dto.email, false);
+		const emailExists = await this.usersService.getOneByEmail(dto.email);
 		if (emailExists) throw new ForbiddenException('Email already exist.');
 		const code = Math.round(Math.random() * (100000 - 999999) + 999999);
 		const isSent = await this.mailerService.sendMessage(
@@ -87,6 +88,12 @@ export class AuthService {
 		if (dto.code !== user.email_code) throw new ForbiddenException('Wrong code.');
 		await user.update({ email_confirmed: true, email_code: null });
 		return { message: 'Confirmed.' };
+	}
+
+	async update(request: Request, dto: UpdateUserDto, image?: any): Promise<{ message: string }> {
+		const id: number = request['user'].id;
+		await this.usersService.update(id, dto, image);
+		return { message: 'Successful updating.' };
 	}
 
 	async refresh(request: Request, response: Response): Promise<Response> {

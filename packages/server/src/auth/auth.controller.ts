@@ -1,4 +1,4 @@
-import { Controller, Post, Body, UseGuards, Req, Res } from '@nestjs/common';
+import { Controller, Post, Body, UseGuards, Req, Res, UseInterceptors, UploadedFile } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { LoginUserDto } from './dto/login-user.dto';
 import { AuthService } from './auth.service';
@@ -8,6 +8,8 @@ import { JwtAuthGuard } from './guards/jwt-auth.guard';
 import { SendCodeEmailDto } from './dto/send-code-email.dto';
 import { ConfirmCodeEmailDto } from './dto/confirm-code-email.dto';
 import { RecoveryPasswordDto } from './dto/recovery-password.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { UpdateUserDto } from 'src/users/dto/update-user.dto';
 
 @ApiTags('Authorization interactions')
 @Controller('auth')
@@ -69,6 +71,23 @@ export class AuthController {
 	@Post('/email_confirmation')
 	confirmCodeEmail(@Req() request: Request, @Body() dto: ConfirmCodeEmailDto): Promise<{ message: string }> {
 		return this.authService.confirmCodeEmail(request, dto);
+	}
+
+	@ApiBearerAuth('accessToken')
+	@ApiOperation({ summary: 'Updating user profile information' })
+	@ApiResponse({ status: 201, description: 'Successful updating' })
+	@ApiResponse({ status: 401, description: 'User is unauthorized' })
+	@ApiResponse({ status: 403, description: 'Login or email already exist' })
+	@ApiResponse({ status: 404, description: "User doesn't exist" })
+	@UseGuards(JwtAuthGuard)
+	@Post('/update')
+	@UseInterceptors(FileInterceptor('image'))
+	update(
+		@Req() request: Request,
+		@Body() dto: UpdateUserDto,
+		@UploadedFile() image?: any,
+	): Promise<{ message: string }> {
+		return this.authService.update(request, dto, image);
 	}
 
 	@ApiCookieAuth('refreshToken')

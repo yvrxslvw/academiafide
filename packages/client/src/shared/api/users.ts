@@ -3,6 +3,7 @@ import { IRole } from 'shared/models';
 import { baseQuery } from './baseQuery';
 
 export interface UserInfo {
+	id: number;
 	login: string;
 	image: string;
 	email: string;
