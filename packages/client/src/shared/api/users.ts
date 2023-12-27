@@ -6,6 +6,8 @@ export interface UserInfo {
 	login: string;
 	image: string;
 	email: string;
+	email_confirmed: boolean;
+	email_news: boolean;
 	createdAt: string;
 	roles: IRole[];
 }

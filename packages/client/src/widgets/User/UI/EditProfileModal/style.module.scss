@@ -1,4 +1,10 @@
-.ButtonBody {
+.ModalWindow {
 	display: flex;
-	justify-content: center;
+	flex-direction: column;
+	gap: 20px;
+
+	.ButtonBody {
+		display: flex;
+		justify-content: center;
+	}
 }

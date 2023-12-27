@@ -48,11 +48,13 @@ export class UsersService {
 			include: { all: true, nested: true },
 		});
 		if (!user) throw new NotFoundException('User not found.');
-		const { login, image, email, createdAt, roles } = user;
+		const { login, image, email, email_confirmed, email_news, createdAt, roles } = user;
 		return {
 			login,
 			image,
 			email,
+			email_confirmed,
+			email_news,
 			createdAt,
 			roles,
 		};
