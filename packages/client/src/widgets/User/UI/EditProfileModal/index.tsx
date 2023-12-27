@@ -1,6 +1,6 @@
 import { Dispatch, FC, SetStateAction, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ImageInput } from 'features/EditProfile';
+import { ImageInput, LoginInput } from 'features/EditProfile';
 import { Button, Checkbox, Input, Modal } from 'shared/UI';
 import { UserInfo } from 'shared/api';
 import { IEditProfile } from 'shared/models';
@@ -25,7 +25,7 @@ export const EditProfileModal: FC<EditProfileModalProps> = ({ userInfo, shown, s
 	return (
 		<Modal title={t('Editando perfil')} shown={shown} setShown={setShown} className={cl.ModalWindow}>
 			<ImageInput data={data} setData={setData} />
-			<Input type='text' label={t('Nombre de usuario')} value={userInfo.login} />
+			<LoginInput data={data} setData={setData} />
 			<Input type='email' label={t('Correo electrónico')} value={userInfo.email || ''} />
 			{userInfo.email && !userInfo.email_confirmed && (
 				<section>
