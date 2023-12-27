@@ -1,1 +1,1 @@
-export default /(^|[\n ])([\w]*?)((ht|f)tp(s)?:\/\/[\w]+[^ ,"\n\r\t<]*)/gis;
+export const link = /(^|[\n ])([\w]*?)((ht|f)tp(s)?:\/\/[\w]+[^ ,"\n\r\t<]*)/gis;

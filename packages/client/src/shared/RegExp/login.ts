@@ -1,1 +1,1 @@
-export default /^(?=.*[a-z])[a-z0-9.]{3,24}$/;
+export const login = /^(?=.*[a-z])[a-z0-9.]{3,24}$/;
