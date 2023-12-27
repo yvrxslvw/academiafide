@@ -16,4 +16,8 @@ i18n.use(initReactI18next).init({
 	},
 });
 
+const languageCookie = document.cookie.match(/language=\w{2}/);
+const language = languageCookie ? languageCookie[0].split('=')[1] : 'es';
+i18n.changeLanguage(language);
+
 ReactDOM.createRoot(root).render(<App />);

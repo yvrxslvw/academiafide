@@ -125,7 +125,8 @@
 			"Confirmar correo electrónico": "Confirmar correo electrónico",
 			"Nueva contraseña": "Nueva contraseña",
 			"Activar/desactivar boletines informativos por correo electrónico": "Activar/desactivar boletines informativos por correo electrónico",
-			"Aplicar": "Aplicar"
+			"Aplicar": "Aplicar",
+			"Idioma del sitio web": "Idioma del sitio web"
 		}
 	},
 	"en": {
@@ -254,7 +255,8 @@
 			"Confirmar correo electrónico": "Confirm Email",
 			"Nueva contraseña": "New Password",
 			"Activar/desactivar boletines informativos por correo electrónico": "Activate/deactivate email newsletters",
-			"Aplicar": "Apply"
+			"Aplicar": "Apply",
+			"Idioma del sitio web": "Website language"
 		}
 	},
 	"ru": {
@@ -383,7 +385,8 @@
 			"Confirmar correo electrónico": "Подтвердить адрес эл. почты",
 			"Nueva contraseña": "Новый пароль",
 			"Activar/desactivar boletines informativos por correo electrónico": "Включить/Отключить рассылку новостей по электронной почте",
-			"Aplicar": "Применить"
+			"Aplicar": "Применить",
+			"Idioma del sitio web": "Язык сайта"
 		}
 	}
 }

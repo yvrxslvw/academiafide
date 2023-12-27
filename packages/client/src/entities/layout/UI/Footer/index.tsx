@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Link, Paragraph } from 'shared/UI';
 import { PublicRouterPaths } from 'shared/constants';
 import cl from './style.module.scss';
+import { EnglishButton, RussianButton, SpanishButton } from 'features/Footer';
 
 interface FooterProps {}
 
@@ -18,6 +19,14 @@ export const Footer: FC<FooterProps> = () => {
 						{t('Términos y condiciones')}
 					</Link>
 				</Paragraph>
+				<nav>
+					<Paragraph small color='white'>
+						{t('Idioma del sitio web')}
+					</Paragraph>
+					<SpanishButton />
+					<EnglishButton />
+					<RussianButton />
+				</nav>
 			</div>
 		</footer>
 	);

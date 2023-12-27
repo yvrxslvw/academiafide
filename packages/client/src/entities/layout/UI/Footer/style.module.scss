@@ -6,5 +6,27 @@ footer {
 
 	.Container {
 		@include container;
+
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+
+		nav {
+			display: flex;
+			gap: 15px;
+			align-items: center;
+
+			button {
+				border: none;
+				outline: none;
+				background-color: initial;
+				cursor: pointer;
+
+				color: $white_color;
+				font-weight: 700;
+				font-size: 14px;
+				text-decoration: underline;
+			}
+		}
 	}
 }
