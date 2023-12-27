@@ -1,6 +1,7 @@
 import { Dispatch, FC, SetStateAction, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from 'shared/UI';
+import { RegExp } from 'shared/RegExp';
 import { useLogupMutation } from 'shared/api';
 import { isErrorFromBackend } from 'shared/utils';
 import { LogupData } from 'entities/logup';
@@ -19,16 +20,13 @@ export const NextButton: FC<NextButtonProps> = ({ logupData, setLogupData }) => 
 	const onClickHandler = async () => {
 		setLogupData({ ...logupData, loginError: false, passwordError: false, passwordConfirmError: false });
 		const { login, password, passwordConfirm, terms } = logupData;
-		const loginRegex = /^(?=.*[a-z])[a-z0-9.]{3,24}$/;
-		const passwordRegex =
-			/^(?=.*[a-z])(?=.*[0-9!@#$%^&*()_+\-=/\\[\]?.,;:'"{}<>|])[a-zA-Z0-9!@#$%^&*()_+\-=/\\[\]?.,;:'"{}<>|]{3,}/;
 
-		if (login.search(loginRegex) === -1) {
+		if (login.search(RegExp.login) === -1) {
 			createPopup(t('Nombre de usuario es incorrecto.'));
 			setLogupData({ ...logupData, loginError: true });
 			return;
 		}
-		if (password.search(passwordRegex) === -1) {
+		if (password.search(RegExp.password) === -1) {
 			createPopup(t('Contraseña es incorrecta.'));
 			setLogupData({ ...logupData, passwordError: true });
 			return;
