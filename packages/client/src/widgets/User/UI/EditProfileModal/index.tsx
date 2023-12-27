@@ -1,7 +1,7 @@
 import { Dispatch, FC, SetStateAction, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { EmailInput, ImageInput, LoginInput } from 'features/EditProfile';
-import { Button, Checkbox, Input, Modal } from 'shared/UI';
+import { EmailInput, ImageInput, LoginInput, NewPasswordInput } from 'features/EditProfile';
+import { Button, Checkbox, Modal } from 'shared/UI';
 import { UserInfo } from 'shared/api';
 import { IEditProfile } from 'shared/models';
 import cl from './style.module.scss';
@@ -32,7 +32,7 @@ export const EditProfileModal: FC<EditProfileModalProps> = ({ userInfo, shown, s
 					<Button>{t('Confirmar correo electrónico')}</Button>
 				</section>
 			)}
-			<Input type='password' label={t('Nueva contraseña')} />
+			<NewPasswordInput data={data} setData={setData} />
 			{userInfo.email && userInfo.email_confirmed && (
 				<Checkbox
 					label={t('Activar/desactivar boletines informativos por correo electrónico')}
