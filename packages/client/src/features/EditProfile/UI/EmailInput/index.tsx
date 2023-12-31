@@ -13,8 +13,16 @@ export const EmailInput: FC<EmailInputProps> = ({ data, setData }) => {
 
 	const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
 		const email = event.target.value;
-		setData({ ...data, email });
+		setData({ ...data, email, emailError: false });
 	};
 
-	return <Input type='email' label={t('Correo electrónico')} value={data.email} onChange={onChangeHandler} />;
+	return (
+		<Input
+			type='email'
+			label={t('Correo electrónico')}
+			value={data.email}
+			onChange={onChangeHandler}
+			error={data.emailError}
+		/>
+	);
 };

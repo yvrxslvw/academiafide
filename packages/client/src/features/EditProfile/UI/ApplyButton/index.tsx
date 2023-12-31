@@ -2,6 +2,7 @@ import { usePopup } from 'processes/Popup';
 import { Dispatch, FC, SetStateAction, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
+import { RegExp } from 'shared/RegExp';
 import { Button } from 'shared/UI';
 import { useRefreshMutation, useUpdateMutation } from 'shared/api';
 import { PublicRouterPaths } from 'shared/constants';
@@ -26,6 +27,22 @@ export const ApplyButton: FC<ApplyButtonProps> = ({ data, setData, refetch, setM
 		const { login, password, image, email, email_news } = data;
 		const formData = new FormData();
 
+		if (login && login.search(RegExp.login) === -1) {
+			createPopup(t('Nombre de usuario es incorrecto.'));
+			setData({ ...data, loginError: true });
+			return;
+		}
+		if (password && password.search(RegExp.password) === -1) {
+			createPopup(t('Contraseña es incorrecta.'));
+			setData({ ...data, passwordError: true });
+			return;
+		}
+		if (email && email.search(RegExp.email) === -1) {
+			createPopup(t('Correo electronico incorrecto.'));
+			setData({ ...data, emailError: true });
+			return;
+		}
+
 		if (login) formData.append('login', login);
 		if (password) formData.append('password', password);
 		if (image) formData.append('image', image);
@@ -38,9 +55,13 @@ export const ApplyButton: FC<ApplyButtonProps> = ({ data, setData, refetch, setM
 	useEffect(() => {
 		if (error) {
 			if (isErrorFromBackend(error) && error.data.statusCode === 403) {
-				if (error.data.error === 'login') createPopup(t('Este nombre de usuario ya está en uso.'));
-				else if (error.data.error === 'email') createPopup(t('Esta dirección de correo electrónico ya está en uso.'));
-				else createPopup(t('Se produjo un error inesperado... Vuelva a intentarlo más tarde.'));
+				if (error.data.error === 'login') {
+					createPopup(t('Este nombre de usuario ya está en uso.'));
+					setData({ ...data, loginError: true });
+				} else if (error.data.error === 'email') {
+					createPopup(t('Esta dirección de correo electrónico ya está en uso.'));
+					setData({ ...data, emailError: true });
+				} else createPopup(t('Se produjo un error inesperado... Vuelva a intentarlo más tarde.'));
 			} else {
 				createPopup(t('Se produjo un error inesperado... Vuelva a intentarlo más tarde.'));
 			}
@@ -58,6 +79,9 @@ export const ApplyButton: FC<ApplyButtonProps> = ({ data, setData, refetch, setM
 				...data,
 				image: null,
 				password: '',
+				loginError: false,
+				passwordError: false,
+				emailError: false,
 			});
 		}
 	}, [isSuccess]);

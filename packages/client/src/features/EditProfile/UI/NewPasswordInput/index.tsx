@@ -13,8 +13,16 @@ export const NewPasswordInput: FC<NewPasswordInputProps> = ({ data, setData }) =
 
 	const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
 		const password = event.target.value;
-		setData({ ...data, password });
+		setData({ ...data, password, passwordError: false });
 	};
 
-	return <Input type='password' label={t('Nueva contraseña')} value={data.password} onChange={onChangeHandler} />;
+	return (
+		<Input
+			type='password'
+			label={t('Nueva contraseña')}
+			value={data.password}
+			onChange={onChangeHandler}
+			error={data.passwordError}
+		/>
+	);
 };

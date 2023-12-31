@@ -13,8 +13,16 @@ export const LoginInput: FC<LoginInputProps> = ({ data, setData }) => {
 
 	const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
 		const login = event.target.value;
-		setData({ ...data, login });
+		setData({ ...data, login, loginError: false });
 	};
 
-	return <Input type='text' label={t('Nombre de usuario')} value={data.login} onChange={onChangeHandler} />;
+	return (
+		<Input
+			type='text'
+			label={t('Nombre de usuario')}
+			value={data.login}
+			onChange={onChangeHandler}
+			error={data.loginError}
+		/>
+	);
 };

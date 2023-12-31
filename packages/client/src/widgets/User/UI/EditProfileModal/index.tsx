@@ -18,8 +18,11 @@ export const EditProfileModal: FC<EditProfileModalProps> = ({ userInfo, shown, s
 	const [data, setData] = useState<IEditProfile>({
 		image: null,
 		login: userInfo.login,
+		loginError: false,
 		password: '',
+		passwordError: false,
 		email: userInfo.email || '',
+		emailError: false,
 		email_news: userInfo.email_news,
 	});
 
