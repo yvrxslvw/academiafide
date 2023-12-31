@@ -28,7 +28,7 @@ export const ApplyButton: FC<ApplyButtonProps> = ({ userInfo, data, setData, ref
 		const { login, password, image, email, email_news } = data;
 		const formData = new FormData();
 
-		if (login && login.search(RegExp.login) === -1) {
+		if (login.search(RegExp.login) === -1) {
 			createPopup(t('Nombre de usuario es incorrecto.'));
 			setData({ ...data, loginError: true });
 			return;
@@ -38,7 +38,7 @@ export const ApplyButton: FC<ApplyButtonProps> = ({ userInfo, data, setData, ref
 			setData({ ...data, passwordError: true });
 			return;
 		}
-		if (email && email.search(RegExp.email) === -1) {
+		if (userInfo.email && email && email.search(RegExp.email) === -1) {
 			createPopup(t('Correo electronico incorrecto.'));
 			setData({ ...data, emailError: true });
 			return;

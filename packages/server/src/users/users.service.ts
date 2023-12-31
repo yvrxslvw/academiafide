@@ -84,14 +84,20 @@ export class UsersService {
 			const candidate = await this.userRepo.findOne({ where: { email: dto.email } });
 			if (candidate && candidate.email !== user.email)
 				throw new ForbiddenException({ error: 'email', message: 'This email already exist.', statusCode: 403 });
-			else await user.update({ email_confirmed: false });
+			else {
+				dto.email_news = false;
+				await user.update({ email_confirmed: false });
+			}
 		}
 		if (image) {
 			const fileName = await this.filesService.createFile(image);
 			if (user.image) await this.filesService.deleteFile(user.image);
 			await user.update({ image: fileName });
 		}
-		await user.update({ ...dto, recovery_password: null, email_news: Boolean(dto.email_news) });
+		if (dto.password) {
+			await user.update({ recovery_password: null });
+		}
+		await user.update({ ...dto, email_news: Boolean(dto.email_news) });
 		return user;
 	}
 
