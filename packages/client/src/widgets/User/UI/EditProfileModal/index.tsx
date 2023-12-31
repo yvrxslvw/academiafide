@@ -44,7 +44,7 @@ export const EditProfileModal: FC<EditProfileModalProps> = ({ userInfo, shown, s
 				/>
 			)}
 			<section className={cl.ButtonBody}>
-				<ApplyButton data={data} setData={setData} refetch={refetch} setModalShown={setShown} />
+				<ApplyButton userInfo={userInfo} data={data} setData={setData} refetch={refetch} setModalShown={setShown} />
 			</section>
 		</Modal>
 	);

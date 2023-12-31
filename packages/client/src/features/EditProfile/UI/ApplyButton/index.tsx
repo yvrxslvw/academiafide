@@ -4,19 +4,20 @@ import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { RegExp } from 'shared/RegExp';
 import { Button } from 'shared/UI';
-import { useRefreshMutation, useUpdateMutation } from 'shared/api';
+import { UserInfo, useRefreshMutation, useUpdateMutation } from 'shared/api';
 import { PublicRouterPaths } from 'shared/constants';
 import { IEditProfile } from 'shared/models';
 import { isErrorFromBackend } from 'shared/utils';
 
 interface ApplyButtonProps {
+	userInfo: UserInfo;
 	data: IEditProfile;
 	setData: Dispatch<SetStateAction<IEditProfile>>;
 	refetch: () => void;
 	setModalShown: Dispatch<SetStateAction<boolean>>;
 }
 
-export const ApplyButton: FC<ApplyButtonProps> = ({ data, setData, refetch, setModalShown }) => {
+export const ApplyButton: FC<ApplyButtonProps> = ({ userInfo, data, setData, refetch, setModalShown }) => {
 	const { t } = useTranslation();
 	const { createPopup } = usePopup();
 	const navigate = useNavigate();
@@ -43,10 +44,10 @@ export const ApplyButton: FC<ApplyButtonProps> = ({ data, setData, refetch, setM
 			return;
 		}
 
-		if (login) formData.append('login', login);
+		if (login && login !== userInfo.login) formData.append('login', login);
 		if (password) formData.append('password', password);
 		if (image) formData.append('image', image);
-		if (email) formData.append('email', email);
+		if (email && email !== userInfo.email) formData.append('email', email);
 		if (email_news) formData.append('email_news', String(email_news));
 
 		await updateProfile(formData);
