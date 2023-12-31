@@ -1,7 +1,15 @@
 import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { ApplyButton, EmailInput, EmailNews, ImageInput, LoginInput, NewPasswordInput } from 'features/EditProfile';
-import { Button, Modal } from 'shared/UI';
+import {
+	ApplyButton,
+	ConfirmEmailButton,
+	EmailInput,
+	EmailNews,
+	ImageInput,
+	LoginInput,
+	NewPasswordInput,
+} from 'features/EditProfile';
+import { Modal } from 'shared/UI';
 import { UserInfo } from 'shared/api';
 import { IEditProfile } from 'shared/models';
 import cl from './style.module.scss';
@@ -10,10 +18,17 @@ interface EditProfileModalProps {
 	userInfo: UserInfo;
 	shown: boolean;
 	setShown: Dispatch<SetStateAction<boolean>>;
+	setShownConfirmEmailModal: Dispatch<SetStateAction<boolean>>;
 	isSelf: boolean;
 }
 
-export const EditProfileModal: FC<EditProfileModalProps> = ({ userInfo, shown, setShown, isSelf }) => {
+export const EditProfileModal: FC<EditProfileModalProps> = ({
+	userInfo,
+	shown,
+	setShown,
+	setShownConfirmEmailModal,
+	isSelf,
+}) => {
 	const { t } = useTranslation();
 	const [data, setData] = useState<IEditProfile>({
 		image: null,
@@ -46,7 +61,7 @@ export const EditProfileModal: FC<EditProfileModalProps> = ({ userInfo, shown, s
 			<EmailInput data={data} setData={setData} />
 			{isSelf && userInfo.email && !userInfo.email_confirmed && (
 				<section>
-					<Button>{t('Confirmar correo electrónico')}</Button>
+					<ConfirmEmailButton email={userInfo.email} setShownConfirmEmailModal={setShownConfirmEmailModal} />
 				</section>
 			)}
 			<NewPasswordInput data={data} setData={setData} />

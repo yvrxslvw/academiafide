@@ -11,7 +11,7 @@ export const UserPage: FC = () => {
 	const { data, isLoading } = useGetUserByNameQuery(location.pathname.slice(7));
 	const { userInfo } = useAppSelector(state => state.user);
 	const [editProfileShown, setEditProfileShown] = useState(false);
-	const [confirmEmailShown, setConfirmEmailShown] = useState(true);
+	const [confirmEmailShown, setConfirmEmailShown] = useState(false);
 
 	if (isLoading || !data) return <Loader />;
 
@@ -23,6 +23,7 @@ export const UserPage: FC = () => {
 				userInfo={data}
 				shown={editProfileShown}
 				setShown={setEditProfileShown}
+				setShownConfirmEmailModal={setConfirmEmailShown}
 				isSelf={data.login === userInfo.login}
 			/>
 			<ConfirmEmailModal shown={confirmEmailShown} setShown={setConfirmEmailShown} />
