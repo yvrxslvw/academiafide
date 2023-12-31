@@ -3,3 +3,4 @@ export * from './LoginInput';
 export * from './EmailInput';
 export * from './NewPasswordInput';
 export * from './ApplyButton';
+export * from './EmailNews';
