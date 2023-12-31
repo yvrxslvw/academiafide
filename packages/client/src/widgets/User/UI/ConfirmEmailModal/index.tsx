@@ -1,15 +1,18 @@
-import { Dispatch, FC, SetStateAction } from 'react';
+import { Dispatch, FC, SetStateAction, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Button, Input, Modal, Paragraph } from 'shared/UI';
+import { Modal, Paragraph } from 'shared/UI';
 import cl from './style.module.scss';
+import { CodeInput, NextButton } from 'features/EmailConfirmation';
 
 interface ConfirmEmailModalProps {
 	shown: boolean;
 	setShown: Dispatch<SetStateAction<boolean>>;
+	refetch: () => void;
 }
 
-export const ConfirmEmailModal: FC<ConfirmEmailModalProps> = ({ shown, setShown }) => {
+export const ConfirmEmailModal: FC<ConfirmEmailModalProps> = ({ shown, setShown, refetch }) => {
 	const { t } = useTranslation();
+	const [code, setCode] = useState('');
 
 	return (
 		<Modal title={t('Confirmación de correo electrónico')} shown={shown} setShown={setShown} className={cl.ModalWindow}>
@@ -19,9 +22,9 @@ export const ConfirmEmailModal: FC<ConfirmEmailModalProps> = ({ shown, setShown 
 				)}
 			</Paragraph>
 			<button className={cl.ResendButton}>{t('¿El correo electrónico no ha llegado? Haga clic aquí.')}</button>
-			<Input label={t('Código de confirmación')} />
+			<CodeInput code={code} setCode={setCode} />
 			<section className={cl.ButtonBody}>
-				<Button>{t('Siguiente')}</Button>
+				<NextButton code={code} refetch={refetch} setModalShown={setShown} />
 			</section>
 		</Modal>
 	);

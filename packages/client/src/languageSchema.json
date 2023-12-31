@@ -131,7 +131,9 @@
 			"Confirmación de correo electrónico": "Confirmación de correo electrónico",
 			"Se envió un correo electrónico con un código de confirmación a la dirección de correo electrónico especificada. Ingréselo en el campo a continuación.": "Se envió un correo electrónico con un código de confirmación a la dirección de correo electrónico especificada. Ingréselo en el campo a continuación.",
 			"Código de confirmación": "Código de confirmación",
-			"¿El correo electrónico no ha llegado? Haga clic aquí.": "¿El correo electrónico no ha llegado? Haga clic aquí."
+			"¿El correo electrónico no ha llegado? Haga clic aquí.": "¿El correo electrónico no ha llegado? Haga clic aquí.",
+			"Código de confirmación inválido.": "Código de confirmación inválido.",
+			"¡La dirección de correo electrónico ha sido verificada exitosamente!": "¡La dirección de correo electrónico ha sido verificada exitosamente!"
 		}
 	},
 	"en": {
@@ -266,7 +268,9 @@
 			"Confirmación de correo electrónico": "Email address confirmation",
 			"Se envió un correo electrónico con un código de confirmación a la dirección de correo electrónico especificada. Ingréselo en el campo a continuación.": "An email with a confirmation code was sent to the specified email address. Enter it in the field below.",
 			"Código de confirmación": "Confirmation code",
-			"¿El correo electrónico no ha llegado? Haga clic aquí.": "The email has not arrived? Click here."
+			"¿El correo electrónico no ha llegado? Haga clic aquí.": "The email has not arrived? Click here.",
+			"Código de confirmación inválido.": "Invalid confirmation code.",
+			"¡La dirección de correo electrónico ha sido verificada exitosamente!": "The email address has been successfully verified!"
 		}
 	},
 	"ru": {
@@ -401,7 +405,9 @@
 			"Confirmación de correo electrónico": "Подтверждение адреса эл.почты",
 			"Se envió un correo electrónico con un código de confirmación a la dirección de correo electrónico especificada. Ingréselo en el campo a continuación.": "На указанный адрес электронной почты было отправлено письмо с кодом подтверждения. Введите его в поле ниже.",
 			"Código de confirmación": "Код подтверждения",
-			"¿El correo electrónico no ha llegado? Haga clic aquí.": "Письмо не пришло? Нажмите сюда."
+			"¿El correo electrónico no ha llegado? Haga clic aquí.": "Письмо не пришло? Нажмите сюда.",
+			"Código de confirmación inválido.": "Неверный код подтверждения.",
+			"¡La dirección de correo electrónico ha sido verificada exitosamente!": "Адрес электронной почты успешно подтвержден!"
 		}
 	}
 }

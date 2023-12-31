@@ -8,7 +8,7 @@ import { useAppSelector } from 'shared/hooks';
 
 export const UserPage: FC = () => {
 	const location = useLocation();
-	const { data, isLoading } = useGetUserByNameQuery(location.pathname.slice(7));
+	const { data, isLoading, refetch } = useGetUserByNameQuery(location.pathname.slice(7));
 	const { userInfo } = useAppSelector(state => state.user);
 	const [editProfileShown, setEditProfileShown] = useState(false);
 	const [confirmEmailShown, setConfirmEmailShown] = useState(false);
@@ -26,7 +26,7 @@ export const UserPage: FC = () => {
 				setShownConfirmEmailModal={setConfirmEmailShown}
 				isSelf={data.login === userInfo.login}
 			/>
-			<ConfirmEmailModal shown={confirmEmailShown} setShown={setConfirmEmailShown} />
+			<ConfirmEmailModal shown={confirmEmailShown} setShown={setConfirmEmailShown} refetch={refetch} />
 		</div>
 	);
 };
