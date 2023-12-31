@@ -2,15 +2,16 @@ import { Dispatch, FC, SetStateAction, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Modal, Paragraph } from 'shared/UI';
 import cl from './style.module.scss';
-import { CodeInput, NextButton } from 'features/EmailConfirmation';
+import { CodeInput, NextButton, ResendButton } from 'features/EmailConfirmation';
 
 interface ConfirmEmailModalProps {
+	email: string | null;
 	shown: boolean;
 	setShown: Dispatch<SetStateAction<boolean>>;
 	refetch: () => void;
 }
 
-export const ConfirmEmailModal: FC<ConfirmEmailModalProps> = ({ shown, setShown, refetch }) => {
+export const ConfirmEmailModal: FC<ConfirmEmailModalProps> = ({ email, shown, setShown, refetch }) => {
 	const { t } = useTranslation();
 	const [code, setCode] = useState('');
 
@@ -21,7 +22,7 @@ export const ConfirmEmailModal: FC<ConfirmEmailModalProps> = ({ shown, setShown,
 					'Se envió un correo electrónico con un código de confirmación a la dirección de correo electrónico especificada. Ingréselo en el campo a continuación.',
 				)}
 			</Paragraph>
-			<button className={cl.ResendButton}>{t('¿El correo electrónico no ha llegado? Haga clic aquí.')}</button>
+			<ResendButton email={email} />
 			<CodeInput code={code} setCode={setCode} />
 			<section className={cl.ButtonBody}>
 				<NextButton code={code} refetch={refetch} setModalShown={setShown} />

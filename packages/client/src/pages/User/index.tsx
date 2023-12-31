@@ -26,7 +26,7 @@ export const UserPage: FC = () => {
 				setShownConfirmEmailModal={setConfirmEmailShown}
 				isSelf={data.login === userInfo.login}
 			/>
-			<ConfirmEmailModal shown={confirmEmailShown} setShown={setConfirmEmailShown} refetch={refetch} />
+			<ConfirmEmailModal email={data.email} shown={confirmEmailShown} setShown={setConfirmEmailShown} refetch={refetch} />
 		</div>
 	);
 };

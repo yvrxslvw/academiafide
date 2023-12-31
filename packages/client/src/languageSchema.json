@@ -133,7 +133,8 @@
 			"Código de confirmación": "Código de confirmación",
 			"¿El correo electrónico no ha llegado? Haga clic aquí.": "¿El correo electrónico no ha llegado? Haga clic aquí.",
 			"Código de confirmación inválido.": "Código de confirmación inválido.",
-			"¡La dirección de correo electrónico ha sido verificada exitosamente!": "¡La dirección de correo electrónico ha sido verificada exitosamente!"
+			"¡La dirección de correo electrónico ha sido verificada exitosamente!": "¡La dirección de correo electrónico ha sido verificada exitosamente!",
+			"El correo electrónico fue enviada al correo electrónico especificado.": "El correo electrónico fue enviada al correo electrónico especificado."
 		}
 	},
 	"en": {
@@ -270,7 +271,8 @@
 			"Código de confirmación": "Confirmation code",
 			"¿El correo electrónico no ha llegado? Haga clic aquí.": "The email has not arrived? Click here.",
 			"Código de confirmación inválido.": "Invalid confirmation code.",
-			"¡La dirección de correo electrónico ha sido verificada exitosamente!": "The email address has been successfully verified!"
+			"¡La dirección de correo electrónico ha sido verificada exitosamente!": "The email address has been successfully verified!",
+			"El correo electrónico fue enviada al correo electrónico especificado.": "The email was sent to the specified email."
 		}
 	},
 	"ru": {
@@ -407,7 +409,8 @@
 			"Código de confirmación": "Код подтверждения",
 			"¿El correo electrónico no ha llegado? Haga clic aquí.": "Письмо не пришло? Нажмите сюда.",
 			"Código de confirmación inválido.": "Неверный код подтверждения.",
-			"¡La dirección de correo electrónico ha sido verificada exitosamente!": "Адрес электронной почты успешно подтвержден!"
+			"¡La dirección de correo electrónico ha sido verificada exitosamente!": "Адрес электронной почты успешно подтвержден!",
+			"El correo electrónico fue enviada al correo electrónico especificado.": "Письмо было отправлено на указанный адрес электронной почты."
 		}
 	}
 }
