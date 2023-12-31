@@ -27,8 +27,8 @@ export const RolesSection: FC<RolesSectionProps> = ({ roles }) => {
 				)}
 			</Paragraph>
 			<section className={cl.RolesRow}>
-				{roles.map(({ id, tag }) => (
-					<RoleTag tag={tag} className={cl.RoleItem} key={id} />
+				{roles.map(({ id, tag, description }) => (
+					<RoleTag tag={tag} description={description} className={cl.RoleItem} key={id} />
 				))}
 			</section>
 		</section>
