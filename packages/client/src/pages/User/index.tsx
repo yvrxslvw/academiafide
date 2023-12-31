@@ -4,10 +4,12 @@ import cl from './style.module.scss';
 import { useLocation } from 'react-router-dom';
 import { useGetUserByNameQuery } from 'shared/api';
 import { Loader } from 'shared/UI';
+import { useAppSelector } from 'shared/hooks';
 
 export const UserPage: FC = () => {
 	const location = useLocation();
 	const { data, isLoading } = useGetUserByNameQuery(location.pathname.slice(7));
+	const { userInfo } = useAppSelector(state => state.user);
 	const [editProfileShown, setEditProfileShown] = useState(false);
 
 	if (isLoading || !data) return <Loader />;
@@ -16,7 +18,12 @@ export const UserPage: FC = () => {
 		<div className={cl.Container}>
 			<User userInfo={data} setEditProfileShown={setEditProfileShown} />
 
-			<EditProfileModal userInfo={data} shown={editProfileShown} setShown={setEditProfileShown} />
+			<EditProfileModal
+				userInfo={data}
+				shown={editProfileShown}
+				setShown={setEditProfileShown}
+				isSelf={data.login === userInfo.login}
+			/>
 		</div>
 	);
 };

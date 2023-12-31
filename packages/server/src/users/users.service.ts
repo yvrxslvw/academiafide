@@ -7,6 +7,7 @@ import { UpdateUserDto } from './dto/update-user.dto';
 import { RolesService } from 'src/roles/roles.service';
 import { RoleDto } from './dto/role.dto';
 import { FilesService } from 'src/files/files.service';
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class UsersService {
@@ -95,6 +96,7 @@ export class UsersService {
 			await user.update({ image: fileName });
 		}
 		if (dto.password) {
+			dto.password = await bcrypt.hash(dto.password, 5);
 			await user.update({ recovery_password: null });
 		}
 		await user.update({ ...dto, email_news: Boolean(dto.email_news) });

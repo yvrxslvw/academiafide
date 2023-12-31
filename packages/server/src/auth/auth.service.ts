@@ -92,8 +92,7 @@ export class AuthService {
 
 	async update(request: Request, dto: UpdateUserDto, image?: any): Promise<{ message: string }> {
 		const id: number = request['user'].id;
-		const hashPassword = dto.password ? await bcrypt.hash(dto.password, 5) : undefined;
-		await this.usersService.update(id, { ...dto, password: hashPassword }, image);
+		await this.usersService.update(id, dto, image);
 		return { message: 'Successful updating.' };
 	}
 

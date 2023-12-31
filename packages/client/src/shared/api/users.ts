@@ -24,7 +24,14 @@ export const UsersApi = createApi({
 				method: 'GET',
 			}),
 		}),
+		updateUser: builder.mutation<{ error: string | undefined; message: string }, { id: number; body: FormData }>({
+			query: ({ id, body }) => ({
+				url: `/users/${id}`,
+				method: 'PATCH',
+				body,
+			}),
+		}),
 	}),
 });
 
-export const { useGetUserByNameQuery } = UsersApi;
+export const { useGetUserByNameQuery, useUpdateUserMutation } = UsersApi;
