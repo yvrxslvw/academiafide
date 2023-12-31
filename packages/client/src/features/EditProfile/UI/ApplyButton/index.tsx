@@ -13,11 +13,10 @@ interface ApplyButtonProps {
 	userInfo: UserInfo;
 	data: IEditProfile;
 	setData: Dispatch<SetStateAction<IEditProfile>>;
-	refetch: () => void;
 	setModalShown: Dispatch<SetStateAction<boolean>>;
 }
 
-export const ApplyButton: FC<ApplyButtonProps> = ({ userInfo, data, setData, refetch, setModalShown }) => {
+export const ApplyButton: FC<ApplyButtonProps> = ({ userInfo, data, setData, setModalShown }) => {
 	const { t } = useTranslation();
 	const { createPopup } = usePopup();
 	const navigate = useNavigate();
@@ -53,6 +52,21 @@ export const ApplyButton: FC<ApplyButtonProps> = ({ userInfo, data, setData, ref
 		await updateProfile(formData);
 	};
 
+	const onSuccessHandler = async () => {
+		await refreshToken();
+		setModalShown(false);
+		navigate(PublicRouterPaths.USERS_PAGE + `/${data.login}`);
+		setData({
+			...data,
+			image: null,
+			password: '',
+			loginError: false,
+			passwordError: false,
+			emailError: false,
+		});
+		await createPopup(t('Editado con éxito.'));
+	};
+
 	useEffect(() => {
 		if (error) {
 			if (isErrorFromBackend(error) && error.data.statusCode === 403) {
@@ -70,21 +84,7 @@ export const ApplyButton: FC<ApplyButtonProps> = ({ userInfo, data, setData, ref
 	}, [error]);
 
 	useEffect(() => {
-		if (isSuccess) {
-			navigate(PublicRouterPaths.USERS_PAGE + `/${data.login}`);
-			createPopup(t('Editado con éxito.'));
-			refetch();
-			refreshToken();
-			setModalShown(false);
-			setData({
-				...data,
-				image: null,
-				password: '',
-				loginError: false,
-				passwordError: false,
-				emailError: false,
-			});
-		}
+		if (isSuccess) onSuccessHandler();
 	}, [isSuccess]);
 
 	return (

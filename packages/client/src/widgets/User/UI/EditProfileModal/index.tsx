@@ -10,10 +10,9 @@ interface EditProfileModalProps {
 	userInfo: UserInfo;
 	shown: boolean;
 	setShown: Dispatch<SetStateAction<boolean>>;
-	refetch: () => void;
 }
 
-export const EditProfileModal: FC<EditProfileModalProps> = ({ userInfo, shown, setShown, refetch }) => {
+export const EditProfileModal: FC<EditProfileModalProps> = ({ userInfo, shown, setShown }) => {
 	const { t } = useTranslation();
 	const [data, setData] = useState<IEditProfile>({
 		image: null,
@@ -39,7 +38,7 @@ export const EditProfileModal: FC<EditProfileModalProps> = ({ userInfo, shown, s
 			<NewPasswordInput data={data} setData={setData} />
 			{userInfo.email && userInfo.email_confirmed && <EmailNews data={data} setData={setData} />}
 			<section className={cl.ButtonBody}>
-				<ApplyButton userInfo={userInfo} data={data} setData={setData} refetch={refetch} setModalShown={setShown} />
+				<ApplyButton userInfo={userInfo} data={data} setData={setData} setModalShown={setShown} />
 			</section>
 		</Modal>
 	);
