@@ -127,7 +127,11 @@
 			"Activar boletines informativos por correo electrónico": "Activar boletines informativos por correo electrónico",
 			"Aplicar": "Aplicar",
 			"Idioma del sitio web": "Idioma del sitio web",
-			"Esta dirección de correo electrónico ya está en uso.": "Esta dirección de correo electrónico ya está en uso."
+			"Esta dirección de correo electrónico ya está en uso.": "Esta dirección de correo electrónico ya está en uso.",
+			"Confirmación de correo electrónico": "Confirmación de correo electrónico",
+			"Se envió un correo electrónico con un código de confirmación a la dirección de correo electrónico especificada. Ingréselo en el campo a continuación.": "Se envió un correo electrónico con un código de confirmación a la dirección de correo electrónico especificada. Ingréselo en el campo a continuación.",
+			"Código de confirmación": "Código de confirmación",
+			"¿El correo electrónico no ha llegado? Haga clic aquí.": "¿El correo electrónico no ha llegado? Haga clic aquí."
 		}
 	},
 	"en": {
@@ -258,7 +262,11 @@
 			"Activar boletines informativos por correo electrónico": "Activate email newsletters",
 			"Aplicar": "Apply",
 			"Idioma del sitio web": "Website language",
-			"Esta dirección de correo electrónico ya está en uso.": "This email address is already in use."
+			"Esta dirección de correo electrónico ya está en uso.": "This email address is already in use.",
+			"Confirmación de correo electrónico": "Email address confirmation",
+			"Se envió un correo electrónico con un código de confirmación a la dirección de correo electrónico especificada. Ingréselo en el campo a continuación.": "An email with a confirmation code was sent to the specified email address. Enter it in the field below.",
+			"Código de confirmación": "Confirmation code",
+			"¿El correo electrónico no ha llegado? Haga clic aquí.": "The email has not arrived? Click here."
 		}
 	},
 	"ru": {
@@ -389,7 +397,11 @@
 			"Activar boletines informativos por correo electrónico": "Включить рассылку новостей по электронной почте",
 			"Aplicar": "Применить",
 			"Idioma del sitio web": "Язык сайта",
-			"Esta dirección de correo electrónico ya está en uso.": "Данный почтовый ящик уже используется."
+			"Esta dirección de correo electrónico ya está en uso.": "Данный почтовый ящик уже используется.",
+			"Confirmación de correo electrónico": "Подтверждение адреса эл.почты",
+			"Se envió un correo electrónico con un código de confirmación a la dirección de correo electrónico especificada. Ingréselo en el campo a continuación.": "На указанный адрес электронной почты было отправлено письмо с кодом подтверждения. Введите его в поле ниже.",
+			"Código de confirmación": "Код подтверждения",
+			"¿El correo electrónico no ha llegado? Haga clic aquí.": "Письмо не пришло? Нажмите сюда."
 		}
 	}
 }

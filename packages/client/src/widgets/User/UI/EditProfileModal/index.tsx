@@ -44,13 +44,13 @@ export const EditProfileModal: FC<EditProfileModalProps> = ({ userInfo, shown, s
 			<ImageInput data={data} setData={setData} />
 			<LoginInput data={data} setData={setData} />
 			<EmailInput data={data} setData={setData} />
-			{userInfo.email && !userInfo.email_confirmed && (
+			{isSelf && userInfo.email && !userInfo.email_confirmed && (
 				<section>
 					<Button>{t('Confirmar correo electrónico')}</Button>
 				</section>
 			)}
 			<NewPasswordInput data={data} setData={setData} />
-			{userInfo.email && userInfo.email_confirmed && <EmailNews data={data} setData={setData} />}
+			{isSelf && userInfo.email && userInfo.email_confirmed && <EmailNews data={data} setData={setData} />}
 			<section className={cl.ButtonBody}>
 				<ApplyButton userInfo={userInfo} data={data} setData={setData} setModalShown={setShown} isSelf={isSelf} />
 			</section>

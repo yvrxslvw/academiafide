@@ -1,5 +1,5 @@
 import { FC, useState } from 'react';
-import { EditProfileModal, User } from 'widgets/User';
+import { ConfirmEmailModal, EditProfileModal, User } from 'widgets/User';
 import cl from './style.module.scss';
 import { useLocation } from 'react-router-dom';
 import { useGetUserByNameQuery } from 'shared/api';
@@ -11,6 +11,7 @@ export const UserPage: FC = () => {
 	const { data, isLoading } = useGetUserByNameQuery(location.pathname.slice(7));
 	const { userInfo } = useAppSelector(state => state.user);
 	const [editProfileShown, setEditProfileShown] = useState(false);
+	const [confirmEmailShown, setConfirmEmailShown] = useState(true);
 
 	if (isLoading || !data) return <Loader />;
 
@@ -24,6 +25,7 @@ export const UserPage: FC = () => {
 				setShown={setEditProfileShown}
 				isSelf={data.login === userInfo.login}
 			/>
+			<ConfirmEmailModal shown={confirmEmailShown} setShown={setConfirmEmailShown} />
 		</div>
 	);
 };
