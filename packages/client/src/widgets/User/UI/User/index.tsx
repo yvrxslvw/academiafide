@@ -17,9 +17,10 @@ import cl from './style.module.scss';
 interface UserProps {
 	userInfo: UserInfo;
 	setEditProfileShown: Dispatch<SetStateAction<boolean>>;
+	setRolesModalShown: Dispatch<SetStateAction<boolean>>;
 }
 
-export const User: FC<UserProps> = ({ userInfo, setEditProfileShown }) => {
+export const User: FC<UserProps> = ({ userInfo, setEditProfileShown, setRolesModalShown }) => {
 	return (
 		<div className={cl.Block}>
 			{userInfo ? (
@@ -27,7 +28,7 @@ export const User: FC<UserProps> = ({ userInfo, setEditProfileShown }) => {
 					username={userInfo.login}
 					imageSrc={userInfo.image ? `${API_URL}/${userInfo.image}` : Icons.ChessFigure}
 				>
-					<RolesSection roles={userInfo.roles} />
+					<RolesSection roles={userInfo.roles} setRolesModalShown={setRolesModalShown} />
 					<section className={cl.ButtonSection}>
 						<EditAccountButton accountLogin={userInfo.login} setModalShown={setEditProfileShown} />
 						<RecoveryPasswordButton accountLogin={userInfo.login} />
