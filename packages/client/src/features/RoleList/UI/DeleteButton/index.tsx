@@ -1,11 +1,21 @@
-import { FC } from 'react';
+import { Dispatch, FC, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
 import cl from './style.module.scss';
 
-interface DeleteButtonProps {}
+interface DeleteButtonProps {
+	setModalShown: Dispatch<SetStateAction<boolean>>;
+}
 
-export const DeleteButton: FC<DeleteButtonProps> = () => {
+export const DeleteButton: FC<DeleteButtonProps> = ({ setModalShown }) => {
 	const { t } = useTranslation();
 
-	return <button className={cl.DeleteButton}>{t('Eliminar')}</button>;
+	const onClickHandler = () => {
+		setModalShown(true);
+	};
+
+	return (
+		<button className={cl.DeleteButton} onClick={onClickHandler}>
+			{t('Eliminar')}
+		</button>
+	);
 };

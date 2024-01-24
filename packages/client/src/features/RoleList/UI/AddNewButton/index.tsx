@@ -1,11 +1,17 @@
-import { FC } from 'react';
+import { Dispatch, FC, SetStateAction } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Button } from 'shared/UI';
 
-interface AddNewButtonProps {}
+interface AddNewButtonProps {
+	setModalShown: Dispatch<SetStateAction<boolean>>;
+}
 
-export const AddNewButton: FC<AddNewButtonProps> = () => {
+export const AddNewButton: FC<AddNewButtonProps> = ({ setModalShown }) => {
 	const { t } = useTranslation();
 
-	return <Button>{t('Agregar')}</Button>;
+	const onClickHandler = () => {
+		setModalShown(true);
+	};
+
+	return <Button onClick={onClickHandler}>{t('Agregar')}</Button>;
 };
