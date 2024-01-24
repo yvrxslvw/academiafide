@@ -20,7 +20,8 @@ export class UsersService {
 	async create(dto: CreateUserDto): Promise<User> {
 		const candidate = await this.userRepo.findOne({ where: { login: dto.login } });
 		if (candidate) throw new ForbiddenException('Login already exist.');
-		const user = await this.userRepo.create(dto);
+		const { id } = await this.userRepo.create(dto);
+		const user = await this.userRepo.findByPk(id, { include: { all: true, nested: true } });
 		const role = await this.rolesService.findOneByTag('USER');
 		await user.$set('roles', [role.id]);
 		user.roles = [role];
