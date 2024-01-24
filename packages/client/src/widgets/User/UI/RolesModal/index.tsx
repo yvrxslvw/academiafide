@@ -9,9 +9,10 @@ interface RolesModalProps {
 	roles: IRole[];
 	shown: boolean;
 	setShown: Dispatch<SetStateAction<boolean>>;
+	refetch: () => void;
 }
 
-export const RolesModal: FC<RolesModalProps> = ({ roles, shown, setShown }) => {
+export const RolesModal: FC<RolesModalProps> = ({ roles, shown, setShown, refetch }) => {
 	const { data, isLoading } = useGetAllRolesQuery();
 	const { t } = useTranslation();
 
@@ -19,7 +20,12 @@ export const RolesModal: FC<RolesModalProps> = ({ roles, shown, setShown }) => {
 		<Modal title='Роли пользователя' shown={shown} setShown={setShown}>
 			{data ? (
 				data.map(role => (
-					<UserRole key={role.id} role={role} isExist={roles.findIndex(userRole => userRole.id === role.id) !== -1} />
+					<UserRole
+						key={role.id}
+						role={role}
+						isExist={roles.findIndex(userRole => userRole.id === role.id) !== -1}
+						refetch={refetch}
+					/>
 				))
 			) : isLoading ? (
 				<Loader />

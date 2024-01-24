@@ -25,4 +25,13 @@
 			background-color: rgba($color: $red_color, $alpha: 0.8);
 		}
 	}
+
+	&:disabled {
+		cursor: not-allowed;
+		background-color: rgba($color: $button_color, $alpha: 0.5);
+
+		&:hover {
+			background-color: rgba($color: $button_color, $alpha: 0.5);
+		}
+	}
 }
