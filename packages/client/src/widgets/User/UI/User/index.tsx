@@ -28,7 +28,7 @@ export const User: FC<UserProps> = ({ userInfo, setEditProfileShown, setRolesMod
 					username={userInfo.login}
 					imageSrc={userInfo.image ? `${API_URL}/${userInfo.image}` : Icons.ChessFigure}
 				>
-					<RolesSection roles={userInfo.roles} setRolesModalShown={setRolesModalShown} />
+					<RolesSection userId={userInfo.id} roles={userInfo.roles} setRolesModalShown={setRolesModalShown} />
 					<section className={cl.ButtonSection}>
 						<EditAccountButton accountLogin={userInfo.login} setModalShown={setEditProfileShown} />
 						<RecoveryPasswordButton accountLogin={userInfo.login} />

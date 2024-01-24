@@ -9,11 +9,12 @@ import { useAppSelector } from 'shared/hooks';
 import { isAdmin } from 'shared/utils';
 
 interface RolesSectionProps {
+	userId: number;
 	roles: IRole[];
 	setRolesModalShown: Dispatch<SetStateAction<boolean>>;
 }
 
-export const RolesSection: FC<RolesSectionProps> = ({ roles, setRolesModalShown }) => {
+export const RolesSection: FC<RolesSectionProps> = ({ userId, roles, setRolesModalShown }) => {
 	const { t } = useTranslation();
 	const { userInfo } = useAppSelector(state => state.user);
 
@@ -25,7 +26,7 @@ export const RolesSection: FC<RolesSectionProps> = ({ roles, setRolesModalShown 
 		<section className={cl.RolesSection}>
 			<Paragraph>
 				{t('Roles')}:{' '}
-				{isAdmin(userInfo) && (
+				{isAdmin(userInfo) && userInfo.id !== userId && (
 					<button className={cl.EditRoleButton} onClick={onClickHandler}>
 						<FontAwesomeIcon icon={faPen} />
 					</button>
