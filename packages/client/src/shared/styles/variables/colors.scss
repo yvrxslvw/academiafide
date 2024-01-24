@@ -14,5 +14,9 @@ $button_hover_color: rgba(
 	$alpha: 0.65,
 );
 $black_color: #252525;
-$blackout_color: rgba($color: $black_color, $alpha: 0.5);
+$blackout_color: rgba(
+	$color: $black_color,
+	$alpha: 0.5,
+);
 $red_color: #da6363;
+$green_color: #459b69;

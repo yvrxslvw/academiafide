@@ -1,0 +1,46 @@
+@use '@styles' as *;
+
+.UserRole {
+	width: 100%;
+	padding: 15px 0px;
+	border-bottom: 1px solid $black_color;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+	&:last-child {
+		border: none;
+	}
+
+	p {
+		font-size: 20px;
+		font-weight: 700;
+	}
+
+	button {
+		border: none;
+		outline: none;
+		background-color: initial;
+		cursor: pointer;
+
+		font-size: 20px;
+		font-weight: 700;
+		color: $white_color;
+		background-color: $green_color;
+		padding: 10px 15px;
+		border-radius: 10px;
+		transition: background 0.4s ease;
+
+		&:hover {
+			background-color: rgba($color: $green_color, $alpha: 0.8);
+		}
+
+		&.Delete {
+			background-color: $red_color;
+
+			&:hover {
+				background-color: rgba($color: $red_color, $alpha: 0.8);
+			}
+		}
+	}
+}

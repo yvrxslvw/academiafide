@@ -1,6 +1,8 @@
 import { Dispatch, FC, SetStateAction } from 'react';
-import { Modal } from 'shared/UI';
-// import { useGetAllRolesQuery } from 'shared/api';
+import { useTranslation } from 'react-i18next';
+import { UserRole } from 'entities/userRoles';
+import { Loader, Modal } from 'shared/UI';
+import { useGetAllRolesQuery } from 'shared/api';
 import { IRole } from 'shared/models';
 
 interface RolesModalProps {
@@ -9,12 +11,21 @@ interface RolesModalProps {
 	setShown: Dispatch<SetStateAction<boolean>>;
 }
 
-export const RolesModal: FC<RolesModalProps> = ({ shown, setShown }) => {
-	// const { data, isError, isLoading } = useGetAllRolesQuery();
+export const RolesModal: FC<RolesModalProps> = ({ roles, shown, setShown }) => {
+	const { data, isLoading } = useGetAllRolesQuery();
+	const { t } = useTranslation();
 
 	return (
 		<Modal title='Роли пользователя' shown={shown} setShown={setShown}>
-
+			{data ? (
+				data.map(role => (
+					<UserRole key={role.id} role={role} isExist={roles.findIndex(userRole => userRole.id === role.id) !== -1} />
+				))
+			) : isLoading ? (
+				<Loader />
+			) : (
+				t('Se produjo un error inesperado... Vuelva a intentarlo más tarde.')
+			)}
 		</Modal>
 	);
 };
