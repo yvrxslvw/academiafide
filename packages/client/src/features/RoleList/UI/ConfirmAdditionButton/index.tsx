@@ -28,23 +28,23 @@ export const ConfirmAdditionButton: FC<ConfirmAdditionButtonProps> = ({
 
 	const onClickHandler = async () => {
 		if (tag.length < 3 || tag.length > 24)
-			return createPopup('Длина тега роли должна быть не меньше 3 и не больше 24 символов.');
+			return createPopup(t('La longitud de la etiqueta de rol no debe ser inferior a 3 ni superior a 24 caracteres.'));
 		if (description.length < 3 || description.length > 32)
-			return createPopup('Длина описания роли должна быть не меньше 3 и не больше 24 символов.');
+			return createPopup(t('La longitud de la descripción del rol no debe ser inferior a 3 ni superior a 24 caracteres.'));
 
 		await createRole({ tag, description });
 	};
 
 	useEffect(() => {
 		if (error) {
-			if (isErrorFromBackend(error) && error.data.statusCode === 403) createPopup('Данная роль уже существует.');
+			if (isErrorFromBackend(error) && error.data.statusCode === 403) createPopup(t('Este rol ya existe.'));
 			else createPopup(t('Se produjo un error inesperado... Vuelva a intentarlo más tarde.'));
 		}
 	}, [error]);
 
 	useEffect(() => {
 		if (isSuccess) {
-			createPopup('Роль успешно создана.');
+			createPopup(t('El rol se ha creado exitosamente.'));
 			refetch();
 			setTag('');
 			setDescription('');
