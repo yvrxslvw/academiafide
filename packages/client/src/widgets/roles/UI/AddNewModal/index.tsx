@@ -17,7 +17,7 @@ export const AddNewRoleModal: FC<AddNewRoleModalProps> = ({ shown, setShown }) =
 			<RoleTagInput tag={tag} setTag={setTag} />
 			<RoleDescriptionInput description={description} setDescription={setDescription} />
 			<section className={cl.ButtonSection}>
-				<ConfirmAdditionButton />
+				<ConfirmAdditionButton tag={tag} description={description} />
 			</section>
 		</Modal>
 	);

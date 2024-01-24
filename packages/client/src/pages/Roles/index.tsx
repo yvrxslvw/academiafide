@@ -6,6 +6,8 @@ export const RolesPage: FC = () => {
 	const [addNewModalShown, setAddNewModalShown] = useState(false);
 	const [editModalShown, setEditModalShown] = useState(false);
 	const [deleteModalShown, setDeleteModalShown] = useState(false);
+	const [editionId, setEditionId] = useState(-1);
+	const [deletionId, setDeletionId] = useState(-1);
 
 	return (
 		<div className={cl.Container}>
@@ -13,11 +15,13 @@ export const RolesPage: FC = () => {
 				setAddNewRoleModalShown={setAddNewModalShown}
 				setEditRoleModalShown={setEditModalShown}
 				setDeleteRoleModalShown={setDeleteModalShown}
+				setEditionId={setEditionId}
+				setDeletionId={setDeletionId}
 			/>
 
 			<AddNewRoleModal shown={addNewModalShown} setShown={setAddNewModalShown} />
-			<EditRoleModal shown={editModalShown} setShown={setEditModalShown} />
-			<DeleteRoleModal shown={deleteModalShown} setShown={setDeleteModalShown} />
+			<EditRoleModal id={editionId} shown={editModalShown} setShown={setEditModalShown} />
+			<DeleteRoleModal id={deletionId} shown={deleteModalShown} setShown={setDeleteModalShown} />
 		</div>
 	);
 };

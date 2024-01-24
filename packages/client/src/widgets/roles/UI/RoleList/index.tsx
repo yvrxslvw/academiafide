@@ -10,12 +10,16 @@ interface RoleListProps {
 	setAddNewRoleModalShown: Dispatch<SetStateAction<boolean>>;
 	setEditRoleModalShown: Dispatch<SetStateAction<boolean>>;
 	setDeleteRoleModalShown: Dispatch<SetStateAction<boolean>>;
+	setEditionId: Dispatch<SetStateAction<number>>;
+	setDeletionId: Dispatch<SetStateAction<number>>;
 }
 
 export const RoleList: FC<RoleListProps> = ({
 	setAddNewRoleModalShown,
 	setEditRoleModalShown,
 	setDeleteRoleModalShown,
+	setEditionId,
+	setDeletionId,
 }) => {
 	const { data, isError, isLoading } = useGetAllRolesQuery();
 	const { t } = useTranslation();
@@ -38,6 +42,8 @@ export const RoleList: FC<RoleListProps> = ({
 						role={role}
 						setEditRoleModalShown={setEditRoleModalShown}
 						setDeleteRoleModalShown={setDeleteRoleModalShown}
+						setEditionId={setEditionId}
+						setDeletionId={setDeletionId}
 					/>
 				))
 			)}
