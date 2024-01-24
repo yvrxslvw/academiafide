@@ -1,4 +1,5 @@
 import { ChangeEvent, Dispatch, FC, SetStateAction } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Input } from 'shared/UI';
 
 interface RoleTagInputProps {
@@ -7,9 +8,11 @@ interface RoleTagInputProps {
 }
 
 export const RoleTagInput: FC<RoleTagInputProps> = ({ tag, setTag }) => {
+	const { t } = useTranslation();
+
 	const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
 		setTag(event.target.value);
 	};
 
-	return <Input label='Тэг роли' value={tag} onChange={onChangeHandler} />;
+	return <Input label={t('Etiqueta de rol')} value={tag} onChange={onChangeHandler} />;
 };

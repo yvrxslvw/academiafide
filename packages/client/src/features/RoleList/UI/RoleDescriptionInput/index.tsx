@@ -1,4 +1,5 @@
 import { ChangeEvent, Dispatch, FC, SetStateAction } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Input } from 'shared/UI';
 
 interface RoleDescriptionInputProps {
@@ -7,9 +8,11 @@ interface RoleDescriptionInputProps {
 }
 
 export const RoleDescriptionInput: FC<RoleDescriptionInputProps> = ({ description, setDescription }) => {
+	const { t } = useTranslation();
+
 	const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
 		setDescription(event.target.value);
 	};
 
-	return <Input label='Описание роли' value={description} onChange={onChangeHandler} />;
+	return <Input label={t('Descripción del rol')} value={description} onChange={onChangeHandler} />;
 };

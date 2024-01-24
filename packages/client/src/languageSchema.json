@@ -140,7 +140,13 @@
 			"El rol se ha eliminado exitosamente.": "El rol se ha eliminado exitosamente.",
 			"Agregar": "Agregar",
 			"Lista de usuarios": "Lista de usuarios",
-			"Lista de roles": "Lista de roles"
+			"Lista de roles": "Lista de roles",
+			"Adición de role": "Adición de role",
+			"Etiqueta de rol": "Etiqueta de rol",
+			"Descripción del rol": "Descripción del rol",
+			"Edición de role": "Edición de role",
+			"Eliminación de role": "Eliminación de role",
+			"¿Está seguro de que desea eliminar este rol?": "¿Está seguro de que desea eliminar este rol?"
 		}
 	},
 	"en": {
@@ -284,7 +290,13 @@
 			"El rol se ha eliminado exitosamente.": "The role has been successfully deleted.",
 			"Agregar": "Add",
 			"Lista de usuarios": "User List",
-			"Lista de roles": "List of roles"
+			"Lista de roles": "List of roles",
+			"Adición de role": "Adding role",
+			"Etiqueta de rol": "Role tag",
+			"Descripción del rol": "Role description",
+			"Edición de role": "Role editing",
+			"Eliminación de role": "Role deletion",
+			"¿Está seguro de que desea eliminar este rol?": "Are you sure you want to delete this role?"
 		}
 	},
 	"ru": {
@@ -428,7 +440,13 @@
 			"El rol se ha eliminado exitosamente.": "Роль успешно удалена.",
 			"Agregar": "Добавить",
 			"Lista de usuarios": "Список пользователей",
-			"Lista de roles": "Список ролей"
+			"Lista de roles": "Список ролей",
+			"Adición de role": "Добавление роли",
+			"Etiqueta de rol": "Тег роли",
+			"Descripción del rol": "Описание роли",
+			"Edición de role": "Редактирование роли",
+			"Eliminación de role": "Удаление роли",
+			"¿Está seguro de que desea eliminar este rol?": "Вы уверены, что хотите удалить эту роль?"
 		}
 	}
 }
