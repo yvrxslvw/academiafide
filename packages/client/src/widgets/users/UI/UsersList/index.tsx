@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { UserRow } from 'entities/user';
 import { Loader } from 'shared/UI';
@@ -6,8 +6,12 @@ import { useGetAllUsersQuery } from 'shared/api';
 import cl from './style.module.scss';
 
 export const UsersList: FC = () => {
-	const { data, isLoading, isError } = useGetAllUsersQuery();
+	const { data, isLoading, isError, refetch } = useGetAllUsersQuery();
 	const { t } = useTranslation();
+
+	useEffect(() => {
+		refetch();
+	}, []);
 
 	return (
 		<div className={cl.UsersList}>
