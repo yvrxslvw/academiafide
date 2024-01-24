@@ -10,5 +10,6 @@ import { FilesModule } from 'src/files/files.module';
 	controllers: [ProductsController],
 	providers: [ProductsService],
 	imports: [SequelizeModule.forFeature([Product]), forwardRef(() => AuthModule), FilesModule],
+	exports: [ProductsService],
 })
 export class ProductsModule {}
