@@ -15,6 +15,7 @@ import { UserRole } from './roles/entities/user-role.entity';
 import { ProductsModule } from './products/products.module';
 import { Product } from './products/entities/product.entity';
 import { MailerModule } from './mailer/mailer.module';
+import { Transaction } from './products/entities/transaction.entity';
 
 const isDev = process.env.APP_MODE === 'development';
 const envFilePath = isDev ? '.env.development' : path.resolve(__dirname, '.env');
@@ -31,7 +32,7 @@ const envFilePath = isDev ? '.env.development' : path.resolve(__dirname, '.env')
 			database: process.env.MYSQL_DATABASE,
 			timezone: process.env.MYSQL_TIMEZONE,
 			logging: isDev ? sql => console.log(sql) : false,
-			models: [User, Post, Role, UserRole, Product],
+			models: [User, Post, Role, UserRole, Product, Transaction],
 			autoLoadModels: true,
 		}),
 		ServeStaticModule.forRoot({

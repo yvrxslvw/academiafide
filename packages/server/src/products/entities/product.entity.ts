@@ -22,8 +22,8 @@ export class Product extends Model<Product, ProductCreationAttributes> {
 	@Column({ type: DataType.TEXT('tiny'), allowNull: false })
 	declare description: string;
 
-	@ApiProperty({ example: 50, description: 'Product price' })
-	@Column({ type: DataType.INTEGER, allowNull: false })
+	@ApiProperty({ example: 50, description: 'Product price (EUR)' })
+	@Column({ type: DataType.INTEGER, allowNull: false, comment: 'EUR' })
 	declare price: number;
 
 	@ApiProperty({ example: 'product.jpg', description: 'Product image' })
