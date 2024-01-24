@@ -161,7 +161,8 @@
 			"Precio": "Precio",
 			"Error": "Error",
 			"Para comprar, debe estar registrado en este sitio web y tener una dirección de correo electrónico verificada.": "Para comprar, debe estar registrado en este sitio web y tener una dirección de correo electrónico verificada.",
-			"Cerrar": "Cerrar"
+			"Cerrar": "Cerrar",
+			"La transacción fue cancelada.": "La transacción fue cancelada."
 		}
 	},
 	"en": {
@@ -326,7 +327,8 @@
 			"Precio": "Price",
 			"Error": "Error",
 			"Para comprar, debe estar registrado en este sitio web y tener una dirección de correo electrónico verificada.": "To purchase, you must be registered on this website and have a verified email address.",
-			"Cerrar": "Close"
+			"Cerrar": "Close",
+			"La transacción fue cancelada.": "The transaction was cancelled."
 		}
 	},
 	"ru": {
@@ -491,7 +493,8 @@
 			"Precio": "Цена",
 			"Error": "Ошибка",
 			"Para comprar, debe estar registrado en este sitio web y tener una dirección de correo electrónico verificada.": "Для покупки Вы должны быть зарегистрированы на этом сайте и иметь подтвержденный адрес электронной почты.",
-			"Cerrar": "Закрыть"
+			"Cerrar": "Закрыть",
+			"La transacción fue cancelada.": "Транзакция была отменена."
 		}
 	}
 }

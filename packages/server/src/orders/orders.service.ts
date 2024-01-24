@@ -34,22 +34,20 @@ export class OrdersService {
 			headers: {
 				'Content-Type': 'application/json',
 				Authorization: `Bearer ${accessToken}`,
-				// Uncomment one of these to force an error for negative testing (in sandbox mode only). Documentation:
-				// https://developer.paypal.com/tools/sandbox/negative-testing/request-headers/
-				// "PayPal-Mock-Response": '{"mock_application_codes": "MISSING_REQUIRED_PARAMETER"}'
-				// "PayPal-Mock-Response": '{"mock_application_codes": "PERMISSION_DENIED"}'
-				// "PayPal-Mock-Response": '{"mock_application_codes": "INTERNAL_SERVER_ERROR"}'
+				// "PayPal-Mock-Response": '{"mock_application_codes": "INTERNAL_SERVER_ERROR"}' // ! Mocked error
 			},
 			method: 'POST',
 			body: JSON.stringify(payload),
 		}).then(data => data.json());
 
-		await this.transactionRepo.create({
-			transactionId: response.id,
-			email: cartDto.email,
-			amount: product.price,
-			status: response.status,
-		});
+		if (response.status) {
+			await this.transactionRepo.create({
+				transactionId: response.id,
+				email: cartDto.email,
+				amount: product.price,
+				status: response.status,
+			});
+		}
 
 		return response;
 	}
@@ -63,16 +61,14 @@ export class OrdersService {
 			headers: {
 				'Content-Type': 'application/json',
 				Authorization: `Bearer ${accessToken}`,
-				// Uncomment one of these to force an error for negative testing (in sandbox mode only). Documentation:
-				// https://developer.paypal.com/tools/sandbox/negative-testing/request-headers/
-				// "PayPal-Mock-Response": '{"mock_application_codes": "INSTRUMENT_DECLINED"}'
-				// "PayPal-Mock-Response": '{"mock_application_codes": "TRANSACTION_REFUSED"}'
-				// "PayPal-Mock-Response": '{"mock_application_codes": "INTERNAL_SERVER_ERROR"}'
+				// "PayPal-Mock-Response": '{"mock_application_codes": "INTERNAL_SERVER_ERROR"}' // ! Mocked error
 			},
 		}).then(data => data.json());
 
-		const transaction = await this.transactionRepo.findOne({ where: { transactionId: response.id } });
-		await transaction.update({ status: response.status });
+		if (response.status) {
+			const transaction = await this.transactionRepo.findOne({ where: { transactionId: response.id } });
+			await transaction.update({ status: response.status });
+		}
 
 		return response;
 	}
