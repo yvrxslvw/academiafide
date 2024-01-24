@@ -1,0 +1,28 @@
+@use '@styles' as *;
+
+.RoleButton {
+	border: none;
+	outline: none;
+	background-color: initial;
+	cursor: pointer;
+
+	font-size: 20px;
+	font-weight: 700;
+	color: $white_color;
+	background-color: $green_color;
+	padding: 10px 15px;
+	border-radius: 10px;
+	transition: background 0.4s ease;
+
+	&:hover {
+		background-color: rgba($color: $green_color, $alpha: 0.8);
+	}
+
+	&.Remove {
+		background-color: $red_color;
+
+		&:hover {
+			background-color: rgba($color: $red_color, $alpha: 0.8);
+		}
+	}
+}

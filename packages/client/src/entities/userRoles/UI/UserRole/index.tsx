@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import cn from 'classnames';
 import { IRole } from 'shared/models';
 import cl from './style.module.scss';
+import { RoleButton } from 'features/UserRoles';
 
 interface UserRoleProps {
 	role: IRole;
@@ -14,7 +14,7 @@ export const UserRole: FC<UserRoleProps> = ({ role, isExist }) => {
 	return (
 		<div className={cl.UserRole}>
 			<p>{role.description}</p>
-			<button className={cn({ [cl.Delete]: isExist })}>{isExist ? 'Удалить' : 'Добавить'}</button>
+			<RoleButton isExist={isExist} />
 		</div>
 	);
 };
