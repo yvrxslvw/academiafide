@@ -32,6 +32,10 @@
 	.RolesSection {
 		display: flex;
 		gap: 5px;
+
+		@media (max-width: 500px) {
+			display: none;
+		}
 	}
 
 	&:hover {
