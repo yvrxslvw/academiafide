@@ -17,5 +17,5 @@ export const AddNewButton: FC<AddNewButtonProps> = ({ setModalShown }) => {
 	};
 
 	if (!isAdmin(userInfo)) return null;
-	else return <Button onClick={onClickHandler}>{t('Agregar nueva publicación')}</Button>;
+	else return <Button onClick={onClickHandler}>{t('Agregar')}</Button>;
 };
