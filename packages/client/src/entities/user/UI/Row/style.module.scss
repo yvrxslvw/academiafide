@@ -1,0 +1,43 @@
+@use '@styles' as *;
+
+.UserRow {
+	padding: 25px 10px;
+	border-bottom: 1px solid $black_color;
+	transition: background 0.4s ease;
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	gap: 25px;
+
+	.ImageSection {
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		overflow: hidden;
+		position: relative;
+
+		img {
+			position: absolute;
+			top: 0px;
+			width: 50px;
+		}
+	}
+
+	p {
+		font-size: 24px;
+		font-weight: 500;
+	}
+
+	.RolesSection {
+		display: flex;
+		gap: 5px;
+	}
+
+	&:hover {
+		background-color: rgba($color: $grey_color, $alpha: 0.2);
+	}
+
+	&:last-child {
+		border: none;
+	}
+}
