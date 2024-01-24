@@ -1,9 +1,9 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useGetAllRolesQuery } from 'shared/api';
-import { Loader } from 'shared/UI';
-import cl from './style.module.scss';
 import { RoleRow } from 'entities/role';
+import { useGetAllRolesQuery } from 'shared/api';
+import { Button, Loader } from 'shared/UI';
+import cl from './style.module.scss';
 
 export const RoleList: FC = () => {
 	const { data, isError, isLoading } = useGetAllRolesQuery();
@@ -12,6 +12,9 @@ export const RoleList: FC = () => {
 	return (
 		<div className={cl.RoleList}>
 			<h2>Список ролей</h2>
+			<section className={cl.ButtonSection}>
+				<Button>Добавить</Button>
+			</section>
 			{isLoading ? (
 				<Loader />
 			) : isError ? (
