@@ -10,12 +10,14 @@ import cl from './style.module.scss';
 import { AddNewProduct } from '../AddNewProduct';
 import { EditProduct } from '../EditProduct';
 import { DeleteProduct } from '../DeleteProduct';
+import { ErrorModal } from '../ErrorModal';
 
 export const ShopList: FC = () => {
 	const { t } = useTranslation();
 	const [isCreateProductModalShown, setIsCreateProductModalShown] = useState(false);
 	const [isEditProductModalShown, setIsEditProductModalShown] = useState(false);
 	const [isDeleteProductModalShown, setIsDeleteProductModalShown] = useState(false);
+	const [isErrorModalShown, setIsErrorModalShown] = useState(false);
 	const [editionId, setEditionId] = useState(-1);
 	const [deletionId, setDeletionId] = useState(-1);
 	const { data, isError, isLoading, refetch } = useGetProductsQuery(null, { pollingInterval: 60 * 1000 });
@@ -49,7 +51,7 @@ export const ShopList: FC = () => {
 							title={title}
 							description={description}
 							imageUrl={formatImageUrl(image)}
-							purchaseButton={<PurchaseButton itemId={id} />}
+							purchaseButton={<PurchaseButton itemId={id} setErrorModalShown={setIsErrorModalShown} />}
 							actionsDropdown={
 								<ActionsDropdown productId={id} onEditHandler={onEditHandler} onDeleteHandler={onDeleteHandler} />
 							}
@@ -77,6 +79,7 @@ export const ShopList: FC = () => {
 						setIsModalShown={setIsDeleteProductModalShown}
 						refetch={refetch}
 					/>
+					<ErrorModal isShown={isErrorModalShown} setIsShown={setIsErrorModalShown} />
 				</>
 			)}
 		</div>

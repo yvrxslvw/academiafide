@@ -1,0 +1,11 @@
+.ErrorModal {
+	padding-top: 10px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	.ButtonSection {
+		display: flex;
+		justify-content: center;
+	}
+}
