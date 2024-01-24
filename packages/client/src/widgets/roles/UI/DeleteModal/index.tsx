@@ -18,7 +18,7 @@ export const DeleteRoleModal: FC<DeleteRoleModalProps> = ({ id, shown, setShown,
 		<Modal title={t('Eliminación de role')} shown={shown} setShown={setShown} className={cl.DeleteRoleModal}>
 			<p>{t('¿Está seguro de que desea eliminar este rol?')}</p>
 			<section className={cl.ButtonSection}>
-				<ConfirmDeletionButton id={id} />
+				<ConfirmDeletionButton id={id} setModalShown={setShown} refetch={refetch} />
 			</section>
 		</Modal>
 	);
