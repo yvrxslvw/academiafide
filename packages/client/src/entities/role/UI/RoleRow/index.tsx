@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { useTranslation } from 'react-i18next';
 import { IRole } from 'shared/models';
 import cl from './style.module.scss';
 
@@ -7,6 +8,8 @@ interface RoleRowProps {
 }
 
 export const RoleRow: FC<RoleRowProps> = ({ role }) => {
+	const { t } = useTranslation();
+
 	if (role.tag === 'USER' || role.tag === 'ADMIN') return null;
 
 	return (
@@ -15,8 +18,8 @@ export const RoleRow: FC<RoleRowProps> = ({ role }) => {
 				ID {role.id}: {role.description}
 			</p>
 			<section className={cl.ButtonSection}>
-				<button className={cl.EditButton}>Изменить</button>
-				<button className={cl.DeleteButton}>Удалить</button>
+				<button className={cl.EditButton}>{t('Editar')}</button>
+				<button className={cl.DeleteButton}>{t('Eliminar')}</button>
 			</section>
 		</div>
 	);

@@ -139,7 +139,8 @@
 			"El rol se ha agregado exitosamente.": "El rol se ha agregado exitosamente.",
 			"El rol se ha eliminado exitosamente.": "El rol se ha eliminado exitosamente.",
 			"Agregar": "Agregar",
-			"Lista de usuarios": "Lista de usuarios"
+			"Lista de usuarios": "Lista de usuarios",
+			"Lista de roles": "Lista de roles"
 		}
 	},
 	"en": {
@@ -282,7 +283,8 @@
 			"El rol se ha agregado exitosamente.": "The role has been added successfully.",
 			"El rol se ha eliminado exitosamente.": "The role has been successfully deleted.",
 			"Agregar": "Add",
-			"Lista de usuarios": "User List"
+			"Lista de usuarios": "User List",
+			"Lista de roles": "List of roles"
 		}
 	},
 	"ru": {
@@ -425,7 +427,8 @@
 			"El rol se ha agregado exitosamente.": "Роль успешно добавлена.",
 			"El rol se ha eliminado exitosamente.": "Роль успешно удалена.",
 			"Agregar": "Добавить",
-			"Lista de usuarios": "Список пользователей"
+			"Lista de usuarios": "Список пользователей",
+			"Lista de roles": "Список ролей"
 		}
 	}
 }

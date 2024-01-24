@@ -11,9 +11,9 @@ export const RoleList: FC = () => {
 
 	return (
 		<div className={cl.RoleList}>
-			<h2>Список ролей</h2>
+			<h2>{t('Lista de roles')}</h2>
 			<section className={cl.ButtonSection}>
-				<Button>Добавить</Button>
+				<Button>{t('Agregar')}</Button>
 			</section>
 			{isLoading ? (
 				<Loader />
