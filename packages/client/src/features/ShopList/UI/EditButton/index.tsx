@@ -29,7 +29,7 @@ export const EditButton: FC<EditButtonProps> = ({ productId, oldTitle, data, set
 			setData({ ...data, titleError: true });
 			return;
 		}
-		if (Number.isNaN(price) || price <= 0) {
+		if (Number.isNaN(price) || Number(price) <= 0) {
 			createPopup(t('Precio del producto incorrecto.'));
 			setData({ ...data, priceError: true });
 			return;
@@ -64,7 +64,7 @@ export const EditButton: FC<EditButtonProps> = ({ productId, oldTitle, data, set
 			setIsModalShown(false);
 			refetch();
 			createPopup(t('El producto ha sido editado exitosamente.'));
-			setData({ ...data, title: '', description: '', price: 0, image: {} as File });
+			setData({ ...data, title: '', description: '', price: '', image: {} as File });
 		}
 	}, [fetchData]);
 
