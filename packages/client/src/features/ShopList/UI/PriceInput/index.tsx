@@ -12,13 +12,13 @@ export const PriceInput: FC<PriceInputProps> = ({ data, setData }) => {
 	const { t } = useTranslation();
 
 	const onChangeHandler = (event: ChangeEvent<HTMLInputElement>) => {
-		setData({ ...data, price: Number(event.target.value), priceError: false });
+		event.target.value = event.target.value.replace(/[^\d]/g, '');
+		setData({ ...data, price: event.target.value, priceError: false });
 	};
 
 	return (
 		<Input
 			label={t('Precio del nuevo producto')}
-			type='number'
 			value={data.price}
 			onChange={onChangeHandler}
 			error={data.priceError}

@@ -27,7 +27,7 @@ export const AddButton: FC<AddButtonProps> = ({ data, setData, setIsModalShown, 
 			setData({ ...data, titleError: true });
 			return;
 		}
-		if (Number.isNaN(price) || price <= 0) {
+		if (Number.isNaN(price) || Number(price) <= 0 || Number(price) > 10000) {
 			createPopup(t('Precio del producto incorrecto.'));
 			setData({ ...data, priceError: true });
 			return;
@@ -62,7 +62,7 @@ export const AddButton: FC<AddButtonProps> = ({ data, setData, setIsModalShown, 
 			setIsModalShown(false);
 			refetch();
 			createPopup(t('El producto ha sido creado exitosamente.'));
-			setData({ ...data, title: '', description: '', price: 0, image: {} as File });
+			setData({ ...data, title: '', description: '', price: '', image: {} as File });
 		}
 	}, [fetchData]);
 

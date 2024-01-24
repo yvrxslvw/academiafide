@@ -3,7 +3,7 @@ export interface INewProduct {
 	titleError: boolean;
 	description: string;
 	descriptionError: boolean;
-	price: number;
+	price: string;
 	priceError: boolean;
 	image: File | null;
 }

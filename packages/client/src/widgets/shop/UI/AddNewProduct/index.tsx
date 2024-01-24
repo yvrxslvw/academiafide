@@ -13,7 +13,7 @@ export const AddNewProduct: FC<AddNewProductProps> = ({ isModalShown, setIsModal
 	const [data, setData] = useState<INewProduct>({
 		title: '',
 		description: '',
-		price: 0,
+		price: '',
 		titleError: false,
 		descriptionError: false,
 		priceError: false,

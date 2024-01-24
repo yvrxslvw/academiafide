@@ -15,7 +15,7 @@ export const EditProduct: FC<EditProductProps> = ({ product, isModalShown, setIs
 	const [data, setData] = useState<INewProduct>({
 		title: '',
 		description: '',
-		price: 0,
+		price: '',
 		image: {} as File,
 		titleError: false,
 		descriptionError: false,
@@ -28,7 +28,7 @@ export const EditProduct: FC<EditProductProps> = ({ product, isModalShown, setIs
 			setData({
 				title: product.title,
 				description: product.description,
-				price: product.price,
+				price: String(product.price),
 				image: null,
 				titleError: false,
 				descriptionError: false,
