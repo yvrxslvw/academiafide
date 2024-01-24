@@ -2,7 +2,7 @@ import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Transaction } from './entities/transaction.entity';
 import { CartDto } from './dto/Cart.dto';
-import { ProductsService } from 'src/products/products.service';
+import { ProductsService } from '../products/products.service';
 
 @Injectable()
 export class OrdersService {
@@ -44,6 +44,13 @@ export class OrdersService {
 			body: JSON.stringify(payload),
 		}).then(data => data.json());
 
+		await this.transactionRepo.create({
+			transactionId: response.id,
+			email: cartDto.email,
+			amount: product.price,
+			status: response.status,
+		});
+
 		return response;
 	}
 
@@ -63,6 +70,9 @@ export class OrdersService {
 				// "PayPal-Mock-Response": '{"mock_application_codes": "INTERNAL_SERVER_ERROR"}'
 			},
 		}).then(data => data.json());
+
+		const transaction = await this.transactionRepo.findOne({ where: { transactionId: response.id } });
+		await transaction.update({ status: response.status });
 
 		return response;
 	}

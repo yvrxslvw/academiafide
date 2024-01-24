@@ -2,10 +2,10 @@ import { ApiProperty } from '@nestjs/swagger';
 import { Model, Column, DataType, Table } from 'sequelize-typescript';
 
 interface TransactionCreationAttributes {
-	title: string;
-	description: string;
-	price: number;
-	image?: string;
+	transactionId: string;
+	email: string;
+	amount: number;
+	status: string;
 }
 
 @Table({ tableName: 'transaction', updatedAt: false })
@@ -21,4 +21,8 @@ export class Transaction extends Model<Transaction, TransactionCreationAttribute
 	@ApiProperty({ example: 50, description: 'Transaction amount (EUR)' })
 	@Column({ type: DataType.INTEGER, allowNull: false, comment: 'EUR' })
 	declare amount: number;
+
+	@ApiProperty({ example: 'COMPLETED', description: 'Transaction status' })
+	@Column({ type: DataType.STRING(32), allowNull: false })
+	declare status: string;
 }
