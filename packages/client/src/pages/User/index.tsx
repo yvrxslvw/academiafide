@@ -34,7 +34,7 @@ export const UserPage: FC = () => {
 				setShown={setConfirmEmailShown}
 				refetch={refetch}
 			/>
-			<RolesModal roles={data.roles} shown={rolesShown} setShown={setRolesShown} refetch={refetch} />
+			<RolesModal userId={data.id} roles={data.roles} shown={rolesShown} setShown={setRolesShown} refetch={refetch} />
 		</div>
 	);
 };

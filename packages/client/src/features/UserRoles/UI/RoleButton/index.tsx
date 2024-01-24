@@ -2,18 +2,17 @@ import { FC, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import cn from 'classnames';
 import { usePopup } from 'processes/Popup';
-import { useAppSelector } from 'shared/hooks';
 import { useAddRoleMutation, useRemoveRoleMutation } from 'shared/api';
 import cl from './style.module.scss';
 
 interface RoleButtonProps {
 	isExist: boolean;
 	tag: string;
+	userId: number;
 	refetch: () => void;
 }
 
-export const RoleButton: FC<RoleButtonProps> = ({ isExist, tag, refetch }) => {
-	const { userInfo } = useAppSelector(state => state.user);
+export const RoleButton: FC<RoleButtonProps> = ({ isExist, tag, userId, refetch }) => {
 	const [addRole, { isSuccess: addRoleIsSuccess, isError: addRoleIsError, isLoading: addRoleIsLoading }] =
 		useAddRoleMutation();
 	const [removeRole, { isSuccess: removeRoleIsSuccess, isError: removeRoleIsError, isLoading: removeRoleIsLoading }] =
@@ -22,8 +21,8 @@ export const RoleButton: FC<RoleButtonProps> = ({ isExist, tag, refetch }) => {
 	const { t } = useTranslation();
 
 	const onClickHandler = () => {
-		if (!isExist) addRole({ userId: userInfo.id, roleTag: tag });
-		else removeRole({ userId: userInfo.id, roleTag: tag });
+		if (!isExist) addRole({ userId, roleTag: tag });
+		else removeRole({ userId, roleTag: tag });
 	};
 
 	useEffect(() => {

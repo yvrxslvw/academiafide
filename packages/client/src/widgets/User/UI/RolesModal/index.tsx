@@ -6,13 +6,14 @@ import { useGetAllRolesQuery } from 'shared/api';
 import { IRole } from 'shared/models';
 
 interface RolesModalProps {
+	userId: number;
 	roles: IRole[];
 	shown: boolean;
 	setShown: Dispatch<SetStateAction<boolean>>;
 	refetch: () => void;
 }
 
-export const RolesModal: FC<RolesModalProps> = ({ roles, shown, setShown, refetch }) => {
+export const RolesModal: FC<RolesModalProps> = ({ userId, roles, shown, setShown, refetch }) => {
 	const { data, isLoading } = useGetAllRolesQuery();
 	const { t } = useTranslation();
 
@@ -22,6 +23,7 @@ export const RolesModal: FC<RolesModalProps> = ({ roles, shown, setShown, refetc
 				data.map(role => (
 					<UserRole
 						key={role.id}
+						userId={userId}
 						role={role}
 						isExist={roles.findIndex(userRole => userRole.id === role.id) !== -1}
 						refetch={refetch}
