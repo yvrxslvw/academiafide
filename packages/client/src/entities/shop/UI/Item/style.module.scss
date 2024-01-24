@@ -9,8 +9,19 @@
 	position: relative;
 	justify-content: space-between;
 
-	.ItemImage {
-		margin-bottom: 15px;
+	.ImageSection {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin-bottom: 25px;
+
+		.ItemImage {
+			width: 100%;
+		}
+
+		.NoImage {
+			width: 80%;
+		}
 	}
 
 	.Info {
