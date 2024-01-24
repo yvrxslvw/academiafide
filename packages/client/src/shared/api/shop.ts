@@ -33,8 +33,19 @@ export const ShopApi = createApi({
 				method: 'DELETE',
 			}),
 		}),
+		getProductById: builder.query<IShop, number>({
+			query: id => ({
+				url: `/products/${id}`,
+				method: 'GET',
+			}),
+		}),
 	}),
 });
 
-export const { useGetProductsQuery, useCreateProductMutation, useEditProductMutation, useDeleteProductMutation } =
-	ShopApi;
+export const {
+	useGetProductsQuery,
+	useCreateProductMutation,
+	useEditProductMutation,
+	useDeleteProductMutation,
+	useGetProductByIdQuery,
+} = ShopApi;

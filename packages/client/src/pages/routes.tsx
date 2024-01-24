@@ -11,6 +11,7 @@ import { ShopPage } from './Shop';
 import { UserPage } from './User';
 import { UsersPage } from './Users';
 import { RolesPage } from './Roles';
+import { ProductPage } from './Product';
 
 export const PublicRoutes: RouteObject[] = [
 	{
@@ -53,6 +54,10 @@ export const PublicRoutes: RouteObject[] = [
 		path: PublicRouterPaths.USERS_PAGE + '/:login',
 		element: <UserPage />,
 	},
+	{
+		path: PublicRouterPaths.SHOP_PAGE + '/:id',
+		element: <ProductPage />,
+	},
 ];
 
 export const PrivateRoutes: RouteObject[] = [
@@ -91,5 +96,9 @@ export const PrivateRoutes: RouteObject[] = [
 	{
 		path: PrivateRouterPaths.ROLES_PAGE,
 		element: <RolesPage />,
+	},
+	{
+		path: PublicRouterPaths.SHOP_PAGE + '/:id',
+		element: <ProductPage />,
 	},
 ];

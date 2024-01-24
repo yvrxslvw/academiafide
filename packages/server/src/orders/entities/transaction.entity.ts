@@ -8,7 +8,7 @@ interface TransactionCreationAttributes {
 	status: string;
 }
 
-@Table({ tableName: 'transaction', updatedAt: false })
+@Table({ tableName: 'transaction' })
 export class Transaction extends Model<Transaction, TransactionCreationAttributes> {
 	@ApiProperty({ example: '2FP39996WR568984K', description: 'Transaction ID' })
 	@Column({ type: DataType.STRING(64), allowNull: false })

@@ -154,7 +154,12 @@
 			"El rol se ha editado correctamente.": "El rol se ha editado correctamente.",
 			"El rol se eliminó correctamente.": "El rol se eliminó correctamente.",
 			"Eliminación de cuenta": "Eliminación de cuenta",
-			"¿Estás seguro de que deseas eliminar la cuenta de este usuario?": "¿Estás seguro de que deseas eliminar la cuenta de este usuario?"
+			"¿Estás seguro de que deseas eliminar la cuenta de este usuario?": "¿Estás seguro de que deseas eliminar la cuenta de este usuario?",
+			"Vas a comprar:": "Vas a comprar:",
+			"Nombre": "Nombre",
+			"Descripción": "Descripción",
+			"Precio": "Precio",
+			"Se requiere una dirección de correo electrónico ya que necesitaremos enviarle el producto o comunicarnos con usted.": "Se requiere una dirección de correo electrónico ya que necesitaremos enviarle el producto o comunicarnos con usted."
 		}
 	},
 	"en": {
@@ -312,7 +317,12 @@
 			"El rol se ha editado correctamente.": "The role has been edited successfully.",
 			"El rol se eliminó correctamente.": "The role was successfully deleted.",
 			"Eliminación de cuenta": "Account deletion",
-			"¿Estás seguro de que deseas eliminar la cuenta de este usuario?": "Are you sure you want to delete this user's account?"
+			"¿Estás seguro de que deseas eliminar la cuenta de este usuario?": "Are you sure you want to delete this user's account?",
+			"Vas a comprar:": "You are going to buy:",
+			"Nombre": "Name",
+			"Descripción": "Description",
+			"Precio": "Price",
+			"Se requiere una dirección de correo electrónico ya que necesitaremos enviarle el producto o comunicarnos con usted.": "An email address is required as we will need to ship the product to you or contact you."
 		}
 	},
 	"ru": {
@@ -470,7 +480,12 @@
 			"El rol se ha editado correctamente.": "Роль успешно изменена.",
 			"El rol se eliminó correctamente.": "Роль успешно удалена.",
 			"Eliminación de cuenta": "Удаление аккаунта",
-			"¿Estás seguro de que deseas eliminar la cuenta de este usuario?": "Вы уверены, что хотите удалить аккаунт этого пользователя?"
+			"¿Estás seguro de que deseas eliminar la cuenta de este usuario?": "Вы уверены, что хотите удалить аккаунт этого пользователя?",
+			"Vas a comprar:": "Вы собираетесь купить:",
+			"Nombre": "Наименование",
+			"Descripción": "Описание",
+			"Precio": "Цена",
+			"Se requiere una dirección de correo electrónico ya que necesitaremos enviarle el producto o comunicarnos con usted.": "Требуется адрес электронной почты, так как нам нужно будет отправить Вам продукт или связаться с Вами."
 		}
 	}
 }

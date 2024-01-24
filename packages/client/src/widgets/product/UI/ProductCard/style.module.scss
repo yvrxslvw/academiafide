@@ -1,0 +1,40 @@
+@use '@styles' as *;
+
+.ProductCard {
+	display: flex;
+
+	.CardSection {
+		display: flex;
+		flex-direction: column;
+		gap: 25px;
+		width: 50%;
+
+		.ImageSection {
+			display: flex;
+			justify-content: flex-end;
+
+			img {
+				width: 50%;
+			}
+		}
+
+		p {
+			font-size: 24px;
+			text-align: right;
+
+			br {
+				margin: 5px 0px;
+			}
+
+			span {
+				font-weight: 600;
+				word-wrap: break-word;
+			}
+
+			&.Notation {
+				color: $gray_color;
+				text-align: center;
+			}
+		}
+	}
+}

@@ -1,0 +1,12 @@
+@use '@styles' as *;
+
+.Container {
+	@include container;
+
+	padding-bottom: 25px;
+
+	h2 {
+		text-align: center;
+		margin-bottom: 25px;
+	}
+}

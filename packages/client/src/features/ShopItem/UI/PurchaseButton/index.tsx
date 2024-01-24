@@ -1,6 +1,8 @@
 import { FC } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 import { Button } from 'shared/UI';
+import { PublicRouterPaths } from 'shared/constants';
 
 // import { OnApproveData } from '@paypal/paypal-js';
 // import { PayPalButtons, PayPalScriptProvider, ReactPayPalScriptOptions } from '@paypal/react-paypal-js';
@@ -18,10 +20,10 @@ interface PurchaseButtonProps {
 
 export const PurchaseButton: FC<PurchaseButtonProps> = ({ itemId }) => {
 	const { t } = useTranslation();
+	const navigate = useNavigate();
 
 	const onClickHandler = () => {
-		// eslint-disable-next-line no-console
-		console.log('Purchase logic', itemId);
+		navigate(PublicRouterPaths.SHOP_PAGE + `/${itemId}`);
 	};
 
 	return <Button onClick={onClickHandler}>{t('Comprar')}</Button>;
