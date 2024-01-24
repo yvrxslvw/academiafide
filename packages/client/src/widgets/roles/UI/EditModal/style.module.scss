@@ -1,0 +1,11 @@
+.EditRoleModal {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	padding-top: 15px;
+
+	.ButtonSection {
+		display: flex;
+		justify-content: center;
+	}
+}

@@ -1,0 +1,11 @@
+.DeleteRoleModal {
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
+	padding-top: 15px;
+
+	.ButtonSection {
+		display: flex;
+		justify-content: center;
+	}
+}
