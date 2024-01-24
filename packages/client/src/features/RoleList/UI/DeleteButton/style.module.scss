@@ -1,0 +1,19 @@
+@use '@styles' as *;
+
+.DeleteButton {
+	border: none;
+	outline: none;
+	background-color: initial;
+	cursor: pointer;
+
+	font-size: 24px;
+	color: $white_color;
+	padding: 10px 15px;
+	border-radius: 10px;
+	transition: background 0.4s ease;
+	background-color: $red_color;
+
+	&:hover {
+		background-color: rgba($color: $red_color, $alpha: 0.6);
+	}
+}
