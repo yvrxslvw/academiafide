@@ -27,6 +27,7 @@ declare module '*.svg' {
 
 interface ImportMetaEnv {
 	readonly VITE_API_URL: string;
+	readonly VITE_PAYPAL_CLIENT_ID: string;
 }
 
 interface ImportMeta {

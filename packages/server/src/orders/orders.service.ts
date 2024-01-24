@@ -15,7 +15,7 @@ export class OrdersService {
 
 	async createOrder(cartDto: CartDto) {
 		console.log('createOrder():', cartDto);
-		const product = await this.productService.getOneById(cartDto.productId);
+		const product = await this.productService.getOneById(cartDto.id);
 		const accessToken = await this.generateToken();
 		const url = `${this.BASE_URL}/v2/checkout/orders`;
 		const payload = {
@@ -78,9 +78,8 @@ export class OrdersService {
 			headers: {
 				Authorization: `Basic ${auth}`,
 			},
-		});
+		}).then(data => data.json());
 
-		const data = await response.json();
-		return data['access_token'];
+		return response['access_token'];
 	}
 }
