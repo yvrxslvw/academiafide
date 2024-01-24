@@ -29,14 +29,14 @@ export const RoleButton: FC<RoleButtonProps> = ({ isExist, tag, refetch }) => {
 	useEffect(() => {
 		if (addRoleIsSuccess) {
 			refetch();
-			createPopup('Роль успешно добавлена.');
+			createPopup(t('El rol se ha agregado exitosamente.'));
 		}
 	}, [addRoleIsSuccess]);
 
 	useEffect(() => {
 		if (removeRoleIsSuccess) {
 			refetch();
-			createPopup('Роль успешно удалена.');
+			createPopup(t('El rol se ha eliminado exitosamente.'));
 		}
 	}, [removeRoleIsSuccess]);
 
@@ -60,7 +60,7 @@ export const RoleButton: FC<RoleButtonProps> = ({ isExist, tag, refetch }) => {
 			})}
 			disabled={addRoleIsLoading || removeRoleIsLoading}
 		>
-			{isExist ? 'Удалить' : 'Добавить'}
+			{isExist ? t('Eliminar') : t('Agregar')}
 		</button>
 	);
 };

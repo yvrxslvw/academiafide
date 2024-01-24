@@ -134,7 +134,11 @@
 			"¿El correo electrónico no ha llegado? Haga clic aquí.": "¿El correo electrónico no ha llegado? Haga clic aquí.",
 			"Código de confirmación inválido.": "Código de confirmación inválido.",
 			"¡La dirección de correo electrónico ha sido verificada exitosamente!": "¡La dirección de correo electrónico ha sido verificada exitosamente!",
-			"El correo electrónico fue enviada al correo electrónico especificado.": "El correo electrónico fue enviada al correo electrónico especificado."
+			"El correo electrónico fue enviada al correo electrónico especificado.": "El correo electrónico fue enviada al correo electrónico especificado.",
+			"Roles del usuario": "Roles del usuario",
+			"El rol se ha agregado exitosamente.": "El rol se ha agregado exitosamente.",
+			"El rol se ha eliminado exitosamente.": "El rol se ha eliminado exitosamente.",
+			"Agregar": "Agregar"
 		}
 	},
 	"en": {
@@ -272,7 +276,11 @@
 			"¿El correo electrónico no ha llegado? Haga clic aquí.": "The email has not arrived? Click here.",
 			"Código de confirmación inválido.": "Invalid confirmation code.",
 			"¡La dirección de correo electrónico ha sido verificada exitosamente!": "The email address has been successfully verified!",
-			"El correo electrónico fue enviada al correo electrónico especificado.": "The email was sent to the specified email."
+			"El correo electrónico fue enviada al correo electrónico especificado.": "The email was sent to the specified email.",
+			"Roles del usuario": "User roles",
+			"El rol se ha agregado exitosamente.": "The role has been added successfully.",
+			"El rol se ha eliminado exitosamente.": "The role has been successfully deleted.",
+			"Agregar": "Add"
 		}
 	},
 	"ru": {
@@ -410,7 +418,11 @@
 			"¿El correo electrónico no ha llegado? Haga clic aquí.": "Письмо не пришло? Нажмите сюда.",
 			"Código de confirmación inválido.": "Неверный код подтверждения.",
 			"¡La dirección de correo electrónico ha sido verificada exitosamente!": "Адрес электронной почты успешно подтвержден!",
-			"El correo electrónico fue enviada al correo electrónico especificado.": "Письмо было отправлено на указанный адрес электронной почты."
+			"El correo electrónico fue enviada al correo electrónico especificado.": "Письмо было отправлено на указанный адрес электронной почты.",
+			"Roles del usuario": "Роли пользователя",
+			"El rol se ha agregado exitosamente.": "Роль успешно добавлена.",
+			"El rol se ha eliminado exitosamente.": "Роль успешно удалена.",
+			"Agregar": "Добавить"
 		}
 	}
 }

@@ -17,7 +17,7 @@ export const RolesModal: FC<RolesModalProps> = ({ roles, shown, setShown, refetc
 	const { t } = useTranslation();
 
 	return (
-		<Modal title='Роли пользователя' shown={shown} setShown={setShown}>
+		<Modal title={t('Roles del usuario')} shown={shown} setShown={setShown}>
 			{data ? (
 				data.map(role => (
 					<UserRole
