@@ -1,5 +1,5 @@
 import { createApi } from '@reduxjs/toolkit/query/react';
-import { IRole } from 'shared/models';
+import { IRole, IUser } from 'shared/models';
 import { baseQuery } from './baseQuery';
 
 export interface UserInfo {
@@ -31,7 +31,13 @@ export const UsersApi = createApi({
 				body,
 			}),
 		}),
+		getAllUsers: builder.query<IUser[], void>({
+			query: () => ({
+				url: '/users',
+				method: 'GET',
+			}),
+		}),
 	}),
 });
 
-export const { useGetUserByNameQuery, useUpdateUserMutation } = UsersApi;
+export const { useGetUserByNameQuery, useUpdateUserMutation, useGetAllUsersQuery } = UsersApi;

@@ -1,9 +1,11 @@
 import { FC } from 'react';
+import { UsersList } from 'widgets/users';
+import cl from './style.module.scss';
 
 export const UsersPage: FC = () => {
 	return (
-		<>
-			users page
-		</>
+		<div className={cl.Container}>
+			<UsersList />
+		</div>
 	);
 };
