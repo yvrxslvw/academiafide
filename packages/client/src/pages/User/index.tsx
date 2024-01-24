@@ -1,20 +1,22 @@
 import { FC, useState } from 'react';
 import { ConfirmEmailModal, EditProfileModal, RolesModal, User } from 'widgets/User';
 import cl from './style.module.scss';
-import { useLocation } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 import { useGetUserByNameQuery } from 'shared/api';
 import { Loader } from 'shared/UI';
 import { useAppSelector } from 'shared/hooks';
+import { PublicRouterPaths } from 'shared/constants';
 
 export const UserPage: FC = () => {
 	const location = useLocation();
-	const { data, isLoading, refetch } = useGetUserByNameQuery(location.pathname.slice(7));
+	const { data, isLoading, isError, refetch } = useGetUserByNameQuery(location.pathname.slice(7));
 	const { userInfo } = useAppSelector(state => state.user);
 
 	const [editProfileShown, setEditProfileShown] = useState(false);
 	const [confirmEmailShown, setConfirmEmailShown] = useState(false);
 	const [rolesShown, setRolesShown] = useState(false);
 
+	if (isError) return <Navigate to={PublicRouterPaths.MAIN_PAGE} replace />;
 	if (isLoading || !data) return <Loader />;
 
 	return (
