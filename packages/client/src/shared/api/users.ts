@@ -37,7 +37,13 @@ export const UsersApi = createApi({
 				method: 'GET',
 			}),
 		}),
+		deleteUser: builder.mutation<void, { id: number }>({
+			query: ({ id }) => ({
+				url: `/users/${id}`,
+				method: 'DELETE',
+			}),
+		}),
 	}),
 });
 
-export const { useGetUserByNameQuery, useUpdateUserMutation, useGetAllUsersQuery } = UsersApi;
+export const { useGetUserByNameQuery, useUpdateUserMutation, useGetAllUsersQuery, useDeleteUserMutation } = UsersApi;

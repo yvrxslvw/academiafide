@@ -1,13 +1,6 @@
 import { Dispatch, FC, SetStateAction } from 'react';
 import { Navigate } from 'react-router-dom';
-import {
-	DeleteAccountButton,
-	EditAccountButton,
-	RecoveryPasswordButton,
-	RolesButton,
-	RolesSection,
-	UsersButton,
-} from 'features/UserCard';
+import { DeleteAccountButton, EditAccountButton, RolesButton, RolesSection, UsersButton } from 'features/UserCard';
 import { UserCard } from 'entities/user';
 import { API_URL, PublicRouterPaths } from 'shared/constants';
 import { Icons } from 'shared/assets';
@@ -18,9 +11,10 @@ interface UserProps {
 	userInfo: UserInfo;
 	setEditProfileShown: Dispatch<SetStateAction<boolean>>;
 	setRolesModalShown: Dispatch<SetStateAction<boolean>>;
+	setDeleteModalShown: Dispatch<SetStateAction<boolean>>;
 }
 
-export const User: FC<UserProps> = ({ userInfo, setEditProfileShown, setRolesModalShown }) => {
+export const User: FC<UserProps> = ({ userInfo, setEditProfileShown, setRolesModalShown, setDeleteModalShown }) => {
 	return (
 		<div className={cl.Block}>
 			{userInfo ? (
@@ -31,8 +25,7 @@ export const User: FC<UserProps> = ({ userInfo, setEditProfileShown, setRolesMod
 					<RolesSection userId={userInfo.id} roles={userInfo.roles} setRolesModalShown={setRolesModalShown} />
 					<section className={cl.ButtonSection}>
 						<EditAccountButton accountLogin={userInfo.login} setModalShown={setEditProfileShown} />
-						<RecoveryPasswordButton accountLogin={userInfo.login} />
-						<DeleteAccountButton accountLogin={userInfo.login} />
+						<DeleteAccountButton userId={userInfo.id} setModalShown={setDeleteModalShown} />
 						<RolesButton accountLogin={userInfo.login} />
 						<UsersButton accountLogin={userInfo.login} />
 					</section>

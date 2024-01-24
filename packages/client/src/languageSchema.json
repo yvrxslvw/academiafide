@@ -152,7 +152,9 @@
 			"Este rol ya existe.": "Este rol ya existe.",
 			"El rol se ha creado exitosamente.": "El rol se ha creado exitosamente.",
 			"El rol se ha editado correctamente.": "El rol se ha editado correctamente.",
-			"El rol se eliminó correctamente.": "El rol se eliminó correctamente."
+			"El rol se eliminó correctamente.": "El rol se eliminó correctamente.",
+			"Eliminación de cuenta": "Eliminación de cuenta",
+			"¿Estás seguro de que deseas eliminar la cuenta de este usuario?": "¿Estás seguro de que deseas eliminar la cuenta de este usuario?"
 		}
 	},
 	"en": {
@@ -308,7 +310,9 @@
 			"Este rol ya existe.": "This role already exists.",
 			"El rol se ha creado exitosamente.": "The role has been created successfully.",
 			"El rol se ha editado correctamente.": "The role has been edited successfully.",
-			"El rol se eliminó correctamente.": "The role was successfully deleted."
+			"El rol se eliminó correctamente.": "The role was successfully deleted.",
+			"Eliminación de cuenta": "Account deletion",
+			"¿Estás seguro de que deseas eliminar la cuenta de este usuario?": "Are you sure you want to delete this user's account?"
 		}
 	},
 	"ru": {
@@ -464,7 +468,9 @@
 			"Este rol ya existe.": "Эта роль уже существует.",
 			"El rol se ha creado exitosamente.": "Роль успешно создана.",
 			"El rol se ha editado correctamente.": "Роль успешно изменена.",
-			"El rol se eliminó correctamente.": "Роль успешно удалена."
+			"El rol se eliminó correctamente.": "Роль успешно удалена.",
+			"Eliminación de cuenta": "Удаление аккаунта",
+			"¿Estás seguro de que deseas eliminar la cuenta de este usuario?": "Вы уверены, что хотите удалить аккаунт этого пользователя?"
 		}
 	}
 }
