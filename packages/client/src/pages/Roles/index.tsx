@@ -27,8 +27,14 @@ export const RolesPage: FC = () => {
 			/>
 
 			<AddNewRoleModal shown={addNewModalShown} setShown={setAddNewModalShown} refetch={refetch} />
-			<EditRoleModal id={editionId} shown={editModalShown} setShown={setEditModalShown} />
-			<DeleteRoleModal id={deletionId} shown={deleteModalShown} setShown={setDeleteModalShown} />
+			<EditRoleModal
+				id={editionId}
+				role={data[data.findIndex(role => role.id === editionId)]}
+				shown={editModalShown}
+				setShown={setEditModalShown}
+				refetch={refetch}
+			/>
+			<DeleteRoleModal id={deletionId} shown={deleteModalShown} setShown={setDeleteModalShown} refetch={refetch} />
 		</div>
 	);
 };

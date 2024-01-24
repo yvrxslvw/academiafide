@@ -150,7 +150,8 @@
 			"La longitud de la etiqueta de rol no debe ser inferior a 3 ni superior a 24 caracteres.": "La longitud de la etiqueta de rol no debe ser inferior a 3 ni superior a 24 caracteres.",
 			"La longitud de la descripción del rol no debe ser inferior a 3 ni superior a 24 caracteres.": "La longitud de la descripción del rol no debe ser inferior a 3 ni superior a 24 caracteres.",
 			"Este rol ya existe.": "Este rol ya existe.",
-			"El rol se ha creado exitosamente.": "El rol se ha creado exitosamente."
+			"El rol se ha creado exitosamente.": "El rol se ha creado exitosamente.",
+			"El rol se ha editado correctamente.": "El rol se ha editado correctamente."
 		}
 	},
 	"en": {
@@ -304,7 +305,8 @@
 			"La longitud de la etiqueta de rol no debe ser inferior a 3 ni superior a 24 caracteres.": "The length of the role tag must be no less than 3 and no more than 24 characters.",
 			"La longitud de la descripción del rol no debe ser inferior a 3 ni superior a 24 caracteres.": "The length of the role description should be no less than 3 and no more than 24 characters.",
 			"Este rol ya existe.": "This role already exists.",
-			"El rol se ha creado exitosamente.": "The role has been created successfully."
+			"El rol se ha creado exitosamente.": "The role has been created successfully.",
+			"El rol se ha editado correctamente.": "The role has been edited successfully."
 		}
 	},
 	"ru": {
@@ -458,7 +460,8 @@
 			"La longitud de la etiqueta de rol no debe ser inferior a 3 ni superior a 24 caracteres.": "Длина тега роли должна быть не менее 3 и не более 24 символов.",
 			"La longitud de la descripción del rol no debe ser inferior a 3 ni superior a 24 caracteres.": "Длина описания роли должна быть не менее 3 и не более 24 символов.",
 			"Este rol ya existe.": "Эта роль уже существует.",
-			"El rol se ha creado exitosamente.": "Роль успешно создана."
+			"El rol se ha creado exitosamente.": "Роль успешно создана.",
+			"El rol se ha editado correctamente.": "Роль успешно изменена."
 		}
 	}
 }

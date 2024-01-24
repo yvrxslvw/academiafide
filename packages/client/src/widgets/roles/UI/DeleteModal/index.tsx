@@ -8,9 +8,10 @@ interface DeleteRoleModalProps {
 	id: number;
 	shown: boolean;
 	setShown: Dispatch<SetStateAction<boolean>>;
+	refetch: () => void;
 }
 
-export const DeleteRoleModal: FC<DeleteRoleModalProps> = ({ id, shown, setShown }) => {
+export const DeleteRoleModal: FC<DeleteRoleModalProps> = ({ id, shown, setShown, refetch }) => {
 	const { t } = useTranslation();
 
 	return (
