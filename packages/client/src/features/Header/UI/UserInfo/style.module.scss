@@ -5,8 +5,12 @@
 	cursor: pointer;
 	margin-left: 10px;
 	overflow: hidden;
+	position: relative;
 
 	img {
-		width: inherit;
+		width: 75px;
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
 	}
 }
