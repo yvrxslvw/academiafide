@@ -158,8 +158,7 @@
 			"Vas a comprar:": "Vas a comprar:",
 			"Nombre": "Nombre",
 			"Descripción": "Descripción",
-			"Precio": "Precio",
-			"Se requiere una dirección de correo electrónico ya que necesitaremos enviarle el producto o comunicarnos con usted.": "Se requiere una dirección de correo electrónico ya que necesitaremos enviarle el producto o comunicarnos con usted."
+			"Precio": "Precio"
 		}
 	},
 	"en": {
@@ -321,8 +320,7 @@
 			"Vas a comprar:": "You are going to buy:",
 			"Nombre": "Name",
 			"Descripción": "Description",
-			"Precio": "Price",
-			"Se requiere una dirección de correo electrónico ya que necesitaremos enviarle el producto o comunicarnos con usted.": "An email address is required as we will need to ship the product to you or contact you."
+			"Precio": "Price"
 		}
 	},
 	"ru": {
@@ -484,8 +482,7 @@
 			"Vas a comprar:": "Вы собираетесь купить:",
 			"Nombre": "Наименование",
 			"Descripción": "Описание",
-			"Precio": "Цена",
-			"Se requiere una dirección de correo electrónico ya que necesitaremos enviarle el producto o comunicarnos con usted.": "Требуется адрес электронной почты, так как нам нужно будет отправить Вам продукт или связаться с Вами."
+			"Precio": "Цена"
 		}
 	}
 }

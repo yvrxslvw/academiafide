@@ -2,12 +2,18 @@
 
 .ProductCard {
 	display: flex;
+	justify-content: space-between;
 
 	.CardSection {
 		display: flex;
 		flex-direction: column;
 		gap: 25px;
 		width: 50%;
+
+		&.PayPalContainer {
+			width: 40%;
+			justify-content: center;
+		}
 
 		.ImageSection {
 			display: flex;
