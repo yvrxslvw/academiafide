@@ -44,4 +44,18 @@
 			}
 		}
 	}
+
+	@media (max-width: 800px) {
+		flex-direction: column-reverse;
+		align-items: center;
+		gap: 25px;
+
+		.CardSection {
+			width: 100%;
+
+			&.PayPalContainer {
+				width: 100%;
+			}
+		}
+	}
 }
