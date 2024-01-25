@@ -2,7 +2,6 @@
 
 .Cookie {
 	width: 100%;
-	height: 100px;
 	position: fixed;
 	bottom: 0px;
 	left: 0px;
@@ -27,5 +26,14 @@
 		border: 1px solid $white_color;
 		padding: 10px 15px;
 		border-radius: 10px;
+	}
+
+	@media (max-width: 600px) {
+		flex-direction: column;
+
+		p {
+			width: 100%;
+			margin-bottom: 15px;
+		}
 	}
 }

@@ -35,4 +35,12 @@ footer {
 			gap: 15px;
 		}
 	}
+
+	.CookieVoid {
+		height: 110px;
+
+		@media (max-width: 600px) {
+			height: 200px;
+		}
+	}
 }

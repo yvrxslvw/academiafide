@@ -30,7 +30,7 @@ export const Footer: FC<FooterProps> = ({ isCookieShown }) => {
 					<RussianButton />
 				</nav>
 			</div>
-			{isCookieShown && <div style={{ height: '100px' }} />}
+			{isCookieShown && <div className={cl.CookieVoid} />}
 		</footer>
 	);
 };
