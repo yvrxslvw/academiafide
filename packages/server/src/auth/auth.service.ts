@@ -44,7 +44,7 @@ export class AuthService {
 	}
 
 	async logout(response: Response): Promise<Response> {
-		response.clearCookie('refreshToken', { path: '/api/auth/refresh', secure: true, sameSite: 'none' });
+		response.clearCookie('refreshToken', { path: '/api/auth/refresh', secure: false, sameSite: false }); // !
 		return response.json({ message: 'Successfully.' });
 	}
 
@@ -111,10 +111,8 @@ export class AuthService {
 		response.cookie('refreshToken', refreshToken, {
 			maxAge: 1000 * 60 * 60 * 24 * 30,
 			path: '/api/auth/refresh',
-			// secure: true,
-			// sameSite: 'none',
-			sameSite: 'strict',
-			// !!!
+			secure: false, // !
+			sameSite: false, // !
 		});
 
 		return this.jwtService.sign(accessPayload, { expiresIn: '10m' });

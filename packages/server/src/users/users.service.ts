@@ -68,6 +68,7 @@ export class UsersService {
 			where: { email },
 			include: { all: true, nested: true },
 		});
+		if (!user) throw new NotFoundException("User doesn't exist.");
 		if (isEmailConfirmed !== undefined) {
 			if (isEmailConfirmed === user.email_confirmed) return user;
 			else return null;

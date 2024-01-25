@@ -14,7 +14,6 @@ export class OrdersService {
 	) {}
 
 	async createOrder(cartDto: CartDto) {
-		console.log('createOrder():', cartDto);
 		const product = await this.productService.getOneById(cartDto.id);
 		const accessToken = await this.generateToken();
 		const url = `${this.BASE_URL}/v2/checkout/orders`;

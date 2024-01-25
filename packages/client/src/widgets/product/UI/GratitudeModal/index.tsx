@@ -1,9 +1,9 @@
 import { Dispatch, FC, SetStateAction } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { PublicRouterPaths } from 'shared/constants';
 import { Button, Modal } from 'shared/UI';
 import cl from './style.module.scss';
-import { PublicRouterPaths } from 'shared/constants';
 
 interface GratitudeModalProps {
 	modalShown: boolean;
