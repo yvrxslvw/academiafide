@@ -5,9 +5,11 @@ import { PublicRouterPaths } from 'shared/constants';
 import cl from './style.module.scss';
 import { EnglishButton, RussianButton, SpanishButton } from 'features/Footer';
 
-interface FooterProps {}
+interface FooterProps {
+	isCookieShown: boolean;
+}
 
-export const Footer: FC<FooterProps> = () => {
+export const Footer: FC<FooterProps> = ({ isCookieShown }) => {
 	const { t } = useTranslation();
 
 	return (
@@ -28,6 +30,7 @@ export const Footer: FC<FooterProps> = () => {
 					<RussianButton />
 				</nav>
 			</div>
+			{isCookieShown && <div style={{ height: '100px' }} />}
 		</footer>
 	);
 };
