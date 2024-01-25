@@ -9,7 +9,9 @@ import { PublicRouterPaths } from 'shared/constants';
 
 export const UserPage: FC = () => {
 	const location = useLocation();
-	const { data, isLoading, isError, refetch } = useGetUserByNameQuery(location.pathname.slice(7));
+	const { data, isLoading, isError, refetch } = useGetUserByNameQuery(location.pathname.slice(7), {
+		refetchOnMountOrArgChange: true,
+	});
 	const { userInfo } = useAppSelector(state => state.user);
 
 	const [editProfileShown, setEditProfileShown] = useState(false);
@@ -32,6 +34,7 @@ export const UserPage: FC = () => {
 			<EditProfileModal
 				userInfo={data}
 				shown={editProfileShown}
+				refetch={refetch}
 				setShown={setEditProfileShown}
 				setShownConfirmEmailModal={setConfirmEmailShown}
 				isSelf={data.login === userInfo.login}

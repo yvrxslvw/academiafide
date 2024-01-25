@@ -17,6 +17,7 @@ import cl from './style.module.scss';
 interface EditProfileModalProps {
 	userInfo: UserInfo;
 	shown: boolean;
+	refetch: () => void;
 	setShown: Dispatch<SetStateAction<boolean>>;
 	setShownConfirmEmailModal: Dispatch<SetStateAction<boolean>>;
 	isSelf: boolean;
@@ -25,6 +26,7 @@ interface EditProfileModalProps {
 export const EditProfileModal: FC<EditProfileModalProps> = ({
 	userInfo,
 	shown,
+	refetch,
 	setShown,
 	setShownConfirmEmailModal,
 	isSelf,
@@ -67,7 +69,7 @@ export const EditProfileModal: FC<EditProfileModalProps> = ({
 			<NewPasswordInput data={data} setData={setData} />
 			{isSelf && userInfo.email && userInfo.email_confirmed && <EmailNews data={data} setData={setData} />}
 			<section className={cl.ButtonBody}>
-				<ApplyButton userInfo={userInfo} data={data} setData={setData} setModalShown={setShown} isSelf={isSelf} />
+				<ApplyButton userInfo={userInfo} data={data} refetch={refetch} setData={setData} setModalShown={setShown} isSelf={isSelf} />
 			</section>
 		</Modal>
 	);

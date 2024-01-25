@@ -12,12 +12,13 @@ import { isErrorFromBackend } from 'shared/utils';
 interface ApplyButtonProps {
 	userInfo: UserInfo;
 	data: IEditProfile;
+	refetch: () => void;
 	setData: Dispatch<SetStateAction<IEditProfile>>;
 	setModalShown: Dispatch<SetStateAction<boolean>>;
 	isSelf: boolean;
 }
 
-export const ApplyButton: FC<ApplyButtonProps> = ({ userInfo, data, setData, setModalShown, isSelf }) => {
+export const ApplyButton: FC<ApplyButtonProps> = ({ userInfo, data, refetch, setData, setModalShown, isSelf }) => {
 	const { t } = useTranslation();
 	const { createPopup } = usePopup();
 	const navigate = useNavigate();
@@ -68,7 +69,8 @@ export const ApplyButton: FC<ApplyButtonProps> = ({ userInfo, data, setData, set
 			passwordError: false,
 			emailError: false,
 		});
-		await createPopup(t('Editado con éxito.'));
+		createPopup(t('Editado con éxito.'));
+		refetch();
 	};
 
 	const onSuccessHandler = async () => {
@@ -82,7 +84,8 @@ export const ApplyButton: FC<ApplyButtonProps> = ({ userInfo, data, setData, set
 			passwordError: false,
 			emailError: false,
 		});
-		await createPopup(t('Editado con éxito.'));
+		createPopup(t('Editado con éxito.'));
+		refetch();
 	};
 
 	useEffect(() => {
