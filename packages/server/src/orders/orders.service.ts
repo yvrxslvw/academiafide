@@ -34,7 +34,7 @@ export class OrdersService {
 			headers: {
 				'Content-Type': 'application/json',
 				Authorization: `Bearer ${accessToken}`,
-				// "PayPal-Mock-Response": '{"mock_application_codes": "INTERNAL_SERVER_ERROR"}' // ! Mocked error
+				// 'PayPal-Mock-Response': '{"mock_application_codes": "INTERNAL_SERVER_ERROR"}', // ! Mocked error
 			},
 			method: 'POST',
 			body: JSON.stringify(payload),
@@ -61,14 +61,13 @@ export class OrdersService {
 			headers: {
 				'Content-Type': 'application/json',
 				Authorization: `Bearer ${accessToken}`,
-				// "PayPal-Mock-Response": '{"mock_application_codes": "INTERNAL_SERVER_ERROR"}' // ! Mocked error
+				// 'PayPal-Mock-Response': '{"mock_application_codes": "INTERNAL_SERVER_ERROR"}', // ! Mocked error
 			},
 		}).then(data => data.json());
 
-		if (response.status) {
-			const transaction = await this.transactionRepo.findOne({ where: { transactionId: response.id } });
-			await transaction.update({ status: response.status });
-		}
+		const transaction = await this.transactionRepo.findOne({ where: { transactionId: orderId } });
+		if (response.status) await transaction.update({ status: response.status });
+		else await transaction.update({ status: 'REJECTED' });
 
 		return response;
 	}

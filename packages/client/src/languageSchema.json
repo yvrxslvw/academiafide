@@ -162,7 +162,9 @@
 			"Error": "Error",
 			"Para comprar, debe estar registrado en este sitio web y tener una dirección de correo electrónico verificada.": "Para comprar, debe estar registrado en este sitio web y tener una dirección de correo electrónico verificada.",
 			"Cerrar": "Cerrar",
-			"La transacción fue cancelada.": "La transacción fue cancelada."
+			"La transacción fue cancelada.": "La transacción fue cancelada.",
+			"Compra exitosa": "Compra exitosa",
+			"¡Gracias por comprar este producto! Próximamente recibirás información sobre tu compra y el producto en sí por correo electrónico.": "¡Gracias por comprar este producto! Próximamente recibirás información sobre tu compra y el producto en sí por correo electrónico."
 		}
 	},
 	"en": {
@@ -328,7 +330,9 @@
 			"Error": "Error",
 			"Para comprar, debe estar registrado en este sitio web y tener una dirección de correo electrónico verificada.": "To purchase, you must be registered on this website and have a verified email address.",
 			"Cerrar": "Close",
-			"La transacción fue cancelada.": "The transaction was cancelled."
+			"La transacción fue cancelada.": "The transaction was cancelled.",
+			"Compra exitosa": "Successful purchase",
+			"¡Gracias por comprar este producto! Próximamente recibirás información sobre tu compra y el producto en sí por correo electrónico.": "Thank you for purchasing this product! You will soon receive information about your purchase and the product itself by email."
 		}
 	},
 	"ru": {
@@ -494,7 +498,9 @@
 			"Error": "Ошибка",
 			"Para comprar, debe estar registrado en este sitio web y tener una dirección de correo electrónico verificada.": "Для покупки Вы должны быть зарегистрированы на этом сайте и иметь подтвержденный адрес электронной почты.",
 			"Cerrar": "Закрыть",
-			"La transacción fue cancelada.": "Транзакция была отменена."
+			"La transacción fue cancelada.": "Транзакция была отклонена.",
+			"Compra exitosa": "Успешная покупка",
+			"¡Gracias por comprar este producto! Próximamente recibirás información sobre tu compra y el producto en sí por correo electrónico.": "Благодарим Вас за покупку этого продукта! Вскоре Вы получите информацию о Вашей покупке и сам продукт по электронной почте."
 		}
 	}
 }

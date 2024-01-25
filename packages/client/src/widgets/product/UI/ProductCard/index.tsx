@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { Dispatch, FC, SetStateAction } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import cn from 'classnames';
@@ -11,9 +11,10 @@ import cl from './style.module.scss';
 
 interface ProductCardProps {
 	product: IShop;
+	setGratitudeModalShown: Dispatch<SetStateAction<boolean>>;
 }
 
-export const ProductCard: FC<ProductCardProps> = ({ product }) => {
+export const ProductCard: FC<ProductCardProps> = ({ product, setGratitudeModalShown }) => {
 	const { t } = useTranslation();
 	const { userInfo } = useAppSelector(state => state.user);
 
@@ -22,7 +23,7 @@ export const ProductCard: FC<ProductCardProps> = ({ product }) => {
 	return (
 		<div className={cl.ProductCard}>
 			<section className={cn(cl.CardSection, cl.PayPalContainer)}>
-				<PayPalContainer id={product.id} email={userInfo.email} />
+				<PayPalContainer id={product.id} email={userInfo.email} setGratitudeModalShown={setGratitudeModalShown} />
 			</section>
 			<section className={cl.CardSection}>
 				<section className={cl.ImageSection}>

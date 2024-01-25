@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { Dispatch, FC, SetStateAction } from 'react';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
 import { OnApproveData } from '@paypal/paypal-js';
@@ -15,9 +15,10 @@ const initialOptions: ReactPayPalScriptOptions = {
 interface PayPalContainerProps {
 	id: number;
 	email: string;
+	setGratitudeModalShown: Dispatch<SetStateAction<boolean>>;
 }
 
-export const PayPalContainer: FC<PayPalContainerProps> = ({ id, email }) => {
+export const PayPalContainer: FC<PayPalContainerProps> = ({ id, email, setGratitudeModalShown }) => {
 	const { t } = useTranslation();
 	const { createPopup } = usePopup();
 	const navigate = useNavigate();
@@ -32,11 +33,11 @@ export const PayPalContainer: FC<PayPalContainerProps> = ({ id, email }) => {
 
 	const onApproveHandler = async (data: OnApproveData) => {
 		const response = await axios.post(API_URL + `/api/orders/capture/${data.orderID}`);
-		navigate(PublicRouterPaths.SHOP_PAGE);
 		if (response.data.status !== 'COMPLETED') {
+			navigate(PublicRouterPaths.SHOP_PAGE);
 			createPopup(t('La transacción fue cancelada.'));
 		} else {
-			// * Gratitude window
+			setGratitudeModalShown(true);
 		}
 	};
 
