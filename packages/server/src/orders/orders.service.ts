@@ -3,6 +3,7 @@ import { InjectModel } from '@nestjs/sequelize';
 import { Transaction } from './entities/transaction.entity';
 import { CartDto } from './dto/Cart.dto';
 import { ProductsService } from '../products/products.service';
+import { MailerService } from 'src/mailer/mailer.service';
 
 @Injectable()
 export class OrdersService {
@@ -11,6 +12,7 @@ export class OrdersService {
 	constructor(
 		@InjectModel(Transaction) private readonly transactionRepo: typeof Transaction,
 		private readonly productService: ProductsService,
+		private readonly mailerService: MailerService,
 	) {}
 
 	async createOrder(cartDto: CartDto) {
@@ -42,6 +44,7 @@ export class OrdersService {
 		if (response.status) {
 			await this.transactionRepo.create({
 				transactionId: response.id,
+				productId: cartDto.id,
 				email: cartDto.email,
 				amount: product.price,
 				status: response.status,
@@ -65,8 +68,21 @@ export class OrdersService {
 		}).then(data => data.json());
 
 		const transaction = await this.transactionRepo.findOne({ where: { transactionId: orderId } });
-		if (response.status) await transaction.update({ status: response.status });
-		else await transaction.update({ status: 'REJECTED' });
+		const product = await this.productService.getOne(transaction.productId);
+		if (response.status) {
+			await transaction.update({ status: response.status });
+			if (response.status === 'COMPLETED') {
+				const email = transaction.email;
+				await this.mailerService.sendMessage(
+					email,
+					'Comprar productos en el Academia Fide',
+					`
+						<p>¡Gracias por comprar este producto! Este producto no puede enviarse a terceros ni utilizarse con fines personales. ¡Diviértete aprendiendo con Academia Fide!</p>
+						<p>Enlace al producto: ${product.link}</p>
+					`,
+				);
+			}
+		} else await transaction.update({ status: 'REJECTED' });
 
 		return response;
 	}

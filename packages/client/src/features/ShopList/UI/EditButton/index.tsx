@@ -22,7 +22,7 @@ export const EditButton: FC<EditButtonProps> = ({ productId, oldTitle, data, set
 
 	const onClickHandler = async () => {
 		setData({ ...data, titleError: false, descriptionError: false, priceError: false });
-		const { title, description, price, image } = data;
+		const { title, description, price, image, link } = data;
 
 		if (title.length < 3 || title.length > 24) {
 			createPopup(t('Nombre de producto incorrecto.'));
@@ -39,11 +39,17 @@ export const EditButton: FC<EditButtonProps> = ({ productId, oldTitle, data, set
 			setData({ ...data, descriptionError: true });
 			return;
 		}
+		if (link.length < 3 || link.length > 255) {
+			createPopup(t('Enlace del producto incorrecto.'));
+			setData({ ...data, linkError: true });
+			return;
+		}
 
 		const formData = new FormData();
 		if (title !== oldTitle) formData.append('title', title);
 		formData.append('description', description);
 		formData.append('price', price.toString());
+		formData.append('link', link);
 		if (image) formData.append('image', image);
 
 		await editProduct({ id: productId, body: formData });

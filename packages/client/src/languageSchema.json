@@ -166,7 +166,8 @@
 			"Compra exitosa": "Compra exitosa",
 			"¡Gracias por comprar este producto! Próximamente recibirás información sobre tu compra y el producto en sí por correo electrónico.": "¡Gracias por comprar este producto! Próximamente recibirás información sobre tu compra y el producto en sí por correo electrónico.",
 			"Este sitio web utiliza cookies para garantizar la máxima comodidad y confort a los usuarios al utilizar este recurso.": "Este sitio web utiliza cookies para garantizar la máxima comodidad y confort a los usuarios al utilizar este recurso.",
-			"Aceptar": "Aceptar"
+			"Aceptar": "Aceptar",
+			"Enlace de producto": "Enlace de producto"
 		}
 	},
 	"en": {
@@ -336,7 +337,8 @@
 			"Compra exitosa": "Successful purchase",
 			"¡Gracias por comprar este producto! Próximamente recibirás información sobre tu compra y el producto en sí por correo electrónico.": "Thank you for purchasing this product! You will soon receive information about your purchase and the product itself by email.",
 			"Este sitio web utiliza cookies para garantizar la máxima comodidad y confort a los usuarios al utilizar este recurso.": "This website uses cookies to guarantee maximum convenience and comfort to users when using this resource.",
-			"Aceptar": "Accept"
+			"Aceptar": "Accept",
+			"Enlace de producto": "Product link"
 		}
 	},
 	"ru": {
@@ -506,7 +508,8 @@
 			"Compra exitosa": "Успешная покупка",
 			"¡Gracias por comprar este producto! Próximamente recibirás información sobre tu compra y el producto en sí por correo electrónico.": "Благодарим Вас за покупку этого продукта! Вскоре Вы получите информацию о Вашей покупке и сам продукт по электронной почте.",
 			"Este sitio web utiliza cookies para garantizar la máxima comodidad y confort a los usuarios al utilizar este recurso.": "Данный сайт использует файлы cookie, чтобы гарантировать пользователям максимальное удобство и комфорт при использовании данного ресурса.",
-			"Aceptar": "Принять"
+			"Aceptar": "Принять",
+			"Enlace de producto": "Ссылка на продукт"
 		}
 	}
 }

@@ -16,4 +16,9 @@ export class CreateProductDto {
 	@IsString()
 	@IsNotEmpty()
 	declare price: string;
+
+	@ApiProperty({ example: 'https://youtube.com/123', description: 'Product link' })
+	@IsString()
+	@IsNotEmpty()
+	declare link: string;
 }

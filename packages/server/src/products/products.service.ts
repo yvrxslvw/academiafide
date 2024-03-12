@@ -21,13 +21,18 @@ export class ProductsService {
 	}
 
 	async getAll(): Promise<Product[]> {
-		const products = await this.productRepo.findAll();
+		const products = await this.productRepo.findAll({ attributes: { exclude: ['link'] } });
 		return products;
 	}
 
 	async getOneById(id: number): Promise<Product> {
-		const product = await this.productRepo.findByPk(id);
+		const product = await this.productRepo.findByPk(id, { attributes: { exclude: ['link'] } });
 		if (!product) throw new NotFoundException("Product doesn't exist.");
+		return product;
+	}
+
+	async getOne(id: number): Promise<Product> {
+		const product = await this.productRepo.findByPk(id);
 		return product;
 	}
 

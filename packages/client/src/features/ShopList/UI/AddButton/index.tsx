@@ -20,7 +20,7 @@ export const AddButton: FC<AddButtonProps> = ({ data, setData, setIsModalShown, 
 
 	const onClickHandler = async () => {
 		setData({ ...data, titleError: false, descriptionError: false, priceError: false });
-		const { title, description, price, image } = data;
+		const { title, description, price, image, link } = data;
 
 		if (title.length < 3 || title.length > 24) {
 			createPopup(t('Nombre de producto incorrecto.'));
@@ -37,11 +37,17 @@ export const AddButton: FC<AddButtonProps> = ({ data, setData, setIsModalShown, 
 			setData({ ...data, descriptionError: true });
 			return;
 		}
+		if (link.length < 3 || link.length > 255) {
+			createPopup(t('Enlace del producto incorrecto.'));
+			setData({ ...data, linkError: true });
+			return;
+		}
 
 		const formData = new FormData();
 		formData.append('title', title);
 		formData.append('description', description);
 		formData.append('price', price.toString());
+		formData.append('link', link);
 		if (image) formData.append('image', image);
 
 		await createProduct(formData);

@@ -8,6 +8,7 @@ interface EditModalProps {
 	titleInput: ReactNode;
 	descriptionTextarea: ReactNode;
 	priceInput: ReactNode;
+	linkInput: ReactNode;
 	imageInput: ReactNode;
 	nextButton: ReactNode;
 }
@@ -18,6 +19,7 @@ export const EditModal: FC<EditModalProps> = ({
 	titleInput,
 	descriptionTextarea,
 	priceInput,
+	linkInput,
 	imageInput,
 	nextButton,
 }) => {
@@ -26,6 +28,7 @@ export const EditModal: FC<EditModalProps> = ({
 			<section className={cl.Item}>{titleInput}</section>
 			<section className={cl.Item}>{priceInput}</section>
 			<section className={cl.Item}>{descriptionTextarea}</section>
+			<section className={cl.Item}>{linkInput}</section>
 			<section className={cl.Item}>{imageInput}</section>
 			<section className={cl.Item}>{nextButton}</section>
 		</Modal>

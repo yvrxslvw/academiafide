@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Model, Column, DataType, Table } from 'sequelize-typescript';
+import { Model, Column, DataType, Table, HasMany } from 'sequelize-typescript';
+import { Transaction } from 'src/orders/entities/transaction.entity';
 
 interface ProductCreationAttributes {
 	title: string;
@@ -29,4 +30,11 @@ export class Product extends Model<Product, ProductCreationAttributes> {
 	@ApiProperty({ example: 'product.jpg', description: 'Product image' })
 	@Column({ type: DataType.STRING(64), allowNull: true })
 	declare image: string;
+
+	@ApiProperty({ example: 'https://youtube.com/123', description: 'Product link' })
+	@Column({ type: DataType.STRING(256), allowNull: false })
+	declare link: string;
+
+	@HasMany(() => Transaction)
+	declare transactions: Transaction[];
 }

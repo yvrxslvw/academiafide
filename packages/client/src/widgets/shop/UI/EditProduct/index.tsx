@@ -1,7 +1,7 @@
 import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
 import { INewProduct, IShop } from 'shared/models';
 import { EditModal } from 'entities/shop';
-import { DescriptionTextarea, EditButton, ImageInput, PriceInput, TitleInput } from 'features/ShopList';
+import { DescriptionTextarea, EditButton, ImageInput, LinkInput, PriceInput, TitleInput } from 'features/ShopList';
 
 interface EditProductProps {
 	product: IShop | undefined;
@@ -16,10 +16,12 @@ export const EditProduct: FC<EditProductProps> = ({ product, isModalShown, setIs
 		title: '',
 		description: '',
 		price: '',
+		link: '',
 		image: {} as File,
 		titleError: false,
 		descriptionError: false,
 		priceError: false,
+		linkError: false,
 	});
 	const [productId, setProductId] = useState(-1);
 
@@ -29,10 +31,12 @@ export const EditProduct: FC<EditProductProps> = ({ product, isModalShown, setIs
 				title: product.title,
 				description: product.description,
 				price: String(product.price),
+				link: String(product.link),
 				image: null,
 				titleError: false,
 				descriptionError: false,
 				priceError: false,
+				linkError: false,
 			});
 			setProductId(product.id);
 			setOldTitle(product.title);
@@ -46,6 +50,7 @@ export const EditProduct: FC<EditProductProps> = ({ product, isModalShown, setIs
 			titleInput={<TitleInput data={data} setData={setData} />}
 			priceInput={<PriceInput data={data} setData={setData} />}
 			descriptionTextarea={<DescriptionTextarea data={data} setData={setData} />}
+			linkInput={<LinkInput data={data} setData={setData} />}
 			imageInput={<ImageInput data={data} setData={setData} />}
 			nextButton={
 				<EditButton
